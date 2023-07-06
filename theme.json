@@ -290,6 +290,15 @@
 					"name": "60px",
 					"size": "60px",
 					"slug": "max-60"
+				},
+				{
+					"fluid": {
+						"min": "48px",
+						"max": "72px"
+					},
+					"name": "72px",
+					"size": "72px",
+					"slug": "max-72"
 				}
 			]
 		},
