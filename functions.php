@@ -61,6 +61,9 @@ add_action( 'wp_enqueue_scripts', 'powder_enqueue_style_sheet' );
 function powder_register_block_styles() {
 
 	$block_styles = array(
+		'core/columns' => array(
+			'column-reverse' => __( 'Reverse', 'powder' ),
+		),
 		'core/group' => array(
 			'shadow-light' => __( 'Shadow', 'powder' ),
 			'shadow-solid' => __( 'Solid', 'powder' ),
@@ -68,6 +71,9 @@ function powder_register_block_styles() {
 		'core/image' => array(
 			'shadow-light' => __( 'Shadow', 'powder' ),
 			'shadow-solid' => __( 'Solid', 'powder' ),
+		),
+		'core/list' => array(
+			'no-disc' => __( 'No Disc', 'powder' ),
 		),
 		'core/navigation-link' => array(
 			'outline' => __( 'Outline', 'powder' ),

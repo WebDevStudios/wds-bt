@@ -48,6 +48,40 @@
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
+			"duotone": [
+				{
+					"name": "Black and White",
+					"slug": "black-and-white",
+					"colors": [ "#0a0a0a", "#ffffff" ]
+				},
+				{
+					"name": "Primary and White",
+					"slug": "primary-and-white",
+					"colors": [ "#6d28d9", "#ffffff" ]
+				}
+			],
+			"gradients": [
+				{
+					"gradient": "linear-gradient(var(--wp--preset--color--contrast) 50%, var(--wp--preset--color--base) 50%)",
+					"name": "Contrast to Base",
+					"slug": "contrast-base"
+				},
+				{
+					"gradient": "linear-gradient(180deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+					"name": "Primary to Secondary",
+					"slug": "primary-secondary"
+				},
+				{
+					"gradient": "linear-gradient(180deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--tertiary) 100%)",
+					"name": "Secondary to Tertiary",
+					"slug": "secondary-tertiary"
+				},
+				{
+					"gradient": "linear-gradient(180deg, var(--wp--preset--color--tertiary) 0%, var(--wp--preset--color--quaternary) 100%)",
+					"name": "Tertiary to Quaternary",
+					"slug": "tertiary-quaternary"
+				}
+			],
 			"palette": [
 				{
 					"color": "#ffffff",
@@ -60,114 +94,24 @@
 					"slug": "contrast"
 				},
 				{
-					"color": "#ef4444",
-					"name": "Red",
-					"slug": "red"
-				},
-				{
-					"color": "#f97316",
-					"name": "Orange",
-					"slug": "orange"
-				},
-				{
-					"color": "#f59e0b",
-					"name": "Amber",
-					"slug": "amber"
-				},
-				{
-					"color": "#eab308",
-					"name": "Yellow",
-					"slug": "yellow"
-				},
-				{
-					"color": "#84cc16",
-					"name": "Lime",
-					"slug": "lime"
-				},
-				{
-					"color": "#22c55e",
-					"name": "Green",
-					"slug": "green"
-				},
-				{
-					"color": "#10b981",
-					"name": "Emerald",
-					"slug": "emerald"
-				},
-				{
-					"color": "#14b8a6",
-					"name": "Teal",
-					"slug": "teal"
-				},
-				{
-					"color": "#06b6d4",
-					"name": "Cyan",
-					"slug": "cyan"
-				},
-				{
-					"color": "#0ea5e9",
-					"name": "Sky",
-					"slug": "sky"
-				},
-				{
-					"color": "#3b82f6",
-					"name": "Blue",
-					"slug": "blue"
-				},
-				{
-					"color": "#6366f1",
-					"name": "Indigo",
-					"slug": "indigo"
+					"color": "#6d28d9",
+					"name": "Primary",
+					"slug": "primary"
 				},
 				{
 					"color": "#8b5cf6",
-					"name": "Violet",
-					"slug": "violet"
+					"name": "Secondary",
+					"slug": "secondary"
 				},
 				{
-					"color": "#a855f7",
-					"name": "Purple",
-					"slug": "purple"
+					"color": "#c4b5fd",
+					"name": "Tertiary",
+					"slug": "tertiary"
 				},
 				{
-					"color": "#d946ef",
-					"name": "Fuchsia",
-					"slug": "fuchsia"
-				},
-				{
-					"color": "#ec4899",
-					"name": "Pink",
-					"slug": "pink"
-				},
-				{
-					"color": "#f43f5e",
-					"name": "Rose",
-					"slug": "rose"
-				},
-				{
-					"color": "#64748b",
-					"name": "Slate",
-					"slug": "slate"
-				},
-				{
-					"color": "#6b7280",
-					"name": "Gray",
-					"slug": "gray"
-				},
-				{
-					"color": "#71717a",
-					"name": "Zinc",
-					"slug": "zinc"
-				},
-				{
-					"color": "#78716c",
-					"name": "Neutral",
-					"slug": "neutral"
-				},
-				{
-					"color": "#737373",
-					"name": "Stone",
-					"slug": "stone"
+					"color": "#ede9fe",
+					"name": "Quaternary",
+					"slug": "quaternary"
 				}
 			]
 		},
@@ -203,7 +147,7 @@
 				{
 					"name": "Light",
 					"slug": "light",
-					"shadow": "0 0 50px rgb(0 0 0 / 10%);"
+					"shadow": "0 0 10px rgb(0 0 0 / 10%);"
 				},
 				{
 					"name": "Solid",
@@ -346,24 +290,6 @@
 					"name": "60px",
 					"size": "60px",
 					"slug": "max-60"
-				},
-				{
-					"fluid": {
-						"min": "48px",
-						"max": "72px"
-					},
-					"name": "72px",
-					"size": "72px",
-					"slug": "max-72"
-				},
-				{
-					"fluid": {
-						"min": "60px",
-						"max": "96px"
-					},
-					"name": "96px",
-					"size": "96px",
-					"slug": "max-96"
 				}
 			]
 		},
@@ -484,7 +410,7 @@
 			},
 			"core/post-title": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--max-36)"
+					"fontSize": "var(--wp--preset--font-size--x-large)"
 				}
 			},
 			"core/preformatted": {
@@ -508,11 +434,16 @@
 					"width": "1px"
 				},
 				"spacing": {
-					"padding": "var(--wp--custom--spacing--gap)"
+					"padding": "var(--wp--preset--spacing--small)"
 				},
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--medium)",
 					"lineHeight": "var(--wp--custom--line-height--medium)"
+				}
+			},
+			"core/query-title": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--large)"
 				}
 			},
 			"core/quote": {
@@ -521,9 +452,9 @@
 					"style": "solid",
 					"width": "1px"
 				},
-				"css": "& p {margin: 0;}",
+				"css": "& p {margin: 0;} & cite {display:inline-block; margin-top: 10px;}",
 				"spacing": {
-					"padding": "var(--wp--custom--spacing--gap)"
+					"padding": "var(--wp--preset--spacing--small)"
 				}
 			},
 			"core/separator": {
@@ -581,7 +512,6 @@
 			"background": "var(--wp--preset--color--base)",
 			"text": "var(--wp--preset--color--contrast)"
 		},
-		"css": "html {scroll-behavior: smooth;} a, a:focus, a:hover, a:not(.wp-element-button) {text-decoration-thickness: 1px;} b, strong, th {font-weight: var(--wp--custom--font-weight--medium);}",
 		"elements": {
 			"button": {
 				"border": {
@@ -590,11 +520,6 @@
 				"color": {
 					"background": "var(--wp--preset--color--contrast)",
 					"text": "var(--wp--preset--color--base)"
-				},
-				":hover": {
-					"color": {
-						"background": "var(--wp--preset--color--contrast)"
-					}
 				},
 				"spacing": {
 					"padding": {
@@ -608,6 +533,11 @@
 					"fontSize": "var(--wp--preset--font-size--x-small)",
 					"fontWeight": "var(--wp--custom--font-weight--regular)",
 					"lineHeight": "var(--wp--custom--line-height--medium)"
+				},
+				":hover": {
+					"color": {
+						"background": "var(--wp--preset--color--contrast)"
+					}
 				}
 			},
 			"caption": {
@@ -700,11 +630,6 @@
 			"area": "footer",
 			"name": "footer",
 			"title": "Footer"
-		},
-		{
-			"area": "uncategorized",
-			"name": "comments",
-			"title": "Comments"
 		}
 	],
 	"version": 2,

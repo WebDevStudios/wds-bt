@@ -1,0 +1,52 @@
+{
+	"version": 2,
+	"title": "Emerald",
+	"settings": {
+		"color": {
+			"duotone": [
+				{
+					"name": "Black and White",
+					"slug": "black-and-white",
+					"colors": [ "#0a0a0a", "#ffffff" ]
+				},
+				{
+					"name": "Primary and White",
+					"slug": "primary-and-white",
+					"colors": [ "#047857", "#ffffff" ]
+				}
+			],
+			"palette": [
+				{
+					"color": "#ffffff",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#0a0a0a",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#047857",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#10b981",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#6ee7b7",
+					"name": "Tertiary",
+					"slug": "tertiary"
+				},
+				{
+					"color": "#d1fae5",
+					"name": "Quaternary",
+					"slug": "quaternary"
+				}
+			]
+		}
+	}
+}

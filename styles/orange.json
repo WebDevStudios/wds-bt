@@ -1,0 +1,52 @@
+{
+	"version": 2,
+	"title": "Orange",
+	"settings": {
+		"color": {
+			"duotone": [
+				{
+					"name": "Black and White",
+					"slug": "black-and-white",
+					"colors": [ "#0a0a0a", "#ffffff" ]
+				},
+				{
+					"name": "Primary and White",
+					"slug": "primary-and-white",
+					"colors": [ "#c2410c", "#ffffff" ]
+				}
+			],
+			"palette": [
+				{
+					"color": "#ffffff",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#0a0a0a",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#c2410c",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#f97316",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#fdba74",
+					"name": "Tertiary",
+					"slug": "tertiary"
+				},
+				{
+					"color": "#ffedd5",
+					"name": "Quaternary",
+					"slug": "quaternary"
+				}
+			]
+		}
+	}
+}

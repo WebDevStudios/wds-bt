@@ -6,8 +6,8 @@ Author URI: https://briangardner.com/
 Description: With Powder, our mission is to revolutionize how beautiful WordPress websites are made by embracing the power and flexibility of block-based design. Our approach—inspired by the brilliant color palettes of Tailwind CSS—transcends conventional standards and provides an innovative, engaging, and imaginative canvas where creativity knows no bounds.
 Requires at least: 6.2
 Tested up to: 6.2
-Requires PHP: 5.6
-Version: 0.9.0
+Requires PHP: 7.0
+Version: 0.9.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: powder
@@ -21,6 +21,10 @@ Powder is distributed under the terms of the GNU GPL.
 /* Defaults
 ---------------------------------------------------------------------------- */
 
+html {
+	scroll-behavior: smooth;
+}
+
 *,
 *::before,
 *::after {
@@ -33,6 +37,19 @@ input,
 textarea,
 .wp-element-button {
 	transition: all 0.2s ease-in-out;
+}
+
+a,
+a:focus,
+a:hover,
+a:not(.wp-element-button) {
+	text-decoration-thickness: 1px;
+}
+
+b,
+strong,
+th {
+	font-weight: var(--wp--custom--font-weight--medium);
 }
 
 /* Forms
@@ -80,7 +97,7 @@ textarea {
 	opacity: 0.5;
 }
 
-/* Utility Classes
+/* Utility
 --------------------------------------------- */
 
 .is-style-filter-invert {
@@ -110,6 +127,14 @@ textarea {
 
 .wp-block-image.is-style-shadow-solid img {
 	box-shadow: var(--wp--preset--shadow--solid);
+}
+
+/* List
+--------------------------------------------- */
+
+.is-style-no-disc {
+	list-style-type: none;
+	padding-left: 0;
 }
 
 /* Navigation
@@ -179,7 +204,18 @@ textarea {
 
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (max-width: 782px) {
+
+	/* Columns
+	--------------------------------------------- */
+
+	.wp-block-columns.is-style-column-reverse {
+		flex-direction: column-reverse;
+	}
+
+}
+
+@media only screen and (min-width: 600px) {
 
 	/* Navigation Link
 	--------------------------------------------- */
