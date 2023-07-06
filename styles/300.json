@@ -1,0 +1,130 @@
+{
+	"version": 2,
+	"title": "300",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"color": "#ffffff",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#0a0a0a",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#fca5a5",
+					"name": "Red",
+					"slug": "red"
+				},
+				{
+					"color": "#fdba74",
+					"name": "Orange",
+					"slug": "orange"
+				},
+				{
+					"color": "#fcd34d",
+					"name": "Amber",
+					"slug": "amber"
+				},
+				{
+					"color": "#fde047",
+					"name": "Yellow",
+					"slug": "yellow"
+				},
+				{
+					"color": "#bef264",
+					"name": "Lime",
+					"slug": "lime"
+				},
+				{
+					"color": "#86efac",
+					"name": "Green",
+					"slug": "green"
+				},
+				{
+					"color": "#6ee7b7",
+					"name": "Emerald",
+					"slug": "emerald"
+				},
+				{
+					"color": "#5eead4",
+					"name": "Teal",
+					"slug": "teal"
+				},
+				{
+					"color": "#67e8f9",
+					"name": "Cyan",
+					"slug": "cyan"
+				},
+				{
+					"color": "#7dd3fc",
+					"name": "Sky",
+					"slug": "sky"
+				},
+				{
+					"color": "#93c5fd",
+					"name": "Blue",
+					"slug": "blue"
+				},
+				{
+					"color": "#a5b4fc",
+					"name": "Indigo",
+					"slug": "indigo"
+				},
+				{
+					"color": "#c4b5fd",
+					"name": "Violet",
+					"slug": "violet"
+				},
+				{
+					"color": "#d8b4fe",
+					"name": "Purple",
+					"slug": "purple"
+				},
+				{
+					"color": "#f0abfc",
+					"name": "Fuchsia",
+					"slug": "fuchsia"
+				},
+				{
+					"color": "#f9a8d4",
+					"name": "Pink",
+					"slug": "pink"
+				},
+				{
+					"color": "#fda4af",
+					"name": "Rose",
+					"slug": "rose"
+				},
+				{
+					"color": "#cbd5e1",
+					"name": "Slate",
+					"slug": "slate"
+				},
+				{
+					"color": "#d1d5db",
+					"name": "Gray",
+					"slug": "gray"
+				},
+				{
+					"color": "#d4d4d8",
+					"name": "Zinc",
+					"slug": "zinc"
+				},
+				{
+					"color": "#d4d4d4",
+					"name": "Neutral",
+					"slug": "neutral"
+				},
+				{
+					"color": "#d6d3d1",
+					"name": "Stone",
+					"slug": "stone"
+				}
+			]
+		}
+	}
+}

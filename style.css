@@ -1,0 +1,193 @@
+/*
+Theme Name: Powder
+Theme URI: https://powdermade.com/
+Author: Brian Gardner
+Author URI: https://briangardner.com/
+Description: With Powder, our mission is to revolutionize how beautiful WordPress websites are made by embracing the power and flexibility of block-based design. Our approach—inspired by the brilliant color palettes of Tailwind CSS—transcends conventional standards and provides an innovative, engaging, and imaginative canvas where creativity knows no bounds.
+Requires at least: 6.2
+Tested up to: 6.2
+Requires PHP: 5.6
+Version: 0.9.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: powder
+Tags: block-patterns, block-styles, custom-colors, custom-logo, custom-menu, editor-style, full-site-editing, one-column, style-variations, template-editing, translation-ready, wide-blocks
+
+Powder WordPress Theme, (C) 2022-2023 Brian Gardner.
+Powder is distributed under the terms of the GNU GPL.
+*/
+
+
+/* Defaults
+---------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+a,
+button,
+input,
+textarea,
+.wp-element-button {
+	transition: all 0.2s ease-in-out;
+}
+
+/* Forms
+--------------------------------------------- */
+
+input,
+select,
+textarea {
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--contrast);
+	border-radius: 0;
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--outfit);
+	font-size: var(--wp--preset--font-size--medium);
+	font-weight: var(--wp--custom--font-weight--light);
+	line-height: var(--wp--custom--line-height--body);
+	padding: 10px 20px;
+	width: 100%;
+}
+
+input:focus,
+textarea:focus {
+	filter: brightness(95%);
+	outline: none;
+}
+
+input[type="checkbox"],
+input[type="image"],
+input[type="radio"] {
+	width: auto;
+}
+
+input[type="button"],
+input[type="email"],
+input[type="search"],
+input[type="submit"],
+input[type="text"],
+textarea {
+	-webkit-appearance: none;
+}
+
+::placeholder {
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--small);
+	opacity: 0.5;
+}
+
+/* Utility Classes
+--------------------------------------------- */
+
+.is-style-filter-invert {
+	filter: invert(1);
+}
+
+/* Blocks
+---------------------------------------------------------------------------- */
+
+/* Group
+--------------------------------------------- */
+
+.wp-block-group.is-style-shadow-light {
+	box-shadow: var(--wp--preset--shadow--light);
+}
+
+.wp-block-group.is-style-shadow-solid {
+	box-shadow: var(--wp--preset--shadow--solid);
+}
+
+/* Image
+--------------------------------------------- */
+
+.wp-block-image.is-style-shadow-light img {
+	box-shadow: var(--wp--preset--shadow--light);
+}
+
+.wp-block-image.is-style-shadow-solid img {
+	box-shadow: var(--wp--preset--shadow--solid);
+}
+
+/* Navigation
+--------------------------------------------- */
+
+.wp-block-navigation__responsive-container.is-menu-open {
+	padding-bottom: var(--wp--custom--spacing--gap);
+	padding-top: var(--wp--custom--spacing--gap);
+}
+
+.wp-block-navigation__responsive-container-close,
+.wp-block-navigation__responsive-container-open {
+	border: 1px solid currentColor;
+	padding: 2px;
+}
+
+/* Navigation Submenu
+--------------------------------------------- */
+
+.wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
+	border-color: var(--wp--preset--color--contrast);
+	min-width: 180px !important;
+	padding: 10px;
+}
+
+.wp-block-navigation :where(.wp-block-navigation__submenu-container) .wp-block-navigation-item__content {
+	padding: 2px 10px;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	padding-top: 5px !important;
+}
+
+/* Post Comments Form
+--------------------------------------------- */
+
+.wp-block-post-comments-form input:not([type=submit]):not([type=checkbox]), 
+.wp-block-post-comments-form textarea {
+	border-color: var(--wp--preset--color--contrast);
+	padding: 10px 20px;
+}
+
+/* Quote
+--------------------------------------------- */
+
+.wp-block-quote.is-style-shadow-light {
+	box-shadow: var(--wp--preset--shadow--light);
+}
+
+.wp-block-quote.is-style-shadow-solid {
+	box-shadow: var(--wp--preset--shadow--solid);
+}
+
+/* Media Queries
+---------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 600px) {
+
+	/* Utility
+	--------------------------------------------- */
+
+	.is-style-hidden-mobile {
+		display: none !important;
+	}
+
+}
+
+@media only screen and (min-width: 800px) {
+
+	/* Navigation Link
+	--------------------------------------------- */
+
+	.wp-block-navigation-item.is-style-outline a {
+		border: 1px solid currentColor;
+		border-radius: 5px;
+		padding: 5px 15px;
+	}
+
+}
