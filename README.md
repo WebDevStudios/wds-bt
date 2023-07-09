@@ -4,7 +4,7 @@ With Powder, our mission is to revolutionize how beautiful WordPress websites ar
 
 ## Demo
 
-See the Powder theme in action at [https://powdermade.com/demo/](https://powdermade.com/demo/).
+See the Powder theme in action at [https://powderstudio.com/demo/](https://powderstudio.com/demo/).
 
 ## Requirements
 
