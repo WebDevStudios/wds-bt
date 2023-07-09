@@ -22,7 +22,7 @@
 <!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"},"fontSize":"x-small"} -->
 <div class="wp-block-group has-x-small-font-size"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p>© <?php echo esc_html( gmdate( 'Y' ) ); ?></p>
+<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?></p>
 <!-- /wp:paragraph -->
 <!-- wp:site-title {"level":0,"isLink":false,"fontSize":"x-small"} /--></div>
 <!-- /wp:group -->
