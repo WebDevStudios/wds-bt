@@ -31,7 +31,7 @@
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
 					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"spacing":{"margin":{"top":"var:preset|spacing|x-small"}}}} -->
-					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( '<?php echo esc_html__( 'Link #1', 'powder' ); ?>', 'powder' ); ?></a></p>
+					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
 					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></p>
@@ -50,7 +50,7 @@
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
 					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"spacing":{"margin":{"top":"var:preset|spacing|x-small"}}}} -->
-					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( '<?php echo esc_html__( 'Link #1', 'powder' ); ?>', 'powder' ); ?></a></p>
+					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
 					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></p>
@@ -69,7 +69,7 @@
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
 					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"spacing":{"margin":{"top":"var:preset|spacing|x-small"}}}} -->
-					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( '<?php echo esc_html__( 'Link #1', 'powder' ); ?>', 'powder' ); ?></a></p>
+					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
 					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></p>
