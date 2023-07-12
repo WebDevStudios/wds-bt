@@ -101,3 +101,22 @@ function powder_register_block_styles() {
 
 }
 add_action( 'init', 'powder_register_block_styles' );
+
+/**
+ * Register block pattern categories.
+ *
+ * @since 0.9.3
+ */
+function powder_register_block_pattern_categories() {
+
+	register_block_pattern_category(
+		'page',
+		array(
+			'label'       => __( 'Page', 'powder' ),
+			'description' => __( 'A variety of page designs created with a combination of blocks.', 'powder' ),
+		)
+	);
+
+}
+
+add_action( 'init', 'powder_register_block_pattern_categories' );

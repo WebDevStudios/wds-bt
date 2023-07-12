@@ -104,6 +104,14 @@ textarea {
 	filter: invert(1);
 }
 
+.is-style-negative-zindex {
+	z-index: -99;
+}
+
+.is-style-position-relative {
+	position: relative;
+}
+
 /* Blocks
 ---------------------------------------------------------------------------- */
 
