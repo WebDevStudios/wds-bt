@@ -18,8 +18,8 @@
 			<!-- wp:heading {"textAlign":"center","level":1,"className":"wp-block-heading","fontSize":"x-large"} -->
 			<h1 class="wp-block-heading has-text-align-center has-x-large-font-size"><?php echo esc_html__( 'Your Name', 'powder' ); ?></h1>
 			<!-- /wp:heading -->
-			<!-- wp:paragraph {"align":"center","fontSize":"x-small"} -->
-			<p class="has-text-align-center has-x-small-font-size"><?php echo esc_html__( 'A little something about yourself.', 'powder' ); ?></p>
+			<!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+			<p class="has-text-align-center has-small-font-size"><?php echo esc_html__( 'A little something about yourself.', 'powder' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
