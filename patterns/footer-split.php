@@ -30,18 +30,22 @@
 					<!-- wp:heading {"style":{"typography":{"lineHeight":"1.5","textTransform":"uppercase"}},"fontSize":"tiny"} -->
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"spacing":{"margin":{"top":"var:preset|spacing|x-small"}}}} -->
-					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #3', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #4', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
+					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-disc"} -->
+					<ul class="is-style-no-disc" style="line-height:2">
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?>1</a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #3', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #4', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+					</ul>
+					<!-- /wp:list -->
 				</div>
 				<!-- /wp:column -->
 				<!-- wp:column {"style":{"spacing":{"blockGap":"15px"}}} -->
@@ -49,18 +53,22 @@
 					<!-- wp:heading {"style":{"typography":{"lineHeight":"1.5","textTransform":"uppercase"}},"fontSize":"tiny"} -->
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"spacing":{"margin":{"top":"var:preset|spacing|x-small"}}}} -->
-					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #3', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #4', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
+					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-disc"} -->
+					<ul class="is-style-no-disc" style="line-height:2">
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #3', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #4', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+					</ul>
+					<!-- /wp:list -->
 				</div>
 				<!-- /wp:column -->
 				<!-- wp:column {"style":{"spacing":{"blockGap":"15px"}}} -->
@@ -68,18 +76,22 @@
 					<!-- wp:heading {"style":{"typography":{"lineHeight":"1.5","textTransform":"uppercase"}},"fontSize":"tiny"} -->
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"},"spacing":{"margin":{"top":"var:preset|spacing|x-small"}}}} -->
-					<p style="margin-top:var(--wp--preset--spacing--x-small);line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #3', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
-					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5"}}} -->
-					<p style="line-height:1.5"><a href="#"><?php echo esc_html__( 'Link #4', 'powder' ); ?></a></p>
-					<!-- /wp:paragraph -->
+					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-disc"} -->
+					<ul class="is-style-no-disc" style="line-height:2">
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #3', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+						<!-- wp:list-item -->
+						<li><a href="#"><?php echo esc_html__( 'Link #4', 'powder' ); ?></a></li>
+						<!-- /wp:list-item -->
+					</ul>
+					<!-- /wp:list -->
 				</div>
 				<!-- /wp:column -->
 			</div>
