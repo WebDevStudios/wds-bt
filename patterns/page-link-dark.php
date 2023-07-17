@@ -43,7 +43,7 @@
 		<ul class="wp-block-social-links aligncenter has-normal-icon-size has-icon-color has-icon-base-color is-style-outline">
 			<!-- wp:social-link {"url":"https://twitter.com/","service":"twitter"} /-->
 			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
-			<!-- wp:social-link {"url":"https://linkedin.com/","service":"linkedin"} /-->
+			<!-- wp:social-link {"url":"https://www.linkedin.com/","service":"linkedin"} /-->
 			<!-- wp:social-link {"url":"https://www.facebook.com/","service":"facebook"} /-->
 			<!-- wp:social-link {"url":"https://www.tiktok.com/","service":"tiktok"} /-->
 		</ul>

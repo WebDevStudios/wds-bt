@@ -31,7 +31,7 @@
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:paragraph {"className":"is-style-no-underline"} -->
-		<p class="is-style-no-underline"><a href="https://linkedin.com/">LinkedIn</a></p>
+		<p class="is-style-no-underline"><a href="https://www.linkedin.com/">LinkedIn</a></p>
 		<!-- /wp:paragraph -->
 		<!-- wp:group {"style":{"layout":{"selfStretch":"fixed","flexSize":"60px"}},"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group">
