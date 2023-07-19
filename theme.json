@@ -50,14 +50,14 @@
 			"defaultPalette": false,
 			"duotone": [
 				{
+					"colors": [ "#0a0a0a", "#ffffff" ],
 					"name": "Black and White",
-					"slug": "black-and-white",
-					"colors": [ "#0a0a0a", "#ffffff" ]
+					"slug": "black-and-white"
 				},
 				{
+					"colors": [ "#6d28d9", "#ffffff" ],
 					"name": "Primary and White",
-					"slug": "primary-and-white",
-					"colors": [ "#6d28d9", "#ffffff" ]
+					"slug": "primary-and-white"
 				}
 			],
 			"gradients": [
