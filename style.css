@@ -140,7 +140,7 @@ textarea {
 /* List
 --------------------------------------------- */
 
-.is-style-no-disc {
+.is-style-no-style {
 	list-style-type: none;
 	padding-left: 0;
 }
