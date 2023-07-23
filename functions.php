@@ -110,6 +110,13 @@ add_action( 'init', 'powder_register_block_styles' );
 function powder_register_block_pattern_categories() {
 
 	register_block_pattern_category(
+		'content',
+		array(
+			'label'       => __( 'Content', 'powder' ),
+			'description' => __( 'A variety of content sections created with blocks.', 'powder' ),
+		)
+	);
+	register_block_pattern_category(
 		'page',
 		array(
 			'label'       => __( 'Page', 'powder' ),

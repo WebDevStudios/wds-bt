@@ -10,8 +10,8 @@
 <div class="wp-block-group alignfull" style="min-height:100vh;margin-top:0px;padding-top:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--large)">
 	<!-- wp:group {"style":{"spacing":{"padding":{"right":"30px","left":"30px"}}},"layout":{"type":"constrained","wideSize":"600px"}} -->
 	<div class="wp-block-group" style="padding-right:30px;padding-left:30px">
-		<!-- wp:image {"align":"center","id":318,"width":100,"height":100,"scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-rounded"} -->
-		<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-200x200-dark.jpg'; ?>" alt="Sample Image" class="wp-image-318" style="object-fit:cover;width:100px;height:100px" width="100" height="100"/></figure>
+		<!-- wp:image {"align":"center","width":100,"height":100,"scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-rounded"} -->
+		<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-200x200-dark.jpg'; ?>" alt="Sample Image" style="object-fit:cover;width:100px;height:100px" width="100" height="100"/></figure>
 		<!-- /wp:image -->
 		<!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--x-small)">

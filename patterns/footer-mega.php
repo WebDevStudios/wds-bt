@@ -11,8 +11,8 @@
 <div class="wp-block-group alignfull is-style-pull-100 has-x-small-font-size" style="margin-top:0;padding-top:var(--wp--preset--spacing--x-large);padding-right:30px;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:30px">
 	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"10px","padding":{"bottom":"var(--wp--preset--spacing--medium)"}}}} -->
 	<div class="wp-block-group alignwide" style="padding-bottom:var(--wp--preset--spacing--medium)">
-		<!-- wp:image {"align":"center","id":7,"width":40,"height":40,"sizeSlug":"full","linkDestination":"custom"} -->
-		<figure class="wp-block-image aligncenter size-full is-resized"><a href="https://powderstudio.com/"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/site-logo-dark.svg'; ?>" alt="Site Logo" class="wp-image-7" width="40" height="40"/></a></figure>
+		<!-- wp:image {"align":"center","width":40,"height":40,"sizeSlug":"full","linkDestination":"custom"} -->
+		<figure class="wp-block-image aligncenter size-full is-resized"><a href="https://powderstudio.com/"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/site-logo-dark.svg'; ?>" alt="Site Logo" width="40" height="40"/></a></figure>
 		<!-- /wp:image -->
 		<!-- wp:paragraph {"align":"center"} -->
 		<p class="has-text-align-center"><?php echo esc_html__( 'Made with Powder', 'powder' ); ?></p>
