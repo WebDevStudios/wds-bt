@@ -117,6 +117,13 @@ function powder_register_block_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
+		'hero',
+		array(
+			'label'       => __( 'Hero', 'powder' ),
+			'description' => __( 'A variety of hero sections created with blocks.', 'powder' ),
+		)
+	);
+	register_block_pattern_category(
 		'page',
 		array(
 			'label'       => __( 'Page', 'powder' ),

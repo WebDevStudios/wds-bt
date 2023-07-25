@@ -234,4 +234,15 @@ textarea {
 		padding: 5px 15px;
 	}
 
+	/* Utility
+	--------------------------------------------- */
+	
+	.is-style-pull-100 {
+		margin-top: -100px !important;
+	}
+	
+	.is-style-pull-200 {
+		margin-top: -200px !important;
+	}
+
 }
