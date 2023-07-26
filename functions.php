@@ -20,9 +20,6 @@ if ( ! function_exists( 'powder_setup' ) ) {
 	 */
 	function powder_setup() {
 
-		// Make theme available for translation.
-		load_theme_textdomain( 'powder', get_template_directory() . '/languages' );
-
 		// Enqueue editor styles.
 		add_editor_style( get_template_directory_uri() . '/style.css' );
 
