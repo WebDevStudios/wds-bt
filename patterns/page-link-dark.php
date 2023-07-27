@@ -48,8 +48,8 @@
 			<!-- wp:social-link {"url":"https://www.tiktok.com/","service":"tiktok"} /-->
 		</ul>
 		<!-- /wp:social-links -->
-		<!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"fontSize":"tiny"} -->
-		<p class="has-text-align-center has-tiny-font-size" style="margin-top:var(--wp--preset--spacing--medium)"><a href="https://powderstudio.com/">Made with Powder</a></p>
+		<!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"fontSize":"x-small"} -->
+		<p class="has-text-align-center has-x-small-font-size" style="margin-top:var(--wp--preset--spacing--medium)"><a href="https://powderstudio.com/">Made with Powder</a></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
