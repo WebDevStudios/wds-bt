@@ -21,14 +21,14 @@ Powder is distributed under the terms of the GNU GPL.
 /* Defaults
 ---------------------------------------------------------------------------- */
 
-html {
-	scroll-behavior: smooth;
-}
-
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 a,
