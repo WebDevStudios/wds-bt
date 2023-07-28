@@ -30,8 +30,8 @@
 					<!-- wp:heading {"style":{"typography":{"lineHeight":"1.5","textTransform":"uppercase"}},"fontSize":"tiny"} -->
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
-					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-disc"} -->
-					<ul class="is-style-no-disc" style="line-height:2">
+					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-style"} -->
+					<ul class="is-style-no-style" style="line-height:2">
 						<!-- wp:list-item -->
 						<li><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?>1</a></li>
 						<!-- /wp:list-item -->
@@ -53,8 +53,8 @@
 					<!-- wp:heading {"style":{"typography":{"lineHeight":"1.5","textTransform":"uppercase"}},"fontSize":"tiny"} -->
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
-					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-disc"} -->
-					<ul class="is-style-no-disc" style="line-height:2">
+					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-style"} -->
+					<ul class="is-style-no-style" style="line-height:2">
 						<!-- wp:list-item -->
 						<li><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></li>
 						<!-- /wp:list-item -->
@@ -76,8 +76,8 @@
 					<!-- wp:heading {"style":{"typography":{"lineHeight":"1.5","textTransform":"uppercase"}},"fontSize":"tiny"} -->
 					<h2 class="wp-block-heading has-tiny-font-size" style="line-height:1.5;text-transform:uppercase"><?php echo esc_html__( 'Heading', 'powder' ); ?></h2>
 					<!-- /wp:heading -->
-					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-disc"} -->
-					<ul class="is-style-no-disc" style="line-height:2">
+					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-style"} -->
+					<ul class="is-style-no-style" style="line-height:2">
 						<!-- wp:list-item -->
 						<li><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></li>
 						<!-- /wp:list-item -->
