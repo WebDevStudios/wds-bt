@@ -389,6 +389,12 @@
 					"padding": "var(--wp--custom--spacing--gap)"
 				}
 			},
+			"core/group": {
+				"css": "&.is-style-shadow-solid {box-shadow: var(--wp--preset--shadow--solid);} &.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}"
+			},
+			"core/image": {
+				"css": "&.is-style-shadow-solid {box-shadow: var(--wp--preset--shadow--solid);} &.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}"
+			},
 			"core/list": {
 				"spacing": {
 					"padding": {
@@ -463,7 +469,16 @@
 					"style": "solid",
 					"width": "1px"
 				},
-				"css": "& p {margin: 0;} & cite {display:inline-block; margin-top: 10px;}",
+				"css": "& p {margin: 0;} &.is-style-shadow-solid {box-shadow: var(--wp--preset--shadow--solid);} &.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}",
+				"elements": {
+					"cite": {
+						"spacing": {
+							"margin": {
+								"top": "10px"
+							}
+						}
+					}
+				},
 				"spacing": {
 					"padding": "var(--wp--preset--spacing--small)"
 				}
