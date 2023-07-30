@@ -462,7 +462,7 @@
 					"style": "solid",
 					"width": "1px"
 				},
-				"css": "& p {margin: 0;} & cite {display:inline-block;",
+				"css": "& p {margin: 0;} & cite {display:inline-block;}",
 				"elements": {
 					"cite": {
 						"spacing": {
