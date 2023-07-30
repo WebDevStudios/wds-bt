@@ -75,10 +75,6 @@ function powder_register_block_styles() {
 		'core/navigation-link' => array(
 			'outline' => __( 'Outline', 'powder' ),
 		),
-		'core/quote' => array(
-			'shadow-light' => __( 'Shadow', 'powder' ),
-			'shadow-solid' => __( 'Solid', 'powder' ),
-		),
 		'core/social-links' => array(
 			'outline' => __( 'Outline', 'powder' ),
 		),

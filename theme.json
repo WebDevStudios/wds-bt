@@ -186,14 +186,7 @@
 					"slug": "x-large"
 				}
 			],
-			"units": [
-				"%",
-				"px",
-				"em",
-				"rem",
-				"vh",
-				"vw"
-			]
+			"units": [ "%", "px", "em", "rem", "vh", "vw" ]
 		},
 		"typography": {
 			"dropCap": false,
@@ -469,7 +462,7 @@
 					"style": "solid",
 					"width": "1px"
 				},
-				"css": "& p {margin: 0;} &.is-style-shadow-solid {box-shadow: var(--wp--preset--shadow--solid);} &.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}",
+				"css": "& p {margin: 0;} & cite {display:inline-block;",
 				"elements": {
 					"cite": {
 						"spacing": {
