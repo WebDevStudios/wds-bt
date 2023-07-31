@@ -34,8 +34,8 @@
 				<!-- /wp:heading -->
 				<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|small"}}}} -->
 				<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--small)">
-					<!-- wp:button {"backgroundColor":"primary"} -->
-					<div class="wp-block-button"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" href="#"><?php echo esc_html__( 'Call to Action', 'powder' ); ?></a></div>
+					<!-- wp:button {"backgroundColor":"base","textColor":"contrast"} -->
+					<div class="wp-block-button"><a class="wp-block-button__link has-contrast-color has-base-background-color has-text-color has-background wp-element-button" href="#"><?php echo esc_html__( 'Call to Action', 'powder' ); ?></a></div>
 					<!-- /wp:button -->
 					<!-- wp:button {"className":"is-style-outline"} -->
 					<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button"><?php echo esc_html__( 'Learn More', 'powder' ); ?></a></div>
