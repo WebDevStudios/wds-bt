@@ -11,8 +11,8 @@
 	<!-- wp:heading {"textAlign":"center","level":1,"style":{"typography":{"fontSize":"96px","letterSpacing":"-2px","fontStyle":"normal","fontWeight":"200"}},"className":"wp-block-heading"} -->
 	<h1 class="wp-block-heading has-text-align-center" style="font-size:96px;font-style:normal;font-weight:200;letter-spacing:-2px"><?php echo esc_html__( 'Ellie Nash', 'powder' ); ?></h1>
 	<!-- /wp:heading -->
-	<!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"uppercase","letterSpacing":"1px"},"spacing":{"margin":{"bottom":"var:preset|spacing|medium"}}}} -->
-	<p class="has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--medium);letter-spacing:1px;text-transform:uppercase"><?php echo esc_html__( 'Website + Brand Design', 'powder' ); ?></p>
+	<!-- wp:paragraph {"align":"center","style":{"typography":{"textTransform":"uppercase"},"spacing":{"margin":{"bottom":"var:preset|spacing|medium"}}}} -->
+	<p class="has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--medium);text-transform:uppercase"><?php echo esc_html__( 'Website + Brand Design', 'powder' ); ?></p>
 	<!-- /wp:paragraph -->
 	<!-- wp:image {"align":"center","sizeSlug":"full","linkDestination":"none"} -->
 	<figure class="wp-block-image aligncenter size-full"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-1600x1600-light.png'; ?>" alt="Sample image"/></figure>
