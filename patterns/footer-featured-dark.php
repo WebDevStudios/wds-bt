@@ -15,7 +15,7 @@
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:group {"layout":{"type":"constrained","wideSize":"800px","justifyContent":"left"}} -->
 			<div class="wp-block-group">
-				<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+				<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 				<div class="wp-block-group">
 					<!-- wp:group {"style":{"layout":{"selfStretch":"fixed","flexSize":"60px"}},"layout":{"type":"constrained"}} -->
 					<div class="wp-block-group">
