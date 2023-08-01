@@ -1,9 +1,9 @@
 <?php
 /**
  * Title: Social media followers.
- * Slug: powder/social-media-numbers
+ * Slug: powder/content-social-numbers
  * Description: Columns of social media follower numbers.
- * Categories: social-media
+ * Categories: content
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","right":"30px","left":"30px"},"margin":{"top":"0px"}}},"layout":{"type":"constrained","wideSize":"1080px"}} -->

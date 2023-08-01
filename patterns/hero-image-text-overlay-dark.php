@@ -3,7 +3,7 @@
  * Title: Hero section with image and text overlay.
  * Slug: powder/hero-image-text-overlay-dark
  * Description: Hero section with image, heading.
- * Categories: content
+ * Categories: hero
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0"},"padding":{"right":"30px","left":"30px","top":"var:preset|spacing|large"}}},"backgroundColor":"contrast","layout":{"type":"constrained","wideSize":"1280px"}} -->

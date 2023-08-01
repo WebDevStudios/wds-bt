@@ -123,13 +123,6 @@ function powder_register_block_pattern_categories() {
 			'description' => __( 'A variety of page designs created with a combination of blocks.', 'powder' ),
 		)
 	);
-	register_block_pattern_category(
-		'social-media',
-		array(
-			'label'       => __( 'Social Media', 'powder' ),
-			'description' => __( 'A variety of designs to showcase social media followers and links.', 'powder' ),
-		)
-	);
 
 }
 

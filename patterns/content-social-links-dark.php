@@ -1,9 +1,9 @@
 <?php
 /**
  * Title: Social media links.
- * Slug: powder/social-media-links-dark
+ * Slug: powder/content-social-links-dark
  * Description: Row of social media links.
- * Categories: social-media
+ * Categories: content
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"30px","left":"30px"},"margin":{"top":"0px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"contrast","textColor":"base","layout":{"inherit":true,"type":"constrained"}} -->
