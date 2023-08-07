@@ -91,8 +91,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"width":""} -->
 		<div class="wp-block-column">
-			<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","right":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"backgroundColor":"primary","textColor":"base","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-base-color has-primary-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)">
+			<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","right":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium"}}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)">
 				<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"constrained"}} -->
 				<div class="wp-block-group">
 					<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.5","textTransform":"uppercase","fontStyle":"normal","fontWeight":"400"}},"fontSize":"tiny"} -->
@@ -118,7 +118,7 @@
 					<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 					<div class="wp-block-group">
 						<!-- wp:image {"width":20,"height":20,"scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-display-block"} -->
-						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-light'; ?>.svg" alt="Circle check light icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
+						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-dark'; ?>.svg" alt="Circle check dark icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
 						<!-- /wp:image -->
 						<!-- wp:paragraph {"fontSize":"small"} -->
 						<p class="has-small-font-size"><?php echo esc_html__( 'Powder theme', 'powder' ); ?></p>
@@ -128,7 +128,7 @@
 					<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 					<div class="wp-block-group">
 						<!-- wp:image {"width":20,"height":20,"scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-display-block"} -->
-						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-light'; ?>.svg" alt="Circle check light icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
+						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-dark'; ?>.svg" alt="Circle check dark icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
 						<!-- /wp:image -->
 						<!-- wp:paragraph {"fontSize":"small"} -->
 						<p class="has-small-font-size"><?php echo esc_html__( 'Premium support', 'powder' ); ?></p>
@@ -138,7 +138,7 @@
 					<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 					<div class="wp-block-group">
 						<!-- wp:image {"width":20,"height":20,"scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-display-block"} -->
-						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-light'; ?>.svg" alt="Circle check light icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
+						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-dark'; ?>.svg" alt="Circle check dark icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
 						<!-- /wp:image -->
 						<!-- wp:paragraph {"fontSize":"small"} -->
 						<p class="has-small-font-size"><?php echo esc_html__( 'Figma design library', 'powder' ); ?></p>
@@ -148,7 +148,7 @@
 					<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 					<div class="wp-block-group">
 						<!-- wp:image {"width":20,"height":20,"scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-display-block"} -->
-						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-light'; ?>.svg" alt="Circle check light icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
+						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-dark'; ?>.svg" alt="Circle check dark icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
 						<!-- /wp:image -->
 						<!-- wp:paragraph {"fontSize":"small"} -->
 						<p class="has-small-font-size"><?php echo esc_html__( 'Access to private Slack', 'powder' ); ?></p>
@@ -159,8 +159,8 @@
 				<!-- /wp:group -->
 				<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|small"}}}} -->
 				<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--small)">
-					<!-- wp:button {"backgroundColor":"base","textColor":"contrast","width":100} -->
-					<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-contrast-color has-base-background-color has-text-color has-background wp-element-button" href="#"><?php echo esc_html__( 'Get Professional →', 'powder' ); ?></a></div>
+					<!-- wp:button {"width":100} -->
+					<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html__( 'Get Professional →', 'powder' ); ?></a></div>
 					<!-- /wp:button -->
 				</div>
 				<!-- /wp:buttons -->
