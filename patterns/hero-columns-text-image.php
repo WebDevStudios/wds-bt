@@ -1,22 +1,15 @@
 <?php
 /**
- * Title: Content section with image and text.
- * Slug: powder/content-image-text
- * Description: Content section with image, heading, text, buttons.
- * Categories: content
+ * Title: Hero section with text and image.
+ * Slug: powder/hero-columns-text-image
+ * Description: Hero section with heading, text, buttons, image.
+ * Categories: hero
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"30px","left":"30px","top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large"},"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0;padding-top:var(--wp--preset--spacing--x-large);padding-right:30px;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:30px">
-	<!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|medium","left":"var:preset|spacing|large"}}}} -->
-	<div class="wp-block-columns alignwide are-vertically-aligned-center">
-		<!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center">
-			<!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-1200x1200-dark.png'; ?>" alt="Sample image"/></figure>
-			<!-- /wp:image -->
-		</div>
-		<!-- /wp:column -->
+	<!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|medium","left":"var:preset|spacing|large"}}},"className":"is-style-column-reverse"} -->
+	<div class="wp-block-columns alignwide are-vertically-aligned-center is-style-column-reverse">
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -45,6 +38,13 @@
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:column -->
+		<!-- wp:column {"verticalAlignment":"center"} -->
+		<div class="wp-block-column is-vertically-aligned-center">
+			<!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
+			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-1200x1200-dark.png'; ?>" alt="Sample image"/></figure>
+			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
 	</div>
