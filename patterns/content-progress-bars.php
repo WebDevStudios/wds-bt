@@ -1,13 +1,13 @@
 <?php
 /**
  * Title: Section that shows progress bars.
- * Slug: powder/content-progress-bar-dark
+ * Slug: powder/content-progress-bars
  * Description: Section that shows progress bars.
  * Categories: content
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"30px","right":"30px"},"margin":{"top":"0"}}},"backgroundColor":"contrast","textColor":"base","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-base-color has-contrast-background-color has-text-color has-background" style="margin-top:0;padding-top:var(--wp--preset--spacing--x-large);padding-right:30px;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:30px">
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"30px","right":"30px"},"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="margin-top:0;padding-top:var(--wp--preset--spacing--x-large);padding-right:30px;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:30px">
 	<!-- wp:columns {"verticalAlignment":"bottom","isStackedOnMobile":false,"style":{"spacing":{"blockGap":{"top":"0","left":"0"}}}} -->
 	<div class="wp-block-columns are-vertically-aligned-bottom is-not-stacked-on-mobile">
 		<!-- wp:column {"verticalAlignment":"bottom","width":"100%","style":{"spacing":{"blockGap":"0"}}} -->
@@ -22,8 +22,8 @@
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:group {"backgroundColor":"base","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-base-background-color has-background">
+			<!-- wp:group {"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-contrast-background-color has-background">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -58,8 +58,8 @@
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:group {"backgroundColor":"base","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-base-background-color has-background">
+			<!-- wp:group {"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-contrast-background-color has-background">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -69,8 +69,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"verticalAlignment":"bottom","width":"10%","style":{"spacing":{"blockGap":"0"}}} -->
 		<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:10%">
-			<!-- wp:group {"style":{"color":{"background":"#262626"}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-background" style="background-color:#262626">
+			<!-- wp:group {"style":{"color":{"background":"#e5e5e5"}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-background" style="background-color:#e5e5e5">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -94,8 +94,8 @@
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:group {"backgroundColor":"base","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-base-background-color has-background">
+			<!-- wp:group {"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-contrast-background-color has-background">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -105,8 +105,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"verticalAlignment":"bottom","width":"20%","style":{"spacing":{"blockGap":"0"}}} -->
 		<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:20%">
-			<!-- wp:group {"style":{"color":{"background":"#262626"}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-background" style="background-color:#262626">
+			<!-- wp:group {"style":{"color":{"background":"#e5e5e5"}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-background" style="background-color:#e5e5e5">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -130,8 +130,8 @@
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:group {"backgroundColor":"base","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-base-background-color has-background">
+			<!-- wp:group {"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-contrast-background-color has-background">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -141,8 +141,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"verticalAlignment":"bottom","width":"30%","style":{"spacing":{"blockGap":"0"}}} -->
 		<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:30%">
-			<!-- wp:group {"style":{"color":{"background":"#262626"}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-background" style="background-color:#262626">
+			<!-- wp:group {"style":{"color":{"background":"#e5e5e5"}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-background" style="background-color:#e5e5e5">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -166,8 +166,8 @@
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:group {"backgroundColor":"base","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-base-background-color has-background">
+			<!-- wp:group {"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-contrast-background-color has-background">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -177,8 +177,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"verticalAlignment":"bottom","width":"40%","style":{"spacing":{"blockGap":"0"}}} -->
 		<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:40%">
-			<!-- wp:group {"style":{"color":{"background":"#262626"}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-background" style="background-color:#262626">
+			<!-- wp:group {"style":{"color":{"background":"#e5e5e5"}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-background" style="background-color:#e5e5e5">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -202,8 +202,8 @@
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:group {"backgroundColor":"base","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-base-background-color has-background">
+			<!-- wp:group {"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-contrast-background-color has-background">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
@@ -213,8 +213,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"verticalAlignment":"bottom","width":"50%","style":{"spacing":{"blockGap":"0"}}} -->
 		<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:50%">
-			<!-- wp:group {"style":{"color":{"background":"#262626"}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group has-background" style="background-color:#262626">
+			<!-- wp:group {"style":{"color":{"background":"#e5e5e5"}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group has-background" style="background-color:#e5e5e5">
 				<!-- wp:spacer {"height":"20px"} -->
 				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 				<!-- /wp:spacer -->
