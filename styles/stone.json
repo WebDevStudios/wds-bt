@@ -1,6 +1,7 @@
 {
 	"version": 2,
 	"title": "Stone",
+	"description":  "Stone-based palette with four shades",
 	"settings": {
 		"color": {
 			"duotone": [

@@ -1,6 +1,7 @@
 {
 	"version": 2,
 	"title": "Fuchsia",
+	"description":  "Fuchsia-based palette with four shades",
 	"settings": {
 		"color": {
 			"duotone": [

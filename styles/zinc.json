@@ -1,6 +1,7 @@
 {
 	"version": 2,
 	"title": "Zinc",
+	"description":  "Zinc-based palette with four shades",
 	"settings": {
 		"color": {
 			"duotone": [

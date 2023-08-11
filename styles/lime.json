@@ -1,6 +1,7 @@
 {
 	"version": 2,
 	"title": "Lime",
+	"description":  "Lime-based palette with four shades",
 	"settings": {
 		"color": {
 			"duotone": [
