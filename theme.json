@@ -62,28 +62,6 @@
 					"slug": "primary-and-white"
 				}
 			],
-			"gradients": [
-				{
-					"gradient": "linear-gradient(var(--wp--preset--color--contrast) 50%, var(--wp--preset--color--base) 50%)",
-					"name": "Contrast to Base",
-					"slug": "contrast-base"
-				},
-				{
-					"gradient": "linear-gradient(180deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
-					"name": "Primary to Secondary",
-					"slug": "primary-secondary"
-				},
-				{
-					"gradient": "linear-gradient(180deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--tertiary) 100%)",
-					"name": "Secondary to Tertiary",
-					"slug": "secondary-tertiary"
-				},
-				{
-					"gradient": "linear-gradient(180deg, var(--wp--preset--color--tertiary) 0%, var(--wp--preset--color--quaternary) 100%)",
-					"name": "Tertiary to Quaternary",
-					"slug": "tertiary-quaternary"
-				}
-			],
 			"palette": [
 				{
 					"color": "#ffffff",
