@@ -62,6 +62,18 @@
 					"slug": "primary-and-white"
 				}
 			],
+			"gradients": [
+				{
+					"gradient": "linear-gradient(var(--wp--preset--color--base) 50%, var(--wp--preset--color--contrast) 50%)",
+					"name": "Base to Contrast",
+					"slug": "base-contrast"
+				},
+				{
+					"gradient": "linear-gradient(var(--wp--preset--color--contrast) 50%, var(--wp--preset--color--base) 50%)",
+					"name": "Contrast to Base",
+					"slug": "contrast-base"
+				}
+			],
 			"palette": [
 				{
 					"color": "#ffffff",
