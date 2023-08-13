@@ -140,11 +140,6 @@
 					"name": "Light",
 					"slug": "light",
 					"shadow": "0 0 10px rgb(0 0 0 / 10%);"
-				},
-				{
-					"name": "Solid",
-					"slug": "solid",
-					"shadow": "5px 5px currentColor"
 				}
 			]
 		},
@@ -370,10 +365,10 @@
 				}
 			},
 			"core/group": {
-				"css": "&.is-style-shadow-solid {box-shadow: var(--wp--preset--shadow--solid);} &.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}"
+				"css": "&.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}"
 			},
 			"core/image": {
-				"css": "&.is-style-shadow-solid {box-shadow: var(--wp--preset--shadow--solid);} &.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}"
+				"css": " &.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}"
 			},
 			"core/list": {
 				"spacing": {

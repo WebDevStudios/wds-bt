@@ -60,11 +60,9 @@ function powder_register_block_styles() {
 		),
 		'core/group' => array(
 			'shadow-light' => __( 'Shadow', 'powder' ),
-			'shadow-solid' => __( 'Solid', 'powder' ),
 		),
 		'core/image' => array(
 			'shadow-light' => __( 'Shadow', 'powder' ),
-			'shadow-solid' => __( 'Solid', 'powder' ),
 		),
 		'core/list' => array(
 			'no-style' => __( 'No Style', 'powder' ),
