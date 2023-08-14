@@ -196,6 +196,13 @@ textarea {
 
 @media only screen and (min-width: 600px) {
 
+	/* Group
+	--------------------------------------------- */
+
+	.wp-block-group.is-style-pull-200 {
+		margin-top: -200px;
+	}
+
 	/* Navigation Link
 	--------------------------------------------- */
 
@@ -203,13 +210,6 @@ textarea {
 		border: 1px solid currentColor;
 		border-radius: 5px;
 		padding: 5px 15px;
-	}
-
-	/* Utility
-	--------------------------------------------- */
-
-	.is-style-pull-200 {
-		margin-top: -200px !important;
 	}
 
 }
