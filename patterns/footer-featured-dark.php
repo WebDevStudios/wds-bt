@@ -49,7 +49,7 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"320px"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:320px">
 			<!-- wp:image {"width":320,"height":320,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-1200x1200-light.png'; ?>" alt="Sample image" style="object-fit:cover;width:320px;height:320px" width="320" height="320"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-image-light.png'; ?>" alt="Sample image" style="object-fit:cover;width:320px;height:320px" width="320" height="320"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

@@ -15,7 +15,7 @@
 	<p class="has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--medium);text-transform:uppercase"><?php echo esc_html__( 'Website + Brand Design', 'powder' ); ?></p>
 	<!-- /wp:paragraph -->
 	<!-- wp:image {"align":"center","sizeSlug":"full","linkDestination":"none"} -->
-	<figure class="wp-block-image aligncenter size-full"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-1600x1600-dark.png'; ?>" alt="Sample image"/></figure>
+	<figure class="wp-block-image aligncenter size-full"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-image-dark.png'; ?>" alt="Sample image"/></figure>
 	<!-- /wp:image -->
 </div>
 <!-- /wp:group -->
