@@ -2,7 +2,6 @@
 /**
  * Title: Social media followers.
  * Slug: powder/content-social-numbers-dark
- * Description: Columns of social media follower numbers.
  * Categories: content
  */
 ?>

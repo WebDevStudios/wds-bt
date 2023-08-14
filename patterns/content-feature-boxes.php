@@ -2,7 +2,6 @@
 /**
  * Title: Feature boxes with image and text.
  * Slug: powder/content-feature-boxes
- * Description: Section with columns of feature boxes.
  * Categories: content
  */
 ?>

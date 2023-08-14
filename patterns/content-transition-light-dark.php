@@ -2,7 +2,6 @@
 /**
  * Title: Content section rounded transition.
  * Slug: powder/content-transition-light-dark
- * Description: Transition two full-width sections.
  * Categories: content
  */
 ?>

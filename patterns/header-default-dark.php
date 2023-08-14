@@ -2,7 +2,6 @@
 /**
  * Title: Default header
  * Slug: powder/header-default-dark
- * Description: Header with site title, navigation.
  * Categories: header
  * Block Types: core/template-part/header
  */

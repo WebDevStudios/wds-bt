@@ -2,7 +2,6 @@
 /**
  * Title: Logo section with images.
  * Slug: powder/content-logos-light
- * Description: Logo section with images.
  * Categories: content
  */
 ?>

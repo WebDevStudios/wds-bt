@@ -2,7 +2,6 @@
 /**
  * Title: Featured footer with call to action
  * Slug: powder/footer-featured-dark
- * Description: Footer with heading, buttons, image, text, links.
  * Categories: footer
  * Block Types: core/template-part/footer
  */

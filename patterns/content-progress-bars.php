@@ -2,7 +2,6 @@
 /**
  * Title: Section that shows progress bars.
  * Slug: powder/content-progress-bars
- * Description: Section that shows progress bars.
  * Categories: content
  */
 ?>

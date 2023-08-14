@@ -2,7 +2,6 @@
 /**
  * Title: Hero section with image and text.
  * Slug: powder/hero-columns-image-text-dark
- * Description: Hero section with image, heading, text, buttons.
  * Categories: hero
  */
 ?>

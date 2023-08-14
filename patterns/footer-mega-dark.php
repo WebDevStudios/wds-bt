@@ -2,7 +2,6 @@
 /**
  * Title: Mega footer with text, buttons, social icons
  * Slug: powder/footer-mega-dark
- * Description: Footer with site logo, text, buttons, social icons.
  * Categories: footer
  * Block Types: core/template-part/footer
  */

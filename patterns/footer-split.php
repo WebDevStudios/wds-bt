@@ -2,7 +2,6 @@
 /**
  * Title: Split footer with logo and links
  * Slug: powder/footer-split
- * Description: Footer with site logo, site title, navigation.
  * Categories: footer
  * Block Types: core/template-part/footer
  */

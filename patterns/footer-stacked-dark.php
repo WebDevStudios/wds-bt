@@ -2,7 +2,6 @@
 /**
  * Title: Stacked footer with call to action
  * Slug: powder/footer-stacked-dark
- * Description: Footer with heading, text, button.
  * Categories: footer
  * Block Types: core/template-part/footer
  */

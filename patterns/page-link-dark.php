@@ -2,7 +2,6 @@
 /**
  * Title: Page with links, social icons.
  * Slug: powder/page-link-dark
- * Description: Link page with image, text, buttons, social icons.
  * Categories: page
  */
 ?>

@@ -2,7 +2,6 @@
 /**
  * Title: Pricing table with three columns.
  * Slug: powder/content-pricing-table-dark
- * Description: Pricing table with three columns.
  * Categories: content
  */
 ?>

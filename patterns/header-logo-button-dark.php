@@ -2,7 +2,6 @@
 /**
  * Title: Header with site logo, button
  * Slug: powder/header-logo-button-dark
- * Description: Header with site logo, site title, navigation, social icons.
  * Categories: header
  * Block Types: core/template-part/header
  */

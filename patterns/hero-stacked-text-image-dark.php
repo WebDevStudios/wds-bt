@@ -2,7 +2,6 @@
 /**
  * Title: Hero section with text and image.
  * Slug: powder/hero-stacked-text-image-dark
- * Description: Hero section with text, heading, image.
  * Categories: hero
  */
 ?>

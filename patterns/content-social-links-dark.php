@@ -2,7 +2,6 @@
 /**
  * Title: Social media links.
  * Slug: powder/content-social-links-dark
- * Description: Row of social media links.
  * Categories: content
  */
 ?>

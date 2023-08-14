@@ -2,7 +2,6 @@
 /**
  * Title: Header with social icons, site logo
  * Slug: powder/header-logo-center
- * Description: Header with social icons, site title, navigation.
  * Categories: header
  * Block Types: core/template-part/header
  */

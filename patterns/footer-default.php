@@ -2,7 +2,6 @@
 /**
  * Title: Default footer
  * Slug: powder/footer-default
- * Description: Footer with site title, text, links.
  * Categories: footer
  * Block Types: core/template-part/footer
  */
