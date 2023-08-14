@@ -1,9 +1,9 @@
 <?php
 /**
- * Title: Default query
- * Slug: powder/query-default
- * Description: Query of posts in stack view.
- * Inserter: false
+ * Title: Default posts
+ * Slug: powder/posts-default
+ * Categories: posts
+ * Block Types: core/query
  */
 ?>
 <!-- wp:query {"queryId":0,"query":{"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"layout":{"type":"constrained"}} -->
