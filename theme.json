@@ -614,13 +614,6 @@
 						"text": "var(--wp--preset--color--contrast)"
 					}
 				}
-			},
-			"textarea": {
-				"color": {
-					"background": {
-						"ref": "styles.color.primary"
-					}
-				}
 			}
 		},
 		"spacing": {
