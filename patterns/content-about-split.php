@@ -11,8 +11,8 @@
 	<div class="wp-block-group alignwide"><!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"400"}},"fontSize":"x-small"} -->
 		<p class="has-x-small-font-size" style="font-style:normal;font-weight:400;text-transform:uppercase"><?php echo esc_html__( 'Meet Powder', 'powder' ); ?></p>
 		<!-- /wp:paragraph -->
-		<!-- wp:separator {"style":{"spacing":{"margin":{"top":"0px"}}},"className":"is-style-default"} -->
-		<hr class="wp-block-separator has-alpha-channel-opacity is-style-default" style="margin-top:0px"/>
+		<!-- wp:separator {"style":{"spacing":{"margin":{"top":"0px"}}}} -->
+		<hr class="wp-block-separator has-alpha-channel-opacity" style="margin-top:0px"/>
 		<!-- /wp:separator -->
 	</div>
 	<!-- /wp:group -->
