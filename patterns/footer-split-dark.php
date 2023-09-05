@@ -32,7 +32,7 @@
 					<!-- wp:list {"style":{"typography":{"lineHeight":"2"}},"className":"is-style-no-style"} -->
 					<ul class="is-style-no-style" style="line-height:2">
 						<!-- wp:list-item -->
-						<li><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?>1</a></li>
+						<li><a href="#"><?php echo esc_html__( 'Link #1', 'powder' ); ?></a></li>
 						<!-- /wp:list-item -->
 						<!-- wp:list-item -->
 						<li><a href="#"><?php echo esc_html__( 'Link #2', 'powder' ); ?></a></li>
