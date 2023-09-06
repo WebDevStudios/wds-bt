@@ -25,8 +25,8 @@
 			<div class="wp-block-cover is-light" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><span aria-hidden="true" class="wp-block-cover__background has-base-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container">
 				<!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}},"dimensions":{"minHeight":"400px"}},"borderColor":"contrast","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
 				<div class="wp-block-group has-border-color has-contrast-border-color" style="border-width:1px;min-height:400px;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--medium)">
-					<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"textTransform":"uppercase","lineHeight":"1.2"}},"fontSize":"max-36"} -->
-					<h3 class="wp-block-heading has-text-align-center has-max-36-font-size" style="line-height:1.2;text-transform:uppercase"><?php echo esc_html__( 'Sample Title', 'powder' ); ?></h3>
+					<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"textTransform":"uppercase","lineHeight":"1.2"}},"fontSize":"x-large"} -->
+					<h3 class="wp-block-heading has-text-align-center has-x-large-font-size" style="line-height:1.2;text-transform:uppercase"><?php echo esc_html__( 'Sample Title', 'powder' ); ?></h3>
 					<!-- /wp:heading -->
 					<!-- wp:paragraph {"align":"center","fontSize":"tiny"} -->
 					<p class="has-text-align-center has-tiny-font-size"><?php echo esc_html__( 'By: Brian Gardner', 'powder' ); ?></p>
@@ -50,8 +50,8 @@
 			<div class="wp-block-cover is-light" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><span aria-hidden="true" class="wp-block-cover__background has-base-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container">
 				<!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}},"dimensions":{"minHeight":"400px"}},"borderColor":"contrast","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
 				<div class="wp-block-group has-border-color has-contrast-border-color" style="border-width:1px;min-height:400px;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--medium)">
-					<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"textTransform":"uppercase","lineHeight":"1.2"}},"fontSize":"max-36"} -->
-					<h3 class="wp-block-heading has-text-align-center has-max-36-font-size" style="line-height:1.2;text-transform:uppercase"><?php echo esc_html__( 'Sample Title', 'powder' ); ?></h3>
+					<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"textTransform":"uppercase","lineHeight":"1.2"}},"fontSize":"x-large"} -->
+					<h3 class="wp-block-heading has-text-align-center has-x-large-font-size" style="line-height:1.2;text-transform:uppercase"><?php echo esc_html__( 'Sample Title', 'powder' ); ?></h3>
 					<!-- /wp:heading -->
 					<!-- wp:paragraph {"align":"center","fontSize":"tiny"} -->
 					<p class="has-text-align-center has-tiny-font-size"><?php echo esc_html__( 'By: Brian Gardner', 'powder' ); ?></p>
@@ -75,8 +75,8 @@
 			<div class="wp-block-cover is-light" style="padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--small)"><span aria-hidden="true" class="wp-block-cover__background has-base-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container">
 				<!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}},"dimensions":{"minHeight":"400px"}},"borderColor":"contrast","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
 				<div class="wp-block-group has-border-color has-contrast-border-color" style="border-width:1px;min-height:400px;padding-top:var(--wp--preset--spacing--small);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--small);padding-left:var(--wp--preset--spacing--medium)">
-					<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"textTransform":"uppercase","lineHeight":"1.2"}},"fontSize":"max-36"} -->
-					<h3 class="wp-block-heading has-text-align-center has-max-36-font-size" style="line-height:1.2;text-transform:uppercase"><?php echo esc_html__( 'Sample Title', 'powder' ); ?></h3>
+					<!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"textTransform":"uppercase","lineHeight":"1.2"}},"fontSize":"x-large"} -->
+					<h3 class="wp-block-heading has-text-align-center has-x-large-font-size" style="line-height:1.2;text-transform:uppercase"><?php echo esc_html__( 'Sample Title', 'powder' ); ?></h3>
 					<!-- /wp:heading -->
 					<!-- wp:paragraph {"align":"center","fontSize":"tiny"} -->
 					<p class="has-text-align-center has-tiny-font-size"><?php echo esc_html__( 'By: Brian Gardner', 'powder' ); ?></p>
