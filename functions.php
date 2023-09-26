@@ -115,5 +115,4 @@ function powder_register_block_pattern_categories() {
 	);
 
 }
-
 add_action( 'init', 'powder_register_block_pattern_categories' );

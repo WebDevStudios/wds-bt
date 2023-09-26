@@ -19,7 +19,7 @@ Powder is distributed under the terms of the GNU GPL.
 
 
 /* Defaults
----------------------------------------------------------------------------- */
+---------------------------------------- */
 
 *,
 *::before,
@@ -52,8 +52,7 @@ th {
 	font-weight: var(--wp--custom--font-weight--medium);
 }
 
-/* Forms
---------------------------------------------- */
+/* -- Forms -- */
 
 input,
 select,
@@ -97,8 +96,7 @@ textarea {
 	opacity: 0.5;
 }
 
-/* Utility
---------------------------------------------- */
+/* -- Utility -- */
 
 .is-style-filter-invert {
 	filter: invert(1);
@@ -117,18 +115,16 @@ textarea {
 }
 
 /* Blocks
----------------------------------------------------------------------------- */
+---------------------------------------- */
 
-/* List
---------------------------------------------- */
+/* -- List -- */
 
 .is-style-no-style {
 	list-style-type: none;
 	padding-left: 0;
 }
 
-/* Navigation
---------------------------------------------- */
+/* -- Navigation -- */
 
 .wp-block-navigation__responsive-container.is-menu-open {
 	padding-bottom: var(--wp--custom--spacing--gap);
@@ -141,8 +137,13 @@ textarea {
 	padding: 2px;
 }
 
-/* Navigation Submenu
---------------------------------------------- */
+/* -- Navigation Submenu -- */
+
+.wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open,
+.wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
+	background-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
 
 .wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
 	border-color: var(--wp--preset--color--contrast);
@@ -160,8 +161,7 @@ textarea {
 	padding-top: 5px !important;
 }
 
-/* Post Comments Form
---------------------------------------------- */
+/* -- Post Comments Form -- */
 
 .wp-block-post-comments-form input:not([type=submit]):not([type=checkbox]), 
 .wp-block-post-comments-form textarea {
@@ -170,12 +170,11 @@ textarea {
 }
 
 /* Media Queries
----------------------------------------------------------------------------- */
+---------------------------------------- */
 
 @media only screen and (max-width: 600px) {
 
-	/* Utility
-	--------------------------------------------- */
+	/* -- Utility -- */
 
 	.is-style-hidden-mobile {
 		display: none !important;
@@ -185,8 +184,7 @@ textarea {
 
 @media only screen and (max-width: 782px) {
 
-	/* Columns
-	--------------------------------------------- */
+	/* -- Columns -- */
 
 	.wp-block-columns.is-style-column-reverse {
 		flex-direction: column-reverse;
@@ -196,15 +194,13 @@ textarea {
 
 @media only screen and (min-width: 600px) {
 
-	/* Group
-	--------------------------------------------- */
+	/* -- Group -- */
 
 	.wp-block-group.is-style-pull-200 {
 		margin-top: -200px;
 	}
 
-	/* Navigation Link
-	--------------------------------------------- */
+	/* -- Navigation Link -- */
 
 	.wp-block-navigation-item.is-style-outline a {
 		border: 1px solid currentColor;
