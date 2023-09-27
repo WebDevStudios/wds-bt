@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Default 404
- * Slug: powder/404
+ * Slug: powder/hidden-404
  * Categories: hidden
  * Inserter: false
  */
