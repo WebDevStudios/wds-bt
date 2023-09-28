@@ -138,23 +138,23 @@
 			"presets": [
 				{
 					"name": "Deep",
-					"slug": "deep",
-					"shadow": "0 0 50px rgb(10, 10, 10, 0.1);"
+					"shadow": "0 0 50px rgb(10, 10, 10, 0.1);",
+					"slug": "deep"
 				},
 				{
 					"name": "Faint",
-					"slug": "faint",
-					"shadow": "0 0 20px rgb(10, 10, 10, 0.05);"
+					"shadow": "0 0 20px rgb(10, 10, 10, 0.05);",
+					"slug": "faint"
 				},
 				{
 					"name": "Light",
-					"slug": "light",
-					"shadow": "0 0 10px rgb(10, 10, 10, 0.1);"
+					"shadow": "0 0 10px rgb(10, 10, 10, 0.1);",
+					"slug": "light"
 				},
 				{
 					"name": "Solid",
-					"slug": "solid",
-					"shadow": "8px 8px 0 rgb(10, 10, 10, 1)"
+					"shadow": "8px 8px 0 rgb(10, 10, 10, 1)",
+					"slug": "solid"
 				}
 			]
 		},
