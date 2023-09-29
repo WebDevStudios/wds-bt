@@ -49,6 +49,14 @@ th {
 	font-weight: var(--wp--custom--font-weight--medium);
 }
 
+mark {
+	background: linear-gradient(90deg, var(--wp--preset--color--contrast) 0%, var(--wp--preset--color--contrast) 100%);
+	background-position: 0 85%;
+	background-repeat: repeat-x;
+	background-size: 100% 15%;
+	padding-right: 5px;
+}
+
 /* -- Forms -- */
 
 input,
@@ -121,6 +129,10 @@ textarea {
 }
 
 /* -- Position -- */
+
+.is-style-position-fixed {
+	position: fixed;
+}
 
 .is-style-position-relative {
 	position: relative;
