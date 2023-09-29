@@ -379,12 +379,6 @@
 					}
 				}
 			},
-			"core/group": {
-				"css": "&.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}"
-			},
-			"core/image": {
-				"css": " &.is-style-shadow-light {box-shadow: var(--wp--preset--shadow--light);}"
-			},
 			"core/list": {
 				"spacing": {
 					"padding": {

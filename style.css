@@ -93,11 +93,40 @@ textarea {
 	opacity: 0.5;
 }
 
-/* -- Utility -- */
+/* Utility
+---------------------------------------- */
+
+/* -- Box Shadow -- */
+
+.is-style-shadow-deep {
+	box-shadow: var(--wp--preset--shadow--deep);
+}
+
+.is-style-shadow-faint {
+	box-shadow: var(--wp--preset--shadow--faint);
+}
+
+.is-style-shadow-light {
+	box-shadow: var(--wp--preset--shadow--light);
+}
+
+.is-style-shadow-solid {
+	box-shadow: var(--wp--preset--shadow--solid);
+}
+
+/* -- Filter -- */
 
 .is-style-filter-invert {
 	filter: invert(1);
 }
+
+/* -- Position -- */
+
+.is-style-position-relative {
+	position: relative;
+}
+
+/* -- Z-Index -- */
 
 .is-style-negative-zindex {
 	z-index: -99;
@@ -105,10 +134,6 @@ textarea {
 
 .is-style-positive-zindex {
 	z-index: 99;
-}
-
-.is-style-position-relative {
-	position: relative;
 }
 
 /* Blocks
@@ -167,6 +192,15 @@ textarea {
 .wp-block-post-comments-form textarea {
 	border-color: var(--wp--preset--color--contrast);
 	padding: 10px 20px;
+}
+
+/* -- Header -- */
+
+.site-header {
+	position: sticky;
+	top: 0;
+	transition: top 0.5s;
+	z-index: 99;
 }
 
 /* Media Queries

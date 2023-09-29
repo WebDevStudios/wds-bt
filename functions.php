@@ -43,6 +43,18 @@ function powder_enqueue_style_sheet() {
 add_action( 'wp_enqueue_scripts', 'powder_enqueue_style_sheet' );
 
 /**
+ * Enqueue theme effects javascript.
+ *
+ * @since 0.9.6
+ */
+function powder_enqueue_effects_javascript() {
+
+	wp_enqueue_script( 'effects', get_template_directory_uri() . '/assets/js/effects.js', array('jquery'), '1.0', true );
+
+}
+add_action( 'wp_enqueue_scripts', 'powder_enqueue_effects_javascript' );
+
+/**
  * Register block styles.
  *
  * @since 0.5.0
@@ -54,10 +66,12 @@ function powder_register_block_styles() {
 			'column-reverse' => __( 'Reverse', 'powder' ),
 		),
 		'core/group' => array(
-			'shadow-light' => __( 'Shadow', 'powder' ),
+			'shadow-light' => __( 'Shadow (Light)', 'powder' ),
+			'shadow-solid' => __( 'Shadow (Solid)', 'powder' ),
 		),
 		'core/image' => array(
-			'shadow-light' => __( 'Shadow', 'powder' ),
+			'shadow-light' => __( 'Shadow (Light)', 'powder' ),
+			'shadow-solid' => __( 'Shadow (Solid)', 'powder' ),
 		),
 		'core/list' => array(
 			'no-style' => __( 'No Style', 'powder' ),
