@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Default header
- * Slug: powder/header-default
+ * Slug: powder/header
  * Categories: header
  * Block Types: core/template-part/header
  */

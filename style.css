@@ -212,7 +212,7 @@ textarea {
 	position: sticky;
 	top: 0;
 	transition: top 0.5s;
-	z-index: 99;
+	z-index: 100;
 }
 
 /* Media Queries
@@ -240,17 +240,20 @@ textarea {
 
 @media only screen and (min-width: 600px) {
 
-	/* -- Group -- */
+	/* -- Utility -- */
 
-	.wp-block-group.is-style-pull-200 {
-		margin-top: -200px;
+	.is-style-pull-100 {
+		margin-top: -100px !important;
+	}
+
+	.is-style-pull-200 {
+		margin-top: -200px !important;
 	}
 
 	/* -- Navigation Link -- */
 
 	.wp-block-navigation-item.is-style-outline a {
 		border: 1px solid currentColor;
-		border-radius: 5px;
 		padding: 5px 15px;
 	}
 

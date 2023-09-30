@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Default footer
- * Slug: powder/footer-default-dark
+ * Slug: powder/footer-dark
  * Categories: footer
  * Block Types: core/template-part/footer
  */
