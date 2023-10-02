@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Columns section with eBook covers.
+ * Title: Columns section with eBook covers
  * Slug: powder/content-ebook-covers-dark
  * Categories: content
  */

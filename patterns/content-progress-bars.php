@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Section that shows progress bars.
+ * Title: Section that shows progress bars
  * Slug: powder/content-progress-bars
  * Categories: content
  */

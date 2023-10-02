@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Social media followers.
+ * Title: Social media followers
  * Slug: powder/content-social-numbers
  * Categories: content
  */

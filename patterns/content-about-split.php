@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: About section with columns.
+ * Title: About section with columns
  * Slug: powder/content-about-split
  * Categories: content
  */

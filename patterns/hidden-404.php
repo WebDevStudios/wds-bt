@@ -2,8 +2,7 @@
 /**
  * Title: 404 page
  * Slug: powder/404
- * Categories: hidden
- * Inserter: false
+ * Inserter: no
  */
 ?>
 <!-- wp:heading {"level":1} -->

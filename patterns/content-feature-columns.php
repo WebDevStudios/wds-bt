@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Feature columns section with image and text.
+ * Title: Feature columns section with image and text
  * Slug: powder/content-feature-columns
  * Categories: content
  */

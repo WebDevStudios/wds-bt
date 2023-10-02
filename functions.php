@@ -127,6 +127,13 @@ function powder_register_block_pattern_categories() {
 			'description' => __( 'A variety of page designs created with a combination of blocks.', 'powder' ),
 		)
 	);
+	register_block_pattern_category(
+		'template',
+		array(
+			'label'       => __( 'Template', 'powder' ),
+			'description' => __( 'A variety of templates created with a combination of blocks.', 'powder' ),
+		)
+	);
 
 }
 add_action( 'init', 'powder_register_block_pattern_categories' );

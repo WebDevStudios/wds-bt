@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Feature boxes with image and text.
+ * Title: Feature boxes with image and text
  * Slug: powder/content-feature-boxes
  * Categories: content
  */

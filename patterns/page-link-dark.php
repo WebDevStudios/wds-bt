@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Page with links, social icons.
+ * Title: Page with links, social icons
  * Slug: powder/page-link-dark
  * Categories: page
  */

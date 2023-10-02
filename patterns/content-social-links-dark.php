@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Social media links.
+ * Title: Social media links
  * Slug: powder/content-social-links-dark
  * Categories: content
  */

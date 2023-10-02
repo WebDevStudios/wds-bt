@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Logo section with images.
+ * Title: Logo section with images
  * Slug: powder/content-logos
  * Categories: content
  */

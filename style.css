@@ -138,6 +138,12 @@ textarea {
 	position: relative;
 }
 
+/* -- Pull -- */
+
+.is-style-pull-100 {
+	margin-top: -100px !important;
+}
+
 /* -- Z-Index -- */
 
 .is-style-negative-zindex {
@@ -241,10 +247,6 @@ textarea {
 @media only screen and (min-width: 600px) {
 
 	/* -- Utility -- */
-
-	.is-style-pull-100 {
-		margin-top: -100px !important;
-	}
 
 	.is-style-pull-200 {
 		margin-top: -200px !important;

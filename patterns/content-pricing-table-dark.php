@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Pricing table with three columns.
+ * Title: Pricing table with three columns
  * Slug: powder/content-pricing-table-dark
  * Categories: content
  */

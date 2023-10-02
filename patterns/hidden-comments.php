@@ -2,8 +2,7 @@
 /**
  * Title: Comments
  * Slug: powder/comments
- * Categories: hidden
- * Inserter: false
+ * Inserter: no
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->

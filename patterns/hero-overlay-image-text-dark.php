@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Hero section with image and text overlay.
+ * Title: Hero section with image and text overlay
  * Slug: powder/hero-overlay-image-text-dark
  * Categories: hero
  */
