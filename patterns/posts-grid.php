@@ -13,15 +13,7 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small","margin":{"top":"30px"}}}} -->
 		<div class="wp-block-group" style="margin-top:30px">
 			<!-- wp:post-title {"isLink":true,"fontSize":"large"} /-->
-			<!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"top":"10px"}}},"layout":{"type":"flex"},"fontSize":"x-small"} -->
-			<div class="wp-block-group has-x-small-font-size" style="margin-top:10px">
-				<!-- wp:post-date /-->
-				<!-- wp:paragraph -->
-				<p>·</p>
-				<!-- /wp:paragraph -->
-				<!-- wp:post-author-name {"isLink":true} /-->
-			</div>
-			<!-- /wp:group -->
+			<!-- wp:pattern {"slug":"powder/post-meta"} /-->
 			<!-- wp:post-excerpt {"moreText":"Read More →","excerptLength":20,"fontSize":"small"} /-->
 		</div>
 		<!-- /wp:group -->

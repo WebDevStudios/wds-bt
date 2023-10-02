@@ -110,28 +110,35 @@ function powder_register_block_pattern_categories() {
 		'content',
 		array(
 			'label'       => __( 'Content', 'powder' ),
-			'description' => __( 'A variety of content sections created with blocks.', 'powder' ),
+			'description' => __( 'A collection of content patterns designed for Powder.', 'powder' ),
 		)
 	);
 	register_block_pattern_category(
 		'hero',
 		array(
 			'label'       => __( 'Hero', 'powder' ),
-			'description' => __( 'A variety of hero sections created with blocks.', 'powder' ),
+			'description' => __( 'A collection of hero patterns designed for Powder.', 'powder' ),
 		)
 	);
 	register_block_pattern_category(
 		'page',
 		array(
 			'label'       => __( 'Page', 'powder' ),
-			'description' => __( 'A variety of page designs created with a combination of blocks.', 'powder' ),
+			'description' => __( 'A collection of page patterns designed for Powder.', 'powder' ),
 		)
 	);
 	register_block_pattern_category(
 		'template',
 		array(
 			'label'       => __( 'Template', 'powder' ),
-			'description' => __( 'A variety of templates created with a combination of blocks.', 'powder' ),
+			'description' => __( 'A collection of template patterns designed for Powder.', 'powder' ),
+		)
+	);
+	register_block_pattern_category(
+		'theme',
+		array(
+			'label'       => __( 'Theme', 'powder' ),
+			'description' => __( 'A collection of theme patterns designed for Powder.', 'powder' ),
 		)
 	);
 

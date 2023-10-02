@@ -12,15 +12,7 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}}} -->
 		<div class="wp-block-group">
 			<!-- wp:post-title {"isLink":true} /-->
-			<!-- wp:group {"style":{"spacing":{"blockGap":"5px","margin":{"bottom":"30px"}}},"layout":{"type":"flex"},"fontSize":"small"} -->
-			<div class="wp-block-group has-small-font-size" style="margin-bottom:30px">
-				<!-- wp:post-date /-->
-				<!-- wp:paragraph -->
-				<p>·</p>
-				<!-- /wp:paragraph -->
-				<!-- wp:post-author-name {"isLink":true} /-->
-			</div>
-			<!-- /wp:group -->
+			<!-- wp:pattern {"slug":"powder/post-meta"} /-->
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:post-excerpt {"moreText":"Read More"} /-->
