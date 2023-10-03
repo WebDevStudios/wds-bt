@@ -26,11 +26,11 @@
 			<!-- wp:pattern {"slug":"powder/post-terms"} /-->
 			<!-- wp:pattern {"slug":"powder/comments"} /-->
 		</div>
-	<!-- /wp:group -->
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 <!-- wp:group {"align":"full","style":{"dimensions":{"minHeight":"100px"}},"backgroundColor":"contrast","className":"is-style-pull-100","layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull is-style-pull-100 has-contrast-background-color has-background" style="min-height:100px"></div>
+<div class="wp-block-group alignfull is-style-pull-100 has-contrast-background-color has-background" style="min-height:100px"></div>
 <!-- /wp:group -->
