@@ -9,5 +9,5 @@
 <!-- wp:pattern {"slug":"powder/hero-columns-text-image"} /-->
 <!-- wp:pattern {"slug":"powder/content-social-numbers-dark"} /-->
 <!-- wp:pattern {"slug":"powder/hero-columns-image-text"} /-->
-<!-- wp:pattern {"slug":"powder/content-logos"} /-->
+<!-- wp:pattern {"slug":"powder/content-logos-dark"} /-->
 <!-- wp:pattern {"slug":"powder/hero-columns-text-image"} /-->
