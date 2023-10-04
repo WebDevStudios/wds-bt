@@ -24,7 +24,7 @@
 		<div class="wp-block-group" style="margin-top:0px;padding-top:var(--wp--preset--spacing--x-large);padding-right:30px;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:30px">
 			<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
 			<!-- wp:pattern {"slug":"powder/post-terms"} /-->
-			<!-- wp:template-part {"slug":"comments","tagName":"section","className":"entry-comments"} /-->
+			<!-- wp:template-part {"slug":"comments","theme":"powder","tagName":"section","className":"entry-comments"} /-->
 		</div>
 		<!-- /wp:group -->
 	</div>
