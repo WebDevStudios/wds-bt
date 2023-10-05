@@ -5,23 +5,9 @@
  * Inserter: no
  */
 ?>
-<!-- wp:group {"layout":{"type":"constrained"},"style":{"spacing":{"blockGap":"0px"}}} -->
-<div class="wp-block-group">
-	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"},"style":{"spacing":{"blockGap":"5px"}}} -->
-	<div class="wp-block-group">
-		<!-- wp:paragraph -->
-		<p><?php echo esc_html__( 'In:', 'powder' ); ?></p>
-		<!-- /wp:paragraph -->
-		<!-- wp:post-terms {"term":"category"} /-->
-	</div>
-	<!-- /wp:group -->
-	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"},"style":{"spacing":{"blockGap":"5px"}}} -->
-	<div class="wp-block-group">
-		<!-- wp:paragraph -->
-		<p><?php echo esc_html__( 'Tags:', 'powder' ); ?></p>
-		<!-- /wp:paragraph -->
-		<!-- wp:post-terms {"term":"post_tag"} /-->
-	</div>
-	<!-- /wp:group -->
-</div>
+<!-- wp:group {"tagName":"footer","style":{"spacing":{"blockGap":"0px"}},"className":"entry-footer","layout":{"type":"constrained"}} -->
+<footer class="wp-block-group entry-footer">
+	<!-- wp:post-terms {"term":"category","prefix":"In: "} /-->
+	<!-- wp:post-terms {"term":"post_tag","prefix":"Tags: "} /-->
+</footer>
 <!-- /wp:group -->

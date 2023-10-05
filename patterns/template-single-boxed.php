@@ -2,12 +2,11 @@
 /**
  * Title: Post template with boxed content
  * Slug: powder/template-single-boxed
- * Template Types: posts, single
  * Categories: template
  */
 ?>
-<!-- wp:group {"style":{"spacing":{"blockGap":"10px","padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|x-large"},"margin":{"top":"0px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"contrast","textColor":"base","layout":{"type":"constrained","wideSize":"800px"}} -->
-<div class="wp-block-group has-base-color has-contrast-background-color has-text-color has-background has-link-color" style="margin-top:0px;padding-top:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--x-large)">
+<!-- wp:group {"tagName":"header","style":{"spacing":{"blockGap":"10px","padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|x-large"},"margin":{"top":"0px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"contrast","textColor":"base","className":"entry-header","layout":{"type":"constrained","wideSize":"800px"}} -->
+<header class="wp-block-group entry-header has-base-color has-contrast-background-color has-text-color has-background has-link-color" style="margin-top:0px;padding-top:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--x-large)">
 	<!-- wp:post-title {"textAlign":"center","level":1,"fontSize":"max-48"} /-->
 	<!-- wp:pattern {"slug":"powder/post-meta-centered"} /-->
 </div>
@@ -24,7 +23,7 @@
 		<div class="wp-block-group" style="margin-top:0px;padding-top:var(--wp--preset--spacing--x-large);padding-right:30px;padding-bottom:var(--wp--preset--spacing--x-large);padding-left:30px">
 			<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
 			<!-- wp:pattern {"slug":"powder/post-terms"} /-->
-			<!-- wp:template-part {"slug":"comments","theme":"powder","tagName":"section","className":"entry-comments"} /-->
+			<!-- wp:pattern {"slug":"powder/comments"} /-->
 		</div>
 		<!-- /wp:group -->
 	</div>

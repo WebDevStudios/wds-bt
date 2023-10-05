@@ -5,8 +5,8 @@
  * Inserter: no
  */
 ?>
-<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--medium)">
+<!-- wp:group {"tagName":"section","style":{"spacing":{"margin":{"top":"var:preset|spacing|medium"}}},"className":"entry-comments","layout":{"type":"constrained"}} -->
+<section class="wp-block-group entry-comments" style="margin-top:var(--wp--preset--spacing--medium)">
 	<!-- wp:comments {"className":"wp-block-comments-query-loop"} -->
 	<div class="wp-block-comments wp-block-comments-query-loop">
 		<!-- wp:heading --><h2><?php echo esc_html__( 'Comments', 'powder' ); ?></h2><!-- /wp:heading -->
@@ -47,5 +47,5 @@
 		<!-- wp:post-comments-form /-->
 	</div>
 	<!-- /wp:comments -->
-</div>
+</section>
 <!-- /wp:group -->
