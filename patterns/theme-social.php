@@ -2,6 +2,7 @@
 /**
  * Title: Home page for Powder Social theme
  * Slug: powder/theme-social
+ * Inserter: no
  * Categories: theme
  */
 ?>

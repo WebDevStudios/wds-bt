@@ -2,6 +2,7 @@
 /**
  * Title: Post template with boxed content
  * Slug: powder/template-single-boxed
+ * Inserter: no
  * Categories: template
  */
 ?>
