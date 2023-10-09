@@ -12,7 +12,7 @@
 		<!-- wp:column {"style":{"border":{"color":"#e5e5e5","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|small","right":"var:preset|spacing|small"},"blockGap":"var:preset|spacing|x-small"}}} -->
 		<div class="wp-block-column has-border-color" style="border-color:#e5e5e5;border-width:1px;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--small)">
 			<!-- wp:image {"align":"center","width":30,"height":30,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-dark.svg'; ?>" alt="Circle check dark icon" style="object-fit:cover;width:30px;height:30px" width="30" height="30"/></figure>
+			<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-bolt-dark.svg'; ?>" alt="Circle check dark icon" style="object-fit:cover;width:30px;height:30px" width="30" height="30"/></figure>
 			<!-- /wp:image -->
 			<!-- wp:heading {"textAlign":"center","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"x-small"} -->
 			<h2 class="wp-block-heading has-text-align-center has-x-small-font-size" style="text-transform:uppercase"><?php echo esc_html__( 'Feature Headline', 'powder' ); ?></h2>
@@ -25,7 +25,7 @@
 		<!-- wp:column {"style":{"border":{"color":"#e5e5e5","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|small","right":"var:preset|spacing|small"},"blockGap":"var:preset|spacing|x-small"}}} -->
 		<div class="wp-block-column has-border-color" style="border-color:#e5e5e5;border-width:1px;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--small)">
 			<!-- wp:image {"align":"center","width":30,"height":30,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image aligncenter size-full is-resized"><img src="https://powderstudio.com/wp-content/uploads/icon-circle-check-dark.svg" alt="Circle check dark icon" style="object-fit:cover;width:30px;height:30px" width="30" height="30"/></figure>
+			<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-bolt-dark.svg'; ?>" alt="Circle check dark icon" style="object-fit:cover;width:30px;height:30px" width="30" height="30"/></figure>
 			<!-- /wp:image -->
 			<!-- wp:heading {"textAlign":"center","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"x-small"} -->
 			<h2 class="wp-block-heading has-text-align-center has-x-small-font-size" style="text-transform:uppercase"><?php echo esc_html__( 'Feature Headline', 'powder' ); ?></h2>
@@ -38,7 +38,7 @@
 		<!-- wp:column {"style":{"border":{"color":"#e5e5e5","width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|small","right":"var:preset|spacing|small"},"blockGap":"var:preset|spacing|x-small"}}} -->
 		<div class="wp-block-column has-border-color" style="border-color:#e5e5e5;border-width:1px;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--small)">
 			<!-- wp:image {"align":"center","width":30,"height":30,"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image aligncenter size-full is-resized"><img src="https://powderstudio.com/wp-content/uploads/icon-circle-check-dark.svg" alt="Circle check dark icon" style="object-fit:cover;width:30px;height:30px" width="30" height="30"/></figure>
+			<figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-bolt-dark.svg'; ?>" alt="Circle check dark icon" style="object-fit:cover;width:30px;height:30px" width="30" height="30"/></figure>
 			<!-- /wp:image -->
 			<!-- wp:heading {"textAlign":"center","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"x-small"} -->
 			<h2 class="wp-block-heading has-text-align-center has-x-small-font-size" style="text-transform:uppercase"><?php echo esc_html__( 'Feature Headline', 'powder' ); ?></h2>
