@@ -237,11 +237,4 @@ textarea {
 		margin-top: -200px !important;
 	}
 
-	/* -- Navigation Link -- */
-
-	.wp-block-navigation-item.is-style-outline a {
-		border: 1px solid currentColor;
-		padding: 5px 15px;
-	}
-
 }
