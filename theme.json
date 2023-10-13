@@ -376,6 +376,7 @@
 				}
 			},
 			"core/list": {
+				"css": "&.is-style-no-style {list-style-type: none; padding-left: 0;}",
 				"spacing": {
 					"padding": {
 						"left": "var(--wp--custom--spacing--gap)"
