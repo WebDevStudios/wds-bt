@@ -192,7 +192,10 @@
 		},
 		"typography": {
 			"dropCap": false,
-			"fluid": true,
+			"fluid": {
+				"maxViewportWidth": "1280px",
+				"minViewportWidth": "640px"
+			},
 			"fontFamilies": [
 				{
 					"fontFamily": "Outfit, sans-serif",
