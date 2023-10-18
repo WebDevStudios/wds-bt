@@ -26,7 +26,7 @@
 			<div class="wp-block-buttons">
 				<!-- wp:button {"className":"is-style-outline"} -->
 				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button"><?php echo esc_html__( 'Learn More →', 'powder' ); ?></a></div>
-			<!-- /wp:button -->
+				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
 		</div>
