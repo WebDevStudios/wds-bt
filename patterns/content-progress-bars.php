@@ -14,10 +14,10 @@
 			<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"},"fontSize":"small"} -->
 			<div class="wp-block-group has-small-font-size">
 				<!-- wp:paragraph -->
-				<p>Item #1</p>
+				<p><?php echo esc_html__( 'Item #1', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>100%</p>
+				<p><?php echo esc_html__( '100%', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -50,10 +50,10 @@
 			<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"},"fontSize":"small"} -->
 			<div class="wp-block-group has-small-font-size">
 				<!-- wp:paragraph -->
-				<p>Item #2</p>
+				<p><?php echo esc_html__( 'Item #2', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>90%</p>
+				<p><?php echo esc_html__( '90%', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -86,10 +86,10 @@
 			<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"},"fontSize":"small"} -->
 			<div class="wp-block-group has-small-font-size">
 				<!-- wp:paragraph -->
-				<p>Item #3</p>
+				<p><?php echo esc_html__( 'Item #3', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>80%</p>
+				<p><?php echo esc_html__( '80%', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -122,10 +122,10 @@
 			<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"},"fontSize":"small"} -->
 			<div class="wp-block-group has-small-font-size">
 				<!-- wp:paragraph -->
-				<p>Item #4</p>
+				<p><?php echo esc_html__( 'Item 41', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>70%</p>
+				<p><?php echo esc_html__( '70%', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -158,10 +158,10 @@
 			<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"},"fontSize":"small"} -->
 			<div class="wp-block-group has-small-font-size">
 				<!-- wp:paragraph -->
-				<p>Item #5</p>
+				<p><?php echo esc_html__( 'Item #5', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>60%</p>
+				<p><?php echo esc_html__( '60%', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -194,10 +194,10 @@
 			<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"},"fontSize":"small"} -->
 			<div class="wp-block-group has-small-font-size">
 				<!-- wp:paragraph -->
-				<p>Item #6</p>
+				<p><?php echo esc_html__( 'Item #6', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- wp:paragraph -->
-				<p>50%</p>
+				<p><?php echo esc_html__( '50%', 'powder' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
