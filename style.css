@@ -175,8 +175,8 @@ textarea {
 
 /* -- Navigation Submenu -- */
 
-.wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open,
-.wp-block-navigation .wp-block-navigation__submenu-container {
+.wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open,
+.wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
 	background-color: var(--wp--preset--color--base);
 	color: var(--wp--preset--color--contrast);
 }
@@ -187,7 +187,7 @@ textarea {
 	color: var(--wp--preset--color--base);
 }
 
-.wp-block-navigation .wp-block-navigation__submenu-container {
+.wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
 	border-color: var(--wp--preset--color--contrast);
 	min-width: 180px !important;
 	padding: 10px;

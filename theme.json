@@ -54,7 +54,7 @@
 			"defaultPalette": false,
 			"duotone": [
 				{
-					"colors": [ "#0a0a0a", "#ffffff" ],
+					"colors": [ "#000000", "#ffffff" ],
 					"name": "Black and White",
 					"slug": "black-and-white"
 				},
@@ -83,7 +83,7 @@
 					"slug": "base"
 				},
 				{
-					"color": "#0a0a0a",
+					"color": "#000000",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
