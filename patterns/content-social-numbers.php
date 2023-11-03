@@ -11,8 +11,8 @@
 	<div class="wp-block-columns">
 		<!-- wp:column {"style":{"spacing":{"blockGap":"10px"}}} -->
 		<div class="wp-block-column">
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"normal","lineHeight":"1","fontSize":"72px"}}} -->
-			<p class="has-text-align-center" style="font-size:72px;font-style:normal;line-height:1">40K</p>
+			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"max-72"} -->
+			<p class="has-text-align-center has-max-72-font-size" style="line-height:1">40K</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"x-small"} -->
 			<p class="has-text-align-center has-x-small-font-size" style="line-height:1"><?php echo esc_html__( 'Instagram Followers', 'powder' ); ?></p>
@@ -21,8 +21,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"style":{"spacing":{"blockGap":"10px"}}} -->
 		<div class="wp-block-column">
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"normal","lineHeight":"1","fontSize":"72px"}}} -->
-			<p class="has-text-align-center" style="font-size:72px;font-style:normal;line-height:1">75K</p>
+			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"max-72"} -->
+			<p class="has-text-align-center has-max-72-font-size" style="line-height:1">75K</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"x-small"} -->
 			<p class="has-text-align-center has-x-small-font-size" style="line-height:1"><?php echo esc_html__( 'TikTok Followers', 'powder' ); ?></p>
@@ -31,8 +31,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"style":{"spacing":{"blockGap":"10px"}}} -->
 		<div class="wp-block-column">
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"normal","lineHeight":"1","fontSize":"72px"}}} -->
-			<p class="has-text-align-center" style="font-size:72px;font-style:normal;line-height:1">30K</p>
+			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"max-72"} -->
+			<p class="has-text-align-center has-max-72-font-size" style="line-height:1">30K</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"x-small"} -->
 			<p class="has-text-align-center has-x-small-font-size" style="line-height:1"><?php echo esc_html__( 'Twitter Followers', 'powder' ); ?></p>
@@ -41,8 +41,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"style":{"spacing":{"blockGap":"10px"}}} -->
 		<div class="wp-block-column">
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"normal","lineHeight":"1","fontSize":"72px"}}} -->
-			<p class="has-text-align-center" style="font-size:72px;font-style:normal;line-height:1">15K</p>
+			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"max-72"} -->
+			<p class="has-text-align-center has-max-72-font-size" style="line-height:1">15K</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"x-small"} -->
 			<p class="has-text-align-center has-x-small-font-size" style="line-height:1"><?php echo esc_html__( 'YouTube Followers', 'powder' ); ?></p>
@@ -51,8 +51,8 @@
 		<!-- /wp:column -->
 		<!-- wp:column {"style":{"spacing":{"blockGap":"10px"}}} -->
 		<div class="wp-block-column">
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"normal","lineHeight":"1","fontSize":"72px"}}} -->
-			<p class="has-text-align-center" style="font-size:72px;font-style:normal;line-height:1">20K</p>
+			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"max-72"} -->
+			<p class="has-text-align-center has-max-72-font-size" style="line-height:1">20K</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":"1"}},"fontSize":"x-small"} -->
 			<p class="has-text-align-center has-x-small-font-size" style="line-height:1"><?php echo esc_html__( 'Facebook Fans', 'powder' ); ?></p>
