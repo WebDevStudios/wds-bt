@@ -214,6 +214,11 @@
 							"src": [ "file:./assets/fonts/Outfit-Variable.woff2" ]
 						}
 					]
+				},
+				{
+					"fontFamily": "-apple-system, system-ui, 'Segoe UI Variable', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+					"name": "System Font",
+					"slug": "system-font"
 				}
 			],
 			"fontSizes": [
