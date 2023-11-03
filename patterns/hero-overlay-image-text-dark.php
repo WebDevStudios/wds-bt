@@ -14,8 +14,8 @@
 	<div class="wp-block-group is-style-pull-200">
 		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|large","right":"var:preset|spacing|small","bottom":"var:preset|spacing|large"},"margin":{"top":"0"}}},"backgroundColor":"contrast","textColor":"base","className":"is-style-position-relative","layout":{"type":"default"}} -->
 		<div class="wp-block-group is-style-position-relative has-base-color has-contrast-background-color has-text-color has-background" style="margin-top:0;padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--small);padding-bottom:var(--wp--preset--spacing--large)">
-			<!-- wp:heading {"style":{"typography":{"fontStyle":"normal","fontWeight":"300","letterSpacing":"-2px"}},"fontSize":"max-72"} -->
-			<h2 class="wp-block-heading has-max-72-font-size" style="font-style:normal;font-weight:300;letter-spacing:-2px"><?php echo esc_html__( 'We’re a WordPress design studio based in Laguna Beach, CA.', 'powder' ); ?></h2>
+			<!-- wp:heading {"style":{"typography":{"fontStyle":"normal","fontWeight":"300","letterSpacing":"-2px","fontSize":"72px"}}} -->
+			<h2 class="wp-block-heading" style="font-size:72px;font-style:normal;font-weight:300;letter-spacing:-2px"><?php echo esc_html__( 'We’re a WordPress design studio based in Laguna Beach, CA.', 'powder' ); ?></h2>
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:group -->
