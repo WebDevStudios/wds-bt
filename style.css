@@ -93,59 +93,6 @@ textarea {
 	opacity: 0.5;
 }
 
-/* Utility
----------------------------------------- */
-
-/* -- Box Shadow -- */
-
-.is-style-shadow-deep {
-	box-shadow: var(--wp--preset--shadow--deep);
-}
-
-.is-style-shadow-faint {
-	box-shadow: var(--wp--preset--shadow--faint);
-}
-
-.is-style-shadow-light {
-	box-shadow: var(--wp--preset--shadow--light);
-}
-
-.is-style-shadow-solid {
-	box-shadow: var(--wp--preset--shadow--solid);
-}
-
-/* -- Filter -- */
-
-.is-style-filter-invert {
-	filter: invert(1);
-}
-
-/* -- Position -- */
-
-.is-style-position-fixed {
-	position: fixed;
-}
-
-.is-style-position-relative {
-	position: relative;
-}
-
-/* -- Pull -- */
-
-.is-style-pull-100 {
-	margin-top: -100px !important;
-}
-
-/* -- Z-Index -- */
-
-.is-style-negative-zindex {
-	z-index: -99;
-}
-
-.is-style-positive-zindex {
-	z-index: 99;
-}
-
 /* Blocks
 ---------------------------------------- */
 
@@ -215,9 +162,65 @@ textarea {
 	padding: 10px 20px;
 }
 
+/* Utility
+---------------------------------------- */
+
+/* -- Box Shadow -- */
+
+.is-style-shadow-deep {
+	box-shadow: var(--wp--preset--shadow--deep);
+}
+
+.is-style-shadow-faint {
+	box-shadow: var(--wp--preset--shadow--faint);
+}
+
+.is-style-shadow-light {
+	box-shadow: var(--wp--preset--shadow--light);
+}
+
+.is-style-shadow-solid {
+	box-shadow: var(--wp--preset--shadow--solid);
+}
+
+/* -- Filter -- */
+
+.is-style-filter-invert {
+	filter: invert(1);
+}
+
+/* -- Position -- */
+
+.is-style-position-fixed {
+	position: fixed;
+}
+
+.is-style-position-relative {
+	position: relative;
+}
+
+/* -- Pull -- */
+
+.is-style-pull-100 {
+	margin-top: -100px !important;
+}
+
+/* -- Z-Index -- */
+
+.is-style-negative-zindex {
+	z-index: -99;
+}
+
+.is-style-positive-zindex {
+	z-index: 99;
+}
+
+/* Effects
+---------------------------------------- */
+
 /* -- Header -- */
 
-.site-header {
+.js-enabled .site-header {
 	position: sticky;
 	top: 0;
 	transition: top 0.5s;
