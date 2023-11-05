@@ -4,7 +4,6 @@
  * Slug: powder/template-page-boxed
  * Template Types: page
  * Inserter: no
- * Categories: template
  */
 ?>
 <!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
@@ -14,7 +13,7 @@
 </div>
 <!-- /wp:group -->
 <!-- wp:group {"align":"full","style":{"dimensions":{"minHeight":"100px"},"spacing":{"margin":{"top":"0"}}},"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull has-contrast-background-color has-background" style="min-height:100px;margin-top:0"></div>
+<div class="wp-block-group alignfull has-contrast-background-color has-background" style="min-height:100px;margin-top:0"></div>
 <!-- /wp:group -->
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"padding":{"left":"30px","right":"30px"}}},"layout":{"type":"constrained","wideSize":"960px"}} -->
 <main class="wp-block-group" style="margin-top:0;padding-right:30px;padding-left:30px">
