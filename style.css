@@ -4,8 +4,8 @@ Theme URI: https://powderstudio.com/
 Author: Brian Gardner
 Author URI: https://briangardner.com/
 Description: With Powder, our mission is to revolutionize how beautiful WordPress websites are made by embracing the power and flexibility of block-based design. Our approach—inspired by the brilliant color palettes of Tailwind CSS—transcends conventional standards and provides an innovative, engaging, and imaginative canvas where creativity knows no bounds.
-Requires at least: 6.3
-Tested up to: 6.3
+Requires at least: 6.4
+Tested up to: 6.4
 Requires PHP: 7.0
 Version: 0.9.6
 License: GNU General Public License v2 or later
@@ -220,27 +220,37 @@ textarea {
 
 /* -- FadeInUp -- */
 
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 .js-enabled .wp-site-blocks .is-style-fadeinup {
 	opacity: 0;
 	transform: translateY(20px);
-	transition: opacity 0.8s, transform 0.8s;
+	animation: fadeInUp 0.8s ease-out forwards paused;
 }
 
 .js-enabled .wp-site-blocks .is-style-fadeinup.delay-20 {
-	transition-delay: 0.2s;
+	animation: fadeInUp 0.8s ease-out 0.2s forwards paused;
 }
 
 .js-enabled .wp-site-blocks .is-style-fadeinup.delay-40 {
-	transition-delay: 0.4s;
+	animation: fadeInUp 0.8s ease-out 0.4s forwards paused;
 }
 
 .js-enabled .wp-site-blocks .is-style-fadeinup.delay-60 {
-	transition-delay: 0.6s;
+	animation: fadeInUp 0.8s ease-out 0.6s forwards paused;
 }
 
 .js-enabled .wp-site-blocks .is-style-fadeinup.in-view {
-	opacity: 1;
-	transform: translateY(0);
+	animation-play-state: running;
 }
 
 /* -- Header -- */
