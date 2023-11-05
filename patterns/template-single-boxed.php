@@ -2,14 +2,24 @@
 /**
  * Title: Post template with boxed content
  * Slug: powder/template-single-boxed
+ * Template Types: single
  * Inserter: no
  * Categories: template
  */
 ?>
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
 <!-- wp:group {"tagName":"header","style":{"spacing":{"blockGap":"10px","padding":{"top":"var:preset|spacing|large","bottom":"var:preset|spacing|x-large"},"margin":{"top":"0px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"contrast","textColor":"base","className":"entry-header","layout":{"type":"constrained","wideSize":"800px"}} -->
 <header class="wp-block-group entry-header has-base-color has-contrast-background-color has-text-color has-background has-link-color" style="margin-top:0px;padding-top:var(--wp--preset--spacing--large);padding-bottom:var(--wp--preset--spacing--x-large)">
 	<!-- wp:post-title {"textAlign":"center","level":1,"style":{"typography":{"fontStyle":"normal","fontWeight":"300"}},"fontSize":"max-48"} /-->
-	<!-- wp:pattern {"slug":"powder/post-meta-centered"} /-->
+	<!-- wp:group {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"5px"}},"fontSize":"small"} -->
+	<div class="wp-block-group has-small-font-size">
+		<!-- wp:post-date /-->
+		<!-- wp:paragraph -->
+		<p>·</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:post-author-name {"isLink":true} /-->
+	</div>
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
 <!-- wp:group {"align":"full","style":{"dimensions":{"minHeight":"100px"},"spacing":{"margin":{"top":"0"}}},"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
@@ -34,3 +44,4 @@
 <!-- wp:group {"align":"full","style":{"dimensions":{"minHeight":"100px"}},"backgroundColor":"contrast","className":"is-style-pull-100","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull is-style-pull-100 has-contrast-background-color has-background" style="min-height:100px"></div>
 <!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->
