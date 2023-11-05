@@ -218,6 +218,31 @@ textarea {
 /* Effects
 ---------------------------------------- */
 
+/* -- FadeInUp -- */
+
+.js-enabled .wp-site-blocks .is-style-fadeinup {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.8s, transform 0.8s;
+}
+
+.js-enabled .wp-site-blocks .is-style-fadeinup.delay-20 {
+	transition-delay: 0.2s;
+}
+
+.js-enabled .wp-site-blocks .is-style-fadeinup.delay-40 {
+	transition-delay: 0.4s;
+}
+
+.js-enabled .wp-site-blocks .is-style-fadeinup.delay-60 {
+	transition-delay: 0.6s;
+}
+
+.js-enabled .wp-site-blocks .is-style-fadeinup.in-view {
+	opacity: 1;
+	transform: translateY(0);
+}
+
 /* -- Header -- */
 
 .js-enabled .site-header {

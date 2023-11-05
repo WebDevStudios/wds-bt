@@ -43,16 +43,28 @@ function powder_enqueue_style_sheet() {
 add_action( 'wp_enqueue_scripts', 'powder_enqueue_style_sheet' );
 
 /**
+ * Enqueue theme header javascript.
+ *
+ * @since 0.9.6
+ */
+function powder_enqueue_header_javascript() {
+
+	wp_enqueue_script( 'header', get_template_directory_uri() . '/assets/js/header.js', array('jquery'), '1.0', true );
+
+}
+add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
+
+/**
  * Enqueue theme effects javascript.
  *
  * @since 0.9.6
  */
-function powder_enqueue_effects_javascript() {
+function powder_enqueue_fadeinup_javascript() {
 
-	wp_enqueue_script( 'effects', get_template_directory_uri() . '/assets/js/effects.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'fadeinup', get_template_directory_uri() . '/assets/js/fadeinup.js', array('jquery'), '1.0', true );
 
 }
-add_action( 'wp_enqueue_scripts', 'powder_enqueue_effects_javascript' );
+add_action( 'wp_enqueue_scripts', 'powder_enqueue_fadeinup_javascript' );
 
 /**
  * Register block styles.
