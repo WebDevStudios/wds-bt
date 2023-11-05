@@ -146,13 +146,6 @@ function powder_register_block_pattern_categories() {
 			'description' => __( 'A collection of template patterns designed for Powder.', 'powder' ),
 		)
 	);
-	register_block_pattern_category(
-		'theme',
-		array(
-			'label'       => __( 'Theme', 'powder' ),
-			'description' => __( 'A collection of theme patterns designed for Powder.', 'powder' ),
-		)
-	);
 
 }
 add_action( 'init', 'powder_register_block_pattern_categories' );
