@@ -1,7 +1,7 @@
 <?php
 /**
- * Title: Grid of posts boxed in three columns
- * Slug: powder/posts-grid-boxed
+ * Title: Grid of posts in three columns with box shadow
+ * Slug: powder/posts-grid-box-shadow
  * Categories: posts
  * Block Types: core/query
  */
