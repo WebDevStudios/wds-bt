@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Grid of posts in three columns
+ * Title: Grid of posts, 3 columns
  * Slug: powder/posts-grid
  * Categories: posts
  * Block Types: core/query

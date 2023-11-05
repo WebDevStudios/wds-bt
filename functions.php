@@ -135,14 +135,14 @@ function powder_register_block_pattern_categories() {
 	register_block_pattern_category(
 		'page',
 		array(
-			'label'       => __( 'Page', 'powder' ),
+			'label'       => __( 'Pages', 'powder' ),
 			'description' => __( 'A collection of page patterns designed for Powder.', 'powder' ),
 		)
 	);
 	register_block_pattern_category(
 		'template',
 		array(
-			'label'       => __( 'Template', 'powder' ),
+			'label'       => __( 'Templates', 'powder' ),
 			'description' => __( 'A collection of template patterns designed for Powder.', 'powder' ),
 		)
 	);

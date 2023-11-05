@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: List of posts in one column
+ * Title: Grid of posts, 1 column
  * Slug: powder/posts-default
  * Categories: posts
  * Block Types: core/query

@@ -1,7 +1,7 @@
 <?php
 /**
- * Title: Page template with box shadow
- * Slug: powder/template-page-boxed
+ * Title: Page content wrapped with a box shadow
+ * Slug: powder/template-page-box-shadow
  * Categories: template
  * Template Types: page
  */

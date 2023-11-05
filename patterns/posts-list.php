@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: List of posts in three columns
+ * Title: List of posts, 3 columns
  * Slug: powder/posts-list
  * Categories: posts
  * Block Types: core/query
