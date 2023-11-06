@@ -7,7 +7,7 @@
 ?>
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
-	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"}} -->
+	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"},"metadata":{"name":"<?php echo esc_html__( 'About', 'powder' ); ?>"}} -->
 	<div class="wp-block-group">
 		<!-- wp:heading -->
 		<h2 class="wp-block-heading"><?php echo esc_html__( 'About', 'powder' ); ?></h2>
@@ -17,7 +17,7 @@
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
-	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"}} -->
+	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"},"metadata":{"name":"<?php echo esc_html__( 'Connect', 'powder' ); ?>"}} -->
 	<div class="wp-block-group">	
 		<!-- wp:heading -->
 		<h2 class="wp-block-heading"><?php echo esc_html__( 'Connect', 'powder' ); ?></h2>
@@ -33,7 +33,7 @@
 		<!-- /wp:social-links -->
 	</div>
 	<!-- /wp:group -->
-	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"}} -->
+	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"},"metadata":{"name":"<?php echo esc_html__( 'Recent', 'powder' ); ?>"}} -->
 	<div class="wp-block-group">
 		<!-- wp:heading -->
 		<h2 class="wp-block-heading"><?php echo esc_html__( 'Recent', 'powder' ); ?></h2>
@@ -41,7 +41,7 @@
 		<!-- wp:latest-posts /-->
 	</div>
 	<!-- /wp:group -->
-	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"}} -->
+	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}},"layout":{"type":"constrained"},"metadata":{"name":"<?php echo esc_html__( 'Search', 'powder' ); ?>"}} -->
 	<div class="wp-block-group">
 		<!-- wp:heading -->
 		<h2 class="wp-block-heading"><?php echo esc_html__( 'Search', 'powder' ); ?></h2>
