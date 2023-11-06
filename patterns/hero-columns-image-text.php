@@ -11,8 +11,8 @@
 	<div class="wp-block-columns alignwide are-vertically-aligned-center">
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
-			<!-- wp:image {"aspectRatio":"1","scale":"cover"} -->
-			<figure class="wp-block-image"><img alt="" style="aspect-ratio:1;object-fit:cover"/></figure>
+			<!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
+			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/sample-image-dark.png'; ?>" alt="Sample image"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
