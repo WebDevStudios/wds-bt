@@ -162,6 +162,12 @@ textarea {
 	padding: 10px 20px;
 }
 
+/* -- Search -- */
+
+.wp-block-search .wp-element-button {
+	padding: 10px 20px;
+}
+
 /* Utility
 ---------------------------------------- */
 
