@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Post content wrapped with a box shadow
+ * Title: Post content with box shadow
  * Slug: powder/template-single-box-shadow
  * Categories: template
  * Template Types: single
