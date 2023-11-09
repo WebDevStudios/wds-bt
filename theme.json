@@ -387,6 +387,7 @@
 				}
 			},
 			"core/cover": {
+				"css": ".is-style-gradient .has-background-dim:not([class*=-background-color]) {background-color: transparent; background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,1)); opacity: 1;}",
 				"spacing": {
 					"padding": {
 						"top": "var(--wp--custom--spacing--gap)",
@@ -417,7 +418,7 @@
 				}
 			},
 			"core/post-comments-form": {
-				"css": "& input[type=submit] {width: auto;} & label {font-size: var(--wp--preset--font-size--x-small);}"
+				"css": " & input, textarea {border-color: var(--wp--preset--color--contrast); padding: 10px 20px;} & input[type=submit] {width: auto;} & label {font-size: var(--wp--preset--font-size--x-small);}"
 			},
 			"core/post-excerpt": {
 				"css": "& .wp-block-post-excerpt__more-text {margin-top: var(--wp--preset--spacing--x-small);}"
@@ -526,7 +527,7 @@
 				}
 			},
 			"core/search": {
-				"css": "& .wp-block-search__input {border-color:  var(--wp--preset--color--contrast); padding: 10px 20px;}"
+				"css": "& .wp-block-search__input, .wp-element-button {padding: 10px 20px;} & .wp-block-search__input {border-color: var(--wp--preset--color--contrast);}"
 			},
 			"core/separator": {
 				"border": {

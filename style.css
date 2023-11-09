@@ -96,14 +96,6 @@ textarea {
 /* Blocks
 ---------------------------------------- */
 
-/* -- Cover -- */
-
-.wp-block-cover.is-style-gradient .has-background-dim:not([class*=-background-color]) {
-	background-color: transparent;
-	background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,1));
-	opacity: 1;
-}
-
 /* -- Navigation -- */
 
 .wp-block-navigation__responsive-container.is-menu-open {
@@ -152,20 +144,6 @@ textarea {
 	padding-left: 10px !important;
 	padding-right: 10px !important;
 	padding-top: 5px !important;
-}
-
-/* -- Post Comments Form -- */
-
-.wp-block-post-comments-form input:not([type=submit]):not([type=checkbox]), 
-.wp-block-post-comments-form textarea {
-	border-color: var(--wp--preset--color--contrast);
-	padding: 10px 20px;
-}
-
-/* -- Search -- */
-
-.wp-block-search .wp-element-button {
-	padding: 10px 20px;
 }
 
 /* Utility
