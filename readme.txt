@@ -3,13 +3,17 @@ Contributors: bgardner
 Requires at least: 6.4
 Tested up to: 6.4
 Requires PHP: 7.0
-Stable tag: 0.9.6
+Stable tag: 0.9.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
 With Powder, our mission is to revolutionize how beautiful WordPress websites are made by embracing the power and flexibility of block-based design. Our approach—inspired by the brilliant color palettes of Tailwind CSS—transcends conventional standards and provides an innovative, engaging, and imaginative canvas where creativity knows no bounds.
+
+= 0.9.7 =
+
+New patterns, templates, js, etc.
 
 = 0.9.6 =
 
