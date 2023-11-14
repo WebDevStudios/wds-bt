@@ -11,7 +11,7 @@
 if ( ! function_exists( 'powder_setup' ) ) {
 
 	/**
-	 * Sets up theme defaults and registers support for various WordPress features.
+	 * Set up theme defaults and register support for various WordPress features.
 	 *
 	 * @since 0.5.0
 	 */
@@ -55,7 +55,7 @@ function powder_enqueue_header_javascript() {
 add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
 
 /**
- * Enqueue theme effects javascript.
+ * Enqueue theme fadeinup javascript.
  *
  * @since 0.9.6
  */
@@ -116,7 +116,7 @@ add_action( 'init', 'powder_register_block_styles' );
  *
  * @since 0.9.3
  */
-function powder_register_block_pattern_categories() {
+function powder_register_pattern_categories() {
 
 	register_block_pattern_category(
 		'content',
@@ -148,4 +148,4 @@ function powder_register_block_pattern_categories() {
 	);
 
 }
-add_action( 'init', 'powder_register_block_pattern_categories' );
+add_action( 'init', 'powder_register_pattern_categories' );
