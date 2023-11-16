@@ -159,16 +159,6 @@ textarea {
 	box-shadow: var(--wp--preset--shadow--solid);
 }
 
-/* -- Position -- */
-
-.is-style-position-fixed {
-	position: fixed;
-}
-
-.is-style-position-relative {
-	position: relative;
-}
-
 /* Effects
 ---------------------------------------- */
 
@@ -200,16 +190,6 @@ textarea {
 
 	.wp-block-columns.is-style-column-reverse {
 		flex-direction: column-reverse;
-	}
-
-}
-
-@media only screen and (min-width: 600px) {
-
-	/* -- Utility -- */
-
-	.is-style-pull-200 {
-		margin-top: -200px !important;
 	}
 
 }
