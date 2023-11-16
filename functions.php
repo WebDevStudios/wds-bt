@@ -65,9 +65,6 @@ function powder_register_block_styles() {
 		'core/columns' => array(
 			'column-reverse' => __( 'Reverse', 'powder' ),
 		),
-		'core/cover' => array(
-			'gradient' => __( 'Gradient', 'powder' )
-		),
 		'core/group' => array(
 			'shadow-light' => __( 'Shadow (Light)', 'powder' ),
 			'shadow-solid' => __( 'Shadow (Solid)', 'powder' ),
@@ -125,13 +122,6 @@ function powder_register_pattern_categories() {
 		array(
 			'label'       => __( 'Pages', 'powder' ),
 			'description' => __( 'A collection of page patterns designed for Powder.', 'powder' ),
-		)
-	);
-	register_block_pattern_category(
-		'template',
-		array(
-			'label'       => __( 'Templates', 'powder' ),
-			'description' => __( 'A collection of template patterns designed for Powder.', 'powder' ),
 		)
 	);
 
