@@ -1,6 +1,6 @@
 <?php
 /**
- * This file adds functions to the Powder WordPress theme.
+ * Functions for the Powder WordPress theme.
  *
  * @package Powder
  * @author  Brian Gardner
@@ -11,19 +11,17 @@
 if ( ! function_exists( 'powder_setup' ) ) {
 
 	/**
-	 * Set up theme defaults and register support for various WordPress features.
-	 *
-	 * @since 0.5.0
+	 * Initialize theme defaults and registers support for WordPress features.
 	 */
 	function powder_setup() {
 
-		// Enqueue editor styles.
+		// Load editor styles.
 		add_editor_style( get_template_directory_uri() . '/style.css' );
 
-		// Disable loading core block inline styles.
+		// Disable core block inline styles.
 		add_filter( 'should_load_separate_core_block_assets', '__return_false' );
 
-		// Remove core block patterns.
+		// Remove core block patterns support.
 		remove_theme_support( 'core-block-patterns' );
 
 	}
@@ -32,8 +30,6 @@ add_action( 'after_setup_theme', 'powder_setup' );
 
 /**
  * Enqueue theme style sheet.
- *
- * @since 0.5.0
  */
 function powder_enqueue_style_sheet() {
 
@@ -44,8 +40,6 @@ add_action( 'wp_enqueue_scripts', 'powder_enqueue_style_sheet' );
 
 /**
  * Enqueue theme header javascript.
- *
- * @since 0.9.6
  */
 function powder_enqueue_header_javascript() {
 
@@ -56,8 +50,6 @@ add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
 
 /**
  * Register block styles.
- *
- * @since 0.5.0
  */
 function powder_register_block_styles() {
 
@@ -98,8 +90,6 @@ add_action( 'init', 'powder_register_block_styles' );
 
 /**
  * Register block pattern categories.
- *
- * @since 0.9.3
  */
 function powder_register_pattern_categories() {
 
