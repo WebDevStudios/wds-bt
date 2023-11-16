@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Grid of posts, 1 column
- * Slug: powder/posts-default
+ * Slug: powder/posts
  * Categories: posts
  * Block Types: core/query
  */
