@@ -151,14 +151,6 @@ textarea {
 
 /* -- Box Shadow -- */
 
-.is-style-shadow-deep {
-	box-shadow: var(--wp--preset--shadow--deep);
-}
-
-.is-style-shadow-faint {
-	box-shadow: var(--wp--preset--shadow--faint);
-}
-
 .is-style-shadow-light {
 	box-shadow: var(--wp--preset--shadow--light);
 }
@@ -171,32 +163,6 @@ textarea {
 
 .is-style-filter-invert {
 	filter: invert(1);
-}
-
-/* -- Position -- */
-
-.is-style-position-fixed {
-	position: fixed;
-}
-
-.is-style-position-relative {
-	position: relative;
-}
-
-/* -- Pull -- */
-
-.is-style-pull-100 {
-	margin-top: -100px !important;
-}
-
-/* -- Z-Index -- */
-
-.is-style-negative-zindex {
-	z-index: -99;
-}
-
-.is-style-positive-zindex {
-	z-index: 99;
 }
 
 /* Effects
@@ -230,16 +196,6 @@ textarea {
 
 	.wp-block-columns.is-style-column-reverse {
 		flex-direction: column-reverse;
-	}
-
-}
-
-@media only screen and (min-width: 600px) {
-
-	/* -- Utility -- */
-
-	.is-style-pull-200 {
-		margin-top: -200px !important;
 	}
 
 }

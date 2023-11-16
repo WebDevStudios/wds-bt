@@ -1,6 +1,6 @@
 {
-	"version": 2,
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
 	"customTemplates": [
 		{
 			"name": "page-blank",
@@ -74,18 +74,6 @@
 					"slug": "primary-and-white"
 				}
 			],
-			"gradients": [
-				{
-					"gradient": "linear-gradient(var(--wp--preset--color--base) 50%, var(--wp--preset--color--contrast) 50%)",
-					"name": "Base to Contrast",
-					"slug": "base-contrast"
-				},
-				{
-					"gradient": "linear-gradient(var(--wp--preset--color--contrast) 50%, var(--wp--preset--color--base) 50%)",
-					"name": "Contrast to Base",
-					"slug": "contrast-base"
-				}
-			],
 			"palette": [
 				{
 					"color": "#ffffff",
@@ -148,16 +136,6 @@
 		"shadow": {
 			"defaultPresets": false,
 			"presets": [
-				{
-					"name": "Deep",
-					"shadow": "0 0 50px rgb(10, 10, 10, 0.1);",
-					"slug": "deep"
-				},
-				{
-					"name": "Faint",
-					"shadow": "0 0 20px rgb(10, 10, 10, 0.05);",
-					"slug": "faint"
-				},
 				{
 					"name": "Light",
 					"shadow": "0 0 10px rgb(10, 10, 10, 0.1);",
@@ -387,7 +365,6 @@
 				}
 			},
 			"core/cover": {
-				"css": ".is-style-gradient .has-background-dim:not([class*=-background-color]) {background-color: transparent; background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,1)); opacity: 1;}",
 				"spacing": {
 					"padding": {
 						"top": "var(--wp--custom--spacing--gap)",
