@@ -8,7 +8,7 @@
 				{
 					"name": "Black and White",
 					"slug": "black-and-white",
-					"colors": [ "#0a0a0a", "#ffffff" ]
+					"colors": [ "#000000", "#ffffff" ]
 				},
 				{
 					"name": "Primary and White",
@@ -23,7 +23,7 @@
 					"slug": "base"
 				},
 				{
-					"color": "#0a0a0a",
+					"color": "#000000",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
