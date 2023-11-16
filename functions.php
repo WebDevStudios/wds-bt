@@ -55,18 +55,6 @@ function powder_enqueue_header_javascript() {
 add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
 
 /**
- * Enqueue theme fadeinup javascript.
- *
- * @since 0.9.6
- */
-function powder_enqueue_fadeinup_javascript() {
-
-	wp_enqueue_script( 'fadeinup', get_template_directory_uri() . '/assets/js/fadeinup.js', array('jquery'), '1.0', true );
-
-}
-add_action( 'wp_enqueue_scripts', 'powder_enqueue_fadeinup_javascript' );
-
-/**
  * Register block styles.
  *
  * @since 0.5.0
