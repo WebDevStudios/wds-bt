@@ -159,6 +159,12 @@ textarea {
 	box-shadow: var(--wp--preset--shadow--solid);
 }
 
+/* -- Filter -- */
+
+.is-style-filter-invert {
+	filter: invert(1);
+}
+
 /* Effects
 ---------------------------------------- */
 
