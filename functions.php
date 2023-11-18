@@ -117,6 +117,13 @@ function powder_register_pattern_categories() {
 			'description' => __( 'A collection of page patterns designed for Powder.', 'powder' ),
 		)
 	);
+	register_block_pattern_category(
+		'template',
+		array(
+			'label'       => __( 'Templates', 'powder' ),
+			'description' => __( 'A collection of template patterns designed for Powder.', 'powder' ),
+		)
+	);
 
 }
 add_action( 'init', 'powder_register_pattern_categories' );
