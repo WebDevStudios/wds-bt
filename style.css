@@ -154,6 +154,13 @@ textarea {
 	padding-top: 5px !important;
 }
 
+/* Search
+---------------------------------------- */
+
+.wp-block-search.wp-block-search__button-only .wp-block-search__button {
+	max-width: inherit;
+}
+
 /* Utility
 ---------------------------------------- */
 
