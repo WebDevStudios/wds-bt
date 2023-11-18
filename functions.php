@@ -15,7 +15,7 @@ if ( ! function_exists( 'powder_setup' ) ) {
 	 */
 	function powder_setup() {
 
-		// Load editor styles.
+		// Enqueue editor style sheet.
 		add_editor_style( get_template_directory_uri() . '/style.css' );
 
 		// Disable core block inline styles.

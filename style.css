@@ -173,6 +173,32 @@ textarea {
 	filter: invert(1);
 }
 
+/* -- Position -- */
+
+.is-style-position-fixed {
+	position: fixed;
+}
+
+.is-style-position-relative {
+	position: relative;
+}
+
+/* -- Pull -- */
+
+.is-style-pull-100 {
+	margin-top: -100px !important;
+}
+
+/* -- Z-Index -- */
+
+.is-style-negative-zindex {
+	z-index: -99;
+}
+
+.is-style-positive-zindex {
+	z-index: 99;
+}
+
 /* Effects
 ---------------------------------------- */
 
