@@ -15,7 +15,7 @@
 			<p class="has-small-font-size">★ ★ ★ ★ ★</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"10px"}}}} -->
-			<p style="margin-top:10px"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.””', 'powder' ); ?></p>
+			<p style="margin-top:10px"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.”', 'powder' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">
@@ -35,7 +35,7 @@
 			<p class="has-small-font-size">★ ★ ★ ★ ★</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"10px"}}}} -->
-			<p style="margin-top:10px"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.””', 'powder' ); ?></p>
+			<p style="margin-top:10px"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.”', 'powder' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">
@@ -59,7 +59,7 @@
 			<p class="has-small-font-size">★ ★ ★ ★ ★</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"10px"}}}} -->
-			<p style="margin-top:10px"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.””', 'powder' ); ?></p>
+			<p style="margin-top:10px"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.”', 'powder' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">
@@ -79,7 +79,7 @@
 			<p class="has-small-font-size">★ ★ ★ ★ ★</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"10px"}}}} -->
-			<p style="margin-top:10px"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.””', 'powder' ); ?></p>
+			<p style="margin-top:10px"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.”', 'powder' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">

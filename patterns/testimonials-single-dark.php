@@ -11,7 +11,7 @@
 	<p class="has-text-align-center has-small-font-size">★ ★ ★ ★ ★</p>
 	<!-- /wp:paragraph -->
 	<!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"10px"}},"typography":{"lineHeight":"1.5"}},"fontSize":"large"} -->
-	<p class="has-text-align-center has-large-font-size" style="margin-top:10px;line-height:1.5"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.””', 'powder' ); ?></p>
+	<p class="has-text-align-center has-large-font-size" style="margin-top:10px;line-height:1.5"><?php echo esc_html__( '“Propelled by true innovation and style, Powder is a block-based WordPress theme that makes building websites a breeze.”', 'powder' ); ?></p>
 	<!-- /wp:paragraph -->
 	<!-- wp:group {"style":{"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
 	<div class="wp-block-group">
