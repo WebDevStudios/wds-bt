@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Testimonials section with text, image
- * Slug: powder/content-testimonials-grid-dark
- * Categories: content
+ * Title: Testimonials grid with text, image
+ * Slug: powder/testimonials-grid-dark
+ * Categories: testimonials
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"30px","right":"30px"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"contrast","textColor":"base","layout":{"type":"constrained"}} -->

@@ -1,8 +1,8 @@
 <?php
 /**
  * Title: Testimonials section with text, image
- * Slug: powder/content-testimonials-columns
- * Categories: content
+ * Slug: powder/testimonials-columns
+ * Categories: testimonials
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"30px","right":"30px"}}},"layout":{"type":"constrained"}} -->
