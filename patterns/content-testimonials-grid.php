@@ -48,6 +48,7 @@
 			</div>
 			<!-- /wp:group -->
 		</div>
+		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
 	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|large"},"margin":{"top":"var:preset|spacing|small"}}}} -->
@@ -91,6 +92,7 @@
 			</div>
 			<!-- /wp:group -->
 		</div>
+		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
 </div>
