@@ -3,13 +3,17 @@ Contributors: bgardner
 Requires at least: 6.4
 Tested up to: 6.4
 Requires PHP: 7.0
-Stable tag: 0.9.7
+Stable tag: 0.9.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
 At the heart of Powder lies an expansive vision for block-based design. Inspired by the radiant color palettes of Tailwind CSS, it transcends conventional standards and provides an innovative canvas where imagination runs wild. With its extensive library of wireframe block patterns, style variations, and versatile templates, Powder transforms the art of creating intoxicating WordPress websites.
+
+= 0.9.8 =
+
+New patterns, templates, style updates.
 
 = 0.9.7 =
 
