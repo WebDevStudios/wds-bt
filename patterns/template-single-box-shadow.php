@@ -21,7 +21,7 @@
 			<!-- wp:post-author-name {"isLink":true} /-->
 		</div>
 		<!-- /wp:group -->
-	</div>
+	</header>
 	<!-- /wp:group -->
 	<!-- wp:group {"align":"full","style":{"dimensions":{"minHeight":"100px"},"spacing":{"margin":{"top":"0"}}},"backgroundColor":"contrast","layout":{"type":"constrained"}} -->
 	<div class="wp-block-group alignfull has-contrast-background-color has-background" style="min-height:100px;margin-top:0"></div>

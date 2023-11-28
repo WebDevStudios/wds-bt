@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Hero section with text and image
+ * Title: Section with text, image, buttons
  * Slug: powder/hero-columns-text-image-dark
  * Categories: hero
  */

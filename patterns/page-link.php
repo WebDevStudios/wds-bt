@@ -38,7 +38,7 @@
 			<!-- /wp:button -->
 		</div>
 		<!-- /wp:buttons -->
-		<!-- wp:social-links {"iconColor":"contrast","iconColorValue":"#0a0a0a","size":"has-normal-icon-size","align":"center","className":"has-icon-base-color is-style-outline","layout":{"type":"flex","justifyContent":"center"}} -->
+		<!-- wp:social-links {"iconColor":"contrast","iconColorValue":"#000000","size":"has-normal-icon-size","align":"center","className":"has-icon-base-color is-style-outline","layout":{"type":"flex","justifyContent":"center"}} -->
 		<ul class="wp-block-social-links aligncenter has-normal-icon-size has-icon-color has-icon-base-color is-style-outline">
 			<!-- wp:social-link {"url":"https://twitter.com/","service":"twitter"} /-->
 			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->

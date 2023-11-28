@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Mega footer with text, buttons, social icons
+ * Title: Footer with text, buttons, social icons
  * Slug: powder/footer-mega-dark
  * Categories: footer
  * Block Types: core/template-part/footer

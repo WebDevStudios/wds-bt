@@ -19,7 +19,7 @@
 			<!-- wp:social-link {"url":"https://www.tiktok.com/","service":"tiktok"} /-->
 		</ul>
 		<!-- /wp:social-links -->
-		<!-- wp:site-title {"style":{"typography":{"textTransform":"uppercase"}},"fontSize":"small"} /-->
+		<!-- wp:site-title {"level":0,"style":{"typography":{"textTransform":"uppercase"}},"fontSize":"small"} /-->
 		<!-- wp:navigation {"layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"right"},"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"},"typography":{"textTransform":"uppercase","fontSize":"12px","fontStyle":"normal","fontWeight":"400"},"layout":{"selfStretch":"fixed","flexSize":"300px"}}} /-->
 	</div>
 	<!-- /wp:group -->
