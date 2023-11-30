@@ -108,7 +108,7 @@
 				<!-- wp:paragraph -->
 				<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:site-title {"level":0,"isLink":false,"style":{"typography":{"fontSize":"15px"}}} /-->
+				<!-- wp:site-title {"level":0,"isLink":false,"style":{"typography":{"fontSize":"15px","fontStyle":"normal","fontWeight":"300"}}} /-->
 			</div>
 			<!-- /wp:group -->
 			<!-- wp:paragraph -->
