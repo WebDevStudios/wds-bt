@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Single testimonial section with text, image
+ * Title: Single testimonial with text, image
  * Slug: powder/testimonials-single
  * Categories: testimonials
  */
