@@ -22,7 +22,7 @@
 		<!-- wp:heading -->
 		<h2 class="wp-block-heading"><?php echo esc_html__( 'Connect', 'powder' ); ?></h2>
 		<!-- /wp:heading -->
-		<!-- wp:social-links {"iconBackgroundColor":"contrast","iconBackgroundColorValue":"#000000","className":"is-style-default"} -->
+		<!-- wp:social-links {"iconBackgroundColor":"contrast","iconBackgroundColorValue":"#0a0a0a","className":"is-style-default"} -->
 		<ul class="wp-block-social-links has-icon-background-color is-style-default">
 			<!-- wp:social-link {"url":"https://twitter.com/","service":"twitter"} /-->
 			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->

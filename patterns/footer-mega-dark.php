@@ -18,8 +18,8 @@
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
-	<!-- wp:group {"align":"wide","style":{"border":{"top":{"color":"#333333","width":"1px"},"bottom":{"color":"#333333","width":"1px"}},"spacing":{"padding":{"top":"var(--wp--preset--spacing--medium)","bottom":"var(--wp--preset--spacing--medium)"},"margin":{"top":"0px"}}}} -->
-	<div class="wp-block-group alignwide" style="border-top-color:#333333;border-top-width:1px;border-bottom-color:#333333;border-bottom-width:1px;margin-top:0px;padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium)">
+	<!-- wp:group {"align":"wide","style":{"border":{"top":{"color":"#262626","width":"1px"},"bottom":{"color":"#262626","width":"1px"}},"spacing":{"padding":{"top":"var(--wp--preset--spacing--medium)","bottom":"var(--wp--preset--spacing--medium)"},"margin":{"top":"0px"}}}} -->
+	<div class="wp-block-group alignwide" style="border-top-color:#262626;border-top-width:1px;border-bottom-color:#262626;border-bottom-width:1px;margin-top:0px;padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium)">
 		<!-- wp:columns {"verticalAlignment":"center"} -->
 		<div class="wp-block-columns are-vertically-aligned-center">
 			<!-- wp:column {"verticalAlignment":"center","width":"30%"} -->
@@ -35,8 +35,8 @@
 			<!-- /wp:column -->
 			<!-- wp:column {"verticalAlignment":"center","width":"40%"} -->
 			<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:40%">
-				<!-- wp:group {"style":{"border":{"right":{"color":"#333333","width":"1px"},"left":{"color":"#333333","width":"1px"}},"spacing":{"blockGap":"0"}}} -->
-				<div class="wp-block-group" style="border-right-color:#333333;border-right-width:1px;border-left-color:#333333;border-left-width:1px">
+				<!-- wp:group {"style":{"border":{"right":{"color":"#262626","width":"1px"},"left":{"color":"#262626","width":"1px"}},"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-group" style="border-right-color:#262626;border-right-width:1px;border-left-color:#262626;border-left-width:1px">
 					<!-- wp:paragraph {"align":"center"} -->
 					<p class="has-text-align-center"><?php echo esc_html__( '“Just be yourself, there is no one better.”', 'powder' ); ?></p>
 					<!-- /wp:paragraph -->

@@ -99,8 +99,8 @@
 		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
-	<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|small"}},"border":{"top":{"color":"#333333","width":"1px"}}},"layout":{"type":"flex","allowOrientation":false,"justifyContent":"space-between"}} -->
-	<div class="wp-block-group alignwide" style="border-top-color:#333333;border-top-width:1px;padding-top:var(--wp--preset--spacing--small)">
+	<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|small"}},"border":{"top":{"color":"#262626","width":"1px"}}},"layout":{"type":"flex","allowOrientation":false,"justifyContent":"space-between"}} -->
+	<div class="wp-block-group alignwide" style="border-top-color:#262626;border-top-width:1px;padding-top:var(--wp--preset--spacing--small)">
 		<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group">
 			<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
