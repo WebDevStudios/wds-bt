@@ -19,8 +19,8 @@
 	<div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--large)">
 		<!-- wp:column {"width":"40%"} -->
 		<div class="wp-block-column" style="flex-basis:40%">
-			<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"},"color":{"text":"#666666"}},"fontSize":"tiny"} -->
-			<h3 class="wp-block-heading has-text-color has-tiny-font-size" style="color:#666666;text-transform:uppercase"><?php echo esc_html__( 'Main Office', 'powder' ); ?></h3>
+			<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"},"color":{"text":"#525252"}},"fontSize":"tiny"} -->
+			<h3 class="wp-block-heading has-text-color has-tiny-font-size" style="color:#525252;text-transform:uppercase"><?php echo esc_html__( 'Main Office', 'powder' ); ?></h3>
 			<!-- /wp:heading -->
 			<!-- wp:list {"style":{"typography":{"lineHeight":"1.5"}},"className":"is-style-no-style","fontSize":"small"} -->
 			<ul style="line-height:1.5" class="is-style-no-style has-small-font-size">
@@ -43,8 +43,8 @@
 			<div class="wp-block-columns">
 				<!-- wp:column {"width":""} -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"},"color":{"text":"#666666"}},"fontSize":"tiny"} -->
-					<h3 class="wp-block-heading has-text-color has-tiny-font-size" style="color:#666666;text-transform:uppercase">Chicago</h3>
+					<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"},"color":{"text":"#525252"}},"fontSize":"tiny"} -->
+					<h3 class="wp-block-heading has-text-color has-tiny-font-size" style="color:#525252;text-transform:uppercase">Chicago</h3>
 					<!-- /wp:heading -->
 					<!-- wp:list {"style":{"typography":{"lineHeight":"1.5"}},"className":"is-style-no-style","fontSize":"small"} -->
 					<ul style="line-height:1.5" class="is-style-no-style has-small-font-size">
@@ -63,8 +63,8 @@
 				<!-- /wp:column -->
 				<!-- wp:column {"width":""} -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"},"color":{"text":"#666666"}},"fontSize":"tiny"} -->
-					<h3 class="wp-block-heading has-text-color has-tiny-font-size" style="color:#666666;text-transform:uppercase">Nashville</h3>
+					<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"},"color":{"text":"#525252"}},"fontSize":"tiny"} -->
+					<h3 class="wp-block-heading has-text-color has-tiny-font-size" style="color:#525252;text-transform:uppercase">Nashville</h3>
 					<!-- /wp:heading -->
 					<!-- wp:list {"style":{"typography":{"lineHeight":"1.5"}},"className":"is-style-no-style","fontSize":"small"} -->
 					<ul style="line-height:1.5" class="is-style-no-style has-small-font-size">
@@ -83,8 +83,8 @@
 				<!-- /wp:column -->
 				<!-- wp:column {"width":""} -->
 				<div class="wp-block-column">
-					<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"},"color":{"text":"#666666"}},"fontSize":"tiny"} -->
-					<h3 class="wp-block-heading has-text-color has-tiny-font-size" style="color:#666666;text-transform:uppercase">New York</h3>
+					<!-- wp:heading {"level":3,"style":{"typography":{"textTransform":"uppercase"},"color":{"text":"#525252"}},"fontSize":"tiny"} -->
+					<h3 class="wp-block-heading has-text-color has-tiny-font-size" style="color:#525252;text-transform:uppercase">New York</h3>
 					<!-- /wp:heading -->
 					<!-- wp:list {"style":{"typography":{"lineHeight":"1.5"}},"className":"is-style-no-style","fontSize":"small"} -->
 					<ul style="line-height:1.5" class="is-style-no-style has-small-font-size">
