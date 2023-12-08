@@ -71,7 +71,7 @@
 						<figure class="wp-block-image size-large is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-x-dark.svg'; ?>" alt="Circle x dark icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
 						<!-- /wp:image -->
 						<!-- wp:paragraph {"fontSize":"small"} -->
-						<p class="has-small-font-size"><?php echo esc_html__( 'Access to private Slack', 'powder' ); ?></p>
+						<p class="has-small-font-size"><?php echo esc_html__( 'Private Slack access', 'powder' ); ?></p>
 						<!-- /wp:paragraph -->
 					</div>
 					<!-- /wp:group -->
@@ -150,7 +150,7 @@
 						<figure class="wp-block-image size-full is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-dark'; ?>.svg" alt="Circle check dark icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
 						<!-- /wp:image -->
 						<!-- wp:paragraph {"fontSize":"small"} -->
-						<p class="has-small-font-size"><?php echo esc_html__( 'Access to private Slack', 'powder' ); ?></p>
+						<p class="has-small-font-size"><?php echo esc_html__( 'Private Slack access', 'powder' ); ?></p>
 						<!-- /wp:paragraph -->
 					</div>
 					<!-- /wp:group -->
@@ -229,7 +229,7 @@
 						<figure class="wp-block-image size-large is-resized is-style-display-block"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/images/icon-circle-check-dark.svg'; ?>" alt="Circle check dark icon" style="object-fit:cover;width:20px;height:20px" width="20" height="20"/></figure>
 						<!-- /wp:image -->
 						<!-- wp:paragraph {"fontSize":"small"} -->
-						<p class="has-small-font-size"><?php echo esc_html__( 'Access to private Slack', 'powder' ); ?></p>
+						<p class="has-small-font-size"><?php echo esc_html__( 'Private Slack access', 'powder' ); ?></p>
 						<!-- /wp:paragraph -->
 					</div>
 					<!-- /wp:group -->
