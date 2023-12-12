@@ -10,7 +10,7 @@ See the Powder theme in action at [https://powderstudio.com/](https://powderstud
 
 - WordPress 6.4+
 - PHP 7.0+
-- License: [GPLv2](http://www.gnu.org/licenses/gpl-2.0.html) or later
+- License: [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ## Getting Started
 
