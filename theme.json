@@ -11,16 +11,6 @@
 			"name": "page-no-title",
 			"postTypes": ["page"],
 			"title": "Page No Title"
-		},
-		{
-			"name": "page-with-sidebar",
-			"postTypes": ["page"],
-			"title": "Page With Sidebar"
-		},
-		{
-			"name": "single-with-sidebar",
-			"postTypes": ["post"],
-			"title": "Single With Sidebar"
 		}
 	],
 	"settings": {
@@ -672,11 +662,6 @@
 			"area": "footer",
 			"name": "footer",
 			"title": "Footer"
-		},
-		{
-			"area": "uncategorized",
-			"name": "sidebar",
-			"title": "Sidebar"
 		}
 	]
 }
