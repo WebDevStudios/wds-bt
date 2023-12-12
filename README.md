@@ -1,6 +1,6 @@
 # Powder
 
-At the heart of Powder lies an expansive vision for block-based design. Inspired by the radiant color palettes of Tailwind CSS, it transcends conventional standards and provides an innovative canvas where imagination runs wild. With its extensive library of wireframe block patterns, style variations, and versatile templates, Powder transforms the art of creating intoxicating WordPress websites.
+Powder elegantly revisits its minimalist roots, embodying a refined simplicity. Perfectly suited for personal projects, enhanced by child themes, or as a robust base for client work, Powder offers a modern canvas for WordPress design.
 
 ## Demo
 
