@@ -1,6 +1,6 @@
 # Powder
 
-Powder elegantly revisits its minimalist roots, embodying a refined simplicity. Perfectly suited for personal projects, enhanced by child themes, or as a robust base for client work, Powder offers a modern canvas for WordPress design.
+Powder elegantly revisits its minimalist roots, embodying a natural simplicity. Perfectly suited for personal projects, enhanced by child themes, or as a robust base for client work, Powder offers a modern canvas for WordPress design.
 
 ## Demo
 
