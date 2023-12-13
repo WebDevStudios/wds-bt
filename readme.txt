@@ -126,3 +126,10 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
+
+== Font ==
+
+The included font is licensed under the SIL Open Font License, Version 1.1.
+License URL: https://scripts.sil.org/OFL
+
+Outfit Font
