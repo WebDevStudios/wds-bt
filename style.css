@@ -3,7 +3,7 @@ Theme Name: Powder
 Theme URI: https://powderstudio.com/
 Author: Brian Gardner
 Author URI: https://briangardner.com/
-Description: Powder elegantly revisits its minimalist roots, embodying a natural simplicity. Perfectly suited for personal projects, enhanced by child themes, or as a robust base for client work, Powder offers a modern canvas for WordPress design.
+Description: Powder reclaims its minimalist roots by embodying a sense of real simplicity. Tailor-made for personal projects, extended by child themes, or utilized as the foundation for clients, Powder offers a modern canvas for WordPress design.
 Requires at least: 6.4
 Tested up to: 6.4
 Requires PHP: 7.0
@@ -95,14 +95,6 @@ textarea {
 
 /* Blocks
 ---------------------------------------- */
-
-/* -- Cover -- */
-
-.wp-block-cover.is-style-gradient .has-background-dim:not([class*=-background-color]) {
-	background-color: transparent;
-	background-image: linear-gradient(to top, rgba(10,10,10,0.6), rgba(10,10,10,1));
-	opacity: 1;
-}
 
 /* -- Navigation -- */
 
@@ -227,16 +219,6 @@ textarea {
 
 	.is-style-hidden-mobile {
 		display: none !important;
-	}
-
-}
-
-@media only screen and (max-width: 782px) {
-
-	/* -- Columns -- */
-
-	.wp-block-columns.is-style-column-reverse {
-		flex-direction: column-reverse;
 	}
 
 }
