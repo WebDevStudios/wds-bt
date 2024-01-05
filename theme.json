@@ -5,12 +5,12 @@
 		{
 			"name": "page-blank",
 			"postTypes": ["page"],
-			"title": "Page Blank"
+			"title": "Page: Blank"
 		},
 		{
 			"name": "page-no-title",
 			"postTypes": ["page"],
-			"title": "Page No Title"
+			"title": "Page: No Title"
 		}
 	],
 	"settings": {
