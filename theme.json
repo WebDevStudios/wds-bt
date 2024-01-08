@@ -76,34 +76,154 @@
 			],
 			"palette": [
 				{
-					"color": "#ffffff",
-					"name": "Base",
-					"slug": "base"
+					"color": "#23187A",
+					"name": "Primary 700",
+					"slug": "primary-700"
 				},
 				{
-					"color": "#000000",
-					"name": "Contrast",
-					"slug": "contrast"
+					"color": "#3B28CC",
+					"name": "Primary 500",
+					"slug": "primary-500"
 				},
 				{
-					"color": "#6d28d9",
-					"name": "Primary",
-					"slug": "primary"
+					"color": "#D7D3F6",
+					"name": "Primary 100",
+					"slug": "primary-100"
 				},
 				{
-					"color": "#8b5cf6",
-					"name": "Secondary",
-					"slug": "secondary"
+					"color": "#0035B0",
+					"name": "Secondary 700",
+					"slug": "secondary-700"
 				},
 				{
-					"color": "#c4b5fd",
-					"name": "Tertiary",
-					"slug": "tertiary"
+					"color": "#2667FF",
+					"name": "Secondary 500",
+					"slug": "secondary-500"
 				},
 				{
-					"color": "#ede9fe",
-					"name": "Quaternary",
-					"slug": "quaternary"
+					"color": "#D4E1FF",
+					"name": "Secondary 100",
+					"slug": "secondary-100"
+				},
+				{
+					"color": "#105A91",
+					"name": "Tertiary 700",
+					"slug": "tertiary-700"
+				},
+				{
+					"color": "#2595E7",
+					"name": "Tertiary 500",
+					"slug": "tertiary-500"
+				},
+				{
+					"color": "#D3EAFA",
+					"name": "Tertiary 100",
+					"slug": "tertiary-100"
+				},
+				{
+					"color": "#15803D",
+					"name": "Success 700",
+					"slug": "success-700"
+				},
+				{
+					"color": "#22C55E",
+					"name": "Success",
+					"slug": "success-500"
+				},
+				{
+					"color": "#DCFCE7",
+					"name": "Success 100",
+					"slug": "success-100"
+				},
+				{
+					"color": "#A16207",
+					"name": "Warning 700",
+					"slug": "warning-700"
+				},
+				{
+					"color": "#EAB308",
+					"name": "Warning",
+					"slug": "warning-500"
+				},
+				{
+					"color": "#FEF9C3",
+					"name": "Warning 100",
+					"slug": "warning-100"
+				},
+				{
+					"color": "#B91C1C",
+					"name": "Error 700",
+					"slug": "error-700"
+				},
+				{
+					"color": "#EF4444",
+					"name": "Error",
+					"slug": "error-500"
+				},
+				{
+					"color": "#FEE2E2",
+					"name": "Error 100",
+					"slug": "error-100"
+				},
+				{
+					"color": "#111827",
+					"name": "Grey 900",
+					"slug": "grey-900"
+				},
+				{
+					"color": "#1F2937",
+					"name": "Grey 800",
+					"slug": "grey-800"
+				},
+				{
+					"color": "#374151",
+					"name": "Grey 700",
+					"slug": "grey-700"
+				},
+				{
+					"color": "#4B5563",
+					"name": "Grey 600",
+					"slug": "grey-600"
+				},
+				{
+					"color": "#6B7280",
+					"name": "Grey 500",
+					"slug": "grey-500"
+				},
+				{
+					"color": "#9CA3AF",
+					"name": "Grey 400",
+					"slug": "grey-400"
+				},
+				{
+					"color": "#D1D5DB",
+					"name": "Grey 300",
+					"slug": "grey-300"
+				},
+				{
+					"color": "#E5E7EB",
+					"name": "Grey 200",
+					"slug": "grey-200"
+				},
+				{
+					"color": "#F3F4F6",
+					"name": "Grey 100",
+					"slug": "grey-100"
+				},
+				{
+					"color": "#F9FAFB",
+					"name": "Grey 50",
+					"slug": "grey-50"
+				},
+				{
+					"color": "#000",
+					"name": "Black",
+					"slug": "black"
+				},
+				{
+					"color": "#fff",
+					"name": "White",
+					"slug": "white"
 				}
 			]
 		},
