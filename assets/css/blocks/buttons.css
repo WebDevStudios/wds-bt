@@ -1,0 +1,21 @@
+//--------------------------------------------------------------
+// Custom Button Block Styles
+//--------------------------------------------------------------
+.wp-block-button .wp-element-button::after {
+	background-color: currentcolor;
+	content: "";
+	display: inline-block;
+	height: 16px;
+	mask-image: url( ./images/icon-circle-right.svg );
+	position: relative;
+	top: -1px;
+	vertical-align: middle;
+	width: 16px;
+}
+
+.wp-block-button .wp-element-button:disabled,
+.wp-block-button .wp-element-button[disabled] {
+	cursor: not-allowed;
+	pointer-events: none;
+	opacity: 0.15;
+}

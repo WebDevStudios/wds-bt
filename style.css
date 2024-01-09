@@ -96,6 +96,8 @@ textarea {
 /* Blocks
 ---------------------------------------- */
 
+@import assets/css/blocks/core/index.css;
+
 /* -- Cover -- */
 
 .wp-block-cover.is-style-gradient .has-background-dim:not([class*=-background-color]) {
@@ -153,6 +155,7 @@ textarea {
 	padding-right: 10px !important;
 	padding-top: 5px !important;
 }
+
 
 /* Search
 ---------------------------------------- */

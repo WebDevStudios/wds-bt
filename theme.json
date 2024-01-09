@@ -81,9 +81,19 @@
 					"slug": "primary-700"
 				},
 				{
+					"color": "#2F20A3",
+					"name": "Primary 600",
+					"slug": "primary-600"
+				},
+				{
 					"color": "#3B28CC",
 					"name": "Primary 500",
 					"slug": "primary-500"
+				},
+				{
+					"color": "#867AE5",
+					"name": "Primary 300",
+					"slug": "primary-300"
 				},
 				{
 					"color": "#D7D3F6",
@@ -251,14 +261,34 @@
 			"defaultPresets": false,
 			"presets": [
 				{
-					"name": "Light",
-					"shadow": "0 0 10px rgb(10, 10, 10, 0.1);",
-					"slug": "light"
+					"name": "Elevation 100",
+					"shadow": "0 1px 1px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
+					"slug": "elevation-100"
 				},
 				{
-					"name": "Solid",
-					"shadow": "8px 8px 0 rgb(10, 10, 10, 1)",
-					"slug": "solid"
+					"name": "Elevation 200",
+					"shadow": "0 2px 4px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
+					"slug": "elevation-200"
+				},
+				{
+					"name": "Elevation 300",
+					"shadow": "0 4px 8px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
+					"slug": "elevation-300"
+				},
+				{
+					"name": "Elevation 400",
+					"shadow": "0 8px 16px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
+					"slug": "elevation-400"
+				},
+				{
+					"name": "Elevation 500",
+					"shadow": "0 16px 24px 0 rgba(48, 49, 51, 0.09), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
+					"slug": "elevation-500"
+				},
+				{
+					"name": "Elevation 600",
+					"shadow": "0 24px 40px 0 rgba(48, 49, 51, 0.08), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
+					"slug": "elevation-600"
 				}
 			]
 		},
@@ -407,16 +437,16 @@
 				"variations": {
 					"outline" : {
 						"border": {
-							"color": "currentColor",
+							"color": "var(--wp--preset--color--primary-500)",
 							"style": "solid",
 							"width": "1px"
 						},
 						"spacing": {
 							"padding": {
-								"top": "14px",
-								"right": "29px",
-								"bottom": "14px",
-								"left": "29px"
+								"top": "7px",
+								"right": "15px",
+								"bottom": "7px",
+								"left": "15px"
 							}
 						}
 					}
@@ -681,30 +711,37 @@
 		"elements": {
 			"button": {
 				"border": {
-					"radius": "0"
+					"radius": "4px"
 				},
 				"color": {
-					"background": "var(--wp--preset--color--contrast)",
-					"text": "var(--wp--preset--color--base)"
+					"background": "var(--wp--preset--color--primary-500)",
+					"text": "var(--wp--preset--color--white)"
 				},
 				"spacing": {
 					"padding": {
-						"top": "15px",
-						"right": "30px",
-						"bottom": "15px",
-						"left": "30px"
+						"top": "8px",
+						"right": "16px",
+						"bottom": "8px",
+						"left": "16px"
 					}
 				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--x-small)",
+					"fontSize": "var(--wp--preset--font-size--tiny)",
 					"fontWeight": "var(--wp--custom--font-weight--regular)",
 					"lineHeight": "var(--wp--custom--line-height--medium)"
 				},
 				":hover": {
 					"color": {
-						"background": "var(--wp--preset--color--contrast)"
+						"background": "var(--wp--preset--color--primary-600)"
 					}
-				}
+				},
+				":focus": {
+					"outline": {
+						"color": "var(--wp--preset--color--primary-300)",
+						"width": "4px"
+					}
+				},
+				"css": "&:disabled, &[disabled], &.disabled {cursor: not-allowed; pointer-events: none; background-color: var(--wp--preset--color--primary-100); color: rgba(var(--wp--preset--color--white), 0.4) }"
 			},
 			"caption": {
 				"spacing": {
@@ -760,11 +797,21 @@
 			},
 			"link": {
 				"color": {
-					"text": "var(--wp--preset--color--contrast)"
+					"text": "var(--wp--preset--color--primary-500)"
 				},
 				":hover": {
 					"color": {
-						"text": "var(--wp--preset--color--contrast)"
+						"text": "var(--wp--preset--color--primary-700)"
+					}
+				},
+				":focus": {
+					"color": {
+						"text": "var(--wp--preset--color--primary-700)"
+					}
+				},
+				":visited": {
+					"color": {
+						"text": "var(--wp--preset--color--primary-300)"
 					}
 				}
 			}
