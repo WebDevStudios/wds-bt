@@ -54,6 +54,9 @@ add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
 function powder_register_block_styles() {
 
 	$block_styles = array(
+		'core/button' => array(
+			'minimal' => __( 'Minimal', 'powder' ),
+		),
 		'core/columns' => array(
 			'column-reverse' => __( 'Reverse', 'powder' ),
 		),

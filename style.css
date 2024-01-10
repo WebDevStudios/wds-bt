@@ -167,6 +167,20 @@ textarea {
 /* Utility
 ---------------------------------------- */
 
+/* -- Button-- */
+
+.is-style-minimal.is-style-minimal.wp-block-button .wp-block-button__link {
+	background-color: transparent;
+	border: 1px solid transparent;
+	color: var(--wp--preset--color--primary-500);
+	padding: 0.438rem 0.938rem;
+}
+
+.is-style-minimal.is-style-minimal.wp-block-button .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--primary-50);
+	border: 1px solid var(--wp--preset--color--primary-500);
+}
+
 /* -- Box Shadow -- */
 
 .is-style-shadow-light {
