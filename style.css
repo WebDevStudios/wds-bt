@@ -40,7 +40,7 @@ a,
 a:focus,
 a:hover,
 a:not(.wp-element-button) {
-	text-decoration-thickness: 1px;
+	text-decoration-thickness: 0.063rem;
 }
 
 b,
@@ -55,14 +55,14 @@ input,
 select,
 textarea {
 	background-color: var(--wp--preset--color--base);
-	border: 1px solid var(--wp--preset--color--contrast);
+	border: 0.063rem solid var(--wp--preset--color--contrast);
 	border-radius: 0;
 	color: var(--wp--preset--color--contrast);
 	font-family: var(--wp--preset--font-family--outfit);
 	font-size: var(--wp--preset--font-size--medium);
 	font-weight: var(--wp--custom--font-weight--light);
 	line-height: var(--wp--custom--line-height--body);
-	padding: 10px 20px;
+	padding: 0.625rem 1.25rem;
 	width: 100%;
 }
 
@@ -96,8 +96,6 @@ textarea {
 /* Blocks
 ---------------------------------------- */
 
-@import assets/css/blocks/core/index.css;
-
 /* -- Cover -- */
 
 .wp-block-cover.is-style-gradient .has-background-dim:not([class*=-background-color]) {
@@ -118,8 +116,8 @@ textarea {
 
 .wp-block-navigation__responsive-container-close,
 .wp-block-navigation__responsive-container-open {
-	border: 1px solid currentColor;
-	padding: 2px;
+	border: 0.063rem solid currentColor;
+	padding: 0.125rem;
 }
 
 /* -- Navigation Submenu -- */
@@ -139,7 +137,7 @@ textarea {
 .wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
 	border-color: var(--wp--preset--color--contrast);
 	min-width: 180px !important;
-	padding: 10px;
+	padding: 0.625rem;
 }
 
 .has-contrast-background-color .wp-block-navigation__submenu-container {
@@ -147,13 +145,13 @@ textarea {
 }
 
 .wp-block-navigation :where(.wp-block-navigation__submenu-container) .wp-block-navigation-item__content {
-	padding: 2px 10px;
+	padding: 0.125rem 0.625rem;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
-	padding-left: 10px !important;
-	padding-right: 10px !important;
-	padding-top: 5px !important;
+	padding-left: 0.625rem !important;
+	padding-right: 0.625rem !important;
+	padding-top: 0.313rem !important;
 }
 
 
@@ -166,20 +164,6 @@ textarea {
 
 /* Utility
 ---------------------------------------- */
-
-/* -- Button-- */
-
-.is-style-minimal.is-style-minimal.wp-block-button .wp-block-button__link {
-	background-color: transparent;
-	border: 1px solid transparent;
-	color: var(--wp--preset--color--primary-500);
-	padding: 0.438rem 0.938rem;
-}
-
-.is-style-minimal.is-style-minimal.wp-block-button .wp-block-button__link:hover {
-	background-color: var(--wp--preset--color--primary-50);
-	border: 1px solid var(--wp--preset--color--primary-500);
-}
 
 /* -- Box Shadow -- */
 
@@ -210,7 +194,7 @@ textarea {
 /* -- Pull -- */
 
 .is-style-pull-100 {
-	margin-top: -100px !important;
+	margin-top: -6.25rem !important;
 }
 
 /* -- Z-Index -- */

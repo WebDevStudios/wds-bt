@@ -1,0 +1,46 @@
+//--------------------------------------------------------------
+// Custom Button Block Styles
+//--------------------------------------------------------------
+
+.wp-block-button {
+	display: inline-block;
+}
+
+.wp-block-button .wp-block-button__link:disabled,
+.wp-block-button .wp-block-button__link[disabled] {
+	cursor: not-allowed;
+	pointer-events: none;
+	opacity: 0.15;
+}
+
+.wp-block-button .wp-block-button__link::after {
+    background-color: currentcolor;
+    content: '';
+    display: inline-block;
+    height: 16px;
+    mask-image: url( '../../images/icon-circle-right.svg' );
+    mask-size: contain;
+    left: 10%;
+    position: relative;
+    top: -1px;
+    vertical-align: middle;
+    width: 16px;
+}
+
+.is-style-minimal.is-style-minimal.wp-block-button .wp-block-button__link,
+.is-style-text.is-style-text.wp-block-button .wp-block-button__link {
+	background-color: transparent;
+	border: 0.063rem solid transparent;
+	color: var(--wp--preset--color--primary-500);
+	padding: 0.438rem 0.938rem;
+}
+
+.is-style-outline.is-style-outline.wp-block-button .wp-block-button__link:hover,
+.is-style-minimal.is-style-minimal.wp-block-button .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--primary-50);
+	border: 0.063rem solid var(--wp--preset--color--primary-500);
+}
+
+.is-style-text.is-style-text.wp-block-button .wp-block-button__link:hover {
+	color: var(--wp--preset--color--primary-700);
+}
