@@ -14,4 +14,4 @@ Text Domain: powder
 Tags: block-patterns, block-styles, custom-colors, custom-logo, custom-menu, editor-style, full-site-editing, one-column, style-variations, template-editing, translation-ready, two-columns, wide-blocks
 */
 
-@import './assets/css/global/index.css';
+@import './assets/css/index.css';

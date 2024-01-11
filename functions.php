@@ -194,5 +194,4 @@ function powder_block_stylesheets() {
 		);
 	}
 }
-
 add_action( 'init', 'powder_block_stylesheets' );

@@ -1,5 +1,5 @@
 /* -- Global site styles -- */
 
 @import 'global/global.css';
-@import 'forms.css';
-@import 'utility.css';
+@import 'global/forms.css';
+@import 'global/utility.css';
