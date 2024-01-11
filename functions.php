@@ -142,14 +142,15 @@ add_action( 'init', 'powder_register_pattern_categories' );
 function powder_block_stylesheets() {
 	/**
 	 * The wp_enqueue_block_style() function allows us to enqueue a stylesheet
-	 * for a specific block. These will only get loaded when the block is rendered
+	 * for a specific block. These stylesheets will only be loaded when the block is rendered
 	 * (both in the editor and on the front end), improving performance
 	 * and reducing the amount of data requested by visitors.
 	 *
 	 * See https://make.wordpress.org/core/2021/12/15/using-multiple-stylesheets-per-block/ for more info.
 	 */
 
-	foreach ( glob( get_parent_theme_file_path( 'assets/css/blocks/*.css' ) ) as $stylesheet ) {
+	// Enqueue styles from the core block folder.
+	foreach ( glob( get_parent_theme_file_path( 'assets/css/blocks/core/*.css' ) ) as $stylesheet ) {
 		$block_name = basename( $stylesheet, '.css' );
 		$handle     = 'powder-' . $block_name . '-style';
 
@@ -160,6 +161,22 @@ function powder_block_stylesheets() {
 				'src'    => get_parent_theme_file_uri( 'assets/css/blocks/' . $block_name . '.css' ),
 				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
 				'path'   => $stylesheet,
+			)
+		);
+	}
+
+	// Enqueue styles from the custom block folder.
+	foreach ( glob( get_parent_theme_file_path( 'assets/css/blocks/custom/*.css' ) ) as $custom_stylesheet ) {
+		$custom_block_name = basename( $custom_stylesheet, '.css' );
+		$custom_handle     = 'powder-custom-' . $custom_block_name . '-style';
+
+		wp_enqueue_block_style(
+			'powder/' . $custom_block_name,
+			array(
+				'handle' => $custom_handle,
+				'src'    => get_parent_theme_file_uri( 'assets/css/blocks/custom/' . $custom_block_name . '.css' ),
+				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
+				'path'   => $custom_stylesheet,
 			)
 		);
 	}
