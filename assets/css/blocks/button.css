@@ -1,10 +1,4 @@
-//--------------------------------------------------------------
-// Custom Button Block Styles
-//--------------------------------------------------------------
-
-.wp-block-button {
-	display: inline-block;
-}
+/* -- Button -- */
 
 .wp-block-button .wp-block-button__link:disabled,
 .wp-block-button .wp-block-button__link[disabled] {
