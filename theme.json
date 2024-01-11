@@ -740,7 +740,8 @@
 				},
 				":hover": {
 					"color": {
-						"background": "var(--wp--preset--color--primary-600)"
+						"background": "var(--wp--preset--color--primary-600)",
+						"text": "var(--wp--preset--color--white)"
 					}
 				},
 				":focus": {
