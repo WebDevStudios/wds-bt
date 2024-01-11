@@ -749,7 +749,11 @@
 						"width": "0.25rem"
 					}
 				},
-				"css": "&:disabled, &[disabled], &.disabled {cursor: not-allowed; pointer-events: none; background-color: var(--wp--preset--color--primary-100); color: rgba(var(--wp--preset--color--white), 0.4) }"
+				":visited": {
+					"color": {
+						"text": "var(--wp--preset--color--white)"
+					}
+				}
 			},
 			"caption": {
 				"spacing": {

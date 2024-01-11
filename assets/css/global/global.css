@@ -1,0 +1,21 @@
+/* Defaults
+---------------------------------------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+
+a,
+button,
+input,
+textarea,
+.wp-element-button {
+	transition: all 0.2s ease-in-out;
+}
