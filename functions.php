@@ -171,7 +171,7 @@ function powder_block_stylesheets() {
 			'core/' . $block_name,
 			array(
 				'handle' => $handle,
-				'src'    => get_parent_theme_file_uri( 'assets/css/blocks/' . $block_name . '.css' ),
+				'src'    => get_parent_theme_file_uri( 'assets/css/blocks/core/' . $block_name . '.css' ),
 				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
 				'path'   => $stylesheet,
 			)
