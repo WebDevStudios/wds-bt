@@ -132,6 +132,19 @@ function powder_register_pattern_categories() {
 }
 add_action( 'init', 'powder_register_pattern_categories' );
 
+/**
+ * Register block variations.
+ */
+function powder_enqueue_block_variations() {
+	wp_enqueue_script(
+		'powder-enqueue-block-variations',
+		get_template_directory_uri() . '/assets/js/variations.js',
+		array( 'wp-blocks', 'wp-dom-ready' ),
+		wp_get_theme()->get( 'Version' ),
+		false
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'powder_enqueue_block_variations' );
 
 /**
  * Enqueue custom block stylesheets
