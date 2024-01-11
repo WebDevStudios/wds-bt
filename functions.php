@@ -56,7 +56,7 @@ function powder_register_block_styles() {
 	$block_styles = array(
 		'core/button' => array(
 			'minimal' => __( 'Minimal', 'powder' ),
-			'text' => __( 'Text Only', 'powder' ),
+			'text'    => __( 'Text Only', 'powder' )
 		),
 		'core/columns' => array(
 			'column-reverse' => __( 'Reverse', 'powder' ),
@@ -139,7 +139,7 @@ function powder_enqueue_block_variations() {
 	wp_enqueue_script(
 		'powder-enqueue-block-variations',
 		get_template_directory_uri() . '/assets/js/variations.js',
-		array( 'wp-blocks', 'wp-dom-ready' ),
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-element', 'wp-primitives' ),
 		wp_get_theme()->get( 'Version' ),
 		false
 	);

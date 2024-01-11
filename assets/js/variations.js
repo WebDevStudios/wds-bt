@@ -1,11 +1,16 @@
-wp.blocks.registerBlockVariation(
-	//'core/media-text',
-	//{
-	//	name: 'media-text-custom',
-	//	title: 'Media & Text Custom',
-	//	attributes: {
-	//		align: 'wide',
-	//		backgroundColor: 'tertiary'
-	//	},
-	//}
-);
+
+/**
+ * Add Block Variations.
+ * Example:
+ * wp.blocks.registerBlockVariation(
+ * 	'core/media-text',
+ * 	{
+ * 		name: 'wds-media-text-custom',
+ * 		title: 'WDS Media & Text',
+ * 		attributes: {
+ * 			align: 'wide',
+ * 			backgroundColor: 'tertiary'
+ * 		},
+ * 	}
+ * );
+ */
