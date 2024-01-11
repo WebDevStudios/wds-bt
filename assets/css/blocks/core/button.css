@@ -7,6 +7,12 @@
 	opacity: 0.15;
 }
 
+.wp-block-button .wp-block-button__link {
+	display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .wp-block-button .wp-block-button__link::after {
     background-color: currentcolor;
     content: '';
@@ -16,7 +22,6 @@
     mask-size: contain;
     margin-left: 0.5rem;
     position: relative;
-    top: -1px;
     vertical-align: middle;
     width: 1rem;
 }
