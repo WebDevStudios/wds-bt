@@ -3,13 +3,17 @@ Contributors: bgardner
 Requires at least: 6.4
 Tested up to: 6.4
 Requires PHP: 7.0
-Stable tag: 0.9.9
+Stable tag: 0.9.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
 Powder reclaims its minimalist roots by embodying a sense of real simplicity. Tailor-made for personal projects, extended by child themes, or utilized as the foundation for clients, Powder offers a modern canvas for WordPress design.
+
+= 0.9.10 =
+
+Minor edits: theme.json, patterns, templates.
 
 = 0.9.9 =
 
