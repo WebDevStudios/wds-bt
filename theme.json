@@ -349,13 +349,6 @@
 				}
 			},
 			"core/navigation": {
-				"elements": {
-					"link": {
-						"typography": {
-							"textDecoration": "none"
-						}
-					}
-				},
 				"spacing": {
 					"blockGap": "var(--wp--preset--spacing--x-small)"
 				},
