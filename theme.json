@@ -330,13 +330,6 @@
 					"lineHeight": "var(--wp--custom--line-height--medium)"
 				}
 			},
-			"core/comments-title": {
-				"spacing": {
-					"margin": {
-						"bottom": "var(--wp--custom--spacing--gap)"
-					}
-				}
-			},
 			"core/cover": {
 				"spacing": {
 					"padding": {
