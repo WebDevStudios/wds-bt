@@ -47,7 +47,6 @@ REQUIRED. Please do not leave this blank
 For visual alterations, provide screenshots or recordings For both desktop and mobile. You can utilize Loom for this purpose: https://www.loom.com/screen-recorder
 -->
 
-
 ## Added tests?
 
 - [ ] 👍 yes
