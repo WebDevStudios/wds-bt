@@ -9,10 +9,10 @@
 <section class="wp-block-group entry-comments" style="margin-top:var(--wp--preset--spacing--medium)">
 	<!-- wp:comments {"className":"wp-block-comments-query-loop"} -->
 	<div class="wp-block-comments wp-block-comments-query-loop">
-		<!-- wp:heading --><h2><?php echo esc_html__( 'Comments', 'powder' ); ?></h2><!-- /wp:heading -->
-		<!-- wp:comments-title {"level":3} /-->
 		<!-- wp:group {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|medium"}}}} -->
 		<div class="wp-block-group" style="margin-bottom:var(--wp--preset--spacing--medium)">
+			<!-- wp:heading --><h2><?php echo esc_html__( 'Comments', 'powder' ); ?></h2><!-- /wp:heading -->
+			<!-- wp:comments-title {"level":3} /-->
 			<!-- wp:comment-template -->
 			<!-- wp:group {"tagName":"article","style":{"spacing":{"blockGap":"var:preset|spacing|x-small","margin":{"bottom":"var:preset|spacing|small"}}},"layout":{"type":"default"}} -->
 			<article class="wp-block-group" style="margin-bottom:var(--wp--preset--spacing--small)">

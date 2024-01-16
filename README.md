@@ -1,6 +1,6 @@
 # Powder
 
-At the heart of Powder lies an expansive vision for block-based design. Inspired by the radiant color palettes of Tailwind CSS, it transcends conventional standards and provides an innovative canvas where imagination runs wild. With its extensive library of wireframe block patterns, style variations, and versatile templates, Powder transforms the art of creating intoxicating WordPress websites.
+Powder reclaims its minimalist roots by embodying a sense of real simplicity. Tailor-made for personal projects, extended by child themes, or utilized as the foundation for clients, Powder offers a modern canvas for WordPress design.
 
 ## Demo
 
@@ -10,7 +10,7 @@ See the Powder theme in action at [https://powderstudio.com/](https://powderstud
 
 - WordPress 6.4+
 - PHP 7.0+
-- License: [GPLv2](http://www.gnu.org/licenses/gpl-2.0.html) or later
+- License: [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ## Getting Started
 
