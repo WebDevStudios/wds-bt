@@ -15,12 +15,6 @@ textarea {
 	width: 100%;
 }
 
-input:focus,
-textarea:focus {
-	filter: brightness(95%);
-	outline: none;
-}
-
 input[type="checkbox"],
 input[type="image"],
 input[type="radio"] {
@@ -34,6 +28,12 @@ input[type="submit"],
 input[type="text"],
 textarea {
 	-webkit-appearance: none;
+}
+
+input:focus,
+textarea:focus {
+	filter: brightness(95%);
+	outline: none;
 }
 
 ::placeholder {

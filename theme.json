@@ -418,7 +418,7 @@
 		"blocks": {
 			"core/button": {
 				"variations": {
-					"outline" : {
+					"outline": {
 						"border": {
 							"color": "var(--wp--preset--color--primary-500)",
 							"style": "solid",
@@ -608,7 +608,7 @@
 					}
 				},
 				"variations": {
-					"plain" : {
+					"plain": {
 						"border": {
 							"style": "none"
 						},
@@ -827,12 +827,12 @@
 	"customTemplates": [
 		{
 			"name": "page-blank",
-			"postTypes": ["page"],
+			"postTypes": [ "page" ],
 			"title": "Page: Blank"
 		},
 		{
 			"name": "page-no-title",
-			"postTypes": ["page"],
+			"postTypes": [ "page" ],
 			"title": "Page: No Title"
 		}
 	]
