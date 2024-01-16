@@ -1,28 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 2,
-	"customTemplates": [
-		{
-			"name": "page-blank",
-			"postTypes": ["page"],
-			"title": "Page Blank"
-		},
-		{
-			"name": "page-no-title",
-			"postTypes": ["page"],
-			"title": "Page No Title"
-		},
-		{
-			"name": "page-with-sidebar",
-			"postTypes": ["page"],
-			"title": "Page With Sidebar"
-		},
-		{
-			"name": "single-with-sidebar",
-			"postTypes": ["post"],
-			"title": "Single With Sidebar"
-		}
-	],
 	"settings": {
 		"appearanceTools": true,
 		"blocks": {
@@ -64,7 +42,7 @@
 			"defaultPalette": false,
 			"duotone": [
 				{
-					"colors": [ "#000000", "#ffffff" ],
+					"colors": [ "#0a0a0a", "#ffffff" ],
 					"name": "Black and White",
 					"slug": "black-and-white"
 				},
@@ -81,7 +59,7 @@
 					"slug": "base"
 				},
 				{
-					"color": "#000000",
+					"color": "#0a0a0a",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
@@ -199,14 +177,9 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "100 900",
-							"src": [ "file:./assets/fonts/Outfit-Variable.woff2" ]
+							"src": [ "file:./assets/fonts/outfit/Outfit-Variable.woff2" ]
 						}
 					]
-				},
-				{
-					"fontFamily": "-apple-system, system-ui, 'Segoe UI Variable', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-					"name": "System Font",
-					"slug": "system-font"
 				}
 			],
 			"fontSizes": [
@@ -357,13 +330,6 @@
 					"lineHeight": "var(--wp--custom--line-height--medium)"
 				}
 			},
-			"core/comments-title": {
-				"spacing": {
-					"margin": {
-						"bottom": "var(--wp--custom--spacing--gap)"
-					}
-				}
-			},
 			"core/cover": {
 				"spacing": {
 					"padding": {
@@ -383,12 +349,8 @@
 				}
 			},
 			"core/navigation": {
-				"elements": {
-					"link": {
-						"typography": {
-							"textDecoration": "none"
-						}
-					}
+				"spacing": {
+					"blockGap": "var(--wp--preset--spacing--x-small)"
 				},
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--x-small)"
@@ -672,11 +634,18 @@
 			"area": "footer",
 			"name": "footer",
 			"title": "Footer"
+		}
+	],
+	"customTemplates": [
+		{
+			"name": "page-blank",
+			"postTypes": ["page"],
+			"title": "Page: Blank"
 		},
 		{
-			"area": "uncategorized",
-			"name": "sidebar",
-			"title": "Sidebar"
+			"name": "page-no-title",
+			"postTypes": ["page"],
+			"title": "Page: No Title"
 		}
 	]
 }

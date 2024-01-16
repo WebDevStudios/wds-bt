@@ -4,14 +4,14 @@
  *
  * @package Powder
  * @author  Brian Gardner
- * @license GNU General Public License v2 or later
+ * @license GNU General Public License v3
  * @link    https://briangardner.com/
  */
 
 if ( ! function_exists( 'powder_setup' ) ) {
 
 	/**
-	 * Initialize theme defaults and registers support for WordPress features.
+	 * Initialize theme defaults and register support for WordPress features.
 	 */
 	function powder_setup() {
 
@@ -54,12 +54,6 @@ add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
 function powder_register_block_styles() {
 
 	$block_styles = array(
-		'core/columns' => array(
-			'column-reverse' => __( 'Reverse', 'powder' ),
-		),
-		'core/cover' => array(
-			'gradient' => __( 'Gradient', 'powder' )
-		),
 		'core/group' => array(
 			'shadow-light' => __( 'Shadow (Light)', 'powder' ),
 			'shadow-solid' => __( 'Shadow (Solid)', 'powder' ),
@@ -90,40 +84,3 @@ function powder_register_block_styles() {
 
 }
 add_action( 'init', 'powder_register_block_styles' );
-
-/**
- * Register block pattern categories.
- */
-function powder_register_pattern_categories() {
-
-	register_block_pattern_category(
-		'content',
-		array(
-			'label'       => __( 'Content', 'powder' ),
-			'description' => __( 'A collection of content patterns designed for Powder.', 'powder' ),
-		)
-	);
-	register_block_pattern_category(
-		'hero',
-		array(
-			'label'       => __( 'Hero', 'powder' ),
-			'description' => __( 'A collection of hero patterns designed for Powder.', 'powder' ),
-		)
-	);
-	register_block_pattern_category(
-		'page',
-		array(
-			'label'       => __( 'Pages', 'powder' ),
-			'description' => __( 'A collection of page patterns designed for Powder.', 'powder' ),
-		)
-	);
-	register_block_pattern_category(
-		'template',
-		array(
-			'label'       => __( 'Templates', 'powder' ),
-			'description' => __( 'A collection of template patterns designed for Powder.', 'powder' ),
-		)
-	);
-
-}
-add_action( 'init', 'powder_register_pattern_categories' );
