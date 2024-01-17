@@ -96,6 +96,14 @@ textarea {
 /* Blocks
 ---------------------------------------- */
 
+/* -- Cover -- */
+
+.wp-block-cover.is-style-gradient .has-background-dim:not([class*=-background-color]) {
+	background-color: transparent;
+	background-image: linear-gradient(to top, rgba(10,10,10,0.6), rgba(10,10,10,1));
+	opacity: 1;
+}
+
 /* -- Navigation -- */
 
 .wp-block-navigation__responsive-container.is-menu-open {
@@ -110,6 +118,23 @@ textarea {
 .wp-block-navigation__responsive-container-open {
 	border: 1px solid currentColor;
 	padding: 2px;
+}
+
+/* -- Navigation Link -- */
+
+.wp-block-navigation-item.is-style-underline a::after {
+	background-color: currentcolor;
+	bottom: 0;
+	content: '';
+	height: 1px;
+	left: 0;
+	position: absolute;
+	transition: width 0.25s ease;
+	width: 0;
+}
+
+.wp-block-navigation-item.is-style-underline a:hover::after {
+	width: 100%;
 }
 
 /* -- Navigation Submenu -- */
@@ -219,6 +244,16 @@ textarea {
 
 	.is-style-hidden-mobile {
 		display: none !important;
+	}
+
+}
+
+@media only screen and (max-width: 782px) {
+
+	/* -- Columns -- */
+
+	.wp-block-columns.is-style-column-reverse {
+		flex-direction: column-reverse;
 	}
 
 }
