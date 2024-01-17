@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: List of posts, 1 column
- * Slug: powder/posts
+ * Slug: wdsbt/posts
  * Categories: posts
  * Block Types: core/query
  */
@@ -14,7 +14,7 @@
 			<!-- wp:group {"tagName":"header","style":{"spacing":{"blockGap":"10px"}},"className":"entry-header","layout":{"type":"constrained"}} -->
 			<header class="wp-block-group entry-header">
 				<!-- wp:post-title {"level":1,"isLink":true} /-->
-				<!-- wp:pattern {"slug":"powder/post-meta"} /-->
+				<!-- wp:pattern {"slug":"wdsbt/post-meta"} /-->
 			</header>
 			<!-- /wp:group -->
 			<!-- wp:post-excerpt {"moreText":"Read More"} /-->

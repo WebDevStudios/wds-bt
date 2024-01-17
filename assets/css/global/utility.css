@@ -1,0 +1,77 @@
+/* Utility
+---------------------------------------- */
+
+/* -- Box Shadow -- */
+
+.is-style-shadow-light {
+	box-shadow: var(--wp--preset--shadow--light);
+}
+
+.is-style-shadow-solid {
+	box-shadow: var(--wp--preset--shadow--solid);
+}
+
+/* -- Filter -- */
+
+.is-style-filter-invert {
+	filter: invert(1);
+}
+
+/* -- Position -- */
+
+.is-style-position-fixed {
+	position: fixed;
+}
+
+.is-style-position-relative {
+	position: relative;
+}
+
+/* -- Pull -- */
+
+.is-style-pull-100 {
+	margin-top: -6.25rem !important;
+}
+
+/* -- Z-Index -- */
+
+.is-style-negative-zindex {
+	z-index: -99;
+}
+
+.is-style-positive-zindex {
+	z-index: 99;
+}
+
+/* Effects
+---------------------------------------- */
+
+/* -- Header -- */
+
+.js-enabled .site-header {
+	position: sticky;
+	top: 0;
+	transition: top 0.5s;
+	z-index: 100;
+}
+
+/* Media Queries
+---------------------------------------- */
+
+@media only screen and (max-width: 600px) {
+
+	/* -- Utility -- */
+
+	.is-style-hidden-mobile {
+		display: none !important;
+	}
+}
+
+@media only screen and (max-width: 782px) {
+
+	/* -- Columns -- */
+
+	.wp-block-columns.is-style-column-reverse {
+		flex-direction: column-reverse;
+	}
+}

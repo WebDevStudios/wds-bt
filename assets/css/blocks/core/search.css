@@ -1,0 +1,6 @@
+/* Search
+---------------------------------------- */
+
+.wp-block-search.wp-block-search__button-only .wp-block-search__button {
+	max-width: inherit;
+}

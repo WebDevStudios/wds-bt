@@ -1,129 +1,20 @@
-=== Powder ===
-Contributors: bgardner
+=== WDS BT ===
+Contributors: webdevstudios, bgardner
 Requires at least: 6.4
 Tested up to: 6.4
-Requires PHP: 7.0
-Stable tag: 0.9.10
+Requires PHP: 8.2
+Stable tag: 1.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-Powder reclaims its minimalist roots by embodying a sense of real simplicity. Tailor-made for personal projects, extended by child themes, or utilized as the foundation for clients, Powder offers a modern canvas for WordPress design.
-
-= 0.9.10 =
-
-Minor edits: theme.json, patterns, templates.
-
-= 0.9.9 =
-
-Remove patterns, templates, parts, variations. Back to simple.
-
-= 0.9.8 =
-
-New patterns, templates, style updates.
-
-= 0.9.7 =
-
-New patterns, templates, js, etc.
-
-= 0.9.6 =
-
-HTML semantic update.
-
-= 0.9.5 =
-
-Style changes, add patterns.
-
-= 0.9.4 =
-
-Minor adjustments, add patterns.
-
-= 0.9.3 =
-
-Update Powder urls, add patterns.
-
-= 0.9.2 =
-
-Oops, add back 72px font size.
-
-= 0.9.1 =
-
-Update new colors, patterns.
-
-= 0.9.0 =
-
-Set colors, prep for child themes.
-
-= 0.8.2 =
-
-Revert colors, remove style variations.
-
-= 0.8.1 =
-
-Fix Query pattern posts per page.
-
-= 0.8.0 =
-
-Major changes, add style variations, patterns.
-
-= 0.7.2 =
-
-Style sheet, patterns, theme.json optimization.
-
-= 0.7.1 =
-
-Move styles to theme.json, update theme links.
-
-= 0.7.0 =
-
-Bump for WordPress 6.2.
-
-= 0.6.6 =
-
-Minor style change, remove styles.
-
-= 0.6.5 =
-
-Reorg comments, remove unnecessary styles.
-
-= 0.6.4 =
-
-Add fluid spacing and neutral color.
-
-= 0.6.3 =
-
-Create Query pattern, consolidate templates.
-Minor style enhancements.
-
-= 0.6.2 =
-
-Add index.php to fix .org preview.
-
-= 0.6.1 =
-
-Update Outfit font slug in theme.json.
-
-= 0.6.0 =
-
-Add fluid spacing, template updates.
-
-= 0.5.2 =
-
-Bump version, add back layout code.
-
-= 0.5.1 =
-
-Temporarily revert code.
-
-= 0.5.0 =
-
-Initial public release.
+Meet WDS BT, a stylish block theme drawing inspiration from the Powder Theme. With a modern design, user-friendly interface, and smooth integration with the WordPress block editor, WDS BT delivers a clean and responsive layout. It's important to note that this theme is intentionally designed as a base theme, not a parent theme. This distinction offers users a customizable foundation to build upon. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
 
 == Copyright ==
 
-Powder WordPress Theme, (C) 2022-2023 Brian Gardner.
-Powder is distributed under the terms of the GNU GPL.
+The WDS BT Theme, (C) 2023 WebDevStudios
+The WDS BT Theme is distributed under the terms of the GNU GPL.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -134,36 +25,3 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
-
-== Font ==
-
-The included font is licensed under the SIL Open Font License, Version 1.1.
-License URL: https://scripts.sil.org/OFL
-
-Outfit Font
-
-== Sample Images ==
-
-The following images are self-designed and declared under GPL License, Version 3.0.
-License URL: https://www.gnu.org/licenses/gpl-3.0.html
-
-sample-avatar-dark.png
-sample-avatar-light.png
-sample-image-dark.png
-sample-image-light.png
-sample-logo-dark.svg
-sample-logo-light.svg
-site-logo-dark.svg
-site-logo-light.svg
-
-== Sample Icons ==
-
-The following icons are available through Google Material Icons and declared under Apache Open Source License, Version 2.0.
-License URL: https://www.apache.org/licenses/LICENSE-2.0
-
-icon-circle-bolt-dark.svg
-icon-circle-bolt-light.svg
-icon-circle-check-dark.svg
-icon-circle-check-light.svg
-icon-circle-x-dark.svg
-icon-circle-x-light.svg

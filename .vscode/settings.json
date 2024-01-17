@@ -1,0 +1,43 @@
+{
+	"phpsab.executablePathCS": "./vendor/bin/phpcs",
+	"phpsab.executablePathCBF": "./vendor/bin/phpcbf",
+	"editor.formatOnSave": true,
+	"scss.validate": false,
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"intelephense.format.enable": false,
+	"intelephense.stubs": [ "acf", "wordpress", "standard", "Core", "pcre" ],
+
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#3F4040",
+		"activityBarBadge.background": "#f3713c",
+		"activityBarBadge.foreground": "#fff",
+		"statusBar.background": "#f3713c",
+		"statusBar.foreground": "#fff"
+	},
+
+	"markdownlint.config": {
+		"MD033": {
+			"allowed_elements": [
+				"nobr",
+				"hr",
+				"sup",
+				"details",
+				"summary",
+				"h2",
+				"h3",
+				"p",
+				"a",
+				"b",
+				"ol",
+				"ul",
+				"li",
+				"br",
+				"i",
+				"img",
+				"code"
+			]
+		}
+	}
+}

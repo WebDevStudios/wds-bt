@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Default header
- * Slug: powder/header
+ * Slug: wdsbt/header
  * Categories: header
  * Block Types: core/template-part/header
  */
