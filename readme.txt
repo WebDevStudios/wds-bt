@@ -9,7 +9,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-Powder reclaims its minimalist roots by embodying a sense of real simplicity. Tailor-made for personal projects, extended by child themes, or utilized as the foundation for clients, Powder offers a modern canvas for WordPress design.
+Powder embraces the limitless potential of block-based design with WordPress. Its signature approach—inspired by the brilliant color palettes of Tailwind CSS—transcends conventional standards and provides a canvas where creativity knows no bounds. With its extensive library of wireframe patterns, style variations, and versatile templates, Powder transforms the development of WordPress websites, setting a new standard of artistic freedom within the open-source community.
 
 = 0.9.10 =
 
