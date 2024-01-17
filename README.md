@@ -8,6 +8,8 @@ Meet WDS BT, a stylish block theme drawing inspiration from the Powder Theme. Wi
 
 - WordPress 6.4+
 - PHP 8.2+
+- NPM 10.1.0+
+- Node 20
 - License: [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ## Getting Started
@@ -16,3 +18,27 @@ Meet WDS BT, a stylish block theme drawing inspiration from the Powder Theme. Wi
 2. Ensure you are using WordPress 6.4+.
 3. Clone / download this repository into the `/wp-content/themes/` directory of your new WordPress instance.
 4. In the WordPress admin, use the Appearance > Themes screen to activate the theme.
+
+## Syncing with upstream repo
+
+### Configure a remote repository for the fork
+
+1. Open Terminal.
+2. Specify a new remote upstream repository that will be synced with the fork.
+
+``` CODE
+git remote add upstream https://github.com/bgardner/powder
+```
+
+### Getting Upstream changes
+
+1. Change the current working directory to your local project.
+2. Fetch the branches and their respective commits from the upstream repository. Commits to `main` will be stored in the local branch `upstream/main`.
+3. Check out the fork's local default branch `main`.
+4. Merge the changes from the upstream default branch - in this case, `upstream/main` - into your local default branch.
+
+``` CODE
+git fetch upstream
+git checkout main
+git merge upstream/main
+```
