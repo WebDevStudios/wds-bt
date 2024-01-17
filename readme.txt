@@ -141,3 +141,29 @@ The included font is licensed under the SIL Open Font License, Version 1.1.
 License URL: https://scripts.sil.org/OFL
 
 Outfit Font
+
+== Sample Images ==
+
+The following images are self-designed and declared under GPL License, Version 3.0.
+License URL: https://www.gnu.org/licenses/gpl-3.0.html
+
+sample-avatar-dark.png
+sample-avatar-light.png
+sample-image-dark.png
+sample-image-light.png
+sample-logo-dark.svg
+sample-logo-light.svg
+site-logo-dark.svg
+site-logo-light.svg
+
+== Sample Icons ==
+
+The following icons are available through Google Material Icons and declared under Apache Open Source License, Version 2.0.
+License URL: https://www.apache.org/licenses/LICENSE-2.0
+
+icon-circle-bolt-dark.svg
+icon-circle-bolt-light.svg
+icon-circle-check-dark.svg
+icon-circle-check-light.svg
+icon-circle-x-dark.svg
+icon-circle-x-light.svg
