@@ -43,7 +43,7 @@ add_action( 'wp_enqueue_scripts', 'powder_enqueue_style_sheet' );
  */
 function powder_enqueue_header_javascript() {
 
-	wp_enqueue_script( 'header', get_template_directory_uri() . '/assets/js/header.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'powder', get_template_directory_uri() . '/assets/js/header.js', array('jquery'), '1.0', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
@@ -54,6 +54,12 @@ add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
 function powder_register_block_styles() {
 
 	$block_styles = array(
+		'core/columns' => array(
+			'column-reverse' => __( 'Reverse', 'powder' ),
+		),
+		'core/cover' => array(
+			'gradient' => __( 'Gradient', 'powder' )
+		),
 		'core/group' => array(
 			'shadow-light' => __( 'Shadow (Light)', 'powder' ),
 			'shadow-solid' => __( 'Shadow (Solid)', 'powder' ),
@@ -64,6 +70,9 @@ function powder_register_block_styles() {
 		),
 		'core/list' => array(
 			'no-style' => __( 'No Style', 'powder' ),
+		),
+		'core/navigation-link' => array(
+			'underline' => __( 'Underline', 'powder' )
 		),
 		'core/social-links' => array(
 			'outline' => __( 'Outline', 'powder' ),
@@ -84,3 +93,54 @@ function powder_register_block_styles() {
 
 }
 add_action( 'init', 'powder_register_block_styles' );
+
+/**
+ * Register block pattern categories.
+ */
+function powder_register_pattern_categories() {
+
+	register_block_pattern_category(
+		'powder-content',
+		array(
+			'label'       => __( 'Content', 'powder' ),
+			'description' => __( 'A collection of content patterns Powder.', 'powder' ),
+		)
+	);
+	register_block_pattern_category(
+		'powder-example',
+		array(
+			'label'       => __( 'Examples', 'powder' ),
+			'description' => __( 'A collection of example patterns for Powder.', 'powder' ),
+		)
+	);
+	register_block_pattern_category(
+		'powder-hero',
+		array(
+			'label'       => __( 'Hero', 'powder' ),
+			'description' => __( 'A collection of hero patterns for Powder.', 'powder' ),
+		)
+	);
+	register_block_pattern_category(
+		'powder-pricing',
+		array(
+			'label'       => __( 'Pricing', 'powder' ),
+			'description' => __( 'A collection of pricing patterns for Powder.', 'powder' ),
+		)
+	);
+	register_block_pattern_category(
+		'powder-template',
+		array(
+			'label'       => __( 'Templates', 'powder' ),
+			'description' => __( 'A collection of template patterns for Powder.', 'powder' ),
+		)
+	);
+	register_block_pattern_category(
+		'powder-testimonials',
+		array(
+			'label'       => __( 'Testimonials', 'powder' ),
+			'description' => __( 'A collection of template testimonials for Powder.', 'powder' ),
+		)
+	);
+
+}
+add_action( 'init', 'powder_register_pattern_categories' );
