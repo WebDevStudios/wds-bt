@@ -1,6 +1,42 @@
 /* Utility
 ---------------------------------------- */
 
+/* -- Blur -- */
+.blur-8 {
+	background-color: rgba( var(--wp--preset--color--white), 1);
+	background-blend-mode: darken;
+	backdrop-filter: blur(4px);
+	border-radius: 6px;
+}
+
+.blur-16 {
+	background-color: rgba( var(--wp--preset--color--white), 1);
+	background-blend-mode: darken;
+	backdrop-filter: blur(8px);
+	border-radius: 6px;
+}
+
+.blur-24 {
+	background-color: rgba( var(--wp--preset--color--white), 1);
+	background-blend-mode: darken;
+	backdrop-filter: blur(12px);
+	border-radius: 6px;
+}
+
+.blur-32 {
+	background-color: rgba( var(--wp--preset--color--white), 1);
+	background-blend-mode: darken;
+	backdrop-filter: blur(16px);
+	border-radius: 6px;
+}
+
+.blur-40 {
+	background-color: rgba( var(--wp--preset--color--white), 1);
+	background-blend-mode: darken;
+	backdrop-filter: blur(20px);
+	border-radius: 6px;
+}
+
 /* -- Box Shadow -- */
 
 .is-style-shadow-light {

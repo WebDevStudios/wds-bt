@@ -1,6 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 2,
+	"title": "Light Mode",
+	"description":  "Light mode palette for the theme",
 	"settings": {
 		"appearanceTools": true,
 		"blocks": {
@@ -69,9 +71,19 @@
 					"slug": "primary-500"
 				},
 				{
+					"color": "#5E4DDC",
+					"name": "Primary 400",
+					"slug": "primary-400"
+				},
+				{
 					"color": "#867AE5",
 					"name": "Primary 300",
 					"slug": "primary-300"
+				},
+				{
+					"color": "#AEA6EE",
+					"name": "Primary 200",
+					"slug": "primary-200"
 				},
 				{
 					"color": "#D7D3F6",
@@ -245,32 +257,32 @@
 			"presets": [
 				{
 					"name": "Elevation 100",
-					"shadow": "0 0.063rem 0.063rem 0 rgba(48, 49, 51, 0.1), 0 0 0.063rem 0 rgba(48, 49, 51, 0.05)",
+					"shadow": "0 1px 1px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
 					"slug": "elevation-100"
 				},
 				{
 					"name": "Elevation 200",
-					"shadow": "0 0.125rem 0.25rem 0 rgba(48, 49, 51, 0.1), 0 0 0.063rem 0 rgba(48, 49, 51, 0.05)",
+					"shadow": "0 2px 4px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
 					"slug": "elevation-200"
 				},
 				{
 					"name": "Elevation 300",
-					"shadow": "0 0.25rem 0.5rem 0 rgba(48, 49, 51, 0.1), 0 0 0.063rem 0 rgba(48, 49, 51, 0.05)",
+					"shadow": "0 4px 8px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
 					"slug": "elevation-300"
 				},
 				{
 					"name": "Elevation 400",
-					"shadow": "0 0.5rem 1rem 0 rgba(48, 49, 51, 0.1), 0 0 0.063rem 0 rgba(48, 49, 51, 0.05)",
+					"shadow": "0 8px 1rem 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
 					"slug": "elevation-400"
 				},
 				{
 					"name": "Elevation 500",
-					"shadow": "0 1rem 1.5rem 0 rgba(48, 49, 51, 0.09), 0 0 0.063rem 0 rgba(48, 49, 51, 0.05)",
+					"shadow": "0 16px 24px 0 rgba(48, 49, 51, 0.09), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
 					"slug": "elevation-500"
 				},
 				{
 					"name": "Elevation 600",
-					"shadow": "0 1.5rem 2.5rem 0 rgba(48, 49, 51, 0.08), 0 0 0.063rem 0 rgba(48, 49, 51, 0.05)",
+					"shadow": "0 24px 40px 0 rgba(48, 49, 51, 0.08), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
 					"slug": "elevation-600"
 				}
 			]
