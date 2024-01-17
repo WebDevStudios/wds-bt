@@ -1,5 +1,5 @@
 === WDS BT ===
-Contributors: webdevstudios
+Contributors: webdevstudios, bgardner
 Requires at least: 6.4
 Tested up to: 6.4
 Requires PHP: 8.2
