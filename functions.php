@@ -43,7 +43,7 @@ add_action( 'wp_enqueue_scripts', 'wdsbt_enqueue_style_sheet' );
  */
 function wdsbt_enqueue_header_javascript() {
 
-	wp_enqueue_script( 'header', get_template_directory_uri() . '/assets/js/header.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'powder', get_template_directory_uri() . '/assets/js/header.js', array('jquery'), '1.0', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'wdsbt_enqueue_header_javascript' );
@@ -74,6 +74,9 @@ function wdsbt_register_block_styles() {
 		),
 		'core/list' => array(
 			'no-style' => __( 'No Style', 'wdsbt' ),
+		),
+		'core/navigation-link' => array(
+			'underline' => __( 'Underline', 'powder' )
 		),
 		'core/social-links' => array(
 			'outline' => __( 'Outline', 'wdsbt' ),

@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Grid of posts, 1 column
+ * Title: List of posts, 1 column
  * Slug: wdsbt/posts
  * Categories: posts
  * Block Types: core/query
