@@ -21,6 +21,9 @@ if ( ! function_exists( 'powder_setup' ) ) {
 		// Disable core block inline styles.
 		add_filter( 'should_load_separate_core_block_assets', '__return_false' );
 
+		// Include theme settings page.
+		require_once get_template_directory() . '/inc/theme-settings.php';
+
 		// Remove core block patterns support.
 		remove_theme_support( 'core-block-patterns' );
 
