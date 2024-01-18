@@ -1,40 +1,41 @@
 /* Utility
 ---------------------------------------- */
 
-/* -- Blur -- */
-.blur-8 {
-	background-color: rgba( var(--wp--preset--color--white), 1);
+/* -- Image Blur -- */
+figure[class^='blur-'], figure[class*=' blur-'] {
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+figure[class^='blur-'] img, figure[class*=' blur-'] img {
 	background-blend-mode: darken;
-	backdrop-filter: blur(4px);
+	background-color: rgba( var(--wp--preset--color--white), 1);
 	border-radius: 6px;
 }
 
-.blur-16 {
-	background-color: rgba( var(--wp--preset--color--white), 1);
-	background-blend-mode: darken;
-	backdrop-filter: blur(8px);
-	border-radius: 6px;
+.blur-8 img {
+	filter: blur(4px);
+	-webkit-filter: blur(4px);
 }
 
-.blur-24 {
-	background-color: rgba( var(--wp--preset--color--white), 1);
-	background-blend-mode: darken;
-	backdrop-filter: blur(12px);
-	border-radius: 6px;
+.blur-16 img {
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
 }
 
-.blur-32 {
-	background-color: rgba( var(--wp--preset--color--white), 1);
-	background-blend-mode: darken;
-	backdrop-filter: blur(16px);
-	border-radius: 6px;
+.blur-24 img {
+	filter: blur(12px);
+	-webkit-filter: blur(12px);
 }
 
-.blur-40 {
-	background-color: rgba( var(--wp--preset--color--white), 1);
-	background-blend-mode: darken;
-	backdrop-filter: blur(20px);
-	border-radius: 6px;
+.blur-32 img {
+	filter: blur(16px);
+	-webkit-filter: blur(16px);
+}
+
+.blur-40 img {
+	filter: blur(20px);
+	-webkit-filter: blur(20px);
 }
 
 /* -- Box Shadow -- */
