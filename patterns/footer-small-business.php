@@ -115,10 +115,10 @@
 			<p><a href="https://twitter.com/">Twitter</a></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph -->
-			<p><a href="https://instagram.com/">Instagram</a></p>
+			<p><a href="https://www.linkedin.com/">LinkedIn</a></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph -->
-			<p><a href="https://www.linkedin.com/">LinkedIn</a></p>
+			<p><a href="https://instagram.com/">Instagram</a></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph -->
 			<p><a href="https://www.facebook.com/">Facebook</a></p>
