@@ -12,9 +12,9 @@
 	<div class="wp-block-group alignwide">
 		<!-- wp:social-links {"iconColor":"base","iconColorValue":"#ffffff","iconBackgroundColor":"contrast","iconBackgroundColorValue":"#0a0a0a","size":"has-small-icon-size","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|x-small","left":"5px"}},"layout":{"selfStretch":"fixed","flexSize":"300px"}},"className":"is-style-hidden-mobile"} -->
 		<ul class="wp-block-social-links has-small-icon-size has-icon-color has-icon-background-color is-style-hidden-mobile">
-			<!-- wp:social-link {"url":"https://twitter.com/","service":"twitter"} /-->
-			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
+			<!-- wp:social-link {"url":"https://twitter.com/","service":"x"} /-->
 			<!-- wp:social-link {"url":"https://www.linkedin.com/","service":"linkedin"} /-->
+			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
 			<!-- wp:social-link {"url":"https://www.facebook.com/","service":"facebook"} /-->
 			<!-- wp:social-link {"url":"https://www.tiktok.com/","service":"tiktok"} /-->
 		</ul>

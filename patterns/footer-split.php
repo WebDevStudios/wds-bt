@@ -121,9 +121,9 @@
 		<!-- /wp:group -->
 		<!-- wp:social-links {"iconColor":"contrast","iconColorValue":"#0a0a0a","openInNewTab":true,"size":"has-small-icon-size","className":"is-style-outline"} -->
 		<ul class="wp-block-social-links has-small-icon-size has-icon-color is-style-outline">
-			<!-- wp:social-link {"url":"https://twitter.com/","service":"twitter"} /-->
-			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
+			<!-- wp:social-link {"url":"https://twitter.com/","service":"x"} /-->
 			<!-- wp:social-link {"url":"https://www.linkedin.com/","service":"linkedin"} /-->
+			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
 			<!-- wp:social-link {"url":"https://www.facebook.com/","service":"facebook"} /-->
 		</ul>
 		<!-- /wp:social-links -->
