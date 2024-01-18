@@ -4,7 +4,7 @@
  *
  * @package	Powder
  * @author	Brian Gardner
- * @license GNU General Public License v3
+ * @license	GNU General Public License v3
  * @link	https://briangardner.com/
  */
 
