@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Pricing table with two columns
- * Slug: powder/pricing-table-2-columns
+ * Slug: powder/pricing-2-columns
  * Categories: powder-pricing
  */
 ?>
