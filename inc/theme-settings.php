@@ -50,45 +50,51 @@ function powder_theme_settings() {
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><?php echo esc_html__( 'Footer', 'powder' ); ?></th>
+				<th scope="row"><?php echo esc_html__( 'Examples', 'powder' ); ?></th>
 				<td>
 					<input type="checkbox" name="powder_setting_option_2" value="1" <?php checked(1, get_option('powder_setting_option_2', '1'), true); ?>/>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><?php echo esc_html__( 'Header', 'powder' ); ?></th>
+				<th scope="row"><?php echo esc_html__( 'Footers', 'powder' ); ?></th>
 				<td>
 					<input type="checkbox" name="powder_setting_option_3" value="1" <?php checked(1, get_option('powder_setting_option_3', '1'), true); ?>/>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><?php echo esc_html__( 'Hero', 'powder' ); ?></th>
+				<th scope="row"><?php echo esc_html__( 'Headers', 'powder' ); ?></th>
 				<td>
 					<input type="checkbox" name="powder_setting_option_4" value="1" <?php checked(1, get_option('powder_setting_option_4', '1'), true); ?>/>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><?php echo esc_html__( 'Posts', 'powder' ); ?></th>
+				<th scope="row"><?php echo esc_html__( 'Hero', 'powder' ); ?></th>
 				<td>
 					<input type="checkbox" name="powder_setting_option_5" value="1" <?php checked(1, get_option('powder_setting_option_5', '1'), true); ?>/>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><?php echo esc_html__( 'Pricing', 'powder' ); ?></th>
+				<th scope="row"><?php echo esc_html__( 'Posts', 'powder' ); ?></th>
 				<td>
 					<input type="checkbox" name="powder_setting_option_6" value="1" <?php checked(1, get_option('powder_setting_option_6', '1'), true); ?>/>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><?php echo esc_html__( 'Template', 'powder' ); ?></th>
+				<th scope="row"><?php echo esc_html__( 'Pricing', 'powder' ); ?></th>
 				<td>
 					<input type="checkbox" name="powder_setting_option_7" value="1" <?php checked(1, get_option('powder_setting_option_7', '1'), true); ?>/>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><?php echo esc_html__( 'Testimonials', 'powder' ); ?></th>
+				<th scope="row"><?php echo esc_html__( 'Templates', 'powder' ); ?></th>
 				<td>
 					<input type="checkbox" name="powder_setting_option_8" value="1" <?php checked(1, get_option('powder_setting_option_8', '1'), true); ?>/>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><?php echo esc_html__( 'Testimonials', 'powder' ); ?></th>
+				<td>
+					<input type="checkbox" name="powder_setting_option_9" value="1" <?php checked(1, get_option('powder_setting_option_9', '1'), true); ?>/>
 				</td>
 			</tr>
 		</table>
@@ -104,7 +110,7 @@ function powder_theme_settings() {
  */
 function powder_theme_admin_init(){
 
-	for ($i = 1; $i <= 8; $i++) {
+	for ($i = 1; $i <= 9; $i++) {
 		register_setting('powder-theme-settings-group', 'powder_setting_option_' . $i, 'sanitize_powder_theme_option');
 	}
 
@@ -131,24 +137,27 @@ function conditional_powder_unregister_patterns() {
 		powder_unregister_content_patterns();
 	}
 	if (get_option('powder_setting_option_2', '1') !== '1') {
-		powder_unregister_footer_patterns();
+		powder_unregister_example_patterns();
 	}
 	if (get_option('powder_setting_option_3', '1') !== '1') {
-		powder_unregister_header_patterns();
+		powder_unregister_footer_patterns();
 	}
 	if (get_option('powder_setting_option_4', '1') !== '1') {
-		powder_unregister_hero_patterns();
+		powder_unregister_header_patterns();
 	}
 	if (get_option('powder_setting_option_5', '1') !== '1') {
-		powder_unregister_posts_patterns();
+		powder_unregister_hero_patterns();
 	}
 	if (get_option('powder_setting_option_6', '1') !== '1') {
-		powder_unregister_pricing_patterns();
+		powder_unregister_posts_patterns();
 	}
 	if (get_option('powder_setting_option_7', '1') !== '1') {
-		powder_unregister_template_patterns();
+		powder_unregister_pricing_patterns();
 	}
 	if (get_option('powder_setting_option_8', '1') !== '1') {
+		powder_unregister_template_patterns();
+	}
+	if (get_option('powder_setting_option_9', '1') !== '1') {
 		powder_unregister_testimonials_patterns();
 	}
 
@@ -177,6 +186,16 @@ function powder_unregister_content_patterns() {
 	unregister_block_pattern('powder/content-progress-bars');
 	unregister_block_pattern('powder/content-social-numbers-dark');
 	unregister_block_pattern('powder/content-social-numbers');
+
+}
+
+/**
+ * Unregister Examples patterns.
+ */
+function powder_unregister_example_patterns() {
+
+	unregister_block_pattern('powder/example-business');
+	unregister_block_pattern('powder/example-social');
 
 }
 
@@ -249,12 +268,12 @@ function powder_unregister_posts_patterns() {
  */
 function powder_unregister_pricing_patterns() {
 
-	unregister_block_pattern('powder/pricing-table-2-columns');
-	unregister_block_pattern('powder/pricing-table-2-columns-dark');
-	unregister_block_pattern('powder/pricing-table-3-columns');
-	unregister_block_pattern('powder/pricing-table-3-columns-dark');
-	unregister_block_pattern('powder/pricing-table-4-columns');
-	unregister_block_pattern('powder/pricing-table-4-columns-dark');
+	unregister_block_pattern('powder/pricing-2-columns');
+	unregister_block_pattern('powder/pricing-2-columns-dark');
+	unregister_block_pattern('powder/pricing-3-columns');
+	unregister_block_pattern('powder/pricing-3-columns-dark');
+	unregister_block_pattern('powder/pricing-4-columns');
+	unregister_block_pattern('powder/pricing-4-columns-dark');
 
 }
 
