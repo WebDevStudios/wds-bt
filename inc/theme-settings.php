@@ -14,13 +14,13 @@
 function powder_theme_menu() {
 
 	add_menu_page(
-		'Theme Settings',			// Page title
-		'Powder',					// Menu title
-		'manage_options',			// Capability
-		'powder',					// Menu slug
-		'powder_theme_settings',	// Function
-		'dashicons-marker',			// Icon URL
-		55							// Position
+		'Theme Settings', // Page title
+		'Powder', // Menu title
+		'manage_options', // Capability
+		'powder', // Menu slug
+		'powder_theme_settings', // Function
+		'dashicons-marker', // Icon URL
+		55 // Position
 	);
 
 }
