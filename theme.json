@@ -638,9 +638,6 @@
 					}
 				}
 			},
-			"core/search": {
-				"css": "& .wp-block-search__input, .wp-element-button {padding: 0.625rem 1.25rem;} & .wp-block-search__input {border-color: var(--wp--preset--color--primary-500);}"
-			},
 			"core/separator": {
 				"border": {
 					"color": "currentColor",
