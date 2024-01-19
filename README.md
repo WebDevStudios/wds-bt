@@ -42,3 +42,13 @@ git fetch upstream
 git checkout main
 git merge upstream/main
 ```
+
+### Theme Unit Test
+
+1. Download the theme test data from <https://github.com/WebDevStudios/wds-bt/blob/main/wdsunittestdata.wordpress.xml>
+2. Import test data into your WordPress install by going to Tools => Import => WordPress
+3. Select the XML file from your computer
+4. Click on “Upload file and import”.
+5. Under “Import Attachments,” check the “Download and import file attachments” box and click submit.
+
+*Note: You may have to repeat the Import step until you see “All Done” to obtain the full list of Posts and Media.*
