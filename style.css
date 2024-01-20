@@ -49,6 +49,14 @@ th {
 	font-weight: var(--wp--custom--font-weight--medium);
 }
 
+*:not(.wp-block-code) > code {
+	background-color: var(--wp--preset--color--quaternary);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: var(--wp--custom--font-weight--regular);
+	padding: 5px 8px;
+}
+
 /* -- Forms -- */
 
 input,
@@ -58,7 +66,7 @@ textarea {
 	border: 1px solid var(--wp--preset--color--contrast);
 	border-radius: 0;
 	color: var(--wp--preset--color--contrast);
-	font-family: var(--wp--preset--font-family--outfit);
+	font-family: inherit;
 	font-size: var(--wp--preset--font-size--medium);
 	font-weight: var(--wp--custom--font-weight--light);
 	line-height: var(--wp--custom--line-height--body);
@@ -91,14 +99,6 @@ textarea {
 	color: var(--wp--preset--color--contrast);
 	font-size: var(--wp--preset--font-size--small);
 	opacity: 0.5;
-}
-
-*:not(.wp-block-code) > code {
-	background-color: var(--wp--preset--color--quaternary);
-	font-family: var(--wp--preset--font-family--outfit);
-	font-size: var(--wp--preset--font-size--small);
-	font-weight: var(--wp--custom--font-weight--regular);
-	padding: 5px 8px;
 }
 
 /* Blocks
