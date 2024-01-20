@@ -93,6 +93,14 @@ textarea {
 	opacity: 0.5;
 }
 
+*:not(.wp-block-code) > code {
+	background-color: var(--wp--preset--color--quaternary);
+	font-family: var(--wp--preset--font-family--outfit);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: var(--wp--custom--font-weight--regular);
+	padding: 5px 8px;
+}
+
 /* Blocks
 ---------------------------------------- */
 
