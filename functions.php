@@ -64,6 +64,7 @@ function powder_register_block_styles() {
 			'gradient' => __( 'Gradient', 'powder' )
 		),
 		'core/group' => array(
+			'shadow-faint' => __( 'Shadow (Faint)', 'powder' ),
 			'shadow-light' => __( 'Shadow (Light)', 'powder' ),
 			'shadow-solid' => __( 'Shadow (Solid)', 'powder' ),
 		),
