@@ -116,12 +116,12 @@
 			"presets": [
 				{
 					"name": "Faint",
-					"shadow": "0 2px 4px rgb(10, 10, 10, 0.1);",
+					"shadow": "0 2px 4px rgb(10, 10, 10, 0.1)",
 					"slug": "faint"
 				},
 				{
 					"name": "Light",
-					"shadow": "0 0 10px rgb(10, 10, 10, 0.1);",
+					"shadow": "0 0 10px rgb(10, 10, 10, 0.1)",
 					"slug": "light"
 				},
 				{
