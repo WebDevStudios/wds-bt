@@ -137,7 +137,7 @@ textarea {
 	height: 1px;
 	left: 0;
 	position: absolute;
-	transition: width 0.25s ease;
+	transition: width 0.5s ease;
 	width: 0;
 }
 
