@@ -40,9 +40,9 @@
 		<!-- /wp:buttons -->
 		<!-- wp:social-links {"iconColor":"contrast","iconColorValue":"#0a0a0a","size":"has-normal-icon-size","align":"center","className":"has-icon-base-color is-style-outline","layout":{"type":"flex","justifyContent":"center"}} -->
 		<ul class="wp-block-social-links aligncenter has-normal-icon-size has-icon-color has-icon-base-color is-style-outline">
-			<!-- wp:social-link {"url":"https://twitter.com/","service":"twitter"} /-->
-			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
+			<!-- wp:social-link {"url":"https://twitter.com/","service":"x"} /-->
 			<!-- wp:social-link {"url":"https://www.linkedin.com/","service":"linkedin"} /-->
+			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
 			<!-- wp:social-link {"url":"https://www.facebook.com/","service":"facebook"} /-->
 			<!-- wp:social-link {"url":"https://www.tiktok.com/","service":"tiktok"} /-->
 		</ul>
