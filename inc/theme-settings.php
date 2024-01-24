@@ -174,6 +174,8 @@ function powder_unregister_content_patterns() {
 	unregister_block_pattern( 'powder/content-cta-stacked' );
 	unregister_block_pattern( 'powder/content-ebook-covers-dark' );
 	unregister_block_pattern( 'powder/content-ebook-covers' );
+	unregister_block_pattern( 'powder/content-faqs-columns-dark' );
+	unregister_block_pattern( 'powder/content-faqs-columns' );
 	unregister_block_pattern( 'powder/content-feature-boxes-dark' );
 	unregister_block_pattern( 'powder/content-feature-boxes' );
 	unregister_block_pattern( 'powder/content-feature-columns-dark' );
@@ -181,8 +183,8 @@ function powder_unregister_content_patterns() {
 	unregister_block_pattern( 'powder/content-link-dark' );
 	unregister_block_pattern( 'powder/content-link' );
 	unregister_block_pattern( 'powder/content-logos-dark' );
-	unregister_block_pattern( 'powder/content-logos ');
-	unregister_block_pattern( 'powder/content-progress-bars-dark ');
+	unregister_block_pattern( 'powder/content-logos' );
+	unregister_block_pattern( 'powder/content-progress-bars-dark' );
 	unregister_block_pattern( 'powder/content-progress-bars' );
 	unregister_block_pattern( 'powder/content-social-numbers-dark' );
 	unregister_block_pattern( 'powder/content-social-numbers' );
