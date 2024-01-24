@@ -1,7 +1,7 @@
 <?php
 /**
- * Title: Default footer
- * Slug: powder/footer-dark
+ * Title: Footer with text, social icons
+ * Slug: powder/footer-social-dark
  * Categories: footer
  * Block Types: core/template-part/footer
  */
@@ -28,9 +28,15 @@
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
-		<!-- wp:paragraph -->
-		<p><a href="https://twitter.com/">Twitter</a> · <a href="https://www.linkedin.com/">LinkedIn</a> · <a href="https://instagram.com/">Instagram</a></p>
-		<!-- /wp:paragraph -->
+		<!-- wp:social-links {"size":"has-small-icon-size","style":{"layout":{"selfStretch":"fit","flexSize":null}},"className":"is-style-outline","layout":{"type":"flex","justifyContent":"right"}} -->
+		<ul class="wp-block-social-links has-small-icon-size is-style-outline">
+			<!-- wp:social-link {"url":"https://twitter.com/","service":"x"} /-->
+			<!-- wp:social-link {"url":"https://www.linkedin.com/","service":"linkedin"} /-->
+			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
+			<!-- wp:social-link {"url":"https://www.facebook.com/","service":"facebook"} /-->
+			<!-- wp:social-link {"url":"https://www.threads.net/","service":"threads"} /-->
+		</ul>
+		<!-- /wp:social-links -->
 	</div>
 	<!-- /wp:group -->
 </div>
