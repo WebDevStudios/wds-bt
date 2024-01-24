@@ -107,7 +107,7 @@ function powder_register_pattern_categories() {
 		'powder-content',
 		array(
 			'label'       => __( 'Content', 'powder' ),
-			'description' => __( 'A collection of content patterns Powder.', 'powder' ),
+			'description' => __( 'A collection of content patterns for Powder.', 'powder' ),
 		)
 	);
 	register_block_pattern_category(
