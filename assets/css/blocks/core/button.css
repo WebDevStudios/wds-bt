@@ -18,7 +18,7 @@
 	content: "";
 	display: inline-block;
 	height: 1rem;
-	mask-image: url(../../../images/icon-circle-right.svg);
+	mask-image: url(../../../images/icons/icon-circle-right.svg);
 	mask-size: contain;
 	margin-left: 0.5rem;
 	position: relative;
