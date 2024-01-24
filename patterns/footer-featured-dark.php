@@ -75,7 +75,7 @@
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:paragraph -->
-		<p><a href="https://twitter.com/">Twitter</a> · <a href="https://instagram.com/">Instagram</a> · <a href="https://www.linkedin.com/">LinkedIn</a></p>
+		<p><a href="https://twitter.com/">Twitter</a> · <a href="https://www.linkedin.com/">LinkedIn</a> · <a href="https://instagram.com/">Instagram</a></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
