@@ -212,6 +212,8 @@ function powder_unregister_footer_patterns() {
 	unregister_block_pattern( 'powder/footer-mega' );
 	unregister_block_pattern( 'powder/footer-small-business-dark' );
 	unregister_block_pattern( 'powder/footer-small-business' );
+	unregister_block_pattern( 'powder/footer-social-dark' );
+	unregister_block_pattern( 'powder/footer-social' );
 	unregister_block_pattern( 'powder/footer-split-dark' );
 	unregister_block_pattern( 'powder/footer-split' );
 	unregister_block_pattern( 'powder/footer-stacked-dark' );
