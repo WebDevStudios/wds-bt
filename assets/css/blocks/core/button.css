@@ -15,7 +15,7 @@
 
 .wp-block-button .wp-block-button__link::after {
 	background-color: currentcolor;
-	content: "";
+	content: '';
 	display: inline-block;
 	height: 1rem;
 	mask-image: url(../../../images/icons/icon-circle-right.svg);
@@ -64,7 +64,7 @@
 
 .is-style-outline.is-style-outline.wp-block-button .wp-block-button__link:hover,
 .is-style-minimal.is-style-minimal.wp-block-button
-.wp-block-button__link:hover {
+	.wp-block-button__link:hover {
 	background-color: var(--wp--preset--color--primary-50);
 	border: 0.063rem solid var(--wp--preset--color--primary-500);
 }

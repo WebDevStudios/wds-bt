@@ -1,23 +1,23 @@
-const path = require( 'path' );
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
-const CopyPlugin = require( 'copy-webpack-plugin' );
-const SVGSpritemapPlugin = require( 'svg-spritemap-webpack-plugin' );
-const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const ESLintPlugin = require( 'eslint-webpack-plugin' );
-const StylelintPlugin = require( 'stylelint-webpack-plugin' );
-const { glob } = require( 'glob' );
+const path = require('path');
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const CopyPlugin = require('copy-webpack-plugin');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
+const { glob } = require('glob');
 
 // See: https://stackoverflow.com/a/63604863 to convert `glob` output into an object with keys as entry names.
 const customBlockEntryPaths = glob
-	.sync( './assets/js/blocks/custom/*.js', {
+	.sync('./assets/js/blocks/custom/*.js', {
 		dotRelative: true,
-	} )
-	.reduce( ( acc, filePath ) => {
-		const entry = filePath.replace( /^.*[\\\/]/, '' ).replace( '.js', '' );
-		acc[ entry ] = filePath;
+	})
+	.reduce((acc, filePath) => {
+		const entry = filePath.replace(/^.*[\\\/]/, '').replace('.js', '');
+		acc[entry] = filePath;
 		return acc;
-	}, {} );
+	}, {});
 
 /**
  * Webpack config (Development mode)
@@ -74,51 +74,51 @@ module.exports = {
 		 *
 		 * @see https://www.npmjs.com/package/copy-webpack-plugin
 		 */
-		new CopyPlugin( {
+		new CopyPlugin({
 			patterns: [
 				{
 					from: '**/*.{jpg,jpeg,png,gif,svg}',
 					to: 'images/[path][name][ext]',
-					context: path.resolve( process.cwd(), 'assets/images' ),
+					context: path.resolve(process.cwd(), 'assets/images'),
 					noErrorOnMissing: true,
 				},
 				{
 					from: '*.svg',
 					to: 'images/icons/[name][ext]',
-					context: path.resolve( process.cwd(), 'assets/images/icons' ),
+					context: path.resolve(process.cwd(), 'assets/images/icons'),
 					noErrorOnMissing: true,
 				},
 				{
 					from: '**/*.{woff,woff2,eot,ttf,otf}',
 					to: 'fonts/[path][name][ext]',
-					context: path.resolve( process.cwd(), 'assets/fonts' ),
+					context: path.resolve(process.cwd(), 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
 			],
-		} ),
+		}),
 
 		/**
 		 * Generate an SVG sprite.
 		 *
 		 * @see https://github.com/cascornelissen/svg-spritemap-webpack-plugin
 		 */
-		new SVGSpritemapPlugin( 'assets/images/icons/*.svg', {
+		new SVGSpritemapPlugin('assets/images/icons/*.svg', {
 			output: {
 				filename: 'images/icons/sprite.svg',
 			},
 			sprite: {
 				prefix: false,
 			},
-		} ),
+		}),
 
 		/**
 		 * Clean build directory.
 		 *
 		 * @see https://www.npmjs.com/package/clean-webpack-plugin
 		 */
-		new CleanWebpackPlugin( {
-			cleanAfterEveryBuildPatterns: [ '!fonts/**', '!*.woff2' ],
-		} ),
+		new CleanWebpackPlugin({
+			cleanAfterEveryBuildPatterns: ['!fonts/**', '!*.woff2'],
+		}),
 
 		/**
 		 * Report JS warnings and errors to the command line.
