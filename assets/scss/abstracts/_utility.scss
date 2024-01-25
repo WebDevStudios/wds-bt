@@ -1,7 +1,7 @@
 /* Utility
 ---------------------------------------- */
 
-/* -- Box Shadow -- */
+/* Box Shadow */
 
 .is-style-shadow-light {
 	box-shadow: var(--wp--preset--shadow--light);
@@ -11,13 +11,13 @@
 	box-shadow: var(--wp--preset--shadow--solid);
 }
 
-/* -- Filter -- */
+/* Filter */
 
 .is-style-filter-invert {
 	filter: invert(1);
 }
 
-/* -- Position -- */
+/* Position */
 
 .is-style-position-fixed {
 	position: fixed;
@@ -27,13 +27,13 @@
 	position: relative;
 }
 
-/* -- Pull -- */
+/* Pull */
 
 .is-style-pull-100 {
-	margin-top: -6.25rem !important;
+	margin-top: -6.25rem !important; /* stylelint-disable-line declaration-no-important */
 }
 
-/* -- Z-Index -- */
+/* Z-Index */
 
 .is-style-negative-zindex {
 	z-index: -99;
@@ -46,30 +46,30 @@
 /* Effects
 ---------------------------------------- */
 
-/* -- Header -- */
+/* Header */
 
-.js-enabled .site-header {
-	position: sticky;
-	top: 0;
-	transition: top 0.5s;
-	z-index: 100;
+.js-enabled {
+	.site-header {
+		position: sticky;
+		top: 0;
+		transition: top 0.5s;
+		z-index: 100;
+	}
 }
 
 /* Media Queries
 ---------------------------------------- */
 
 @media only screen and (max-width: 600px) {
-
-	/* -- Utility -- */
+	/* Utility */
 
 	.is-style-hidden-mobile {
-		display: none !important;
+		display: none !important; /* stylelint-disable-line declaration-no-important */
 	}
 }
 
 @media only screen and (max-width: 782px) {
-
-	/* -- Columns -- */
+	/* Columns */
 
 	.wp-block-columns.is-style-column-reverse {
 		flex-direction: column-reverse;

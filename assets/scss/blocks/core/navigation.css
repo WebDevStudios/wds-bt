@@ -5,7 +5,7 @@
 }
 
 .wp-block-navigation__responsive-container.is-menu-open
-.wp-block-navigation__responsive-container-content {
+	.wp-block-navigation__responsive-container-content {
 	padding-top: var(--wp--custom--spacing--gap);
 }
 
@@ -18,8 +18,8 @@
 /* -- Navigation Submenu -- */
 
 .has-contrast-background-color
-.wp-block-navigation
-.wp-block-navigation__responsive-container.is-menu-open,
+	.wp-block-navigation
+	.wp-block-navigation__responsive-container.is-menu-open,
 .has-contrast-background-color .wp-block-navigation__submenu-container {
 	background-color: var(--wp--preset--color--primary-500);
 	color: var(--wp--preset--color--white);
@@ -30,29 +30,29 @@
 }
 
 .wp-block-navigation:not(.has-background)
-.wp-block-navigation__responsive-container.is-menu-open,
+	.wp-block-navigation__responsive-container.is-menu-open,
 .wp-block-navigation:not(.has-background)
-.wp-block-navigation__submenu-container {
+	.wp-block-navigation__submenu-container {
 	background-color: var(--wp--preset--color--white);
 	color: var(--wp--preset--color--primary-500);
 }
 
 .wp-block-navigation:not(.has-background)
-.wp-block-navigation__submenu-container {
+	.wp-block-navigation__submenu-container {
 	border-color: var(--wp--preset--color--primary-500);
-	min-width: 180px !important;
+	min-width: 180px !important; /* stylelint-disable-line declaration-no-important */
 	padding: 0.625rem;
 }
 
 .wp-block-navigation
-:where(.wp-block-navigation__submenu-container)
-.wp-block-navigation-item__content {
+	:where(.wp-block-navigation__submenu-container)
+	.wp-block-navigation-item__content {
 	padding: 0.125rem 0.625rem;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open
-.wp-block-navigation__submenu-container {
-	padding-left: 0.625rem !important;
-	padding-right: 0.625rem !important;
-	padding-top: 0.313rem !important;
+	.wp-block-navigation__submenu-container {
+	padding-left: 0.625rem !important; /* stylelint-disable-line declaration-no-important */
+	padding-right: 0.625rem !important; /* stylelint-disable-line declaration-no-important */
+	padding-top: 0.313rem !important; /* stylelint-disable-line declaration-no-important */
 }
