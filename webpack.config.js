@@ -8,27 +8,26 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const { glob } = require('glob');
 
-// See: https://stackoverflow.com/a/63604863 to convert `glob` output into an object with keys as entry names.
-const customBlockEntryPaths = glob
-	.sync('./assets/js/blocks/custom/*.js', {
+// Dynamically generate entry points for each file inside 'assets/scss/blocks/core'
+const coreBlockEntryPaths = glob
+	.sync('./assets/scss/blocks/core/**/*.scss', {
 		dotRelative: true,
 	})
 	.reduce((acc, filePath) => {
-		const entry = filePath.replace(/^.*[\\\/]/, '').replace('.js', '');
-		acc[entry] = filePath;
+		const entryKey = filePath.replace(/^.*[\\\/]/, '').replace('.scss', '');
+		acc[`blocks/${entryKey}`] = `./${filePath}`;
 		return acc;
 	}, {});
 
-/**
- * Webpack config (Development mode)
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-scripts/#provide-your-own-webpack-config
- */
 module.exports = {
 	...defaultConfig,
 	entry: {
-		index: './assets/index.js',
-		...customBlockEntryPaths,
+		index: './assets/scss/index.scss',
+		...coreBlockEntryPaths,
+	},
+	output: {
+		filename: 'js/[name].js',
+		path: path.resolve(__dirname, 'build'),
 	},
 	module: {
 		rules: [
@@ -41,12 +40,10 @@ module.exports = {
 			},
 			{
 				test: /\.(sa|sc|c)ss$/,
-				exclude: '/node_modules',
 				use: [
 					MiniCssExtractPlugin.loader,
 					'css-loader',
 					'postcss-loader',
-					'svg-transform-loader/encode-query',
 					'sass-loader',
 				],
 			},
@@ -67,13 +64,10 @@ module.exports = {
 	plugins: [
 		...defaultConfig.plugins,
 
-		new MiniCssExtractPlugin(),
+		new MiniCssExtractPlugin({
+			filename: '[name].css',
+		}),
 
-		/**
-		 * Copy source files/directories to a build directory.
-		 *
-		 * @see https://www.npmjs.com/package/copy-webpack-plugin
-		 */
 		new CopyPlugin({
 			patterns: [
 				{
@@ -97,11 +91,6 @@ module.exports = {
 			],
 		}),
 
-		/**
-		 * Generate an SVG sprite.
-		 *
-		 * @see https://github.com/cascornelissen/svg-spritemap-webpack-plugin
-		 */
 		new SVGSpritemapPlugin('assets/images/icons/*.svg', {
 			output: {
 				filename: 'images/icons/sprite.svg',
@@ -111,27 +100,11 @@ module.exports = {
 			},
 		}),
 
-		/**
-		 * Clean build directory.
-		 *
-		 * @see https://www.npmjs.com/package/clean-webpack-plugin
-		 */
 		new CleanWebpackPlugin({
 			cleanAfterEveryBuildPatterns: ['!fonts/**', '!*.woff2'],
 		}),
 
-		/**
-		 * Report JS warnings and errors to the command line.
-		 *
-		 * @see https://www.npmjs.com/package/eslint-webpack-plugin
-		 */
 		new ESLintPlugin(),
-
-		/**
-		 * Report css warnings and errors to the command line.
-		 *
-		 * @see https://www.npmjs.com/package/stylelint-webpack-plugin
-		 */
 		new StylelintPlugin(),
 	],
 };
