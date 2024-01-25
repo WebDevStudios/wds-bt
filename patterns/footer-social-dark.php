@@ -28,8 +28,8 @@
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
-		<!-- wp:social-links {"size":"has-small-icon-size","style":{"layout":{"selfStretch":"fit","flexSize":null}},"className":"is-style-outline","layout":{"type":"flex","justifyContent":"right"}} -->
-		<ul class="wp-block-social-links has-small-icon-size is-style-outline">
+		<!-- wp:social-links {"iconColor":"base","iconColorValue":"#ffffff","openInNewTab":true,"size":"has-small-icon-size","className":"is-style-outline"} -->
+		<ul class="wp-block-social-links has-small-icon-size has-icon-color is-style-outline">
 			<!-- wp:social-link {"url":"https://twitter.com/","service":"x"} /-->
 			<!-- wp:social-link {"url":"https://www.linkedin.com/","service":"linkedin"} /-->
 			<!-- wp:social-link {"url":"https://instagram.com/","service":"instagram"} /-->
