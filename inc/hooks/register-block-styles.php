@@ -1,6 +1,7 @@
 <?php
 /**
  * Register custom block styles.
+ * Learn More: https://developer.wordpress.org/reference/functions/register_block_style/
  *
  * @package wdsbt
  */

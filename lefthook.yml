@@ -22,7 +22,7 @@ pre-commit:
             run: npx eslint {staged_files} --fix
         other:
             glob: '*.{yml,json,html}'
-            exclude: 'group_*.json'  # Exclude specific files
+            exclude: 'group_*.json' # Exclude specific files
             run: |
                 staged_files="$LEFTHOOK_STAGED_FILES"
                 for file in $staged_files

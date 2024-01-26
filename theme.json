@@ -42,12 +42,12 @@
 			"defaultPalette": false,
 			"duotone": [
 				{
-					"colors": [ "#0a0a0a", "#ffffff" ],
+					"colors": ["#0a0a0a", "#ffffff"],
 					"name": "Black and White",
 					"slug": "black-and-white"
 				},
 				{
-					"colors": [ "#6d28d9", "#ffffff" ],
+					"colors": ["#6d28d9", "#ffffff"],
 					"name": "Primary and White",
 					"slug": "primary-and-white"
 				}
@@ -306,7 +306,7 @@
 					"slug": "x-large"
 				}
 			],
-			"units": [ "%", "px", "em", "rem", "vh", "vw" ]
+			"units": ["%", "px", "em", "rem", "vh", "vw"]
 		},
 		"typography": {
 			"dropCap": false,
@@ -325,9 +325,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400 500 700",
-							"src": [
-								"file:./assets/fonts/inter/Inter.var.woff2"
-							]
+							"src": ["file:./assets/fonts/inter/Inter.var.woff2"]
 						}
 					]
 				},
@@ -827,12 +825,12 @@
 	"customTemplates": [
 		{
 			"name": "page-blank",
-			"postTypes": [ "page" ],
+			"postTypes": ["page"],
 			"title": "Page: Blank"
 		},
 		{
 			"name": "page-no-title",
-			"postTypes": [ "page" ],
+			"postTypes": ["page"],
 			"title": "Page: No Title"
 		}
 	]
