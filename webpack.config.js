@@ -22,7 +22,9 @@ const coreBlockEntryPaths = glob
 module.exports = {
 	...defaultConfig,
 	entry: {
-		index: './assets/scss/index.scss',
+		style: './assets/scss/index.scss',
+		index: './assets/js/index.js',
+		variations: './assets/js/variations/index.js',
 		...coreBlockEntryPaths,
 	},
 	output: {

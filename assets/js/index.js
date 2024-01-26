@@ -2,5 +2,5 @@
  * Site JS
  */
 
-import './global';
-import './templates';
+import './global/index';
+import './templates/index';

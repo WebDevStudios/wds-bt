@@ -13,7 +13,7 @@ namespace WebDevStudios\wdsbt;
 function register_block_variations() {
 	wp_enqueue_script(
 		'wdsbt-enqueue-block-variations',
-		get_template_directory_uri() . '/assets/js/variations/index.js',
+		get_template_directory_uri() . '/build/js/variations.js',
 		array( 'wp-blocks', 'wp-dom-ready', 'wp-element', 'wp-primitives' ),
 		wp_get_theme()->get( 'Version' ),
 		false
