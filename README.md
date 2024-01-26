@@ -27,7 +27,7 @@ Meet WDS BT, a stylish block theme drawing inspiration from the Powder Theme. Wi
 2. Specify a new remote upstream repository that will be synced with the fork.
 
 ``` CODE
-git remote add upstream https://github.com/bgardner/powder
+git remote add upstream https://github.com/bgardner/wdsbt
 ```
 
 ### Getting Upstream changes

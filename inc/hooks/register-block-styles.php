@@ -13,29 +13,9 @@ namespace WebDevStudios\wdsbt;
 function register_block_styles() {
 
 	$block_styles = array(
-		'core/button'       => array(
+		'core/button' => array(
 			'minimal' => __( 'Minimal', 'wdsbt' ),
 			'text'    => __( 'Text Only', 'wdsbt' ),
-		),
-		'core/columns'      => array(
-			'column-reverse' => __( 'Reverse', 'wdsbt' ),
-		),
-		'core/cover'        => array(
-			'gradient' => __( 'Gradient', 'wdsbt' ),
-		),
-		'core/group'        => array(
-			'shadow-light' => __( 'Shadow (Light)', 'wdsbt' ),
-			'shadow-solid' => __( 'Shadow (Solid)', 'wdsbt' ),
-		),
-		'core/image'        => array(
-			'shadow-light' => __( 'Shadow (Light)', 'wdsbt' ),
-			'shadow-solid' => __( 'Shadow (Solid)', 'wdsbt' ),
-		),
-		'core/list'         => array(
-			'no-style' => __( 'No Style', 'wdsbt' ),
-		),
-		'core/social-links' => array(
-			'outline' => __( 'Outline', 'wdsbt' ),
 		),
 	);
 
