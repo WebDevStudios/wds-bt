@@ -4,7 +4,10 @@
  * Slug: wdsbt/footer
  * Categories: footer
  * Block Types: core/template-part/footer
+ *
+ * @package wdsbt
  */
+
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}},"layout":{"type":"constrained"},"fontSize":"x-small"} -->
 <div class="wp-block-group alignfull has-x-small-font-size" style="margin-top:0;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px">

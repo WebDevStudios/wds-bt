@@ -1,4 +1,38 @@
 {
-    "name": "webdevstudios/wds-bt",
-    "type": "wordpress-theme"
+	"name": "webdevstudios/wds-bt",
+	"description": "A block starter theme from WebDevStudios.",
+	"type": "wordpress-theme",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "WebDevStudios",
+			"email": "contact@webdevstudios.com"
+		}
+	],
+	"config": {
+		"platform": {
+			"php": "8.2"
+		},
+		"allow-plugins": {
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"sort-packages": true
+	},
+	"require": {
+		"composer/installers": "^2.0.0"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
+		"php-stubs/acf-pro-stubs": "6.1.7",
+		"phpcompatibility/phpcompatibility-wp": "^2.1.4",
+		"wp-cli/wp-cli-bundle": "^2.9.0",
+		"wp-coding-standards/wpcs": "^3.0.1"
+	},
+	"scripts": {
+		"format": "phpcbf --report=summary,source",
+		"lint": "phpcs --report=code",
+		"report": "phpcs --report=info",
+		"pot": "wp i18n make-pot . build/languages/wds-bt.pot --exclude=node_modules,vendor,build --allow-root"
+	}
 }

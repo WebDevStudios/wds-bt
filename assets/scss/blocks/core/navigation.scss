@@ -1,0 +1,88 @@
+/* -- Navigation -- */
+
+.wp-block-navigation .wp-block-navigation-item {
+	padding: 0.5rem 0.625rem;
+}
+
+.wp-block-navigation .wp-block-navigation-item__content:hover,
+.wp-block-navigation .wp-block-navigation-item__content:focus,
+.wp-block-navigation .wp-block-navigation-item__content:active {
+	-webkit-text-stroke: 1px var(--wp--preset--color--black);
+}
+
+/* -- Mobile Navigation -- */
+.wp-block-navigation .wp-block-navigation__submenu-icon {
+	height: 1rem;
+	width: 1rem;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open {
+	padding: var(--wp--custom--spacing--gap);
+}
+
+.wp-block-navigation__responsive-container.is-menu-open
+	.wp-block-navigation__responsive-container-content {
+	padding-top: var(--wp--custom--spacing--gap);
+}
+
+.wp-block-navigation__responsive-container-close {
+	border: none;
+	padding: 0;
+}
+
+.wp-block-navigation__responsive-container-open {
+	border: none;
+	display: none;
+	padding: 0;
+	position: relative;
+}
+
+.wp-block-navigation__responsive-container-open::before {
+	content: '';
+	height: 2px;
+	width: 16px;
+	background-color: var(--wp--preset--color--black);
+	position: absolute;
+	left: 15%;
+}
+
+@media only screen and (max-width: 833px) {
+	.wp-block-navigation__container.is-responsive {
+		--navigation-layout-justification-setting: flex-start;
+		--navigation-layout-justify: flex-start;
+		width: 100%;
+	}
+
+	.wp-block-navigation__responsive-container-open {
+		display: flex;
+	}
+}
+
+/* Change the WordPress default css to a 1023px media query */
+@media (min-width: 834px) {
+	.wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: none !important; /* stylelint-disable-line declaration-no-important */
+	}
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+			.is-menu-open
+		) {
+		display: block !important; /* stylelint-disable-line declaration-no-important */
+		width: 100%;
+		position: relative;
+		z-index: auto;
+		background-color: inherit;
+	}
+}
+
+/* Remove the WordPress default for 600px */
+@media (min-width: 600px) {
+	.wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+			.is-menu-open
+		) {
+		display: none;
+	}
+}
