@@ -22,38 +22,10 @@
 		"npm": ">=10"
 	},
 	"dependencies": {
-		"@wordpress/eslint-plugin": "17.6.0",
-		"@wordpress/scripts": "^27.0.0",
-		"clean-webpack-plugin": "^4.0.0",
-		"copy-webpack-plugin": "^12.0.2",
-		"cross-env": "^7.0.3",
-		"css-minimizer-webpack-plugin": "^6.0.0",
-		"eslint-plugin-eslint-comments": "^3.2.0",
-		"eslint-webpack-plugin": "^4.0.1",
-		"imagemin-webpack-plugin": "^2.4.2",
-		"postcss-loader": "^8.0.0",
-		"postcss-move-props-to-bg-image-query": "^4.0.0",
-		"postcss-preset-env": "^9.3.0",
-		"sass-loader": "^14.0.0",
-		"stylelint-config-prettier": "^9.0.5",
-		"stylelint-webpack-plugin": "^4.1.1",
-		"svg-spritemap-webpack-plugin": "^4.5.0",
-		"svg-transform-loader": "^2.0.13"
+		"@wordpress/scripts": "^27.0.0"
 	},
 	"devDependencies": {
-		"@evilmartians/lefthook": "^1.6.1",
-		"@wordpress/prettier-config": "^3.6.0",
-		"autoprefixer": "^10.4.17",
-		"css-loader": "^6.9.1",
-		"glob": "^10.3.10",
-		"mini-css-extract-plugin": "^2.7.7",
-		"npm-run-all": "^4.1.5",
-		"pa11y-ci": "^3.0.1",
-		"pa11y-ci-reporter-html": "^6.0.2",
-		"postcss": "^8.4.33",
-		"prettier": "npm:wp-prettier@^3.2.4",
-		"webpack-cli": "^5.1.4",
-		"webpack-merge": "^5.10.0"
+		"@evilmartians/lefthook": "^1.6.1"
 	},
 	"scripts": {
 		"a11y": "pa11y-ci --reporter=pa11y-ci-reporter-html --sitemap $npm_config_url/sitemap.xml",
