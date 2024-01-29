@@ -8,14 +8,15 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const { glob } = require('glob');
 
-// Dynamically generate entry points for each file inside 'assets/scss/blocks/core'
+// Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
-	.sync('./assets/scss/blocks/core/**/*.scss', {
+	.sync('./assets/scss/blocks/**/*.scss', {
 		dotRelative: true,
 	})
 	.reduce((acc, filePath) => {
-		const entryKey = filePath.replace(/^.*[\\\/]/, '').replace('.scss', '');
-		acc[`blocks/${entryKey}`] = `./${filePath}`;
+		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
+		const blockPath = filePath.split(/[\\/]/).slice(-2, -1)[0];
+		acc[`blocks/${blockPath}/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
