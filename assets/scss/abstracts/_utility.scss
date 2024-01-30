@@ -97,8 +97,7 @@ figure[class*=' blur-'] img {
 
 /* Media Queries
 ---------------------------------------- */
-
-@media only screen and (max-width: 600px) {
+@include responsive-max(600px) {
 
 	/* Utility */
 	.is-style-hidden-mobile {
@@ -106,7 +105,7 @@ figure[class*=' blur-'] img {
 	}
 }
 
-@media only screen and (max-width: 782px) {
+@include responsive-max(782px) {
 
 	/* Columns */
 	.wp-block-columns.is-style-column-reverse {

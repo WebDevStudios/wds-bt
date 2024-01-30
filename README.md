@@ -117,6 +117,36 @@ Command | Action
 
 > **_NOTE:_** To find the correct block name, open the block editor, launch the browser console and type `wp.blocks.getBlockTypes()`. You will see the complete list of block names (from core or third-party).
 
+## Responsive Mixins
+
+This SCSS file `assets/scss/abstracts/_responsive-mixins.scss` provides mixins for creating responsive media queries with both minimum and maximum width conditions. The file promotes modular and maintainable styling by allowing the easy application of responsive styles based on screen width.
+
+## Usage
+
+To use the responsive mixin, include it in your SCSS code and customize it according to your project's breakpoints. Here's an example:
+
+```scss
+// Usage examples
+.my-element {
+  width: 100%;
+
+  // Apply styles when the screen width is 600px or more
+  @include responsive-min(600px) {
+    /* Your responsive styles for min-width: 600px */
+  }
+
+  // Apply styles when the screen width is up to 600px
+  @include responsive-max(600px) {
+    /* Your responsive styles for max-width: 600px */
+  }
+
+  // Apply styles when the screen width is between 600px and 1200px
+  @include responsive-min(600px) and (max-width: 1200px) {
+    /* Your responsive styles for a range of widths */
+  }
+}
+```
+
 ## Syncing with Upstream Repo
 
 ### Configure a Remote Repository for the Fork
