@@ -32,24 +32,18 @@ if ( ! function_exists( 'powder_setup' ) ) {
 add_action( 'after_setup_theme', 'powder_setup' );
 
 /**
- * Enqueue theme style sheet.
+ * Enqueue theme styles and scripts.
  */
-function powder_enqueue_style_sheet() {
+function powder_enqueue_styles_scripts() {
 
+	// Enqueue theme style sheet.
 	wp_enqueue_style( 'powder', get_template_directory_uri() . '/style.css', array(), wp_get_theme( 'powder' )->get( 'Version' ) );
 
-}
-add_action( 'wp_enqueue_scripts', 'powder_enqueue_style_sheet' );
-
-/**
- * Enqueue theme header javascript.
- */
-function powder_enqueue_header_javascript() {
-
+	// Enqueue theme JavaScript.
 	wp_enqueue_script( 'powder', get_template_directory_uri() . '/assets/js/header.js', array('jquery'), '1.0', true );
 
 }
-add_action( 'wp_enqueue_scripts', 'powder_enqueue_header_javascript' );
+add_action( 'wp_enqueue_scripts', 'powder_enqueue_styles_scripts' );
 
 /**
  * Register block styles.
