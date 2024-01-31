@@ -245,12 +245,12 @@
 				"one": 1
 			},
 			"spacing": {
-				"gap": "1.25rem"
+				"gap": "1.5rem"
 			}
 		},
 		"layout": {
-			"contentSize": "1128px",
-			"wideSize": "1280px"
+			"contentSize": "1160px",
+			"wideSize": "1200px"
 		},
 		"shadow": {
 			"defaultPresets": false,

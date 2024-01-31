@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-	<!-- generator="WordPress/6.4.2" created="2024-01-19 19:18" -->
+	
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>WDS Block Theme</title>
 	<link>https://wds-block-theme.local</link>
 	<description>Just Another WDS site.</description>
-	<pubDate>Fri, 19 Jan 2024 19:18:16 +0000</pubDate>
+	<pubDate>Wed, 31 Jan 2024 19:24:48 +0000</pubDate>
 	<language>en-US</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>https://wds-block-theme.local</wp:base_site_url>
@@ -111,7 +111,7 @@
 		<wp:term_name><![CDATA[wds-bt]]></wp:term_name>
 	</wp:term>
 		
-	<generator>https://wordpress.org/?v=6.4.2</generator>
+	
 
 <image>
 	<url>https://wds-block-theme.local/wp-content/uploads/2024/01/wds-dark-transparent-150x150.png</url>
@@ -122,34 +122,6 @@
 </image> 
 
 		<item>
-		<title><![CDATA[Privacy Policy]]></title>
-		<link>https://wds-block-theme.local/?page_id=3</link>
-		<pubDate>Tue, 16 Jan 2024 15:42:29 +0000</pubDate>
-		<dc:creator><![CDATA[wds_admin]]></dc:creator>
-		<guid isPermaLink="false">http://wds-block-theme.local/?page_id=3</guid>
-		<description></description>
-		<content:encoded><![CDATA[<!-- wp:heading --><h2>Who we are</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>Our website address is: http://wds-block-theme.local.</p><!-- /wp:paragraph --><!-- wp:heading --><h2>Comments</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor&#8217;s IP address and browser user agent string to help spam detection.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available here: https://automattic.com/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.</p><!-- /wp:paragraph --><!-- wp:heading --><h2>Media</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.</p><!-- /wp:paragraph --><!-- wp:heading --><h2>Cookies</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>If you leave a comment on our site you may opt-in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment. These cookies will last for one year.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>If you visit our login page, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select &quot;Remember Me&quot;, your login will persist for two weeks. If you log out of your account, the login cookies will be removed.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>If you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.</p><!-- /wp:paragraph --><!-- wp:heading --><h2>Embedded content from other websites</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.</p><!-- /wp:paragraph --><!-- wp:heading --><h2>Who we share your data with</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>If you request a password reset, your IP address will be included in the reset email.</p><!-- /wp:paragraph --><!-- wp:heading --><h2>How long we retain your data</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>If you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognize and approve any follow-up comments automatically instead of holding them in a moderation queue.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.</p><!-- /wp:paragraph --><!-- wp:heading --><h2>What rights you have over your data</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.</p><!-- /wp:paragraph --><!-- wp:heading --><h2>Where your data is sent</h2><!-- /wp:heading --><!-- wp:paragraph --><p><strong class="privacy-policy-tutorial">Suggested text: </strong>Visitor comments may be checked through an automated spam detection service.</p><!-- /wp:paragraph -->]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>3</wp:post_id>
-		<wp:post_date><![CDATA[2024-01-16 15:42:29]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-01-16 15:42:29]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-01-16 15:42:29]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-01-16 15:42:29]]></wp:post_modified_gmt>
-		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
-		<wp:ping_status><![CDATA[open]]></wp:ping_status>
-		<wp:post_name><![CDATA[privacy-policy]]></wp:post_name>
-		<wp:status><![CDATA[draft]]></wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type><![CDATA[page]]></wp:post_type>
-		<wp:post_password><![CDATA[]]></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-														<wp:postmeta>
-		<wp:meta_key><![CDATA[_wp_page_template]]></wp:meta_key>
-		<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-							</item>
-					<item>
 		<title><![CDATA[Home]]></title>
 		<link>https://wds-block-theme.local/</link>
 		<pubDate>Tue, 16 Jan 2024 19:55:07 +0000</pubDate>
@@ -178,9 +150,11 @@
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"backgroundColor":"primary-100","textColor":"black"} -->
 <p class="has-text-align-center has-black-color has-primary-100-background-color has-text-color has-background has-link-color">Primary 100</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
 
-<!-- wp:column -->
+<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"backgroundColor":"secondary-700","textColor":"white"} -->
 <p class="has-text-align-center has-white-color has-secondary-700-background-color has-text-color has-background has-link-color">Secondary 700</p>
 <!-- /wp:paragraph --></div>
@@ -216,9 +190,11 @@
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"backgroundColor":"tertiary-100","textColor":"black"} -->
 <p class="has-text-align-center has-black-color has-tertiary-100-background-color has-text-color has-background has-link-color">Tertiary 100</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
 
-<!-- wp:column -->
+<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"backgroundColor":"success-700","textColor":"white"} -->
 <p class="has-text-align-center has-white-color has-success-700-background-color has-text-color has-background has-link-color">Success 700</p>
 <!-- /wp:paragraph --></div>
@@ -254,9 +230,11 @@
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"backgroundColor":"warning-100","textColor":"black"} -->
 <p class="has-text-align-center has-black-color has-warning-100-background-color has-text-color has-background has-link-color">Warning 100</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
 
-<!-- wp:column -->
+<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"backgroundColor":"error-700","textColor":"white"} -->
 <p class="has-text-align-center has-white-color has-error-700-background-color has-text-color has-background has-link-color">Error 700</p>
 <!-- /wp:paragraph --></div>
@@ -292,9 +270,11 @@
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"backgroundColor":"grey-700","textColor":"white"} -->
 <p class="has-text-align-center has-white-color has-grey-700-background-color has-text-color has-background has-link-color">Grey 700</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
 
-<!-- wp:column -->
+<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"backgroundColor":"grey-600","textColor":"white"} -->
 <p class="has-text-align-center has-white-color has-grey-600-background-color has-text-color has-background has-link-color">Grey 600</p>
 <!-- /wp:paragraph --></div>
@@ -330,9 +310,11 @@
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"backgroundColor":"grey-100","textColor":"black"} -->
 <p class="has-text-align-center has-black-color has-grey-100-background-color has-text-color has-background has-link-color">Grey 100</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
 
-<!-- wp:column -->
+<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"backgroundColor":"grey-50","textColor":"black"} -->
 <p class="has-text-align-center has-black-color has-grey-50-background-color has-text-color has-background has-link-color">Grey 50</p>
 <!-- /wp:paragraph --></div>
@@ -515,8 +497,8 @@
 		<wp:post_id>8</wp:post_id>
 		<wp:post_date><![CDATA[2024-01-16 19:55:07]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2024-01-16 19:55:07]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-01-17 20:41:18]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-01-17 20:41:18]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-01-31 19:23:29]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-01-31 19:23:29]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[home]]></wp:post_name>
@@ -736,12 +718,12 @@
 		<guid isPermaLink="false">https://wds-block-theme.local/wp-content/uploads/2024/01/image-m@3x.png</guid>
 		<description></description>
 		<content:encoded><![CDATA[]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<excerpt:encoded><![CDATA[Test]]></excerpt:encoded>
 		<wp:post_id>51</wp:post_id>
 		<wp:post_date><![CDATA[2024-01-16 20:35:48]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2024-01-16 20:35:48]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-01-16 20:35:48]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-01-16 20:35:48]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-01-24 20:36:26]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-01-24 20:36:26]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[image-m3x]]></wp:post_name>
@@ -1357,7 +1339,7 @@ echo "Hello World!";
 
 <!-- wp:gallery {"linkTo":"none"} -->
 <figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image {"lightbox":{"enabled":true},"id":54,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="https://wds-block-theme.local/wp-content/uploads/2024/01/image-s@3x.png" alt="" class="wp-image-54"/></figure>
+<figure class="wp-block-image size-large"><img src="https://wds-block-theme.local/wp-content/uploads/2024/01/image-s@3x.png" alt="" class="wp-image-54"/><figcaption class="wp-element-caption">Caption</figcaption></figure>
 <!-- /wp:image -->
 
 <!-- wp:image {"lightbox":{"enabled":true},"id":53,"sizeSlug":"large","linkDestination":"none"} -->
@@ -1583,8 +1565,8 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 		<wp:post_id>120</wp:post_id>
 		<wp:post_date><![CDATA[2024-01-18 16:02:18]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2024-01-18 16:02:18]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-01-19 16:22:46]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-01-19 16:22:46]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-01-24 20:37:47]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-01-24 20:37:47]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[core-media-blocks]]></wp:post_name>
@@ -1604,7 +1586,7 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_oembed_time_c20d6921487bde1f33b2d9d7355125db]]></wp:meta_key>
-		<wp:meta_value><![CDATA[1705613968]]></wp:meta_value>
+		<wp:meta_value><![CDATA[1706128647]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
@@ -1642,6 +1624,172 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_wp_attachment_metadata]]></wp:meta_key>
 		<wp:meta_value><![CDATA[a:21:{s:10:"dataformat";s:3:"mp3";s:8:"channels";i:2;s:11:"sample_rate";i:44100;s:7:"bitrate";d:139529.40217391303;s:11:"channelmode";s:12:"joint stereo";s:12:"bitrate_mode";s:3:"vbr";s:5:"codec";s:4:"LAME";s:7:"encoder";s:9:"LAME3.100";s:8:"lossless";b:0;s:15:"encoder_options";s:43:"--preset fast standard -b32 --lowpass 18500";s:17:"compression_ratio";d:0.098872875690131118;s:10:"fileformat";s:3:"mp3";s:8:"filesize";i:733645;s:9:"mime_type";s:10:"audio/mpeg";s:6:"length";i:42;s:16:"length_formatted";s:4:"0:42";s:4:"text";s:20:"LAME in FL Studio 20";s:4:"year";s:4:"2018";s:14:"recording_time";s:4:"2018";s:6:"artist";s:0:"";s:5:"album";s:0:"";}]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
+					<item>
+		<title><![CDATA[Core Widgets Blocks]]></title>
+		<link>https://wds-block-theme.local/core-blocks-test/core-widgets-blocks/</link>
+		<pubDate>Thu, 18 Jan 2024 18:58:15 +0000</pubDate>
+		<dc:creator><![CDATA[wds_admin]]></dc:creator>
+		<guid isPermaLink="false">https://wds-block-theme.local/?page_id=150</guid>
+		<description></description>
+		<content:encoded><![CDATA[<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Archives Block"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Archives Block</h3>
+<!-- /wp:heading -->
+
+<!-- wp:query-title {"type":"archive"} /-->
+
+<!-- wp:archives {"displayAsDropdown":true,"showPostCounts":true} /-->
+
+<!-- wp:archives {"showPostCounts":true} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
+<!-- /wp:separator -->
+
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Calendar Block"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Calendar Block</h3>
+<!-- /wp:heading -->
+
+<!-- wp:calendar /--></div>
+<!-- /wp:group -->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
+<!-- /wp:separator -->
+
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Latest Comments"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Latest Comments</h3>
+<!-- /wp:heading -->
+
+<!-- wp:latest-comments /--></div>
+<!-- /wp:group -->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
+<!-- /wp:separator -->
+
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Latest Posts"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Latest Posts</h3>
+<!-- /wp:heading -->
+
+<!-- wp:latest-posts {"displayAuthor":true,"displayPostDate":true,"displayFeaturedImage":true,"featuredImageAlign":"left"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
+<!-- /wp:separator -->
+
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Page List"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Page List</h3>
+<!-- /wp:heading -->
+
+<!-- wp:page-list /--></div>
+<!-- /wp:group -->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
+<!-- /wp:separator -->
+
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Search Block"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Search Block</h3>
+<!-- /wp:heading -->
+
+<!-- wp:search {"label":"Button Outside","width":50,"widthUnit":"%","buttonText":"Search"} /-->
+
+<!-- wp:search {"label":"Button Inside","width":50,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-inside"} /-->
+
+<!-- wp:search {"label":"No Button","width":50,"widthUnit":"%","buttonText":"Search","buttonPosition":"no-button"} /-->
+
+<!-- wp:search {"label":"Icon Button Only","width":50,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-only","buttonUseIcon":true,"isSearchFieldHidden":true} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
+<!-- /wp:separator -->
+
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Social Icons"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Social Icons</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Horizontal Orientation</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:social-links {"openInNewTab":true,"layout":{"type":"flex","justifyContent":"left","orientation":"horizontal"}} -->
+<ul class="wp-block-social-links"><!-- wp:social-link {"service":"facebook"} /-->
+
+<!-- wp:social-link {"service":"wordpress"} /-->
+
+<!-- wp:social-link {"service":"instagram"} /-->
+
+<!-- wp:social-link {"service":"x"} /-->
+
+<!-- wp:social-link {"service":"feed"} /-->
+
+<!-- wp:social-link {"service":"github"} /-->
+
+<!-- wp:social-link {"service":"linkedin"} /--></ul>
+<!-- /wp:social-links -->
+
+<!-- wp:paragraph -->
+<p>Vertical Orientation</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:social-links {"openInNewTab":true,"layout":{"type":"flex","justifyContent":"left","orientation":"vertical"}} -->
+<ul class="wp-block-social-links"><!-- wp:social-link {"service":"facebook"} /-->
+
+<!-- wp:social-link {"service":"wordpress"} /-->
+
+<!-- wp:social-link {"service":"instagram"} /-->
+
+<!-- wp:social-link {"service":"x"} /-->
+
+<!-- wp:social-link {"service":"feed"} /-->
+
+<!-- wp:social-link {"service":"github"} /-->
+
+<!-- wp:social-link {"service":"linkedin"} /--></ul>
+<!-- /wp:social-links --></div>
+<!-- /wp:group -->
+
+<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
+<!-- /wp:separator -->
+
+<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Tag Cloud"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Tag Cloud</h3>
+<!-- /wp:heading -->
+
+<!-- wp:tag-cloud /--></div>
+<!-- /wp:group -->]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>150</wp:post_id>
+		<wp:post_date><![CDATA[2024-01-18 18:58:15]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-01-18 18:58:15]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-01-19 16:22:46]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-01-19 16:22:46]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[core-widgets-blocks]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>11</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+														<wp:postmeta>
+		<wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -1750,15 +1898,17 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 
 <!-- wp:navigation-link {"label":"Layout Elements","type":"post","id":91,"url":"https://wds-block-theme.local/layout-elements/","kind":"post-type"} /-->
 
-<!-- wp:navigation-link {"label":"Spacing presets","type":"post","id":89,"url":"https://wds-block-theme.local/spacing-presets/","kind":"post-type"} /-->
+<!-- wp:navigation-link {"label":"Spacing","type":"post","id":89,"url":"https://wds-block-theme.local/spacing-presets/","kind":"post-type"} /-->
 
-<!-- wp:navigation-link {"label":"Font size scale","type":"post","id":87,"url":"https://wds-block-theme.local/font-size-scale/","kind":"post-type"} /-->]]></content:encoded>
+<!-- wp:navigation-link {"label":"Font Size","type":"post","id":87,"url":"https://wds-block-theme.local/font-size-scale/","kind":"post-type"} /-->
+
+<!-- wp:search {"showLabel":false,"placeholder":"Search","width":100,"widthUnit":"%","buttonPosition":"button-inside","buttonUseIcon":true,"style":{"layout":{"selfStretch":"fit","flexSize":null}}} /-->]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>7</wp:post_id>
 		<wp:post_date><![CDATA[2024-01-16 17:19:41]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2024-01-16 17:19:41]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-01-19 16:45:01]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-01-19 16:45:01]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-01-19 20:47:38]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-01-19 20:47:38]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[navigation]]></wp:post_name>
@@ -1776,13 +1926,13 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 		<dc:creator><![CDATA[wds_admin]]></dc:creator>
 		<guid isPermaLink="false">https://wds-block-theme.local/wp-global-styles-wds-bt/</guid>
 		<description></description>
-		<content:encoded><![CDATA[{"styles":{"color":{"background":"var(--wp--preset--color--grey-800)","text":"var(--wp--preset--color--grey-300)"},"elements":{"link":{"color":{"text":"var(--wp--preset--color--primary-300)"},":hover":{"color":{"text":"var(--wp--preset--color--primary-200)"}},":focus":{"color":{"text":"var(--wp--preset--color--primary-200)"}},":visited":{"color":{"text":"var(--wp--preset--color--primary-100)"}}}}},"settings":{"shadow":{"defaultPresets":false,"presets":{"theme":[{"name":"Elevation 100","shadow":"0 1px 1px 0 rgba(0, 0, 0, 1), 0 0 1px 0 rgba(0, 0, 0, 0.9)","slug":"elevation-100"},{"name":"Elevation 200","shadow":"0 2px 4px 0 rgba(0, 0, 0, 1), 0 0 1px 0 rgba(0, 0, 0, 0.9)","slug":"elevation-200"},{"name":"Elevation 300","shadow":"0 4px 8px 0 rgba(0, 0, 0, 1), 0 0 1px 0 rgba(0, 0, 0, 0.9)","slug":"elevation-300"},{"name":"Elevation 400","shadow":"0 8px 16px 0 rgba(0, 0, 0, 1), 0 0 1px 0 rgba(0, 0, 0, 0.9)","slug":"elevation-400"},{"name":"Elevation 500","shadow":"0 16px 24px 0 rgba(0, 0, 0, 0.99), 0 0 1px 0 rgba(0, 0, 0, 0.9)","slug":"elevation-500"},{"name":"Elevation 600","shadow":"0 24px 40px 0 rgba(0, 0, 0, 0.98), 0 0 1px 0 rgba(0, 0, 0, 0.9)","slug":"elevation-600"}]}}},"isGlobalStylesUserThemeJSON":true,"version":2}]]></content:encoded>
+		<content:encoded><![CDATA[{"styles":[],"settings":[],"isGlobalStylesUserThemeJSON":true,"version":2}]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>9</wp:post_id>
 		<wp:post_date><![CDATA[2024-01-16 19:54:59]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2024-01-16 19:54:59]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-01-19 19:16:07]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-01-19 19:16:07]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-01-19 19:30:02]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-01-19 19:30:02]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[wp-global-styles-wds-bt]]></wp:post_name>
@@ -2135,172 +2285,6 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 		<wp:is_sticky>0</wp:is_sticky>
 										<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
 						</item>
-					<item>
-		<title><![CDATA[Core Widgets Blocks]]></title>
-		<link>https://wds-block-theme.local/core-blocks-test/core-widgets-blocks/</link>
-		<pubDate>Thu, 18 Jan 2024 18:58:15 +0000</pubDate>
-		<dc:creator><![CDATA[wds_admin]]></dc:creator>
-		<guid isPermaLink="false">https://wds-block-theme.local/?page_id=150</guid>
-		<description></description>
-		<content:encoded><![CDATA[<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Archives Block"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Archives Block</h3>
-<!-- /wp:heading -->
-
-<!-- wp:query-title {"type":"archive"} /-->
-
-<!-- wp:archives {"displayAsDropdown":true,"showPostCounts":true} /-->
-
-<!-- wp:archives {"showPostCounts":true} /--></div>
-<!-- /wp:group -->
-
-<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
-<!-- /wp:separator -->
-
-<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Calendar Block"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Calendar Block</h3>
-<!-- /wp:heading -->
-
-<!-- wp:calendar /--></div>
-<!-- /wp:group -->
-
-<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
-<!-- /wp:separator -->
-
-<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Latest Comments"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Latest Comments</h3>
-<!-- /wp:heading -->
-
-<!-- wp:latest-comments /--></div>
-<!-- /wp:group -->
-
-<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
-<!-- /wp:separator -->
-
-<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Latest Posts"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Latest Posts</h3>
-<!-- /wp:heading -->
-
-<!-- wp:latest-posts {"displayAuthor":true,"displayPostDate":true,"displayFeaturedImage":true,"featuredImageAlign":"left"} /--></div>
-<!-- /wp:group -->
-
-<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
-<!-- /wp:separator -->
-
-<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Page List"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Page List</h3>
-<!-- /wp:heading -->
-
-<!-- wp:page-list /--></div>
-<!-- /wp:group -->
-
-<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
-<!-- /wp:separator -->
-
-<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Search Block"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Search Block</h3>
-<!-- /wp:heading -->
-
-<!-- wp:search {"label":"Button Outside","width":50,"widthUnit":"%","buttonText":"Search"} /-->
-
-<!-- wp:search {"label":"Button Inside","width":50,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-inside"} /-->
-
-<!-- wp:search {"label":"No Button","width":50,"widthUnit":"%","buttonText":"Search","buttonPosition":"no-button"} /-->
-
-<!-- wp:search {"label":"Icon Button Only","width":50,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-only","buttonUseIcon":true,"isSearchFieldHidden":true} /--></div>
-<!-- /wp:group -->
-
-<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
-<!-- /wp:separator -->
-
-<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Social Icons"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Social Icons</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Horizontal Orientation</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:social-links {"openInNewTab":true,"layout":{"type":"flex","justifyContent":"left","orientation":"horizontal"}} -->
-<ul class="wp-block-social-links"><!-- wp:social-link {"service":"facebook"} /-->
-
-<!-- wp:social-link {"service":"wordpress"} /-->
-
-<!-- wp:social-link {"service":"instagram"} /-->
-
-<!-- wp:social-link {"service":"x"} /-->
-
-<!-- wp:social-link {"service":"feed"} /-->
-
-<!-- wp:social-link {"service":"github"} /-->
-
-<!-- wp:social-link {"service":"linkedin"} /--></ul>
-<!-- /wp:social-links -->
-
-<!-- wp:paragraph -->
-<p>Vertical Orientation</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:social-links {"openInNewTab":true,"layout":{"type":"flex","justifyContent":"left","orientation":"vertical"}} -->
-<ul class="wp-block-social-links"><!-- wp:social-link {"service":"facebook"} /-->
-
-<!-- wp:social-link {"service":"wordpress"} /-->
-
-<!-- wp:social-link {"service":"instagram"} /-->
-
-<!-- wp:social-link {"service":"x"} /-->
-
-<!-- wp:social-link {"service":"feed"} /-->
-
-<!-- wp:social-link {"service":"github"} /-->
-
-<!-- wp:social-link {"service":"linkedin"} /--></ul>
-<!-- /wp:social-links --></div>
-<!-- /wp:group -->
-
-<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"}}},"className":"is-style-dots"} -->
-<hr class="wp-block-separator has-alpha-channel-opacity is-style-dots" style="margin-top:var(--wp--preset--spacing--medium);margin-bottom:var(--wp--preset--spacing--medium)"/>
-<!-- /wp:separator -->
-
-<!-- wp:group {"layout":{"type":"constrained"},"metadata":{"name":"Tag Cloud"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Tag Cloud</h3>
-<!-- /wp:heading -->
-
-<!-- wp:tag-cloud /--></div>
-<!-- /wp:group -->]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>150</wp:post_id>
-		<wp:post_date><![CDATA[2024-01-18 18:58:15]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-01-18 18:58:15]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-01-19 16:22:46]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-01-19 16:22:46]]></wp:post_modified_gmt>
-		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
-		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
-		<wp:post_name><![CDATA[core-widgets-blocks]]></wp:post_name>
-		<wp:status><![CDATA[publish]]></wp:status>
-		<wp:post_parent>11</wp:post_parent>
-		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type><![CDATA[page]]></wp:post_type>
-		<wp:post_password><![CDATA[]]></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-														<wp:postmeta>
-		<wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
-		<wp:meta_value><![CDATA[1]]></wp:meta_value>
-		</wp:postmeta>
-							</item>
 					<item>
 		<title><![CDATA[Core Design Blocks]]></title>
 		<link>https://wds-block-theme.local/core-blocks-test/core-design-blocks/</link>
@@ -2746,45 +2730,41 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 		</wp:postmeta>
 							</item>
 					<item>
-		<title><![CDATA[Header]]></title>
-		<link>https://wds-block-theme.local/header/</link>
-		<pubDate>Fri, 19 Jan 2024 17:55:47 +0000</pubDate>
+		<title><![CDATA[Gallery]]></title>
+		<link>https://wds-block-theme.local/gallery/</link>
+		<pubDate>Wed, 24 Jan 2024 20:36:39 +0000</pubDate>
 		<dc:creator><![CDATA[wds_admin]]></dc:creator>
-		<guid isPermaLink="false">https://wds-block-theme.local/header/</guid>
+		<guid isPermaLink="false">https://wds-block-theme.local/?page_id=240</guid>
 		<description></description>
-		<content:encoded><![CDATA[<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0px"},"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}},"position":{"type":""}},"backgroundColor":"white","layout":{"inherit":true,"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-white-background-color has-background" style="margin-top:0px;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px"><!-- wp:group {"align":"wide","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
-<div class="wp-block-group alignwide"><!-- wp:site-logo {"width":150,"style":{"layout":{"selfStretch":"fixed","flexSize":"25%"}}} /-->
+		<content:encoded><![CDATA[<!-- wp:gallery {"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image {"lightbox":{"enabled":true},"id":51,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://wds-block-theme.local/wp-content/uploads/2024/01/image-m@3x.png" alt="" class="wp-image-51"/><figcaption class="wp-element-caption">Test</figcaption></figure>
+<!-- /wp:image -->
 
-<!-- wp:group {"style":{"layout":{"selfStretch":"fixed","flexSize":"75%"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"},"metadata":{"name":"Primary Menu"}} -->
-<div class="wp-block-group"><!-- wp:navigation {"ref":7,"layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"right","flexWrap":"wrap"}} /-->
+<!-- wp:image {"lightbox":{"enabled":true},"id":50,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://wds-block-theme.local/wp-content/uploads/2024/01/image-m@2x.png" alt="" class="wp-image-50"/></figure>
+<!-- /wp:image -->
 
-<!-- wp:search {"showLabel":false,"width":100,"widthUnit":"%","buttonPosition":"button-only","buttonUseIcon":true,"isSearchFieldHidden":true,"style":{"layout":{"selfStretch":"fit","flexSize":null}}} /--></div>
-<!-- /wp:group --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->]]></content:encoded>
+<!-- wp:image {"lightbox":{"enabled":true},"id":49,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://wds-block-theme.local/wp-content/uploads/2024/01/image-m.png" alt="" class="wp-image-49"/></figure>
+<!-- /wp:image --></figure>
+<!-- /wp:gallery -->]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>224</wp:post_id>
-		<wp:post_date><![CDATA[2024-01-19 17:55:47]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-01-19 17:55:47]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-01-19 17:56:09]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-01-19 17:56:09]]></wp:post_modified_gmt>
+		<wp:post_id>240</wp:post_id>
+		<wp:post_date><![CDATA[2024-01-24 20:36:39]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-01-24 20:36:39]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-01-24 20:36:39]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-01-24 20:36:39]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
-		<wp:post_name><![CDATA[header]]></wp:post_name>
+		<wp:post_name><![CDATA[gallery]]></wp:post_name>
 		<wp:status><![CDATA[publish]]></wp:status>
 		<wp:post_parent>0</wp:post_parent>
 		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type><![CDATA[wp_template_part]]></wp:post_type>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
 		<wp:post_password><![CDATA[]]></wp:post_password>
 		<wp:is_sticky>0</wp:is_sticky>
-										<category domain="wp_template_part_area" nicename="header"><![CDATA[header]]></category>
-		<category domain="wp_theme" nicename="wds-bt"><![CDATA[wds-bt]]></category>
-						<wp:postmeta>
-		<wp:meta_key><![CDATA[origin]]></wp:meta_key>
-		<wp:meta_value><![CDATA[theme]]></wp:meta_value>
-		</wp:postmeta>
-							</item>
+														</item>
 				</channel>
 </rss>
 	
