@@ -5,6 +5,8 @@
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package wdsbt
+ * @author  WebDevStudios
+ * @license GNU General Public License v3
  */
 
 namespace WebDevStudios\wdsbt;

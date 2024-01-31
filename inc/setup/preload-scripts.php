@@ -25,8 +25,8 @@ function preload_scripts() {
 	}
 
 	?>
-	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/index.css?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="style">
-	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/index.js?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="script">
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/style.css?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="style">
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/js/index.js?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="script">
 	<?php
 }
 add_action( 'wp_head', __NAMESPACE__ . '\preload_scripts', 1 );

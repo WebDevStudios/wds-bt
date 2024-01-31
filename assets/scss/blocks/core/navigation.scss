@@ -1,12 +1,12 @@
 /* -- Navigation -- */
+.wp-block-navigation__responsive-container {
+	&.is-menu-open {
+		padding: var(--wp--custom--spacing--gap);
 
-.wp-block-navigation__responsive-container.is-menu-open {
-	padding: var(--wp--custom--spacing--gap);
-}
-
-.wp-block-navigation__responsive-container.is-menu-open
-	.wp-block-navigation__responsive-container-content {
-	padding-top: var(--wp--custom--spacing--gap);
+		.wp-block-navigation__responsive-container-content {
+			padding-top: var(--wp--custom--spacing--gap);
+		}
+	}
 }
 
 .wp-block-navigation__responsive-container-close,
