@@ -103,9 +103,7 @@ module.exports = {
 			},
 		}),
 
-		new CleanWebpackPlugin({
-			cleanAfterEveryBuildPatterns: ['!fonts/**', '!*.woff2'],
-		}),
+		new CleanWebpackPlugin(),
 
 		new ESLintPlugin(),
 		new StylelintPlugin(),
