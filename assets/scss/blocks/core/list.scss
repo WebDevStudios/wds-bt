@@ -1,5 +1,15 @@
 /* -- List -- */
 
+.wp-admin {
+	ul {
+		li {
+			&::before {
+				content: unset;
+			}
+		}
+	}
+}
+
 ul {
 	list-style-type: none;
 
@@ -29,10 +39,12 @@ ul {
 	}
 }
 
-/* -- List -- */
+/* -- Ordered List -- */
 
 ol {
-	list-style-position: inside;
+	padding-left: var(
+		--wp--custom--spacing--gap
+	) !important; /* stylelint-disable-line declaration-no-important */
 
 	li {
 		padding-bottom: var(--wp--preset--spacing--x-small);
