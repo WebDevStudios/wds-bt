@@ -1,22 +1,25 @@
 /* -- Header -- */
 
 /* -- Header Search -- */
-.site-header
+.site-header {
 	.wp-block-search.wp-block-search__button-inside
-	.wp-block-search__inside-wrapper {
-	max-width: 13.375rem;
-}
-
-.site-header .wp-block-search.wp-block-search__button-only {
-	display: none;
+		.wp-block-search__inside-wrapper {
+		max-width: 13.375rem;
+	}
+	.wp-block-search.wp-block-search__button-only {
+		display: none;
+	}
 }
 
 @include responsive-max(833px) {
-	.site-header .wp-block-search.wp-block-search__button-inside {
-		width: 100%;
-	}
-
-	.site-header .wp-block-search.wp-block-search__button-only {
-		display: block;
+	.site-header {
+		.wp-block-search {
+			&.wp-block-search__button-inside {
+				width: 100%;
+			}
+			&.wp-block-search__button-only {
+				display: block;
+			}
+		}
 	}
 }
