@@ -325,7 +325,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400 500 700",
-							"src": ["file:./build/fonts/inter/Inter.var.woff2"]
+							"src": ["file:./build/fonts/inter/Inter.woff2"]
 						}
 					]
 				},
