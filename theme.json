@@ -323,8 +323,8 @@
 		"typography": {
 			"dropCap": false,
 			"fluid": {
-				"maxViewportWidth": "1280px",
-				"minViewportWidth": "640px"
+				"maxViewportWidth": "1200px",
+				"minViewportWidth": "600px"
 			},
 			"fontFamilies": [
 				{
@@ -361,6 +361,20 @@
 							"src": [
 								"file:./build/fonts/oxygen/oxygen-v15-latin-700.woff2"
 							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Roboto Mono",
+					"name": "Roboto Mono",
+					"slug": "roboto-mono",
+					"fontFace": [
+						{
+							"fontFamily": "Roboto Mono",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400 500 700",
+							"src": ["file:./build/fonts/roboto-mono/roboto-mono.woff2"]
 						}
 					]
 				}
@@ -455,20 +469,20 @@
 			},
 			"core/code": {
 				"color": {
-					"background": "var(--wp--preset--color--primary-500)",
-					"text": "var(--wp--preset--color--white)"
+					"background": "var(--wp--preset--color--white)",
+					"text": "var(--wp--preset--color--black)"
 				},
-				"css": "& code {overflow-wrap: normal; overflow-x: scroll; tab-size: 4; white-space: pre !important;}",
 				"spacing": {
 					"padding": {
 						"top": "var(--wp--custom--spacing--gap)",
-						"right": "var(--wp--custom--spacing--gap)",
+						"right": "var(--wp--preset--spacing--x-large)",
 						"bottom": "var(--wp--custom--spacing--gap)",
-						"left": "var(--wp--custom--spacing--gap)"
+						"left": "var(--wp--preset--spacing--x-large)"
 					}
 				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--x-small)"
+					"fontSize": "var(--wp--preset--font-size--x-small)",
+					"fontFamily": "var(--wp--preset--font-family--roboto-mono)"
 				}
 			},
 			"core/comment-author-name": {
