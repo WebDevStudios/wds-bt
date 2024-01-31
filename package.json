@@ -1,0 +1,78 @@
+{
+	"name": "wds-bt",
+	"version": "1.0.0",
+	"private": true,
+	"description": "A starter block theme from WebDevStudios.",
+	"author": "WebDevStudios <contact@webdevstudios.com>",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"WordPress",
+		"Theme"
+	],
+	"homepage": "https://github.com/WebDevStudios/wds-bt/#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WebDevStudios/wds-bt.git"
+	},
+	"bugs": {
+		"url": "https://github.com/WebDevStudios/wds-bt/issues"
+	},
+	"engines": {
+		"node": ">=20",
+		"npm": ">=10"
+	},
+	"dependencies": {
+		"@wordpress/eslint-plugin": "^17.7.0",
+		"@wordpress/scripts": "^27.1.0",
+		"clean-webpack-plugin": "^4.0.0",
+		"copy-webpack-plugin": "^12.0.2",
+		"cross-env": "^7.0.3",
+		"css-minimizer-webpack-plugin": "^6.0.0",
+		"eslint-plugin-eslint-comments": "^3.2.0",
+		"eslint-webpack-plugin": "^4.0.1",
+		"imagemin-svgo": "10.0.1",
+		"imagemin-webpack-plugin": "2.4.2",
+		"postcss-loader": "^8.0.0",
+		"postcss-move-props-to-bg-image-query": "^4.0.0",
+		"postcss-preset-env": "^9.3.0",
+		"sass-loader": "^14.0.0",
+		"stylelint-config-prettier": "^9.0.5",
+		"stylelint-webpack-plugin": "^4.1.1",
+		"svg-spritemap-webpack-plugin": "^4.5.0",
+		"svg-transform-loader": "^2.0.13"
+	},
+	"devDependencies": {
+		"@evilmartians/lefthook": "^1.6.1",
+		"@wordpress/prettier-config": "^3.7.0",
+		"autoprefixer": "^10.4.17",
+		"css-loader": "^6.9.1",
+		"glob": "^10.3.10",
+		"image-minimizer-webpack-plugin": "^4.0.0",
+		"imagemin": "^8.0.1",
+		"mini-css-extract-plugin": "^2.7.7",
+		"npm-run-all": "^4.1.5",
+		"pa11y-ci": "^2.4.2",
+		"pa11y-ci-reporter-html": "^3.0.3",
+		"postcss": "^8.4.33",
+		"webpack-cli": "^5.1.4",
+		"webpack-merge": "^5.10.0"
+	},
+	"scripts": {
+		"a11y": "pa11y-ci --reporter=pa11y-ci-reporter-html --sitemap $npm_config_url/sitemap.xml",
+		"build": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js",
+		"build:pot": "composer run-script pot",
+		"build:all": "composer install --quiet && composer run-script pot && npm run build",
+		"format": "run-p format:*",
+		"format:css": "npx prettier '**/*.scss' --write && npm run lint:css -- --fix",
+		"format:js": "wp-scripts format && npm run lint:js -- --fix",
+		"format:php": "composer run-script format",
+		"lint": "run-p lint:*",
+		"lint:css": "wp-scripts lint-style '**/*.scss'",
+		"lint:js": "wp-scripts lint-js",
+		"lint:php": "composer run-script lint",
+		"report": "composer run-script report",
+		"packages-update": "wp-scripts packages-update",
+		"postinstall": "npx lefthook install",
+		"start": "cross-env NODE_ENV=development wp-scripts start"
+	}
+}
