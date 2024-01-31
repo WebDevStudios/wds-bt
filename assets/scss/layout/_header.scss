@@ -11,7 +11,7 @@
 	display: none;
 }
 
-@media only screen and (max-width: 833px) {
+@include responsive-max(833px) {
 	.site-header .wp-block-search.wp-block-search__button-inside {
 		width: 100%;
 	}
