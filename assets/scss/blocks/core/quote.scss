@@ -1,0 +1,31 @@
+/* -- blockquote -- */
+
+.wp-block-quote {
+	p {
+		font-style: inherit;
+		margin-bottom: 0;
+	}
+
+	cite {
+		display: inline-block;
+		margin-top: 0.75rem;
+
+		&::before {
+			content: '—';
+			padding-right: 0.25rem;
+		}
+	}
+
+	&.is-style-large {
+		p {
+			font-size: var(
+				--wp--preset--font-size--medium
+			) !important; /* stylelint-disable-line declaration-no-important */
+			font-style: inherit !important; /* stylelint-disable-line declaration-no-important */
+		}
+
+		cite {
+			font-size: var(--wp--preset--font-size--tiny);
+		}
+	}
+}
