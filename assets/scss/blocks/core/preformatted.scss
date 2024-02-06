@@ -1,0 +1,9 @@
+/* -- preformatted -- */
+
+.wp-block-preformatted {
+	letter-spacing: -0.023rem;
+	overflow-wrap: normal;
+	overflow-x: scroll;
+	tab-size: 4;
+	white-space: pre !important; /* stylelint-disable-line declaration-no-important */
+}
