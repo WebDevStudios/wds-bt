@@ -1,0 +1,37 @@
+/* -- pullquote -- */
+
+.wp-block-pullquote {
+	&.alignwide {
+		max-width: calc(
+			var(--wp--style--global--content-size) - 30%
+		) !important; /* stylelint-disable-line declaration-no-important */
+	}
+
+	&.has-text-align-left,
+	&.has-text-align-right {
+		blockquote {
+			max-width: 20.938rem;
+			text-align: center;
+		}
+	}
+
+	p {
+		font-size: var(--wp--preset--font-size--medium);
+		font-style: inherit;
+		margin: 0;
+	}
+
+	cite {
+		display: inline-block;
+		margin-top: 0.75rem;
+
+		&::before {
+			content: '—';
+			padding-right: 0.25rem;
+		}
+	}
+
+	blockquote {
+		margin: 0;
+	}
+}
