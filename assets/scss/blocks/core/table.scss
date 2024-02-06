@@ -1,0 +1,70 @@
+@import '../../abstracts/responsive-mixins';
+
+/* -- table -- */
+
+.wp-block-table,
+table {
+	border-collapse: separate !important; /* stylelint-disable-line declaration-no-important */
+	max-width: calc(
+		var(--wp--style--global--content-size) - 30%
+	) !important; /* stylelint-disable-line declaration-no-important */
+
+	td,
+	th {
+		border-color: var(--wp--preset--color--grey-200);
+		padding: 0.75rem;
+	}
+
+	thead {
+		border-bottom: none;
+	}
+
+	tbody {
+		tr:nth-child(odd) {
+			background-color: var(--wp--preset--color--primary-50);
+		}
+	}
+
+	tfoot {
+		font-weight: 700;
+	}
+
+	@include responsive-max(600px) {
+		thead {
+			border: none;
+			clip: rect(0 0 0 0);
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
+		}
+
+		tbody {
+			tr:nth-child(odd) {
+				background-color: var(--wp--preset--color--white);
+			}
+		}
+
+		tr {
+			display: block;
+			margin-bottom: 1rem;
+
+			td {
+				display: block;
+
+				&::before {
+					content: attr(data-label);
+					display: inline-block;
+					font-weight: 700;
+					width: 50%;
+				}
+			}
+		}
+
+		tfoot {
+			display: none;
+		}
+	}
+}
