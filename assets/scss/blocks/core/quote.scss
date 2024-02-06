@@ -1,6 +1,10 @@
 /* -- blockquote -- */
 
 .wp-block-quote {
+	max-width: calc(
+		var(--wp--style--global--content-size) - 30%
+	) !important; /* stylelint-disable-line declaration-no-important */
+
 	p {
 		font-style: inherit;
 		margin-bottom: 0;
