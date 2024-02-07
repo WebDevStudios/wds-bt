@@ -13,6 +13,7 @@
 	cite {
 		display: inline-block;
 		margin-top: 0.75rem;
+		text-align: left;
 
 		&::before {
 			content: '—';
@@ -30,6 +31,7 @@
 
 		cite {
 			font-size: var(--wp--preset--font-size--tiny);
+			text-align: left;
 		}
 	}
 }
