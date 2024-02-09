@@ -206,6 +206,7 @@ function powder_unregister_example_patterns() {
  */
 function powder_unregister_footer_patterns() {
 
+	unregister_block_pattern( 'powder/footer-dark' );
 	unregister_block_pattern( 'powder/footer-featured-dark' );
 	unregister_block_pattern( 'powder/footer-featured' );
 	unregister_block_pattern( 'powder/footer-mega-dark' );
@@ -226,6 +227,7 @@ function powder_unregister_footer_patterns() {
  */
 function powder_unregister_header_patterns() {
 
+	unregister_block_pattern( 'powder/header-dark' );
 	unregister_block_pattern( 'powder/header-logo-button-dark' );
 	unregister_block_pattern( 'powder/header-logo-button' );
 	unregister_block_pattern( 'powder/header-logo-center-dark' );
@@ -278,6 +280,8 @@ function powder_unregister_pricing_patterns() {
 	unregister_block_pattern( 'powder/pricing-3-columns-dark' );
 	unregister_block_pattern( 'powder/pricing-4-columns' );
 	unregister_block_pattern( 'powder/pricing-4-columns-dark' );
+	unregister_block_pattern( 'powder/pricing-single' );
+	unregister_block_pattern( 'powder/pricing-single-dark' );
 
 }
 
