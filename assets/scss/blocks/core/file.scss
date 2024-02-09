@@ -1,0 +1,35 @@
+/* -- file -- */
+
+.wp-block-file {
+	max-width: calc(
+		var(--wp--style--global--content-size) - 30%
+	) !important; /* stylelint-disable-line declaration-no-important */
+
+	a:not(.wp-element-button) {
+		border-bottom: 2px solid var(--wp--preset--color--grey-400);
+		padding-bottom: 2px;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			border-bottom: 2px solid var(--wp--preset--color--primary-500);
+			color: var(--wp--preset--color--primary-500);
+		}
+	}
+
+	.wp-block-file__button {
+		&::after {
+			background-color: currentcolor;
+			content: '';
+			display: inline-block;
+			height: 1rem;
+			margin-left: 0.5rem;
+			margin-top: -0.125rem;
+			mask-image: url(../../../../build/images/icons/icon-download.svg);
+			mask-size: contain;
+			position: relative;
+			vertical-align: middle;
+			width: 1rem;
+		}
+	}
+}
