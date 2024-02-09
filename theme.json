@@ -779,7 +779,8 @@
 					}
 				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--x-small)"
+					"fontFamily": "var(--wp--preset--font-family--oxygen)",
+					"fontSize": "var(--wp--preset--font-size--tiny)"
 				}
 			},
 			"h1": {

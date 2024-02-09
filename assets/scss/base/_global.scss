@@ -27,3 +27,10 @@ sup {
 		text-decoration: none;
 	}
 }
+
+/** Fix for image lightbox with caption trigger overflow from core **/
+.wp-block-gallery {
+	.lightbox-trigger {
+		top: 1rem !important; /* stylelint-disable-line declaration-no-important */
+	}
+}
