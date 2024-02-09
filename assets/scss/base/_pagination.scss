@@ -1,0 +1,46 @@
+/* -- pagination -- */
+
+.post-nav-links {
+	display: flex;
+	font-family: var(--wp--preset--font-family--oxygen);
+	font-size: var(--wp--preset--font-size--x-small);
+	justify-content: center;
+	margin: var(--wp--custom--spacing--gap) auto;
+	padding-left: 2.25rem;
+	position: relative;
+	text-indent: -9999px;
+	width: max-content;
+
+	&::before {
+		content: 'Page';
+		display: block;
+		left: 0;
+		position: absolute;
+		text-indent: 0;
+	}
+
+	.post-page-numbers {
+		color: var(--wp--preset--color--primary-500);
+		padding-right: 0.625rem;
+		text-decoration: none;
+		text-indent: 0;
+
+		&:first-child {
+			padding-left: 0.625rem;
+		}
+
+		&:last-child {
+			padding-right: 0;
+		}
+
+		&.current {
+			color: var(--wp--preset--color--primary-700);
+			font-weight: 700;
+		}
+
+		&:hover,
+		&:focus {
+			color: var(--wp--preset--color--primary-700);
+		}
+	}
+}
