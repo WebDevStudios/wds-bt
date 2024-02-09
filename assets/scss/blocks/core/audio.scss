@@ -1,0 +1,21 @@
+/* -- audio -- */
+
+.wp-block-audio {
+	max-width: calc(
+		var(--wp--style--global--content-size) - 30%
+	) !important; /* stylelint-disable-line declaration-no-important */
+
+	figcaption {
+		text-align: center;
+	}
+
+	audio {
+		&::-webkit-media-controls-play-button,
+		&::-webkit-media-controls-timeline,
+		&::-webkit-media-controls-volume-slider,
+		&::-webkit-media-controls-mute-button {
+			filter: invert(15%) sepia(100%) saturate(3615%) hue-rotate(247deg)
+				brightness(83%) contrast(101%);
+		}
+	}
+}
