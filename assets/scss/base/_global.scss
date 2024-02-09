@@ -17,3 +17,13 @@ textarea,
 .wp-element-button {
 	transition: all 0.2s ease-in-out;
 }
+
+sup {
+	color: var(--wp--preset--color--primary-500);
+	font-size: var(--wp--preset--font-size--tiny);
+
+	a {
+		color: var(--wp--preset--color--primary-500);
+		text-decoration: none;
+	}
+}

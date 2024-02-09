@@ -513,6 +513,20 @@
 					}
 				}
 			},
+			"core/footnotes": {
+				"border": {
+					"color": "var(--wp--preset--color--grey-200)",
+					"style": "solid",
+					"width": "0.125rem 0 0.125rem 0"
+				},
+				"color": {
+					"text": "var(--wp--preset--color--grey-500)"
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--inter)",
+					"fontSize": "var(--wp--preset--font-size--tiny)"
+				}
+			},
 			"core/list": {
 				"spacing": {
 					"padding": {
