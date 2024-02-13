@@ -2,8 +2,7 @@
 
 /* -- table -- */
 
-.wp-block-table,
-table {
+.wp-block-table {
 	border-collapse: separate !important; /* stylelint-disable-line declaration-no-important */
 	max-width: calc(
 		var(--wp--style--global--content-size) - 30%
