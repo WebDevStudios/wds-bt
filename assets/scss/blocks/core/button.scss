@@ -1,3 +1,5 @@
+@import '../../abstracts/responsive-mixins';
+
 /* -- Button -- */
 
 .wp-block-button {
@@ -84,6 +86,21 @@
 	.wp-block-button__link {
 		&:hover {
 			color: var(--wp--preset--color--primary-700);
+		}
+	}
+}
+
+@include responsive-max(600px) {
+	.wp-block-buttons {
+		flex-direction: column;
+		gap: 0.75rem !important; /* stylelint-disable-line declaration-no-important */
+
+		.wp-block-button {
+			width: 100%;
+
+			.wp-block-button__link {
+				width: 100%;
+			}
 		}
 	}
 }
