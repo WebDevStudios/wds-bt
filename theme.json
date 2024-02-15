@@ -485,21 +485,16 @@
 					"fontFamily": "var(--wp--preset--font-family--roboto-mono)"
 				}
 			},
-			"core/comment-author-name": {
-				"typography": {
-					"fontSize": "var(--wp--preset--font-size--x-small)",
-					"lineHeight": "var(--wp--custom--line-height--medium)"
+			"core/comments": {
+				"border": {
+					"color": "var(--wp--preset--color--grey-200)",
+					"style": "solid",
+					"width": "0.125rem 0 0.125rem 0"
 				}
 			},
-			"core/comment-date": {
+			"core/comments-title": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--x-small)",
-					"lineHeight": "var(--wp--custom--line-height--medium)"
-				}
-			},
-			"core/comment-edit-link": {
-				"typography": {
-					"fontSize": "var(--wp--preset--font-size--x-small)",
+					"fontSize": "var(--wp--preset--font-size--medium)",
 					"lineHeight": "var(--wp--custom--line-height--medium)"
 				}
 			},
