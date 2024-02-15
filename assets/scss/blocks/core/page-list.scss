@@ -1,0 +1,24 @@
+/* -- page list -- */
+
+.wp-block-page-list {
+	li {
+		padding-bottom: 0.75rem;
+
+		a {
+			color: var(--wp--preset--color--primary-500);
+
+			&:visited {
+				color: var(--wp--preset--color--primary-500);
+			}
+
+			&:hover,
+			&:active {
+				color: var(--wp--preset--color--primary-700);
+			}
+		}
+
+		ul {
+			padding-top: 0.75rem;
+		}
+	}
+}
