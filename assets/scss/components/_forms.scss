@@ -1,28 +1,14 @@
 /* -- Forms -- */
 
-$input-border-color: var(--wp--preset--color--grey-300);
-$input-background-color: var(--wp--preset--color--white);
-$input-text-color: var(--wp--preset--color--primary-500);
-$input-font-family: var(--wp--preset--font-family--inter);
-$input-font-size: var(--wp--preset--font-size--medium);
-$input-font-weight: var(--wp--custom--font-weight--light);
-$input-line-height: var(--wp--custom--line-height--body);
-$input-padding: 0.625rem 1.25rem;
-$input-width: 100%;
-
 input,
 select,
 textarea {
-	background-color: $input-background-color;
-	border: 0.125rem solid $input-border-color;
+	border: 2px solid var(--wp--preset--color--grey-300) !important; /* stylelint-disable-line declaration-no-important */
 	border-radius: 0.375rem;
-	color: $input-text-color;
-	font-family: $input-font-family;
-	font-size: $input-font-size;
-	font-weight: $input-font-weight;
-	line-height: $input-line-height;
-	padding: $input-padding;
-	width: $input-width;
+	color: var(--wp--preset--color--black);
+	font-size: var(--wp-wp--preset--font-size--x-small);
+	padding: 0.75rem 1rem;
+	width: 100%;
 }
 
 input[type='checkbox'],
@@ -40,12 +26,24 @@ textarea {
 	-webkit-appearance: none;
 }
 
+input[type='submit'] {
+	border-radius: 0.25rem;
+	padding: 0.625rem 1.125rem;
+}
+
 input:focus,
 textarea:focus {
-	filter: brightness(95%);
 	outline: none;
 }
 
 ::placeholder {
 	color: var(--wp--preset--color--grey-500);
+}
+
+label {
+	color: var(--wp--preset--color--black);
+	display: inline-block;
+	font-weight: 700;
+	letter-spacing: 0.032px;
+	margin-bottom: 0.5rem;
 }
