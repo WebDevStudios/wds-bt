@@ -28,6 +28,16 @@
 		height: 1rem;
 		width: 1rem;
 	}
+
+	.wp-block-navigation__submenu-container {
+		padding: 1rem 0.5rem;
+
+		.wp-block-navigation-item {
+			.wp-block-pages-list__item__link {
+				padding: 0;
+			}
+		}
+	}
 }
 
 .wp-block-navigation__responsive-container-close {
