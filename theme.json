@@ -570,6 +570,13 @@
 					"fontSize": "var(--wp--preset--font-size--tiny)"
 				}
 			},
+			"core/latest-comments": {
+				"border": {
+					"color": "var(--wp--preset--color--grey-200)",
+					"style": "solid",
+					"width": "0.125rem 0 0.125rem 0"
+				}
+			},
 			"core/list": {
 				"spacing": {
 					"padding": {
