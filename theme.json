@@ -613,6 +613,18 @@
 			"core/post-excerpt": {
 				"css": "& .wp-block-post-excerpt__more-text {margin-top: var(--wp--preset--spacing--x-small);}"
 			},
+			"core/post-navigation-link": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--oxygen)"
+				},
+				"elements": {
+					"link": {
+						"typography": {
+							"fontWeight": "700"
+						}
+					}
+				}
+			},
 			"core/post-template": {
 				"spacing": {
 					"blockGap": "var(--wp--preset--spacing--medium);"

@@ -1,0 +1,11 @@
+/* -- post-navigation-link -- */
+
+.wp-block-post-navigation-link {
+	a {
+		text-decoration: none;
+	}
+
+	&.post-navigation-link-previous {
+		text-align: right;
+	}
+}
