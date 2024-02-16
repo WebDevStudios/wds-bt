@@ -66,4 +66,29 @@
 			font-size: var(--wp--preset--font-size--medium);
 		}
 	}
+
+	.wp-block-comments-pagination {
+		align-items: center;
+		display: flex;
+		font-weight: 700;
+		justify-content: center;
+		margin: 2rem auto;
+		width: 100%;
+
+		a {
+			text-decoration: none;
+
+			&.wp-block-comments-pagination-previous {
+				margin-right: 0;
+			}
+
+			&.page-numbers {
+				padding-right: 0.375rem;
+
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+		}
+	}
 }
