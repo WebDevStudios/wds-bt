@@ -1,17 +1,18 @@
 /* -- List -- */
 
-.wp-admin {
+main,
+.wp-block-post-content {
 	ul {
-		li {
-			&::before {
-				content: unset;
+		&.wp-block-post-template {
+			li {
+				padding-left: unset;
+
+				&::before {
+					content: unset !important; /* stylelint-disable-line declaration-no-important */
+				}
 			}
 		}
-	}
-}
 
-main {
-	ul {
 		list-style-type: none;
 
 		li {
