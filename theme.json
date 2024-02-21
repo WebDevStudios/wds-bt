@@ -733,8 +733,7 @@
 					"radius": "0",
 					"style": "solid",
 					"width": "1px 0 0"
-				},
-				"css": ".is-style-default {width: 5rem;}"
+				}
 			},
 			"core/site-title": {
 				"elements": {
