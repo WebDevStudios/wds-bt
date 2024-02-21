@@ -3,67 +3,63 @@
 main,
 .wp-block-post-content {
 	ul {
-		&.wp-block-post-template {
+		&:not([class]),
+		&.wp-block-list {
+			list-style-type: none;
+
 			li {
-				padding-left: unset;
+				padding-bottom: var(--wp--preset--spacing--x-small);
+				padding-left: var(--wp--preset--spacing--small);
+				position: relative;
 
 				&::before {
-					content: unset !important; /* stylelint-disable-line declaration-no-important */
+					border-bottom: 2px solid var(--wp--preset--color--grey-200);
+					content: '';
+					display: block;
+					height: 0.75rem;
+					left: 0;
+					position: absolute;
+					width: 1.5rem;
+				}
+
+				&:last-child {
+					padding-bottom: 0;
 				}
 			}
-		}
 
-		list-style-type: none;
-
-		li {
-			padding-bottom: var(--wp--preset--spacing--x-small);
-			padding-left: var(--wp--preset--spacing--small);
-			position: relative;
-
-			&::before {
-				border-bottom: 2px solid var(--wp--preset--color--grey-200);
-				content: '';
-				display: block;
-				height: 0.75rem;
-				left: 0;
-				position: absolute;
-				width: 1.5rem;
-			}
-
-			&:last-child {
+			ul {
 				padding-bottom: 0;
+				padding-left: var(--wp--custom--spacing--gap);
 			}
-		}
-
-		ul {
-			padding-bottom: 0;
-			padding-left: var(--wp--custom--spacing--gap);
 		}
 	}
 
 	/* -- Ordered List -- */
 
 	ol {
-		padding-left: var(
-			--wp--custom--spacing--gap
-		) !important; /* stylelint-disable-line declaration-no-important */
+		&:not([class]),
+		&.wp-block-list {
+			padding-left: var(
+				--wp--custom--spacing--gap
+			) !important; /* stylelint-disable-line declaration-no-important */
 
-		li {
-			padding-bottom: var(--wp--preset--spacing--x-small);
-			position: relative;
+			li {
+				padding-bottom: var(--wp--preset--spacing--x-small);
+				position: relative;
 
-			&::marker {
-				font-weight: 700;
+				&::marker {
+					font-weight: 700;
+				}
+
+				&:last-child {
+					padding-bottom: 0;
+				}
 			}
 
-			&:last-child {
+			ol {
 				padding-bottom: 0;
+				padding-left: var(--wp--custom--spacing--gap);
 			}
-		}
-
-		ol {
-			padding-bottom: 0;
-			padding-left: var(--wp--custom--spacing--gap);
 		}
 	}
 }

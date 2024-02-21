@@ -11,7 +11,7 @@
 	}
 
 	.wp-block-search__button {
-		border-radius: 0.25rem;
+		border-radius: 4px;
 
 		&.has-icon {
 			align-items: center;
@@ -37,7 +37,7 @@
 
 		.wp-block-search__inside-wrapper {
 			align-items: center;
-			border-radius: 0.375rem;
+			border-radius: 6px;
 			border: 2px solid var(--wp--preset--color--grey-300);
 			padding: 0.5rem 0;
 			position: relative;
@@ -56,7 +56,7 @@
 	&.wp-block-search__button-inside {
 		.wp-block-search__inside-wrapper {
 			border: 2px solid var(--wp--preset--color--grey-300);
-			border-radius: 0.375rem;
+			border-radius: 6px;
 			margin-top: 0;
 			padding: 0.5rem 1rem;
 			position: relative;
