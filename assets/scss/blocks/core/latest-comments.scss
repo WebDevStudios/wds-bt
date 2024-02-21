@@ -30,4 +30,11 @@
 		font-weight: 500;
 		text-decoration: none;
 	}
+
+	.wp-block-latest-comments__comment-excerpt {
+		p {
+			font-family: var(--wp--preset--font-family--oxygen);
+			font-size: var(--wp--preset--font-size--x-small);
+		}
+	}
 }
