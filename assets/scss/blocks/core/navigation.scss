@@ -53,8 +53,8 @@
 
 	&::before {
 		content: '';
-		height: 2px;
-		width: 16px;
+		height: 0.125rem;
+		width: 1rem;
 		background-color: var(--wp--preset--color--black);
 		position: absolute;
 		left: 15%;

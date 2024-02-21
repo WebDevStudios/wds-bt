@@ -1,0 +1,103 @@
+@import '../../abstracts/responsive-mixins';
+
+/* -- Query loop == */
+
+.wp-block-query {
+	.wp-block-post-template {
+		.wp-block-post {
+			margin-top: var(
+				--wp--custom--spacing--gap
+			) !important; /* stylelint-disable-line declaration-no-important */
+
+			.wp-block-post-title {
+				margin-top: 0;
+
+				a {
+					color: var(--wp--preset--color--black);
+					display: inline-block;
+					font-family: var(--wp--preset--font-family--inter);
+					font-size: 1.375rem;
+					font-weight: 600;
+					padding-bottom: 0;
+					text-decoration: none;
+
+					&:hover,
+					&:focus {
+						color: var(--wp--preset--color--primary-500);
+					}
+				}
+			}
+
+			.wp-block-post-date {
+				color: var(--wp--preset--color--black);
+				display: block;
+				font-family: var(--wp--preset--font-family--oxygen);
+				font-size: var(--wp--preset--font-size--tiny);
+				margin-top: 0.5rem !important; /* stylelint-disable-line declaration-no-important */
+				padding-bottom: 0;
+
+				+ p {
+					font-size: var(--wp--preset--font-size--tiny);
+					margin-top: 0.5rem !important; /* stylelint-disable-line declaration-no-important */
+					padding-bottom: 0;
+				}
+			}
+
+			.wp-block-post-author-name {
+				.wp-block-post-author-name__link {
+					color: var(--wp--preset--color--black);
+					display: block;
+					font-family: var(--wp--preset--font-family--oxygen);
+					font-size: var(--wp--preset--font-size--tiny);
+					margin-top: 0.5rem;
+					padding-bottom: 0;
+					text-decoration: none;
+
+					&:hover,
+					&:focus {
+						color: var(--wp--preset--color--primary-500);
+					}
+				}
+			}
+
+			.wp-block-post-excerpt {
+				margin-top: 0.75rem !important; /* stylelint-disable-line declaration-no-important */
+
+				.wp-block-post-excerpt__more-text {
+					margin-top: 0;
+					padding-top: 0;
+
+					.wp-block-post-excerpt__more-link {
+						color: var(--wp--preset--color--primary-500);
+						display: block;
+						font-family: var(--wp--preset--font-family--oxygen);
+						font-size: var(--wp--preset--font-size--x-small);
+						font-weight: 700;
+						padding-top: 1rem;
+						text-decoration: none;
+						width: max-content;
+
+						&:hover,
+						&:focus {
+							color: var(--wp--preset--color--primary-700);
+						}
+					}
+				}
+			}
+		}
+
+		&.wp-block-post-template-is-layout-grid {
+			.wp-block-post {
+				margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+
+				.wp-block-post-date {
+					margin-top: 0.75rem !important; /* stylelint-disable-line declaration-no-important */
+				}
+
+				@include responsive-min(960px) {
+					margin: 0 2.25rem 1.25rem 0;
+				}
+			}
+		}
+	}
+}

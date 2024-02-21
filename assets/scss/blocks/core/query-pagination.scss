@@ -14,9 +14,9 @@
 
 			&.is-arrow-arrow {
 				display: block;
+				height: 2rem;
 				overflow: hidden;
 				text-indent: -9999px;
-				height: 2rem;
 				width: 2rem;
 
 				&::before {
@@ -27,10 +27,10 @@
 					margin-left: 0.5rem;
 					mask-image: url(../../../../build/images/icons/icon-arrow.svg);
 					mask-size: contain;
-					right: 0;
 					position: absolute;
-					vertical-align: middle;
+					right: 0;
 					text-indent: 9999px;
+					vertical-align: middle;
 					width: 2rem;
 				}
 
@@ -53,9 +53,9 @@
 
 			&.is-arrow-arrow {
 				display: block;
+				height: 2rem;
 				overflow: hidden;
 				text-indent: -9999px;
-				height: 2rem;
 				width: 2rem;
 
 				&::before {
