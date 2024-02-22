@@ -30,6 +30,9 @@
 	}
 
 	.wp-block-navigation__submenu-container {
+		border-radius: 0 0 6px 6px;
+		border: none !important; /* stylelint-disable-line declaration-no-important */
+		box-shadow: var(--wp--preset--shadow--elevation-500);
 		padding: 1rem 0.5rem;
 
 		.wp-block-navigation-item {
