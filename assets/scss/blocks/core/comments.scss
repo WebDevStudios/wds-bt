@@ -60,6 +60,7 @@
 	}
 
 	.wp-block-post-comments-form {
+		margin-bottom: var(--wp--preset--spacing--small);
 		margin-top: var(--wp--preset--spacing--small);
 
 		.comment-reply-title {
