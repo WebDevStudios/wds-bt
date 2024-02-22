@@ -1,22 +1,41 @@
-<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"layout":{"type":"constrained"}} -->
-<main
-  class="wp-block-group"
-  style="
-    margin-top: 0;
-    padding-top: var(--wp--preset--spacing--small);
-    padding-bottom: var(--wp--preset--spacing--small);
-  "
->
-  <!-- wp:group {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|medium"}}}} -->
-  <div
-    class="wp-block-group"
-    style="margin-bottom: var(--wp--preset--spacing--medium)"
-  >
-    <!-- wp:query-title {"type":"search"} /-->
-  </div>
-  <!-- /wp:group -->
-  <!-- wp:pattern {"slug":"wdsbt/posts"} /-->
+<!-- wp:template-part {"slug":"header","theme":"wds-bt","tagName":"header","className":"site-header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"},"metadata":{"name":"Content"}} -->
+<main class="wp-block-group">
+	<!-- wp:search {"label":"Search","showLabel":false,"width":75,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"align":"center"} /-->
+
+	<!-- wp:query-title {"type":"search"} /-->
+
+	<!-- wp:query {"queryId":0,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
+	<div class="wp-block-query">
+		<!-- wp:post-template {"layout":{"type":"default","columnCount":3}} -->
+			<!-- wp:post-title /-->
+			<!-- wp:post-date {"displayType":"modified"} /-->
+
+			<!-- wp:post-excerpt {"moreText":"Read More"} /-->
+
+			<!-- wp:separator {"className":"is-style-wide"} -->
+			<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+			<!-- /wp:separator -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-pagination -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
+			<p>Hmmm... We didn't find anything for your search query.</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:paragraph -->
+			<p>Double check your search for any typos or spelling error or try a different search term.</p>
+			<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+	</div>
+	<!-- /wp:query -->
 </main>
 <!-- /wp:group -->
-<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->
+
+<!-- wp:template-part {"slug":"footer","theme":"wds-bt","tagName":"footer","className":"site-footer"} /-->
