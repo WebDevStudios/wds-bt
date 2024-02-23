@@ -505,7 +505,7 @@
 				"border": {
 					"color": "var(--wp--preset--color--grey-200)",
 					"style": "solid",
-					"width": "2px 0"
+					"width": "2px 0 0 0"
 				}
 			},
 			"core/comments-title": {
