@@ -9,32 +9,64 @@
  */
 
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}},"layout":{"type":"constrained"},"fontSize":"x-small"} -->
-<div class="wp-block-group alignfull has-x-small-font-size" style="margin-top:0;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px">
-	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"0px"}},"layout":{"type":"flex","allowOrientation":false,"justifyContent":"space-between"}} -->
-	<div class="wp-block-group alignwide">
-		<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<!-- wp:group {"tagName":"footer","align":"full","style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"},"fontSize":"x-small","metadata":{"name":"Footer"}} -->
+<footer class="wp-block-group alignfull has-x-small-font-size" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--medium)">
+
+	<!-- wp:group {"style":{"spacing":{"blockGap":"0px"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"wrap","justifyContent":"stretch"}} -->
+	<div class="wp-block-group">
+
+		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"metadata":{"name":"Site Info"}} -->
 		<div class="wp-block-group">
+			<!-- wp:site-logo {"width":126} /-->
+
+			<!-- wp:site-tagline /-->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|small","bottom":"var:preset|spacing|small"}}},"className":"is-style-wide"} -->
+		<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide" style="margin-top:var(--wp--preset--spacing--small);margin-bottom:var(--wp--preset--spacing--small)"/>
+		<!-- /wp:separator -->
+
+		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"},"metadata":{"name":"Copyright"}} -->
+		<div class="wp-block-group">
+
 			<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">
 				<!-- wp:paragraph -->
-				<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?></p>
+				<p>© 2024</p>
 				<!-- /wp:paragraph -->
+
 				<!-- wp:site-title {"level":0,"isLink":false,"style":{"typography":{"fontStyle":"normal","fontWeight":"300"}},"fontSize":"x-small"} /-->
+
+				<!-- wp:paragraph -->
+				<p> · </p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph -->
+				<p>Theme by <a href="https://webdevstudios.com/">WebDevStudios</a></p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
-			<!-- wp:paragraph -->
-			<p> · </p>
-			<!-- /wp:paragraph -->
-			<!-- wp:paragraph -->
-			<p>Theme by <a href="https://webdevstudios.com/">WebDevStudios</a></p>
-			<!-- /wp:paragraph -->
+
+			<!-- wp:social-links {"size":"has-normal-icon-size","className":"is-style-logos-only","layout":{"type":"flex","justifyContent":"right"}} -->
+			<ul class="wp-block-social-links has-normal-icon-size is-style-logos-only">
+				<!-- wp:social-link {"url":"#","service":"facebook"} /-->
+
+				<!-- wp:social-link {"url":"#","service":"x"} /-->
+
+				<!-- wp:social-link {"url":"#","service":"github"} /-->
+
+				<!-- wp:social-link {"url":"#","service":"WordPress"} /-->
+
+				<!-- wp:social-link {"url":"#","service":"instagram"} /-->
+			</ul>
+			<!-- /wp:social-links -->
+
 		</div>
 		<!-- /wp:group -->
-		<!-- wp:paragraph -->
-		<p><a href="https://twitter.com/">Twitter</a> · <a href="https://www.linkedin.com/">LinkedIn</a> · <a href="https://instagram.com/">Instagram</a></p>
-		<!-- /wp:paragraph -->
+
 	</div>
 	<!-- /wp:group -->
-</div>
+
+</footer>
 <!-- /wp:group -->
