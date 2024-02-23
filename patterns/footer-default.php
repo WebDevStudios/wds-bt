@@ -30,20 +30,10 @@
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"},"metadata":{"name":"Copyright"}} -->
 		<div class="wp-block-group">
 
-			<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+			<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
 			<div class="wp-block-group">
 				<!-- wp:paragraph -->
-				<p>© 2024</p>
-				<!-- /wp:paragraph -->
-
-				<!-- wp:site-title {"level":0,"isLink":false,"style":{"typography":{"fontStyle":"normal","fontWeight":"300"}},"fontSize":"x-small"} /-->
-
-				<!-- wp:paragraph -->
-				<p> · </p>
-				<!-- /wp:paragraph -->
-
-				<!-- wp:paragraph -->
-				<p>Theme by <a href="https://webdevstudios.com/">WebDevStudios</a></p>
+				<p><!-- wp:site-title {"level":0,"isLink":false,"style":{"typography":{"fontStyle":"normal","fontWeight":"300"}},"fontSize":"x-small"} /--> © 2024. Theme by <a href="https://webdevstudios.com/">WebDevStudios</a></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
