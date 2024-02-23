@@ -9,8 +9,8 @@
  */
 
 ?>
-<!-- wp:group {"tagName":"footer","align":"full","style":{"spacing":{"margin":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"},"fontSize":"x-small","metadata":{"name":"Footer"}} -->
-<footer class="wp-block-group alignfull has-x-small-font-size" style="margin-top:var(--wp--preset--spacing--x-large);margin-bottom:var(--wp--preset--spacing--medium)">
+<!-- wp:group {"align":"full","layout":{"type":"constrained"},"metadata":{"name":"Footer"}} -->
+<div class="wp-block-group alignfull">
 
 	<!-- wp:group {"style":{"spacing":{"blockGap":"0px"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"wrap","justifyContent":"stretch"}} -->
 	<div class="wp-block-group">
@@ -68,5 +68,5 @@
 	</div>
 	<!-- /wp:group -->
 
-</footer>
+</div>
 <!-- /wp:group -->
