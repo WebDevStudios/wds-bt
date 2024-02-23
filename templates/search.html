@@ -6,11 +6,21 @@
 
 	<!-- wp:query-title {"type":"search"} /-->
 
-	<!-- wp:query {"queryId":0,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
+	<!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
 	<div class="wp-block-query">
 		<!-- wp:post-template {"layout":{"type":"default","columnCount":3}} -->
-			<!-- wp:post-title /-->
-			<!-- wp:post-date {"displayType":"modified"} /-->
+			<!-- wp:post-title {"isLink":true} /-->
+
+			<!-- wp:group {"className":"post-meta","layout":{"type":"flex","flexWrap":"nowrap"},"metadata":{"name":"Post Meta"}} -->
+			<div class="wp-block-group post-meta">
+				<!-- wp:paragraph -->
+				<p>Posted Date: <!-- wp:post-date /--></p>
+				<!-- /wp:paragraph -->
+				<!-- wp:paragraph -->
+				<p>Last Updated: <!-- wp:post-date {"displayType":"modified"} /--></p>
+				<!-- /wp:paragraph -->
+			</div>
+			<!-- /wp:group -->
 
 			<!-- wp:post-excerpt {"moreText":"Read More"} /-->
 
@@ -29,6 +39,7 @@
 			<!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
 			<p>Hmmm... We didn't find anything for your search query.</p>
 			<!-- /wp:paragraph -->
+
 			<!-- wp:paragraph -->
 			<p>Double check your search for any typos or spelling error or try a different search term.</p>
 			<!-- /wp:paragraph -->
