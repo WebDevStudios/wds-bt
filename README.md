@@ -13,7 +13,8 @@ Meet WDS BT, a stylish block theme drawing inspiration from the Powder Theme. Wi
   - [Registering Block Styles](#registering-block-styles)
   - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
   - [Creating Block Variations](#creating-block-variations)
-- [Syncing with Upstream Repo](#syncing-with-upstream-repo)
+- [Stylelint Configuration](#stylelint-configuration)
+- [Theme Unit Test](#theme-unit-test)
 - [Contributing and Support](#contributing-and-support)
 
 ## Requirements
@@ -121,7 +122,7 @@ Command | Action
 
 This SCSS file `assets/scss/abstracts/_responsive-mixins.scss` provides mixins for creating responsive media queries with both minimum and maximum width conditions. The file promotes modular and maintainable styling by allowing the easy application of responsive styles based on screen width.
 
-## Usage
+### Usage
 
 To use the responsive mixin, include it in your SCSS code and customize it according to your project's breakpoints. Here's an example:
 
@@ -147,31 +148,30 @@ To use the responsive mixin, include it in your SCSS code and customize it accor
 }
 ```
 
-## Syncing with Upstream Repo
+## Stylelint Configuration
 
-### Configure a Remote Repository for the Fork
+### Extends
 
-1. Open Terminal.
-2. Specify a new remote upstream repository that will be synced with the fork.
+The configuration extends two base configurations:
 
-``` CODE
-git remote add upstream https://github.com/bgardner/wdsbt
-```
+- @wordpress/stylelint-config/scss: This extends the WordPress SCSS stylelint configuration.
+- stylelint-config-prettier: This extends the Prettier stylelint configuration.
 
-### Getting Upstream Changes
+These base configurations provide a foundation for enforcing consistent styles and conventions in SCSS files.
 
-1. Change the current working directory to your local project.
-2. Fetch the branches and their respective commits from the upstream repository. Commits to `main` will be stored in the local branch `upstream/main`.
-3. Check out the fork's local default branch `main`.
-4. Merge the changes from the upstream default branch - in this case, `upstream/main` - into your local default branch.
+### Rules
 
-``` CODE
-git fetch upstream
-git checkout main
-git merge upstream/main
-```
+- `declaration-no-important`: Disallows the use of !important in declarations.
+- `scss/at-rule-no-unknown`: Allows specific SCSS at-rules to be ignored, such as @apply, @layer, @variants, @responsive, and @screen.
+- `string-quotes`: Enforces the use of single quotes for strings.
+- `declaration-property-unit-allowed-list`: Specifies allowed units for the following properties:
+  - font-size: allows only `em` and `rem`
+  - line-height: unitless
+  - border: allow only `px`
+  - margin: allows only `em` and `rem`
+  - padding: allows only `em` and `rem`
 
-### Theme Unit Test
+## Theme Unit Test
 
 1. Download the theme test data from <https://github.com/WebDevStudios/wds-bt/blob/main/wdsunittestdata.wordpress.xml>
 2. Import test data into your WordPress install by going to Tools => Import => WordPress

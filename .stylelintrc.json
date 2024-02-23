@@ -24,6 +24,15 @@
 				]
 			}
 		],
-		"string-quotes": "single"
+		"string-quotes": "single",
+		"declaration-property-unit-allowed-list": [
+			{
+				"font-size": ["em", "rem"],
+				"line-height": [],
+				"/^border/": ["px"],
+				"/^margin/": ["em", "rem"],
+				"/^padding/": ["em", "rem"]
+			}
+		]
 	}
 }

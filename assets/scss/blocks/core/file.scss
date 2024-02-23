@@ -9,7 +9,7 @@
 
 	a:not(.wp-element-button) {
 		box-shadow: inset 0 -2px 0 0 var(--wp--preset--color--grey-400);
-		padding-bottom: 2px;
+		padding-bottom: 0.125rem;
 		text-decoration: none;
 
 		&:hover,
