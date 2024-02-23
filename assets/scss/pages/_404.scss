@@ -2,9 +2,30 @@
 
 .error404 {
 	.not-found {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		margin: var(--wp--preset--spacing--x-large) auto;
 
 		.error-title {
+			align-items: center;
+			display: flex;
+			position: relative;
+
+			&::before {
+				animation: glitch 1s linear infinite;
+				background-image: url(../../build/images/icons/icon-dino.svg);
+				background-repeat: no-repeat;
+				background-size: contain;
+				content: '';
+				display: block;
+				left: 20vw;
+				vertical-align: middle;
+				width: 19.125rem;
+				height: 17.8125rem;
+			}
+
 			span {
 				align-items: center;
 				animation: glitch 1s linear infinite;
@@ -80,6 +101,21 @@
 		}
 		62% {
 			transform: translate(-22px, 5px) skew(21deg);
+		}
+	}
+
+	@include responsive-max(600px) {
+		.not-found {
+			.error-title {
+				&::before {
+					height: 7.1875rem;
+					width: 9.0625rem;
+				}
+
+				span {
+					font-size: 5rem;
+				}
+			}
 		}
 	}
 }
