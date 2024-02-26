@@ -30,6 +30,7 @@
 		"css-minimizer-webpack-plugin": "^6.0.0",
 		"eslint-plugin-eslint-comments": "^3.2.0",
 		"eslint-webpack-plugin": "^4.0.1",
+		"imagemin-svgo": "^10.0.1",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"postcss-loader": "^8.1.0",
 		"postcss-move-props-to-bg-image-query": "^4.0.0",
