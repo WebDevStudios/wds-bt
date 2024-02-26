@@ -1,0 +1,41 @@
+/* -- Header -- */
+
+/* -- Header Search -- */
+.site-header {
+	.wp-block-search {
+		&.wp-block-search__button-inside {
+			.wp-block-search__inside-wrapper {
+				max-width: 13.375rem;
+				padding: 0 1rem;
+
+				.wp-block-search__button {
+					background-color: transparent;
+					padding-right: 0;
+
+					svg {
+						fill: var(--wp--preset--color--grey-500);
+						min-height: 1.875rem;
+						min-width: 1.875rem;
+					}
+				}
+			}
+		}
+
+		&.wp-block-search__button-only {
+			display: none;
+		}
+	}
+}
+
+@include responsive-max(833px) {
+	.site-header {
+		.wp-block-search {
+			&.wp-block-search__button-inside {
+				width: 100%;
+			}
+			&.wp-block-search__button-only {
+				display: block;
+			}
+		}
+	}
+}

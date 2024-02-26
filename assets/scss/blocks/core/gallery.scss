@@ -1,0 +1,20 @@
+/* -- gallery -- */
+
+.wp-block-gallery {
+	&.has-nested-images {
+		figure.wp-block-image {
+			figcaption {
+				background: var(
+					--wp--preset--color--white
+				) !important; /* stylelint-disable-line declaration-no-important */
+				color: var(
+					--wp--preset--color--black
+				) !important; /* stylelint-disable-line declaration-no-important */
+				font-size: var(
+					--wp--preset--font-size--tiny
+				) !important; /* stylelint-disable-line declaration-no-important */
+				padding: 0.625rem;
+			}
+		}
+	}
+}

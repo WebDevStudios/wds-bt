@@ -1,0 +1,33 @@
+/* -- page list -- */
+
+.wp-block-page-list {
+	list-style-position: inside;
+	padding-left: 0.75rem;
+
+	li {
+		padding-bottom: 0.75rem;
+
+		&::marker {
+			color: var(--wp--preset--color--primary-500);
+			font-size: var(--wp--preset--font-size--small);
+		}
+
+		a {
+			color: var(--wp--preset--color--primary-500);
+
+			&:visited {
+				color: var(--wp--preset--color--primary-500);
+			}
+
+			&:hover,
+			&:active {
+				color: var(--wp--preset--color--primary-700);
+			}
+		}
+
+		ul {
+			padding-left: 1.5rem;
+			padding-top: 0.75rem;
+		}
+	}
+}

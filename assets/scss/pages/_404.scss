@@ -1,0 +1,121 @@
+/* -- 404 -- */
+
+.error404 {
+	.not-found {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: var(--wp--preset--spacing--x-large) auto;
+
+		.error-title {
+			align-items: center;
+			display: flex;
+			position: relative;
+
+			&::before {
+				animation: glitch 1s linear infinite;
+				background-image: url(../images/icons/icon-dino.svg);
+				background-repeat: no-repeat;
+				background-size: contain;
+				content: '';
+				display: block;
+				left: 20vw;
+				vertical-align: middle;
+				width: 19.125rem;
+				height: 17.8125rem;
+			}
+
+			span {
+				align-items: center;
+				animation: glitch 1s linear infinite;
+				display: inline-flex;
+				font-family: var(--wp--preset--font-family--roboto-mono);
+				font-size: 11.25rem;
+				font-weight: 700;
+				justify-content: center;
+				width: 100%;
+
+				&::before,
+				&::after {
+					content: attr(title);
+					position: absolute;
+				}
+
+				&::before {
+					animation: glitchTop 1s linear infinite;
+					clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+					-webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+				}
+
+				&::after {
+					animation: glitchBotom 1.5s linear infinite;
+					clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+					-webkit-clip-path: polygon(
+						0 67%,
+						100% 67%,
+						100% 100%,
+						0 100%
+					);
+				}
+			}
+		}
+	}
+
+	@keyframes glitch {
+		2%,
+		64% {
+			transform: translate(2px, 0) skew(0deg);
+		}
+		4%,
+		60% {
+			transform: translate(-2px, 0) skew(0deg);
+		}
+		62% {
+			transform: translate(0, 0) skew(5deg);
+		}
+	}
+
+	@keyframes glitchTop {
+		2%,
+		64% {
+			transform: translate(2px, -2px);
+		}
+		4%,
+		60% {
+			transform: translate(-2px, 2px);
+		}
+		62% {
+			transform: translate(13px, -1px) skew(-13deg);
+		}
+	}
+
+	@keyframes glitchBotom {
+		2%,
+		64% {
+			transform: translate(-2px, 0);
+		}
+		4%,
+		60% {
+			transform: translate(-2px, 0);
+		}
+		62% {
+			transform: translate(-22px, 5px) skew(21deg);
+		}
+	}
+
+	@include responsive-max(600px) {
+		.not-found {
+			.error-title {
+				&::before {
+					height: 7.1875rem;
+					width: 9.0625rem;
+				}
+
+				span {
+					font-size: 5rem;
+				}
+			}
+		}
+	}
+}

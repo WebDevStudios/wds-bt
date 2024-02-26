@@ -1,0 +1,13 @@
+/* -- post-terms -- */
+
+.wp-block-post-terms {
+	.wp-block-post-terms__separator {
+		display: none;
+	}
+
+	a {
+		font-weight: 600;
+		padding-left: 0.75rem;
+		text-decoration: none;
+	}
+}

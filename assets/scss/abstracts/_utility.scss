@@ -1,5 +1,44 @@
-/* Utility
----------------------------------------- */
+/* -- Utility -- */
+
+/* -- Image Blur -- */
+$blur-radius: 6px;
+
+figure[class^='blur-'],
+figure[class*=' blur-'] {
+	border-radius: $blur-radius;
+	overflow: hidden;
+
+	img {
+		background-blend-mode: darken;
+		background-color: rgba(var(--wp--preset--color--white), 1);
+		border-radius: $blur-radius;
+	}
+}
+
+.blur-8 img {
+	filter: blur(4px);
+	-webkit-filter: blur(4px);
+}
+
+.blur-16 img {
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
+}
+
+.blur-24 img {
+	filter: blur(12px);
+	-webkit-filter: blur(12px);
+}
+
+.blur-32 img {
+	filter: blur(16px);
+	-webkit-filter: blur(16px);
+}
+
+.blur-40 img {
+	filter: blur(20px);
+	-webkit-filter: blur(20px);
+}
 
 /* Box Shadow */
 
@@ -43,9 +82,6 @@
 	z-index: 99;
 }
 
-/* Effects
----------------------------------------- */
-
 /* Header */
 
 .js-enabled {
@@ -57,20 +93,14 @@
 	}
 }
 
-/* Media Queries
----------------------------------------- */
-
-@media only screen and (max-width: 600px) {
-
-	/* Utility */
+/* Media Queries */
+@include responsive-max(600px) {
 	.is-style-hidden-mobile {
 		display: none !important; /* stylelint-disable-line declaration-no-important */
 	}
 }
 
-@media only screen and (max-width: 782px) {
-
-	/* Columns */
+@include responsive-max(782px) {
 	.wp-block-columns.is-style-column-reverse {
 		flex-direction: column-reverse;
 	}

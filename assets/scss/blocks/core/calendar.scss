@@ -1,0 +1,131 @@
+/* -- calendar -- */
+
+.wp-block-calendar {
+	display: flex;
+	flex-direction: column-reverse;
+	position: relative;
+
+	.wp-calendar-table {
+		border: none;
+
+		th,
+		tr,
+		td {
+			border: none;
+		}
+
+		caption {
+			font-size: var(--wp--preset--font-size--small);
+			font-weight: 700;
+			margin-bottom: 1.125rem;
+		}
+
+		thead {
+			th {
+				font-size: var(--wp--preset--font-size--tiny);
+				font-weight: 700;
+				padding: 1rem 0.75rem;
+				text-transform: uppercase;
+			}
+		}
+
+		tr {
+			td {
+				padding: 1rem 0.75rem;
+
+				&:has(a) {
+					padding: 0;
+				}
+
+				a {
+					background-color: var(--wp--preset--color--primary-500);
+					border-radius: 8px;
+					color: var(--wp--preset--color--white);
+					display: inline-block;
+					padding: 1rem 0.75rem;
+
+					&:hover,
+					&:focus,
+					&.current {
+						background-color: var(--wp--preset--color--primary-50);
+						color: var(--wp--preset--color--primary-500);
+					}
+				}
+			}
+		}
+	}
+
+	.wp-calendar-nav {
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 0 0.375rem;
+		position: absolute;
+		top: 0;
+		width: 100%;
+
+		.wp-calendar-nav-prev {
+			a {
+				display: block;
+				height: 1.5rem;
+				overflow: hidden;
+				text-indent: -9999px;
+				width: 1.5rem;
+
+				&::before {
+					background-color: var(--wp--preset--color--black);
+					content: '';
+					display: inline-block;
+					height: 1.5rem;
+					mask-image: url(../../../images/icons/icon-circle-right.svg);
+					mask-size: contain;
+					position: absolute;
+					left: 0;
+					text-indent: 9999px;
+					transform: rotate(180deg);
+					vertical-align: middle;
+					width: 1.5rem;
+				}
+
+				&:hover,
+				&:focus {
+					&::before {
+						background-color: var(--wp--preset--color--primary-500);
+					}
+				}
+			}
+		}
+
+		.wp-calendar-nav-next {
+			a {
+				display: block;
+				height: 1.5rem;
+				overflow: hidden;
+				text-indent: -9999px;
+				width: 1.5rem;
+
+				&::before {
+					background-color: var(--wp--preset--color--black);
+					content: '';
+					display: inline-block;
+					height: 1.5rem;
+					right: 0;
+					mask-image: url(../../../images/icons/icon-circle-right.svg);
+					mask-size: contain;
+					position: absolute;
+					text-indent: 9999px;
+					vertical-align: middle;
+					width: 1.5rem;
+				}
+
+				&:hover,
+				&:focus {
+					&::before {
+						background-color: var(--wp--preset--color--primary-500);
+					}
+				}
+			}
+		}
+	}
+}

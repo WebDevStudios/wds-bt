@@ -5,3 +5,4 @@
  */
 
 import './header';
+import './table';

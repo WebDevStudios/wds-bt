@@ -1,0 +1,12 @@
+/* -- verse -- */
+
+.wp-block-verse {
+	font-family: var(--wp--preset--font-family--inter);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 300;
+	letter-spacing: 0.9px;
+	line-height: 2.5;
+	max-width: calc(
+		var(--wp--style--global--content-size) - 30%
+	) !important; /* stylelint-disable-line declaration-no-important */
+}

@@ -1,0 +1,23 @@
+/* -- footnotes -- */
+
+.wp-block-footnotes {
+	li {
+		a {
+			text-decoration: none;
+		}
+	}
+}
+
+.wp-block-heading {
+	sup {
+		padding: 0 0.5rem;
+
+		&::before {
+			content: '[';
+		}
+
+		&::after {
+			content: ']';
+		}
+	}
+}

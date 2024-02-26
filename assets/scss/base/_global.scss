@@ -1,6 +1,4 @@
-/* Defaults
----------------------------------------- */
-
+/* -- Defaults -- */
 *,
 *::before,
 *::after {
@@ -18,4 +16,21 @@ input,
 textarea,
 .wp-element-button {
 	transition: all 0.2s ease-in-out;
+}
+
+sup {
+	color: var(--wp--preset--color--primary-500);
+	font-size: var(--wp--preset--font-size--tiny);
+
+	a {
+		color: var(--wp--preset--color--primary-500);
+		text-decoration: none;
+	}
+}
+
+/** Fix for image lightbox with caption trigger overflow from core **/
+.wp-block-gallery {
+	.lightbox-trigger {
+		top: 1rem !important; /* stylelint-disable-line declaration-no-important */
+	}
 }

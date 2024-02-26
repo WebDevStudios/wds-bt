@@ -1,0 +1,17 @@
+/* -- separator -- */
+
+.wp-block-separator {
+	border-color: var(--wp--preset--color--grey-400);
+	width: 12.5rem;
+
+	&.is-style-wide,
+	&.is-style-dots {
+		width: 100%;
+	}
+
+	&.is-style-dots {
+		&::before {
+			color: var(--wp--preset--color--grey-400);
+		}
+	}
+}

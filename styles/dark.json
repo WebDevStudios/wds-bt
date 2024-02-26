@@ -1,0 +1,71 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"title": "Dark",
+	"description":  "Dark mode palette for the theme",
+	"settings": {
+		"shadow": {
+			"defaultPresets": false,
+			"presets": [
+				{
+					"name": "Elevation 100",
+					"shadow": "0 1px 1px 0 rgba(0, 0, 0, 1), 0 0 1px 0 rgba(0, 0, 0, 0.9)",
+					"slug": "elevation-100"
+				},
+				{
+					"name": "Elevation 200",
+					"shadow": "0 2px 4px 0 rgba(0, 0, 0, 1), 0 0 1px 0 rgba(0, 0, 0, 0.9)",
+					"slug": "elevation-200"
+				},
+				{
+					"name": "Elevation 300",
+					"shadow": "0 4px 8px 0 rgba(0, 0, 0, 1), 0 0 1px 0 rgba(0, 0, 0, 0.9)",
+					"slug": "elevation-300"
+				},
+				{
+					"name": "Elevation 400",
+					"shadow": "0 8px 16px 0 rgba(0, 0, 0, 1), 0 0 1px 0 rgba(0, 0, 0, 0.9)",
+					"slug": "elevation-400"
+				},
+				{
+					"name": "Elevation 500",
+					"shadow": "0 16px 24px 0 rgba(0, 0, 0, 0.99), 0 0 1px 0 rgba(0, 0, 0, 0.9)",
+					"slug": "elevation-500"
+				},
+				{
+					"name": "Elevation 600",
+					"shadow": "0 24px 40px 0 rgba(0, 0, 0, 0.98), 0 0 1px 0 rgba(0, 0, 0, 0.9)",
+					"slug": "elevation-600"
+				}
+			]
+		}
+	},
+    "styles": {
+        "color": {
+            "background": "var(--wp--preset--color--grey-800)",
+            "text": "var(--wp--preset--color--grey-300)"
+        },
+		"elements": {
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--primary-300)"
+				},
+				":hover": {
+					"color": {
+						"text": "var(--wp--preset--color--primary-200)"
+					}
+				},
+				":focus": {
+					"color": {
+						"text": "var(--wp--preset--color--primary-200)"
+					}
+				},
+				":visited": {
+					"color": {
+						"text": "var(--wp--preset--color--primary-100)"
+					}
+				}
+			}
+		}
+	}
+}

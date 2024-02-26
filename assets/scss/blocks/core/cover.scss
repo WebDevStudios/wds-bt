@@ -1,12 +1,32 @@
 /* -- Cover -- */
 
-.wp-block-cover.is-style-gradient
-	.has-background-dim:not([class*='-background-color']) {
-	background-color: transparent;
-	background-image: linear-gradient(
-		to top,
-		rgba(0, 0, 0, 0.6),
-		rgba(0, 0, 0, 1)
-	);
-	opacity: 1;
+.wp-block-cover {
+	&.is-style-gradient {
+		.has-background-dim:not([class*='-background-color']) {
+			background-color: transparent;
+			background-image: linear-gradient(
+				to top,
+				rgba(0, 0, 0, 0.6),
+				rgba(0, 0, 0, 1)
+			);
+			opacity: 1;
+		}
+	}
+
+	.wp-block-buttons {
+		margin-top: var(
+			--wp--preset--spacing--small
+		) !important; /* stylelint-disable-line declaration-no-important */
+
+		.wp-block-button {
+			.wp-block-button__link {
+				border-radius: 6px !important; /* stylelint-disable-line declaration-no-important */
+				padding: 0.75rem 1rem !important; /* stylelint-disable-line declaration-no-important */
+
+				&::after {
+					content: none;
+				}
+			}
+		}
+	}
 }

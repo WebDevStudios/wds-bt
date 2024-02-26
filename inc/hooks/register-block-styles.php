@@ -18,6 +18,9 @@ function register_block_styles() {
 			'minimal' => __( 'Minimal', 'wdsbt' ),
 			'text'    => __( 'Text Only', 'wdsbt' ),
 		),
+		'core/quote'  => array(
+			'large' => __( 'Large', 'wdsbt' ),
+		),
 	);
 
 	foreach ( $block_styles as $block => $styles ) {

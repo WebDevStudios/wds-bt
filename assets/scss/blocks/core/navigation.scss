@@ -1,3 +1,5 @@
+@import '../../abstracts/responsive-mixins';
+
 /* -- Navigation -- */
 .wp-block-navigation__responsive-container {
 	&.is-menu-open {
@@ -9,50 +11,99 @@
 	}
 }
 
-.wp-block-navigation__responsive-container-close,
-.wp-block-navigation__responsive-container-open {
-	border: 0.063rem solid currentcolor;
-	padding: 0.125rem;
-}
+.wp-block-navigation {
+	.wp-block-navigation-item {
+		padding: 0.5rem 0.625rem;
+	}
 
-/* -- Navigation Submenu -- */
-
-.has-contrast-background-color
-	.wp-block-navigation
-	.wp-block-navigation__responsive-container.is-menu-open,
-.has-contrast-background-color .wp-block-navigation__submenu-container {
-	background-color: var(--wp--preset--color--primary-500);
-	color: var(--wp--preset--color--white);
-}
-
-.has-contrast-background-color .wp-block-navigation__submenu-container {
-	border-color: var(--wp--preset--color--white);
-}
-
-.wp-block-navigation:not(.has-background)
-	.wp-block-navigation__responsive-container.is-menu-open,
-.wp-block-navigation:not(.has-background)
-	.wp-block-navigation__submenu-container {
-	background-color: var(--wp--preset--color--white);
-	color: var(--wp--preset--color--primary-500);
-}
-
-.wp-block-navigation:not(.has-background)
-	.wp-block-navigation__submenu-container {
-	border-color: var(--wp--preset--color--primary-500);
-	min-width: 180px !important; /* stylelint-disable-line declaration-no-important */
-	padding: 0.625rem;
-}
-
-.wp-block-navigation
-	:where(.wp-block-navigation__submenu-container)
 	.wp-block-navigation-item__content {
-	padding: 0.125rem 0.625rem;
+		&:hover,
+		&:active,
+		&:focus {
+			-webkit-text-stroke: 1px var(--wp--preset--color--black);
+		}
+	}
+
+	.wp-block-navigation__submenu-icon {
+		height: 1rem;
+		width: 1rem;
+	}
+
+	.wp-block-navigation__submenu-container {
+		padding: 0.5rem !important; /* stylelint-disable-line declaration-no-important */
+
+		.wp-block-navigation-item {
+			.wp-block-navigation-item__content {
+				padding: 0;
+			}
+		}
+	}
 }
 
-.wp-block-navigation__responsive-container.is-menu-open
-	.wp-block-navigation__submenu-container {
-	padding-left: 0.625rem !important; /* stylelint-disable-line declaration-no-important */
-	padding-right: 0.625rem !important; /* stylelint-disable-line declaration-no-important */
-	padding-top: 0.313rem !important; /* stylelint-disable-line declaration-no-important */
+.wp-block-navigation__responsive-container-close {
+	border: none;
+	padding: 0;
+}
+
+.wp-block-navigation__responsive-container-open {
+	border: none;
+	display: none;
+	padding: 0;
+	position: relative;
+
+	&::before {
+		content: '';
+		height: 0.125rem;
+		width: 1rem;
+		background-color: var(--wp--preset--color--black);
+		position: absolute;
+		left: 15%;
+	}
+}
+
+@include responsive-max(833px) {
+	.wp-block-navigation__container.is-responsive {
+		--navigation-layout-justification-setting: flex-start;
+		--navigation-layout-justify: flex-start;
+		width: 100%;
+	}
+
+	.wp-block-navigation__responsive-container-open {
+		display: flex;
+	}
+}
+
+@include responsive-min(834px) {
+	.wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: none !important; /* stylelint-disable-line declaration-no-important */
+	}
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+			.is-menu-open
+		) {
+		background-color: inherit;
+		display: block !important; /* stylelint-disable-line declaration-no-important */
+		position: relative;
+		width: 100%;
+		z-index: auto;
+	}
+
+	.wp-block-navigation .wp-block-navigation__submenu-container {
+		border-radius: 0 0 6px 6px;
+		border: none !important; /* stylelint-disable-line declaration-no-important */
+		box-shadow: var(--wp--preset--shadow--elevation-500);
+		padding: 1rem 0.5rem !important; /* stylelint-disable-line declaration-no-important */
+	}
+}
+
+/* Remove the WordPress default for 600px */
+@include responsive-min(600px) {
+	.wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+			.is-menu-open
+		) {
+		display: none;
+	}
 }
