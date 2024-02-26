@@ -1,5 +1,5 @@
 === WDS BT ===
-Contributors: webdevstudios, bgardner
+Contributors: webdevstudios, khleomix, bgardner
 Requires at least: 6.4
 Tested up to: 6.4
 Requires PHP: 8.2
@@ -9,7 +9,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-Meet WDS BT, a stylish block theme drawing inspiration from the Powder Theme. With a modern design, user-friendly interface, and smooth integration with the WordPress block editor, WDS BT delivers a clean and responsive layout. It's important to note that this theme is intentionally designed as a base theme, not a parent theme. This distinction offers users a customizable foundation to build upon. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
+Meet WDS BT, a stylish block theme with a modern design, user-friendly interface, and smooth integration with the WordPress block editor, WDS BT delivers a clean and responsive layout. It's important to note that this theme is intentionally designed as a base theme, not a parent theme. This distinction offers users a customizable foundation to build upon. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
 
 == Copyright ==
 
