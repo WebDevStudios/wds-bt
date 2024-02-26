@@ -20,12 +20,12 @@
 		"sort-packages": true
 	},
 	"require": {
-		"composer/installers": "^2.0.0"
+		"composer/installers": "^2.2.0"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
 		"phpcompatibility/phpcompatibility-wp": "^2.1.4",
-		"wp-cli/wp-cli-bundle": "^2.9.0",
+		"wp-cli/wp-cli-bundle": "^2.10.0",
 		"wp-coding-standards/wpcs": "^3.0.1"
 	},
 	"scripts": {
