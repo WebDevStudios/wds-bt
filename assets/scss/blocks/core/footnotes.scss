@@ -1,6 +1,8 @@
 /* -- footnotes -- */
 
 .wp-block-footnotes {
+	list-style-position: inside;
+
 	li {
 		a {
 			text-decoration: none;
