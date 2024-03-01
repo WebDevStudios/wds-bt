@@ -39,5 +39,11 @@
 				}
 			}
 		}
+
+		&:last-of-type {
+			.wp-block-separator {
+				display: none;
+			}
+		}
 	}
 }
