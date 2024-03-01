@@ -1561,7 +1561,7 @@ Circumspectum et verecundum</pre>
 <!-- /wp:heading -->
 
 <!-- wp:audio {"id":443,"style":{"spacing":{"padding":{"right":"0","left":"0"}}}} -->
-<figure class="wp-block-audio" style="padding-right:0;padding-left:0"><audio controls src="https://wdsbt.wdslab.com/wp-content/uploads/2024/03/file_example_MP3_700KB.mp3"></audio><figcaption class="wp-element-caption">Audio Caption</figcaption></figure>
+<figure class="wp-block-audio" style="padding-right:0;padding-left:0"><audio controls src="https://wdsbt.wdslab.com/wp-content/uploads/2024/03/sample-audio.mp3"></audio><figcaption class="wp-element-caption">Audio Caption</figcaption></figure>
 <!-- /wp:audio --></div>
 <!-- /wp:group -->
 
@@ -2642,13 +2642,13 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 		</wp:postmeta>
 							</item>
 					<item>
-		<title><![CDATA[file_example_MP3_700KB]]></title>
-		<link>https://wdsbt.wdslab.com/core-blocks-test/core-media-blocks/file_example_mp3_700kb/</link>
+		<title><![CDATA[sample-audio]]></title>
+		<link>https://wdsbt.wdslab.com/core-blocks-test/core-media-blocks/sample-audio/</link>
 		<pubDate>Thu, 29 Feb 2024 18:27:27 +0000</pubDate>
 		<dc:creator><![CDATA[wds_admin]]></dc:creator>
-		<guid isPermaLink="false">https://wdsbt.wdslab.com/wp-content/uploads/2024/03/file_example_MP3_700KB.mp3</guid>
+		<guid isPermaLink="false">https://wdsbt.wdslab.com/wp-content/uploads/2024/03/sample-audio.mp3</guid>
 		<description></description>
-		<content:encoded><![CDATA["file_example_MP3_700KB". Released: 2018.]]></content:encoded>
+		<content:encoded><![CDATA["sample-audio". Released: 2018.]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>443</wp:post_id>
 		<wp:post_date><![CDATA[2024-02-29 18:27:27]]></wp:post_date>
@@ -2657,17 +2657,17 @@ https://www.youtube.com/watch?v=ScMzIvxBSi4
 		<wp:post_modified_gmt><![CDATA[2024-02-29 18:27:30]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
-		<wp:post_name><![CDATA[file_example_mp3_700kb]]></wp:post_name>
+		<wp:post_name><![CDATA[sample-audio]]></wp:post_name>
 		<wp:status><![CDATA[inherit]]></wp:status>
 		<wp:post_parent>120</wp:post_parent>
 		<wp:menu_order>0</wp:menu_order>
 		<wp:post_type><![CDATA[attachment]]></wp:post_type>
 		<wp:post_password><![CDATA[]]></wp:post_password>
 		<wp:is_sticky>0</wp:is_sticky>
-						<wp:attachment_url><![CDATA[https://wdsbt.wdslab.com/wp-content/uploads/2024/03/file_example_MP3_700KB.mp3]]></wp:attachment_url>
+						<wp:attachment_url><![CDATA[https://wdsbt.wdslab.com/wp-content/uploads/2024/03/sample-audio.mp3]]></wp:attachment_url>
 											<wp:postmeta>
 		<wp:meta_key><![CDATA[_wp_attached_file]]></wp:meta_key>
-		<wp:meta_value><![CDATA[2024/02/file_example_MP3_700KB.mp3]]></wp:meta_value>
+		<wp:meta_value><![CDATA[2024/02/sample-audio.mp3]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_wp_attachment_metadata]]></wp:meta_key>
