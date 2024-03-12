@@ -3,8 +3,8 @@
 /* -- comments -- */
 
 .wp-block-comments {
-	margin-bottom: var(--wp--preset--spacing--x-large);
-	margin-top: var(--wp--preset--spacing--x-large);
+	margin-bottom: var(--wp--preset--spacing--60);
+	margin-top: var(--wp--preset--spacing--60);
 
 	> * {
 		margin-left: auto;
@@ -60,8 +60,8 @@
 	}
 
 	.wp-block-post-comments-form {
-		margin-bottom: var(--wp--preset--spacing--small);
-		margin-top: var(--wp--preset--spacing--small);
+		margin-bottom: var(--wp--preset--spacing--30);
+		margin-top: var(--wp--preset--spacing--30);
 
 		.comment-reply-title {
 			font-size: var(--wp--preset--font-size--medium);

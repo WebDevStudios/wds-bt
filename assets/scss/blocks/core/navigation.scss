@@ -3,10 +3,10 @@
 /* -- Navigation -- */
 .wp-block-navigation__responsive-container {
 	&.is-menu-open {
-		padding: var(--wp--custom--spacing--gap);
+		padding: var(--wp--preset--spacing--30);
 
 		.wp-block-navigation__responsive-container-content {
-			padding-top: var(--wp--custom--spacing--gap);
+			padding-top: var(--wp--preset--spacing--30);
 		}
 	}
 }

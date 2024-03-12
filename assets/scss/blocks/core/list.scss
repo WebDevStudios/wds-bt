@@ -1,3 +1,5 @@
+@import '../../abstracts/responsive-mixins';
+
 /* -- List -- */
 
 main,
@@ -8,17 +10,22 @@ main,
 			list-style-type: none;
 
 			li {
-				padding-bottom: var(--wp--preset--spacing--x-small);
-				padding-left: var(--wp--preset--spacing--small);
+				padding-bottom: var(--wp--preset--spacing--20);
+				padding-left: var(--wp--preset--spacing--50);
 				position: relative;
 
+				@include responsive-max(600px) {
+					padding-left: var(--wp--preset--spacing--70);
+				}
+
 				&::before {
-					border-bottom: 2px solid var(--wp--preset--color--grey-200);
+					background-color: var(--wp--preset--color--grey-200);
 					content: '';
 					display: block;
-					height: 0.75rem;
+					height: 0.125rem;
 					left: 0;
 					position: absolute;
+					top: 0.5625rem;
 					width: 1.5rem;
 				}
 
@@ -29,7 +36,7 @@ main,
 
 			ul {
 				padding-bottom: 0;
-				padding-left: var(--wp--custom--spacing--gap);
+				padding-left: var(--wp--preset--spacing--30);
 			}
 		}
 	}
@@ -39,12 +46,13 @@ main,
 	ol {
 		&:not([class]),
 		&.wp-block-list {
+			list-style-position: inside;
 			padding-left: var(
-				--wp--custom--spacing--gap
+				--wp--preset--spacing--30
 			) !important; /* stylelint-disable-line declaration-no-important */
 
 			li {
-				padding-bottom: var(--wp--preset--spacing--x-small);
+				padding-bottom: var(--wp--preset--spacing--20);
 				position: relative;
 
 				&::marker {
@@ -58,7 +66,7 @@ main,
 
 			ol {
 				padding-bottom: 0;
-				padding-left: var(--wp--custom--spacing--gap);
+				padding-left: var(--wp--preset--spacing--30);
 			}
 		}
 	}

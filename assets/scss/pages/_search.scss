@@ -3,8 +3,8 @@
 .search {
 	.wp-block-query-title {
 		font-size: var(--wp--preset--font-size--medium);
-		margin-bottom: var(--wp--preset--spacing--small);
-		margin-top: var(--wp--preset--spacing--small);
+		margin-bottom: var(--wp--preset--spacing--30);
+		margin-top: var(--wp--preset--spacing--30);
 	}
 
 	.wp-block-post {
@@ -37,6 +37,12 @@
 					content: '.';
 					padding-right: 0.375rem;
 				}
+			}
+		}
+
+		&:last-of-type {
+			.wp-block-separator {
+				display: none;
 			}
 		}
 	}
