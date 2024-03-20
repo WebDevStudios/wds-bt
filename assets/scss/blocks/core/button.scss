@@ -1,12 +1,18 @@
 @import '../../abstracts/responsive-mixins';
 
 /* -- Button -- */
-
 .wp-block-button {
 	.wp-block-button__link {
 		align-items: center;
 		display: inline-flex;
 		justify-content: center;
+		padding: 0.75rem 2.5rem 0.75rem 1rem;
+		position: relative;
+		z-index: 1;
+
+		&.rich-text {
+			min-width: 10rem !important; /* stylelint-disable-line declaration-no-important */
+		}
 
 		&:disabled,
 		&[disabled] {
@@ -23,15 +29,13 @@
 			margin-left: 0.5rem;
 			mask-image: url(../../../images/icons/icon-circle-right.svg);
 			mask-size: contain;
-			position: relative;
+			position: absolute;
+			right: 0.75rem;
 			vertical-align: middle;
 			width: 1rem;
+			z-index: 0;
 		}
 	}
-}
-
-.medium.medium.wp-block-button .wp-block-button__link {
-	padding: 0.625rem 1.125rem;
 }
 
 .large.large.wp-block-button {
@@ -39,7 +43,6 @@
 		border-radius: 6px;
 		border-width: 2px;
 		font-size: 1rem;
-		padding: 0.75rem 1rem;
 	}
 
 	&::after {
@@ -53,7 +56,6 @@
 		border-radius: 6px;
 		border-width: 2px;
 		font-size: var(--wp--preset--font-size--small);
-		padding: 1rem 1.5rem;
 
 		&::after {
 			height: 1.5rem;
@@ -68,13 +70,14 @@
 		background-color: transparent;
 		border: 1px solid transparent;
 		color: var(--wp--preset--color--primary-500);
-		padding: 0.438rem 0.938rem;
 	}
 }
 
 .is-style-outline.is-style-outline.wp-block-button,
 .is-style-minimal.is-style-minimal.wp-block-button {
 	.wp-block-button__link {
+		padding: 0.75rem 2.5rem 0.75rem 1rem;
+
 		&:hover {
 			background-color: var(--wp--preset--color--primary-50);
 			border: 1px solid var(--wp--preset--color--primary-500);
