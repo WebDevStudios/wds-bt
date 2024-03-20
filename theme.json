@@ -417,14 +417,6 @@
 							"style": "solid",
 							"width": "1px"
 						},
-						"spacing": {
-							"padding": {
-								"top": "0.438rem",
-								"right": "0.938rem",
-								"bottom": "0.438rem",
-								"left": "0.938rem"
-							}
-						},
 						"color": {
 							"text": "var(--wp--preset--color--primary-500)"
 						}
@@ -496,14 +488,6 @@
 					"heading": {
 						"typography": {
 							"fontWeight": "600"
-						}
-					},
-					"button": {
-						"spacing": {
-							"padding": {
-								"top": "0.75rem",
-								"bottom": "0.75rem"
-							}
 						}
 					}
 				}
@@ -775,7 +759,7 @@
 				"spacing": {
 					"padding": {
 						"top": "0.5rem",
-						"right": "1rem",
+						"right": "2rem",
 						"bottom": "0.5rem",
 						"left": "1rem"
 					}
