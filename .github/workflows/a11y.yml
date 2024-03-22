@@ -1,0 +1,19 @@
+name: A11y Test
+
+on:
+    push:
+        branches: [main] ## Change the branch name to match yours
+    pull_request:
+        branches: [main] ## Change the branch name to match yours
+
+jobs:
+    run_tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Theme Test
+              id: test
+              uses: Wordpress/theme-review-action@trunk
+              with:
+                  accessible-ready: true
+                  ui-debug: true
