@@ -2,9 +2,9 @@
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
-[![PHP Code Standards check](https://github.com/WebDevStudios/wds-bt/actions/workflows/phpcs.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/phpcs.yml)
-
-[![Assertions](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![PHPCS CHECKS](https://github.com/WebDevStudios/wds-bt/actions/workflows/phpcs.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/phpcs.yml)
+[![CODE QUALITY](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
 
 Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blocks and site editor compatibility. Boasting a contemporary aesthetic, an intuitive interface, and seamless WordPress block editor integration, WDS BT ensures a polished and adaptable framework across all devices. It's crucial to understand that WDS BT is crafted as a foundational theme rather than a parent theme. This difference affords users a flexible starting point for customization. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
 
