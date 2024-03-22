@@ -20,6 +20,8 @@ pre-commit:
         lintjavascript:
             glob: '*.{js,ts,tsx}'
             run: npx eslint {staged_files} --fix
+        a11y:
+            run: npm run a11y
         other:
             glob: '*.{yml,json,html}'
             exclude: 'group_*.json' # Exclude specific files
