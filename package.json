@@ -61,7 +61,7 @@
 		"webpack-merge": "^5.10.0"
 	},
 	"scripts": {
-		"a11y": "pa11y --runner axe --runner htmlcs https://wdsbt:nNYBxBIrfF62oYLgocXn@wdsbt.wdslab.com",
+		"a11y": "pa11y --runner axe --runner htmlcs http://wdsbt.local/",
 		"build": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js",
 		"build:pot": "composer run-script pot",
 		"build:all": "composer install --quiet && composer run-script pot && npm run build",
