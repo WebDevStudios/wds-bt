@@ -32,8 +32,6 @@
 		"eslint-webpack-plugin": "^4.0.1",
 		"imagemin-svgo": "^10.0.1",
 		"imagemin-webpack-plugin": "^2.4.2",
-		"pa11y-ci": "^3.1.0",
-		"pa11y-reporter-html": "^2.0.0",
 		"postcss-loader": "^8.1.0",
 		"postcss-move-props-to-bg-image-query": "^4.0.0",
 		"postcss-preset-env": "^9.4.0",
@@ -53,7 +51,6 @@
 		"imagemin": "^8.0.1",
 		"mini-css-extract-plugin": "^2.8.0",
 		"npm-run-all": "^4.1.5",
-		"pa11y": "^7.0.0",
 		"pa11y-ci": "^3.1.0",
 		"pa11y-ci-reporter-html": "^6.0.2",
 		"postcss": "^8.4.35",
@@ -61,7 +58,7 @@
 		"webpack-merge": "^5.10.0"
 	},
 	"scripts": {
-		"a11y": "pa11y --runner axe --runner htmlcs http://wdsbt.local/",
+		"a11y": "pa11y-ci --reporter=pa11y-ci-reporter-html http://wdsbt.local/",
 		"build": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js",
 		"build:pot": "composer run-script pot",
 		"build:all": "composer install --quiet && composer run-script pot && npm run build",

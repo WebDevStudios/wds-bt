@@ -8,6 +8,8 @@
 
 Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blocks and site editor compatibility. Boasting a contemporary aesthetic, an intuitive interface, and seamless WordPress block editor integration, WDS BT ensures a polished and adaptable framework across all devices. It's crucial to understand that WDS BT is crafted as a foundational theme rather than a parent theme. This difference affords users a flexible starting point for customization. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
 
+***
+
 ## Table of Contents
 
 - [Requirements](#requirements)
@@ -17,9 +19,14 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
   - [Registering Block Styles](#registering-block-styles)
   - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
   - [Creating Block Variations](#creating-block-variations)
+- [Mixins](#mixins)
+  - [Responsive Mixins](#responsive-mixins)
+  - [Mobile Only Mixins](#mobile-only-mixins)
 - [Stylelint Configuration](#stylelint-configuration)
 - [Theme Unit Test](#theme-unit-test)
 - [Contributing and Support](#contributing-and-support)
+
+***
 
 ## Requirements
 
@@ -30,12 +37,16 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 - [Composer](https://getcomposer.org/)
 - License: [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
+***
+
 ## Getting Started
 
 1. Set up a local WordPress development environment, we recommend using [Local](https://localwp.com/).
 2. Ensure you are using WordPress 6.4+.
 3. Clone / download this repository into the `/wp-content/themes/` directory of your new WordPress instance.
 4. In the WordPress admin, use the Appearance > Themes screen to activate the theme.
+
+***
 
 ## Setup
 
@@ -53,6 +64,8 @@ Install theme dependencies and trigger an initial build.
 npm i && composer i
 ```
 
+***
+
 ## Development
 
 From the command line, type any of the following to perform an action:
@@ -65,7 +78,9 @@ Command | Action
 `npm run format` | Fix all CSS, JS, MD, and PHP formatting errors automatically
 `npm run report` | Gives detailed information on coding standards violations in PHP code
 
-### Registering Block Styles
+***
+
+## Registering Block Styles
 
 1. Open the `inc/hooks/register-block-styles.php` file in your theme directory.
 
@@ -83,7 +98,9 @@ Command | Action
     ),
     ```
 
-### Overriding/Customizing Core Block Styles
+***
+
+## Overriding/Customizing Core Block Styles
 
 1. Navigate to the `assets/scss/blocks/core` directory within your theme.
 
@@ -96,6 +113,8 @@ Command | Action
     ```bash
     npm run build
     ```
+
+***
 
 ## Creating Block Variations
 
@@ -122,11 +141,13 @@ Command | Action
 
 > **_NOTE:_** To find the correct block name, open the block editor, launch the browser console and type `wp.blocks.getBlockTypes()`. You will see the complete list of block names (from core or third-party).
 
-## Responsive Mixins
+***
+
+## Mixins
+
+### Responsive Mixins
 
 This SCSS file `assets/scss/abstracts/_responsive-mixins.scss` provides mixins for creating responsive media queries with both minimum and maximum width conditions. The file promotes modular and maintainable styling by allowing the easy application of responsive styles based on screen width.
-
-### Usage
 
 To use the responsive mixin, include it in your SCSS code and customize it according to your project's breakpoints. Here's an example:
 
@@ -152,6 +173,21 @@ To use the responsive mixin, include it in your SCSS code and customize it accor
 }
 ```
 
+### Mobile Only Mixins
+
+This SCSS file `assets/scss/abstracts/_mobile-only-mixins.scss` contains a mixin called `mobile-only` designed to visually hide elements for accessibility (a11y) while making them visible on mobile devices.
+
+Include the `mobile-only` mixin in your SCSS file where you want to hide elements on desktop but make them visible on mobile:
+
+```scss
+// Example usage:
+.my-element {
+  @include mobile-only;
+}
+```
+
+***
+
 ## Stylelint Configuration
 
 ### Extends
@@ -175,6 +211,47 @@ These base configurations provide a foundation for enforcing consistent styles a
   - margin: allows only `em` and `rem`
   - padding: allows only `em` and `rem`
 
+***
+
+## Accessibility and Code Quality Checks
+
+WDS BT is equipped with automated workflow actions that ensure accessibility compliance and uphold code quality standards with every commit. Here's what you need to know to ensure smooth integration and contribution:
+
+### Accessibility Check (a11y.yml)
+
+- **Purpose**: To guarantee accessibility compliance based on WCAG 2.2 standards.
+- **Configuration**: The accessibility check is performed using `pa11y-ci` with a custom configuration in `a11y.yml`.
+- **Local URL Configuration**:
+  - Before running the accessibility check, ensure the local URL is correctly set in `package.json`.
+  - Locate the line: `"a11y": "pa11y-ci --reporter=pa11y-ci-reporter-html http://wdsbt.local/",`.
+  - Replace `http://wdsbt.local/` with the appropriate local URL of your environment.
+- **Violation Reports**: Any accessibility violations detected will be saved in the `pa11y-ci-report` folder for further analysis.
+
+### Code Quality Check (assertions.yml)
+
+- **Purpose**: To verify code quality adherence using WordPress coding standards.
+- **Configuration**: The code quality check is performed using predefined assertions in `assertions.yml`.
+- **Action Requirement**: All detected code issues and violations must be addressed and fixed before any commit can successfully pass through.
+- **Report Display**: The assertions report will appear in the command-line interface (CLI) during the checks.
+
+### Integration Process with LeftHook
+
+1. **Commit Changes**: Make your changes to the codebase as usual.
+2. **Automated Checks on Commit**: LeftHook triggers automated checks upon each commit.
+3. **Review Reports**: Check the generated reports for any accessibility violations or code quality issues.
+4. **Address Issues**: Address and fix any identified violations or issues.
+5. **Recommit**: Once all issues are resolved, recommit your changes.
+6. **Passing Commit**: Your commit will successfully pass through once all checks are clear.
+7. **Create Pull Request (PR)**: When you create a PR, the actions are triggered again to run on the PR branch.
+8. **Review PR Checks**: Review the checks on the PR to ensure compliance before merging.
+
+#### Note
+
+- Regularly monitor the accessibility and code quality reports to ensure ongoing compliance and maintain high standards within the project.
+- Collaborate with team members to address any detected issues promptly, fostering a culture of accessibility and code excellence.
+
+***
+
 ## Theme Unit Test
 
 1. Download the theme test data from <https://github.com/WebDevStudios/wds-bt/blob/main/wdsunittestdata.wordpress.xml>
@@ -184,6 +261,8 @@ These base configurations provide a foundation for enforcing consistent styles a
 5. Under “Import Attachments,” check the “Download and import file attachments” box and click submit.
 
 *Note: You may have to repeat the Import step until you see “All Done” to obtain the full list of Posts and Media.*
+
+***
 
 ## Contributing and Support
 
