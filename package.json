@@ -58,10 +58,10 @@
 		"webpack-merge": "^5.10.0"
 	},
 	"scripts": {
-		"a11y": "pa11y-ci --reporter=pa11y-ci-reporter-html http://wdsbt.local/",
+		"a11y": "pa11y-ci --config .pa11yci",
 		"build": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js",
-		"build:pot": "composer run-script pot",
 		"build:all": "composer install --quiet && composer run-script pot && npm run build",
+		"build:pot": "composer run-script pot",
 		"format": "run-p format:*",
 		"format:css": "npx prettier '**/*.scss' --write && npm run lint:css -- --fix",
 		"format:js": "wp-scripts format && npm run lint:js -- --fix",
@@ -70,9 +70,9 @@
 		"lint:css": "wp-scripts lint-style '**/*.scss'",
 		"lint:js": "wp-scripts lint-js",
 		"lint:php": "composer run-script lint",
-		"report": "composer run-script report",
 		"packages-update": "wp-scripts packages-update",
 		"postinstall": "npx lefthook install",
+		"report": "composer run-script report",
 		"start": "cross-env NODE_ENV=development wp-scripts start --config webpack.prod.js"
 	}
 }

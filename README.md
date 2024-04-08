@@ -72,11 +72,12 @@ From the command line, type any of the following to perform an action:
 
 Command | Action
 :- | :-
-`npm run start` | Builds assets and starts Live Reload server
+`npm run a11y` | Builds production-ready assets for a deployment
 `npm run build` | Builds production-ready assets for a deployment
-`npm run lint` | Check all CSS, JS, MD, and PHP files for errors
 `npm run format` | Fix all CSS, JS, MD, and PHP formatting errors automatically
+`npm run lint` | Check all CSS, JS, MD, and PHP files for errors
 `npm run report` | Gives detailed information on coding standards violations in PHP code
+`npm run start` | Builds assets and starts Live Reload server
 
 ***
 
@@ -222,9 +223,8 @@ WDS BT is equipped with automated workflow actions that ensure accessibility com
 - **Purpose**: To guarantee accessibility compliance based on WCAG 2.2 standards.
 - **Configuration**: The accessibility check is performed using `pa11y-ci` with a custom configuration in `a11y.yml`.
 - **Local URL Configuration**:
-  - Before running the accessibility check, ensure the local URL is correctly set in `package.json`.
-  - Locate the line: `"a11y": "pa11y-ci --reporter=pa11y-ci-reporter-html http://wdsbt.local/",`.
-  - Replace `http://wdsbt.local/` with the appropriate local URL of your environment.
+  - Before running the accessibility check, ensure the local URL is correctly set in `.pa11yci`.
+  - Replace the `"urls"` array with the appropriate local URL of your environment.
 - **Violation Reports**: Any accessibility violations detected will be saved in the `pa11y-ci-report` folder for further analysis.
 
 ### Code Quality Check (assertions.yml)

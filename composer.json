@@ -31,7 +31,6 @@
 	"scripts": {
 		"format": "phpcbf --report=summary,source",
 		"lint": "phpcs --report=code",
-		"report": "phpcs --report=info",
-		"pot": "wp i18n make-pot . build/languages/wds-bt.pot --exclude=node_modules,vendor,build --allow-root"
+		"report": "phpcs --report=info"
 	}
 }
