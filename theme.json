@@ -297,7 +297,7 @@
 				{
 					"fontFamily": "Inter, sans-serif",
 					"name": "Inter",
-					"slug": "inter",
+					"slug": "headline",
 					"fontFace": [
 						{
 							"fontFamily": "Inter",
@@ -311,7 +311,7 @@
 				{
 					"fontFamily": "Oxygen, sans-serif",
 					"name": "Oxygen",
-					"slug": "oxygen",
+					"slug": "body",
 					"fontFace": [
 						{
 							"fontFamily": "Oxygen",
@@ -439,7 +439,7 @@
 				},
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--x-small)",
-					"fontFamily": "var(--wp--preset--font-family--oxygen)"
+					"fontFamily": "var(--wp--preset--font-family--body)"
 				}
 			},
 			"core/code": {
@@ -457,7 +457,7 @@
 				},
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--small)",
-					"fontFamily": "var(--wp--preset--font-family--roboto-mono)"
+					"fontFamily": "var(--wp--preset--font-family--mono)"
 				}
 			},
 			"core/comments": {
@@ -508,7 +508,7 @@
 					}
 				},
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--oxygen)",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"fontSize": "var(--wp--preset--font-size--x-small)"
 				},
 				"elements": {
@@ -517,7 +517,7 @@
 							"text": "var(--wp--preset--color--black)"
 						},
 						"typography": {
-							"fontFamily": "var(--wp--preset--font-family--oxygen)",
+							"fontFamily": "var(--wp--preset--font-family--body)",
 							"fontSize": "var(--wp--preset--font-size--x-small)"
 						}
 					}
@@ -533,7 +533,7 @@
 					"text": "var(--wp--preset--color--grey-500)"
 				},
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--inter)",
+					"fontFamily": "var(--wp--preset--font-family--headline)",
 					"fontSize": "var(--wp--preset--font-size--tiny)"
 				}
 			},
@@ -569,7 +569,7 @@
 			},
 			"core/post-navigation-link": {
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--oxygen)"
+					"fontFamily": "var(--wp--preset--font-family--body)"
 				},
 				"elements": {
 					"link": {
@@ -604,7 +604,7 @@
 				},
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--small)",
-					"fontFamily": "var(--wp--preset--font-family--roboto-mono)"
+					"fontFamily": "var(--wp--preset--font-family--mono)"
 				}
 			},
 			"core/pullquote": {
@@ -614,13 +614,13 @@
 					"width": "2px 0"
 				},
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--inter)",
+					"fontFamily": "var(--wp--preset--font-family--headline)",
 					"fontSize": "var(--wp--preset--font-size--medium)"
 				},
 				"elements": {
 					"cite": {
 						"typography": {
-							"fontFamily": "var(--wp--preset--font-family--oxygen)",
+							"fontFamily": "var(--wp--preset--font-family--body)",
 							"fontStyle": "inherit",
 							"fontSize": "var(--wp--preset--font-size--x-small)"
 						}
@@ -652,12 +652,12 @@
 					"width": "0 0 0 2px"
 				},
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--oxygen)"
+					"fontFamily": "var(--wp--preset--font-family--body)"
 				},
 				"elements": {
 					"cite": {
 						"typography": {
-							"fontFamily": "var(--wp--preset--font-family--oxygen)",
+							"fontFamily": "var(--wp--preset--font-family--body)",
 							"fontStyle": "inherit",
 							"fontSize": "0.75rem"
 						}
@@ -807,7 +807,7 @@
 					}
 				},
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--oxygen)",
+					"fontFamily": "var(--wp--preset--font-family--body)",
 					"fontSize": "var(--wp--preset--font-size--tiny)"
 				}
 			},
@@ -847,8 +847,8 @@
 			},
 			"heading": {
 				"typography": {
-					"fontFamily": "var(--wp--preset--font-family--inter)",
-					"fontWeight": "var(--wp--custom--font-weight--semi-bold)",
+					"fontFamily": "var(--wp--preset--font-family--headline)",
+					"fontWeight": "500",
 					"lineHeight": "var(--wp--custom--line-height--heading)"
 				}
 			},
@@ -886,7 +886,7 @@
 			}
 		},
 		"typography": {
-			"fontFamily": "var(--wp--preset--font-family--oxygen)",
+			"fontFamily": "var(--wp--preset--font-family--body)",
 			"fontSize": "var(--wp--preset--font-size--x-small)",
 			"fontWeight": "var(--wp--custom--font-weight--light)",
 			"lineHeight": "var(--wp--custom--line-height--body)"
