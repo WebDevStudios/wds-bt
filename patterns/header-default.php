@@ -8,6 +8,9 @@
  * @package wdsbt
  */
 
+// Determine whether to display site logo or site title.
+$wds_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":150,"shouldSyncIcon":true,"style":{"layout":{"selfStretch":"fixed","flexSize":"25%"}}} /-->' : '<!-- wp:site-title /-->';
+
 ?>
 
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0px"},"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}},"backgroundColor":"white","layout":{"inherit":true,"type":"constrained"},"metadata":{"name":"Header"}} -->
@@ -16,7 +19,7 @@
 	<!-- wp:group {"align":"wide","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
 	<div class="wp-block-group alignwide">
 
-		<!-- wp:site-logo {"width":150,"shouldSyncIcon":true,"style":{"layout":{"selfStretch":"fixed","flexSize":"25%"}}} /-->
+		<?php echo wp_kses_post( $wds_site_info ); ?>
 
 		<!-- wp:group {"style":{"layout":{"selfStretch":"fixed","flexSize":"75%"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"},"metadata":{"name":"Primary Menu"}} -->
 		<div class="wp-block-group">
