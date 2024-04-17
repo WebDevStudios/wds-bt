@@ -11,6 +11,7 @@ const { glob } = require('glob');
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
 	.sync('./assets/scss/blocks/**/*.scss', {
+		posix: true,
 		dotRelative: true,
 	})
 	.reduce((acc, filePath) => {
