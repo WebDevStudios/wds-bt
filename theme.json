@@ -537,6 +537,14 @@
 					"fontSize": "var(--wp--preset--font-size--tiny)"
 				}
 			},
+			"core/group": {
+				"spacing": {
+					"margin": {
+						"bottom": "0",
+						"top": "0"
+					}
+				}
+			},
 			"core/list": {
 				"spacing": {
 					"padding": {
