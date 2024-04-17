@@ -22,7 +22,7 @@
 		}
 
 		&.wp-block-search__button-only {
-			display: none;
+			@include mobile-only;
 		}
 	}
 }
@@ -32,9 +32,6 @@
 		.wp-block-search {
 			&.wp-block-search__button-inside {
 				width: 100%;
-			}
-			&.wp-block-search__button-only {
-				display: block;
 			}
 		}
 	}

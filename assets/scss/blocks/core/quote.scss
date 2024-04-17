@@ -5,13 +5,21 @@
 		var(--wp--style--global--content-size) - 30%
 	) !important; /* stylelint-disable-line declaration-no-important */
 
+	&.has-text-align-right {
+		border-width: 0 2px 0 0;
+	}
+
+	&.has-text-align-center {
+		border-width: 0 2px;
+	}
+
 	p {
 		font-style: inherit;
 		margin-bottom: 0;
 	}
 
 	cite {
-		display: inline-block;
+		display: inline-block !important; /* stylelint-disable-line declaration-no-important */
 		margin-top: 0.75rem;
 		text-align: left;
 

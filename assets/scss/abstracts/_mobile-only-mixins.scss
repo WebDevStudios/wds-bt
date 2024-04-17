@@ -1,0 +1,31 @@
+// Example usage:
+// .my-element {
+//   @include mobile-only;
+// }
+
+// Mixin for visually hiding elements for accessibility (a11y) with mobile-only visibility
+@mixin mobile-only {
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	display: none;
+	height: 1px;
+	margin: -0.0625rem;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	visibility: hidden;
+	white-space: nowrap;
+	width: 1px;
+
+	@include responsive-max(833px) {
+		clip: auto;
+		display: block;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		position: static;
+		visibility: visible;
+		white-space: normal;
+		width: auto;
+	}
+}

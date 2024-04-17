@@ -19,13 +19,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node
-              uses: actions/setup-node@v3.4.1
+              uses: actions/setup-node@v4
               with:
-                  node-version-file: '.nvmrc'
-                  cache: npm
+                  node-version: 20
 
             - name: Install Node dependencies
               run: npm ci
@@ -40,12 +39,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.0'
+                  php-version: '8.2'
                   coverage: none
                   tools: cs2pr
 
@@ -54,7 +53,7 @@ jobs:
               run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
             - name: Configure Composer cache
-              uses: actions/cache@v3.0.6
+              uses: actions/cache@v4
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}

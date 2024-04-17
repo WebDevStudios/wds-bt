@@ -4,9 +4,12 @@
 
 .wp-block-table {
 	border-collapse: separate !important; /* stylelint-disable-line declaration-no-important */
-	max-width: calc(
-		var(--wp--style--global--content-size) - 30%
-	) !important; /* stylelint-disable-line declaration-no-important */
+
+	&:not(.alignfull) {
+		max-width: calc(
+			var(--wp--style--global--content-size) - 30%
+		) !important; /* stylelint-disable-line declaration-no-important */
+	}
 
 	td,
 	th {
