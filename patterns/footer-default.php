@@ -8,6 +8,14 @@
  * @package wdsbt
  */
 
+// Determine whether to display site logo or site title.
+$wds_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":126} /--><!-- wp:site-tagline /-->' : '<!-- wp:site-title /--><!-- wp:site-tagline /-->';
+
+// Generate the copyright information.
+$wds_copyright_info = esc_html__( 'Copyright &copy; ', 'wdsbt' ) . esc_attr( gmdate( 'Y' ) ) . esc_html__( '. All Rights Reserved.', 'wdsbt' );
+
+// Generate the theme attribution.
+$wds_theme_info = esc_html__( 'Proudly powered by WordPress. ', 'wdsbt' ) . '<a href="' . esc_url( 'https://webdevstudios.com/' ) . '">' . esc_html__( 'WebDevStudios', 'wdsbt' ) . '</a>' . esc_html__( ' is a WD3 Party.', 'wdsbt' );
 ?>
 
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}},"layout":{"type":"constrained"},"metadata":{"name":"Footer"}} -->
@@ -16,13 +24,9 @@
 	<!-- wp:group {"style":{"spacing":{"blockGap":"0px"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"wrap","justifyContent":"stretch"}} -->
 	<div class="wp-block-group">
 
-		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"metadata":{"name":"Site Info"}} -->
+		<!-- wp:group {"metadata":{"name":"Site Info"},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group">
-
-			<!-- wp:site-logo {"width":126} /-->
-
-			<!-- wp:site-tagline /-->
-
+			<?php echo wp_kses_post( $wds_site_info ); ?>
 		</div>
 		<!-- /wp:group -->
 
@@ -33,13 +37,16 @@
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"},"metadata":{"name":"Copyright"}} -->
 		<div class="wp-block-group">
 
-			<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
+			<!-- wp:group {"metadata":{"name":"Theme Info"},"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 			<div class="wp-block-group">
 
 				<!-- wp:paragraph -->
-				<p> © 2024. Theme by <a href="https://webdevstudios.com/">WebDevStudios</a></p>
+				<p><?php echo wp_kses_post( $wds_copyright_info ); ?></p>
 				<!-- /wp:paragraph -->
 
+				<!-- wp:paragraph -->
+				<p><?php echo wp_kses_post( $wds_theme_info ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 
