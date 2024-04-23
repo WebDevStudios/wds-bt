@@ -3,8 +3,8 @@
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![PHPCS CHECKS](https://github.com/WebDevStudios/wds-bt/actions/workflows/phpcs.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/phpcs.yml)
-[![CODE QUALITY](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
+[![Accessibility Test](https://github.com/WebDevStudios/wds-bt/actions/workflows/a11y.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/a11y.yml)
+[![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
 
 Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blocks and site editor compatibility. Boasting a contemporary aesthetic, an intuitive interface, and seamless WordPress block editor integration, WDS BT ensures a polished and adaptable framework across all devices. It's crucial to understand that WDS BT is crafted as a foundational theme rather than a parent theme. This difference affords users a flexible starting point for customization. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
 
@@ -70,14 +70,14 @@ npm i && composer i
 
 From the command line, type any of the following to perform an action:
 
-Command | Action
-:- | :-
-`npm run a11y` | Builds production-ready assets for a deployment
-`npm run build` | Builds production-ready assets for a deployment
-`npm run format` | Fix all CSS, JS, MD, and PHP formatting errors automatically
-`npm run lint` | Check all CSS, JS, MD, and PHP files for errors
-`npm run report` | Gives detailed information on coding standards violations in PHP code
-`npm run start` | Builds assets and starts Live Reload server
+| Command | Action |
+| ------- | ------ |
+| `npm run a11y` | Triggers Pa11y CI for accessibility checks |
+| `npm run build` | Builds production-ready assets for a deployment |
+| `npm run format` | Fix all CSS, JS, MD, and PHP formatting errors automatically |
+| `npm run lint` | Check all CSS, JS, MD, and PHP files for errors |
+| `npm run report` | Gives detailed information on coding standards violations in PHP code |
+| `npm run start` | Builds assets and starts Live Reload server |
 
 ***
 
@@ -260,7 +260,7 @@ WDS BT is equipped with automated workflow actions that ensure accessibility com
 4. Click on “Upload file and import”.
 5. Under “Import Attachments,” check the “Download and import file attachments” box and click submit.
 
-*Note: You may have to repeat the Import step until you see “All Done” to obtain the full list of Posts and Media.*
+_Note: You may have to repeat the Import step until you see “All Done” to obtain the full list of Posts and Media._
 
 ***
 
