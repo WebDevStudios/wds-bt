@@ -488,6 +488,10 @@
 						"right": "var(--wp--preset--spacing--30)",
 						"bottom": "var(--wp--preset--spacing--30)",
 						"left": "var(--wp--preset--spacing--30)"
+					},
+					"margin": {
+						"bottom": "0",
+						"top": "0"
 					}
 				},
 				"elements": {
