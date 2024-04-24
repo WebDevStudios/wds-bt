@@ -71,6 +71,28 @@
 	.wp-block-navigation__responsive-container-open {
 		display: flex;
 	}
+
+	.wp-block-navigation__responsive-container.is-menu-open
+		.wp-block-navigation__responsive-container-content
+		.wp-block-navigation__submenu-icon {
+		display: inline-block !important; /* stylelint-disable-line declaration-no-important */
+	}
+
+	.wp-block-navigation .has-child {
+		cursor: pointer;
+
+		.wp-block-navigation__submenu-container {
+			display: none;
+			overflow: hidden;
+		}
+
+		&:focus {
+			.wp-block-navigation__submenu-container {
+				display: block;
+				overflow: visible;
+			}
+		}
+	}
 }
 
 @include responsive-min(834px) {
