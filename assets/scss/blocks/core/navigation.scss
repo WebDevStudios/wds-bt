@@ -112,7 +112,7 @@
 				overflow: hidden;
 			}
 
-			&:focus,
+			&:focus-within,
 			&:active {
 				> .wp-block-navigation-item__content {
 					&::after {
