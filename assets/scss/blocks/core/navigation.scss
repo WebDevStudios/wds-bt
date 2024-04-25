@@ -13,7 +13,14 @@
 
 .wp-block-navigation {
 	.wp-block-navigation-item {
+		cursor: pointer;
 		padding: 0.5rem 0.625rem;
+
+		&:hover {
+			.wp-block-navigation__submenu-icon {
+				transform: rotate(-180deg);
+			}
+		}
 	}
 
 	.wp-block-navigation-item__content {
@@ -72,24 +79,56 @@
 		display: flex;
 	}
 
-	.wp-block-navigation__responsive-container.is-menu-open
-		.wp-block-navigation__responsive-container-content
-		.wp-block-navigation__submenu-icon {
-		display: inline-block !important; /* stylelint-disable-line declaration-no-important */
-	}
-
-	.wp-block-navigation .has-child {
-		cursor: pointer;
-
-		.wp-block-navigation__submenu-container {
-			display: none;
-			overflow: hidden;
+	.wp-block-navigation {
+		.wp-block-navigation-item {
+			padding: 0;
 		}
 
-		&:focus {
+		.has-child {
+			cursor: pointer;
+			position: relative;
+
+			> .wp-block-navigation-item__content {
+				display: flex;
+				align-items: center;
+				gap: var(--wp--preset--spacing--30);
+
+				&::after {
+					border: solid var(--wp--preset--color--black);
+					border-width: 0 2px 2px 0;
+					content: '';
+					display: inline-block;
+					height: 0.5rem;
+					padding: 0;
+					transform: rotate(45deg);
+					transition: 100ms linear all;
+					width: 0.5rem;
+					will-change: transform;
+				}
+			}
+
 			.wp-block-navigation__submenu-container {
-				display: block;
-				overflow: visible;
+				display: none;
+				overflow: hidden;
+			}
+
+			&:focus {
+				> .wp-block-navigation-item__content {
+					&::after {
+						transform: rotate(-135deg);
+					}
+				}
+
+				.wp-block-navigation__submenu-container {
+					display: block;
+					overflow: visible;
+
+					.wp-block-navigation-item {
+						.wp-block-navigation-link {
+							padding: 0;
+						}
+					}
+				}
 			}
 		}
 	}
