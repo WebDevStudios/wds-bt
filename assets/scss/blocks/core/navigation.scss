@@ -112,7 +112,8 @@
 				overflow: hidden;
 			}
 
-			&:focus {
+			&:focus,
+			&:active {
 				> .wp-block-navigation-item__content {
 					&::after {
 						transform: rotate(-135deg);
