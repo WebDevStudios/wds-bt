@@ -87,7 +87,10 @@ figure[class*=' blur-'] {
 .js-enabled {
 	.site-header {
 		position: sticky;
-		top: 0;
+		top: var(
+			--wp-admin--admin-bar--height,
+			0
+		) !important; /* stylelint-disable-line declaration-no-important */
 		transition: top 0.5s;
 		z-index: 100;
 	}
