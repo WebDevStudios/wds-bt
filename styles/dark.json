@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 2,
 	"title": "Dark",
-	"description":  "Dark mode palette for the theme",
+	"description": "Dark mode palette for the theme",
 	"settings": {
 		"shadow": {
 			"defaultPresets": false,
@@ -40,11 +40,11 @@
 			]
 		}
 	},
-    "styles": {
-        "color": {
-            "background": "var(--wp--preset--color--grey-800)",
-            "text": "var(--wp--preset--color--grey-300)"
-        },
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--grey-800)",
+			"text": "var(--wp--preset--color--grey-300)"
+		},
 		"elements": {
 			"link": {
 				"color": {
