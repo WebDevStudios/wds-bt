@@ -1,50 +1,60 @@
-# https://github.com/Arkweid/lefthook/blob/master/docs/full_guide.md
-
 pre-commit:
-    commands:
-        formatphp:
-            glob: '*.php'
-            run: ./vendor/bin/phpcbf {staged_files}
-        lintphp:
-            glob: '*.php'
-            run: ./vendor/bin/phpcs {staged_files}
-        formatstyles:
-            glob: '*.{css,scss}'
-            run: npx prettier {staged_files} --write
-        lintstyles:
-            glob: '*.{css,scss}'
-            run: npx stylelint {staged_files} --fix
-        formatjavascript:
-            glob: '*.{js,ts,tsx}'
-            run: npx prettier {staged_files} --write
-        lintjavascript:
-            glob: '*.{js,ts,tsx}'
-            run: npx eslint {staged_files} --fix
-        other:
-            glob: '*.{yml,json,html}'
-            exclude: 'group_*.json' # Exclude specific files
-            run: |
-                staged_files="$LEFTHOOK_STAGED_FILES"
-                for file in $staged_files
-                do
-                  if [[ ! "$file" =~ ^templates/ ]]; then
-                    npx prettier "$file" --write
-                  fi
-                done
-            stage_fixed: true
-            stage: pre-commit
-        merge-conflict:
-            run: echo "Resolve merge conflicts before committing"
-        exit-status:
-            run: echo "All pre-commit checks passed"
-        templates-exclude:
-            glob: 'templates/**' # Match all files and subdirectories within templates folder
-            run: echo "Skipping templates folder"
+  commands:
+    formatphp:
+      glob: '*.php'
+      run: ./vendor/bin/phpcbf {staged_files}
+    lintphp:
+      glob: '*.php'
+      run: ./vendor/bin/phpcs {staged_files}
+    formatstyles:
+      glob: '*.{css,scss}'
+      run: npx prettier {staged_files} --write
+    lintstyles:
+      glob: '*.{css,scss}'
+      run: npx stylelint {staged_files} --fix
+    formatjavascript:
+      glob: '*.{js,ts,tsx}'
+      run: npx prettier {staged_files} --write
+    lintjavascript:
+      glob: '*.{js,ts,tsx}'
+      run: npx eslint {staged_files} --fix
+    other:
+      glob: '*.{yml,json,html}'
+      exclude: 'group_*.json' # Exclude specific files
+      run: |
+        staged_files="$LEFTHOOK_STAGED_FILES"
+        for file in $staged_files
+        do
+          if [[ ! "$file" =~ ^templates/ ]]; then
+            npx prettier "$file" --write
+          fi
+        done
+      stage_fixed: true
+      stage: pre-commit
+    merge-conflict:
+      run: echo "Resolve merge conflicts before committing"
+    exit-status:
+      run: echo "All pre-commit checks passed"
+    templates-exclude:
+      glob: 'templates/**' # Match all files and subdirectories within templates folder
+      run: echo "Skipping templates folder"
 
-push:
+pre-push:
+  parallel: true
   commands:
     a11y:
       run: |
         if [ "$LEFTHOOK_EVENT" = "push" ]; then
           npm run a11y
         fi
+    lintphp:
+      glob: '*.php'
+      run: ./vendor/bin/phpcs {staged_files}
+    lintstyles:
+      glob: '*.{css,scss}'
+      run: npx stylelint {staged_files} --fix
+    lintjavascript:
+      glob: '*.{js,ts,tsx}'
+      run: npx eslint {staged_files} --fix
+    exit-status:
+      run: echo "All pre-push checks passed"
