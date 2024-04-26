@@ -45,16 +45,22 @@ pre-push:
     a11y:
       run: |
         if [ "$LEFTHOOK_EVENT" = "push" ]; then
-          npm run a11y
+          git diff --staged --name-only | grep -E '\.(html|htm)$' | xargs npm run a11y
+        fi
+    lintstyles:
+      run: |
+        if [ "$LEFTHOOK_EVENT" = "push" ]; then
+          git diff --staged --name-only | grep -E '\.(css|scss)$' | xargs npx stylelint --fix
+        fi
+    lintjavascript:
+      run: |
+        if [ "$LEFTHOOK_EVENT" = "push" ]; then
+          git diff --staged --name-only | grep -E '\.(js|ts|tsx)$' | xargs npx eslint --fix
         fi
     lintphp:
-      glob: '*.php'
-      run: ./vendor/bin/phpcs {staged_files}
-    lintstyles:
-      glob: '*.{css,scss}'
-      run: npx stylelint {staged_files} --fix
-    lintjavascript:
-      glob: '*.{js,ts,tsx}'
-      run: npx eslint {staged_files} --fix
+      run: |
+        if [ "$LEFTHOOK_EVENT" = "push" ]; then
+          git diff --staged --name-only | grep -E '\.php$' | xargs ./vendor/bin/phpcs
+        fi
     exit-status:
       run: echo "All pre-push checks passed"
