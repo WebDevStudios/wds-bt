@@ -2,10 +2,10 @@ pre-commit:
   commands:
     formatphp:
       glob: '*.php'
-      run: ./vendor/bin/phpcbf {staged_files}
+      run: composer run format {staged_files}
     lintphp:
       glob: '*.php'
-      run: ./vendor/bin/phpcs {staged_files}
+      run: composer run lint {staged_files}
     formatstyles:
       glob: '*.{css,scss}'
       run: npx prettier {staged_files} --write
@@ -60,7 +60,7 @@ pre-push:
     lintphp:
       run: |
         if [ "$LEFTHOOK_EVENT" = "push" ]; then
-          git diff --staged --name-only | grep -E '\.php$' | xargs ./vendor/bin/phpcs
+          git diff --staged --name-only | grep -E '\.php$' | xargs composer run lint
         fi
     exit-status:
       run: echo "All pre-push checks passed"
