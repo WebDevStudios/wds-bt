@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 2,
 	"title": "Light Mode",
-	"description":  "Light mode palette for the theme",
+	"description": "Light mode palette for the theme",
 	"settings": {
 		"appearanceTools": true,
 		"color": {
@@ -341,7 +341,9 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400 500 700",
-							"src": ["file:./build/fonts/roboto-mono/roboto-mono.woff2"]
+							"src": [
+								"file:./build/fonts/roboto-mono/roboto-mono.woff2"
+							]
 						}
 					]
 				}
