@@ -72,6 +72,8 @@
 		"lint:php": "composer run-script lint",
 		"packages-update": "wp-scripts packages-update",
 		"postinstall": "npx lefthook install",
+  		"prebuild": "nvm use",
+		"preinstall": "nvm use",
 		"report": "composer run-script report",
 		"start": "cross-env NODE_ENV=development wp-scripts start --config webpack.prod.js"
 	}
