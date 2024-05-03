@@ -14,37 +14,18 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-    lint-css:
-        name: 'Lint: CSS'
+    phpcs:
+        name: PHPCS check
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Setup Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-
-            - name: Install Node dependencies
-              run: npm ci
-              env:
-                  CI: true
-
-            - name: Detect coding standard violations (stylelint)
-              run: npm run lint:css
-
-    lint-php:
-        name: 'Lint: PHP'
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
+            - name: Checkout code
               uses: actions/checkout@v4
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: 'shivammathur/setup-php@v2'
               with:
                   php-version: '8.2'
+                  ini-values: 'memory_limit=1G'
                   coverage: none
                   tools: cs2pr
 
@@ -61,10 +42,73 @@ jobs:
                       ${{ runner.os }}-composer-
 
             - name: Install Composer dependencies
-              run: composer install --prefer-dist --optimize-autoloader --no-progress --no-interaction
+              uses: 'ramsey/composer-install@v2'
+              with:
+                  # Bust the cache at least once a month - output format: YYYY-MM.
+                  custom-cache-suffix: $(date -u "+%Y-%m")
 
             - name: Validate composer.json
               run: composer --no-interaction validate --no-check-all
 
             - name: Detect coding standard violations (PHPCS)
-              run: npm run lint:php
+              run: vendor/bin/phpcs --report-full --report-checkstyle=./phpcs-report.txt
+
+            - name: Upload PHPCS report
+              uses: actions/upload-artifact@v2
+              with:
+                  name: phpcs-report
+                  path: phpcs-report.txt
+
+    stylelint:
+        name: 'Lint: CSS'
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+
+            - name: Check Node version
+              run: node -v
+
+            - name: Check Node version
+              run: npm -v
+
+            - name: Install Node dependencies
+              run: npm ci
+              env:
+                  CI: true
+
+            - name: Lint Stylesheets
+              run: npm run lint:css
+
+    eslint:
+        name: 'Lint: JS'
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+
+            - name: Check Node version
+              run: node -v
+
+            - name: Check Node version
+              run: npm -v
+
+            - name: Install Node dependencies
+              run: npm ci
+              env:
+                  CI: true
+
+            - name: Lint JavaScript
+              run: npm run lint:js

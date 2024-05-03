@@ -22,8 +22,8 @@
 		"npm": ">=10"
 	},
 	"dependencies": {
-		"@wordpress/eslint-plugin": "^17.12.0",
-		"@wordpress/scripts": "^27.6.0",
+		"@wordpress/eslint-plugin": "^18.0.0",
+		"@wordpress/scripts": "^27.8.0",
 		"clean-webpack-plugin": "^4.0.0",
 		"copy-webpack-plugin": "^12.0.2",
 		"cross-env": "^7.0.3",
@@ -43,7 +43,7 @@
 	},
 	"devDependencies": {
 		"@evilmartians/lefthook": "^1.6.10",
-		"@wordpress/prettier-config": "^3.12.0",
+		"@wordpress/prettier-config": "^3.14.0",
 		"autoprefixer": "^10.4.19",
 		"css-loader": "^7.1.1",
 		"glob": "^10.3.12",
@@ -65,15 +65,14 @@
 		"format": "run-p format:*",
 		"format:css": "npx prettier '**/*.scss' --write && npm run lint:css -- --fix",
 		"format:js": "wp-scripts format && npm run lint:js -- --fix",
-		"format:php": "composer run-script format",
+		"format-php": "composer run-script format-php",
 		"lint": "run-p lint:*",
 		"lint:css": "wp-scripts lint-style '**/*.scss'",
 		"lint:js": "wp-scripts lint-js",
-		"lint:php": "composer run-script lint",
+		"lint-php": "composer run-script lint-php",
 		"packages-update": "wp-scripts packages-update",
 		"postinstall": "npx lefthook install",
-  		"prebuild": "nvm use",
-		"preinstall": "nvm use",
+		"preinstall": ". ~/.nvm/nvm.sh && nvm install && nvm use",
 		"report": "composer run-script report",
 		"start": "cross-env NODE_ENV=development wp-scripts start --config webpack.prod.js"
 	}

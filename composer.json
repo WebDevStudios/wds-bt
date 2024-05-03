@@ -29,8 +29,8 @@
 		"wp-coding-standards/wpcs": "^3.1.0"
 	},
 	"scripts": {
-		"format": "phpcbf --report=summary,source",
-		"lint": "phpcs --report=code",
-		"report": "phpcs --report=info"
+		"format-php": "./vendor/bin/phpcbf --report=summary,source --standard=WordPress --extensions=php --ignore=*/build/*,*/vendor/*,*/node_modules/* .",
+		"lint-php": "./vendor/bin/phpcs --standard=WordPress --extensions=php --report=summary,source --ignore=*/build/*,*/vendor/*,*/node_modules/* .",
+		"report": "./vendor/bin/phpcs --report=full --report-file=phpcs-report.txt --standard=WordPress --extensions=php --ignore=*/build/*,*/vendor/*,*/node_modules/* ."
 	}
 }

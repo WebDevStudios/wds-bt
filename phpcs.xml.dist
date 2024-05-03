@@ -2,23 +2,47 @@
 <ruleset name="WordPress Coding Standards">
 	<description>Apply WordPress Coding Standards</description>
 
-	<!-- Set the memory limit to 256M.
+	<!-- Set the memory limit to 512M.
 		 For most standard PHP configurations, this means the memory limit will temporarily be raised.
 		 Ref: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#specifying-phpini-settings
 	-->
-	<ini name="memory_limit" value="256M"/>
+	<ini name="memory_limit" value="512M"/>
 
 	<!-- Whenever possible, cache the scan results and re-use those for unchanged files on the next scan. -->
 	<arg name="cache"/>
 
-	<!-- Strip the filepaths down to the relevant bit. -->
-	<arg name="basepath" value="./"/>
-
-	<!-- Check up to 20 files simultaneously. -->
-	<arg name="parallel" value="20"/>
-
 	<!-- Show sniff codes in all reports. -->
 	<arg value="ps"/>
+
+	<!-- WordPress Core currently supports PHP 8.2+. -->
+	<config name="testVersion" value="8.2-"/>
+	<rule ref="PHPCompatibilityWP">
+		<include-pattern>*\.php</include-pattern>
+	</rule>
+
+	<!-- Only sniff PHP files. -->
+	<arg name="extensions" value="php"/>
+
+	<!-- Only sniff the theme. -->
+	<file>./</file>
+
+	<!-- Exclude the build directory. -->
+	<exclude-pattern>/build/*</exclude-pattern>
+
+	<!-- Exclude the Composer Vendor directory. -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<!-- Exclude the Node Modules directory. -->
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+
+	<!-- Exclude minified Javascript files. -->
+	<exclude-pattern>*.min.js</exclude-pattern>
+
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="."/>
+
+	<!-- Check up to 8 files simultaneously. -->
+	<arg name="parallel" value="8"/>
 
 	<!-- Use WordPress "Extra" Coding Standards. -->
 	<rule ref="WordPress-Extra">
@@ -34,7 +58,7 @@
 	<!-- The minimum supported WordPress version. This should match what's listed in style.css. -->
 	<rule ref="WordPress.WP.DeprecatedFunctions">
 		<properties>
-			<property name="minimum_wp_version" value="6.2"/>
+			<property name="minimum_wp_version" value="6.4"/>
 		</properties>
 	</rule>
 
@@ -61,20 +85,4 @@
 		</properties>
 	</rule>
 
-	<!-- Use WordPress PHP Compatibility. -->
-	<rule ref="PHPCompatibilityWP"/>
-
-	<!-- WordPress Core currently supports PHP 8.2+. -->
-	<config name="testVersion" value="8.2-"/>
-
-	<!-- Only sniff PHP files. -->
-	<arg name="extensions" value="php"/>
-
-	<!-- Only sniff the theme. -->
-	<file>./</file>
-
-	<!-- Don't sniff the following directories or file types. -->
-	<exclude-pattern>/build/*</exclude-pattern>
-	<exclude-pattern>/node_modules/*</exclude-pattern>
-	<exclude-pattern>/vendor/*</exclude-pattern>
 </ruleset>
