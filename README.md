@@ -74,8 +74,10 @@ From the command line, type any of the following to perform an action:
 | ------- | ------ |
 | `npm run a11y` | Triggers Pa11y CI for accessibility checks |
 | `npm run build` | Builds production-ready assets for a deployment |
-| `npm run format` | Fix all CSS, JS, MD, and PHP formatting errors automatically |
-| `npm run lint` | Check all CSS, JS, MD, and PHP files for errors |
+| `npm run format` | Fix all CSS, JS, and MD formatting errors automatically |
+| `npm run format-php` | Fix all PHP formatting errors automatically |
+| `npm run lint` | Check all CSS, JS, and MD files for errors |
+| `npm run lint-php` | Check all PHP files for errors |
 | `npm run report` | Gives detailed information on coding standards violations in PHP code |
 | `npm run start` | Builds assets and starts Live Reload server |
 

@@ -2,10 +2,10 @@ pre-commit:
     commands:
         formatphp:
             glob: '*.php'
-            run: composer run format {staged_files}
+            run: composer run-script format-php {staged_files}
         lintphp:
             glob: '*.php'
-            run: composer run lint {staged_files}
+            run: composer run-script lint-php {staged_files}
         formatstyles:
             glob: '*.{css,scss}'
             run: npx prettier {staged_files} --write
@@ -38,29 +38,3 @@ pre-commit:
         templates-exclude:
             glob: 'templates/**' # Match all files and subdirectories within templates folder
             run: echo "Skipping templates folder"
-
-pre-push:
-    parallel: true
-    commands:
-        a11y:
-            run: |
-                if [ "$LEFTHOOK_EVENT" = "push" ]; then
-                  git diff --staged --name-only | grep -E '\.(html|htm)$' | xargs npm run a11y
-                fi
-        lintstyles:
-            run: |
-                if [ "$LEFTHOOK_EVENT" = "push" ]; then
-                  git diff --staged --name-only | grep -E '\.(css|scss)$' | xargs npx stylelint --fix
-                fi
-        lintjavascript:
-            run: |
-                if [ "$LEFTHOOK_EVENT" = "push" ]; then
-                  git diff --staged --name-only | grep -E '\.(js|ts|tsx)$' | xargs npx eslint --fix
-                fi
-        lintphp:
-            run: |
-                if [ "$LEFTHOOK_EVENT" = "push" ]; then
-                  git diff --staged --name-only | grep -E '\.php$' | xargs composer run lint
-                fi
-        exit-status:
-            run: echo "All pre-push checks passed"
