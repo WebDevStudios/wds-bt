@@ -62,18 +62,20 @@
 		"build": "cross-env NODE_ENV=production wp-scripts build --config webpack.prod.js",
 		"build:all": "composer install --quiet && composer run-script pot && npm run build",
 		"build:pot": "composer run-script pot",
+		"clean": "rm -rf node_modules && rm -rf vendor && rm -f package-lock.json && rm -f composer.lock",
 		"format": "run-p format:*",
+		"format-php": "composer run-script format-php",
 		"format:css": "npx prettier '**/*.scss' --write && npm run lint:css -- --fix",
 		"format:js": "wp-scripts format && npm run lint:js -- --fix",
-		"format-php": "composer run-script format-php",
 		"lint": "run-p lint:*",
+		"lint-php": "composer run-script lint-php",
 		"lint:css": "wp-scripts lint-style '**/*.scss'",
 		"lint:js": "wp-scripts lint-js",
-		"lint-php": "composer run-script lint-php",
 		"packages-update": "wp-scripts packages-update",
 		"postinstall": "npx lefthook install",
 		"preinstall": ". ~/.nvm/nvm.sh && nvm install && nvm use",
 		"report": "composer run-script report",
+		"setup": "npm run clean && npm i && composer i",
 		"start": "cross-env NODE_ENV=development wp-scripts start --config webpack.prod.js"
 	}
 }

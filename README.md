@@ -79,6 +79,7 @@ From the command line, type any of the following to perform an action:
 | `npm run lint` | Check all CSS, JS, and MD files for errors |
 | `npm run lint-php` | Check all PHP files for errors |
 | `npm run report` | Gives detailed information on coding standards violations in PHP code |
+| `npm run setup` | Cleans the project and then installs both Node.js and PHP dependencies. |
 | `npm run start` | Builds assets and starts Live Reload server |
 
 ***
