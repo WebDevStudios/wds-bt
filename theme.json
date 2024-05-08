@@ -261,27 +261,27 @@
 				},
 				{
 					"name": "3",
-					"size": "min(1.5rem, 2vw)",
+					"size": "min(1.875rem, 5vw)",
 					"slug": "30"
 				},
 				{
 					"name": "4",
-					"size": "min(2.5rem, 3vw)",
+					"size": "min(2rem, 6vw)",
 					"slug": "40"
 				},
 				{
 					"name": "5",
-					"size": "min(3rem, 4vw)",
+					"size": "min(3.125rem, 6vw)",
 					"slug": "50"
 				},
 				{
 					"name": "6",
-					"size": "min(3.75rem, 5vw)",
+					"size": "min(3.75rem, 7vw)",
 					"slug": "60"
 				},
 				{
 					"name": "7",
-					"size": "min(6.5rem, 8vw)",
+					"size": "min(4.375rem, 8vw)",
 					"slug": "70"
 				}
 			],
