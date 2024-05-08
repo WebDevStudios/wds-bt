@@ -1,6 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
-	"version": 2,
+	"version": 3,
 	"title": "Light Mode",
 	"description": "Light mode palette for the theme",
 	"settings": {
