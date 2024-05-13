@@ -26,7 +26,8 @@ module.exports = {
 	entry: {
 		style: './assets/scss/index.scss',
 		index: './assets/js/index.js',
-		variations: './assets/js/variations/index.js',
+		variations: './assets/js/block-variations/index.js',
+		filters: './assets/js/block-filters/index.js',
 		...coreBlockEntryPaths,
 	},
 	output: {

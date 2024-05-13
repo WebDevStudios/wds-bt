@@ -19,6 +19,7 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
   - [Registering Block Styles](#registering-block-styles)
   - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
   - [Creating Block Variations](#creating-block-variations)
+  - [Unregister Blocks and Variations](#unregister-blocks-and-variations)
 - [Mixins](#mixins)
   - [Responsive Mixins](#responsive-mixins)
   - [Mobile Only Mixins](#mobile-only-mixins)
@@ -119,9 +120,9 @@ From the command line, type any of the following to perform an action:
 
 ## Creating Block Variations
 
-1. In the `assets/js/variations` directory within your theme, create a new JavaScript file. This file will contain the definition of your block variation.
+1. In the `assets/js/block-variations` directory within your theme, create a new JavaScript file. This file will contain the definition of your block variation.
 
-2. Import the newly created file into the `assets/js/variations/index.js` file. This step ensures that your variation is included in the build process.
+2. Import the newly created file into the `assets/js/block-variations/index.js` file. This step ensures that your variation is included in the build process.
 
 3. Use the `wp.blocks.registerBlockVariation()` function to officially register your block variation. This function takes the name of the original block and an object defining the variation.
 
@@ -141,6 +142,45 @@ From the command line, type any of the following to perform an action:
     **Variation Object**: Define the properties of your block variation, including the name, title, attributes, and any additional settings.
 
 > **_NOTE:_** To find the correct block name, open the block editor, launch the browser console and type `wp.blocks.getBlockTypes()`. You will see the complete list of block names (from core or third-party).
+
+***
+
+## Unregister Blocks and Variations
+
+This functionality allows you to unregister and disable specific core Gutenberg blocks, styles, and variations that are not needed on your WordPress website. By removing these unused blocks and variations, you can streamline the Gutenberg editor and improve the overall performance of your site.
+
+### Implementation
+
+The script in `assets/js/block-filters/unregister-core-embed.js` loops through a list of unused blocks and variations, unregistering them from the Gutenberg editor. Additionally, it keeps only the specified embed variations for the core/embed block.
+
+### Example
+
+```javascript
+// List of Gutenberg blocks to unregister
+const unusedBlocks = [
+    'core/file',
+    'core/latest-comments',
+    'core/rss',
+    // Add more unused blocks as needed
+];
+
+// List of Gutenberg block variations to unregister
+const unregisterBlockVariations = [
+    // Example:
+    // {
+    //     blockName: 'core/group',
+    //     blockVariationName: 'group-stack',
+    // },
+];
+
+// Keep only the necessary embed variations
+const keepEmbeds = [
+    'twitter',
+    'wordpress',
+    'spotify',
+    // Add more necessary embed variations as needed.
+];
+```
 
 ***
 
