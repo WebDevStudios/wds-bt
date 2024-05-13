@@ -1,5 +1,5 @@
 wp.domReady(function () {
-	const coreVariations = ['core/loginout'];
+	const coreVariations = ['core/loginout', 'youtube'];
 
 	const embedVariations = [
 		'amazon-kindle',
