@@ -6,3 +6,4 @@
 
 import './header';
 import './table';
+import './unregistered-blocks-list';
