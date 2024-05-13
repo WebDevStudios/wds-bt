@@ -6,4 +6,3 @@
 
 import './header';
 import './table';
-import './unregister-core-embed';
