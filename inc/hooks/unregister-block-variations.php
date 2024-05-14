@@ -15,7 +15,7 @@ namespace WebDevStudios\wdsbt;
 function remove_core_blocks_gutenberg_frontend() {
 	wp_enqueue_script(
 		'unregister_core_blocks',
-		get_bloginfo( 'template_directory' ) . '/assets/js/block-filters/unregister-core-embed.js',
+		get_template_directory_uri() . '/build/js/filters.js',
 		array( 'wp-blocks', 'wp-dom-ready' ),
 		wp_get_theme()->get( 'Version' ),
 		true
