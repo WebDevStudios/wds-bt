@@ -1,6 +1,6 @@
 <?php
 /**
- * Unregister custom block styles.
+ * Functions to disable core Gutenberg blocks.
  *
  * @package wdsbt
  */
@@ -8,17 +8,17 @@
 namespace WebDevStudios\wdsbt;
 
 /**
- * Unregister block variations.
+ * Prevents editors from adding unregistered core blocks to content or pages.
+ *
+ * @return void
  */
-function unregister_block_variations() {
-
+function remove_core_blocks_gutenberg_frontend() {
 	wp_enqueue_script(
-		'unregistered-blocks-list',
-		get_template_directory_uri() . '/assets/js/unregistered-blocks-list.js',
-		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+		'unregister_core_blocks',
+		get_template_directory_uri() . '/build/js/filters.js',
+		array( 'wp-blocks', 'wp-dom-ready' ),
 		wp_get_theme()->get( 'Version' ),
-		false
+		true
 	);
 }
-
-add_filter( 'enqueue_block_editor_assets', __NAMESPACE__ . '\unregister_block_variations', 10, 1 );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\remove_core_blocks_gutenberg_frontend' );
