@@ -6,11 +6,9 @@ wp.domReady(() => {
 	// List of Gutenberg blocks to unregister.
 	const unusedBlocks = [
 		'core/file',
-		'core/latest-comments',
 		'core/rss',
 		'core/tag-cloud',
 		'core/missing',
-		'core/site-tagline',
 		'core/loginout',
 		'core/term-description',
 		'core/query-title',
