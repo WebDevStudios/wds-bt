@@ -31,7 +31,8 @@
 		"make-dir-cli": "4.0.0",
 		"markdown-table": "3.0.3",
 		"replace-in-file": "7.1.0",
-		"rimraf": "5.0.7"
+		"rimraf": "5.0.7",
+		"webpack-merge": "^5.10.0"
 	},
 	"devDependencies": {
 		"@babel/plugin-transform-class-static-block": "7.24.6",
@@ -58,7 +59,7 @@
 	"scripts": {
 		"a11y": "pa11y-ci",
 		"build": "wp-scripts build assets/index.js --output-path=build",
-		"format": "wp-scripts format && npm run format:php",
+		"format": "wp-scripts format && npm run format:php && stylelint \"**/*.scss\" --fix",
 		"format:css": "wp-scripts format-style",
 		"format:php": "composer run-script fix",
 		"lint": "run-p lint:*",
