@@ -5,17 +5,8 @@
 		&.wp-block-group-is-layout-constrained {
 			&.alignfull {
 				> :where(
-						[class*='wp-block-']:not(.alignfull):not([class*='__']),
-						p,
-						h1,
-						h2,
-						h3,
-						h4,
-						h5,
-						h6,
-						ul,
-						ol
-					) {
+				[class*='wp-block-']:not(.alignfull):not([class*='__']), p, h1, h2, h3, h4, h5, h6, ul, ol
+			) {
 					padding-left: var(
 						--wp--style--root--padding-left
 					) !important; /* stylelint-disable-line declaration-no-important */
