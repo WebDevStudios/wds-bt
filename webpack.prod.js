@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { merge } = require('webpack-merge');
 const common = require('./webpack.config.js');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');

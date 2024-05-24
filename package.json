@@ -1,90 +1,89 @@
 {
-	"name": "wds-bt",
-	"version": "1.0.0",
-	"private": true,
-	"description": "A starter block theme from WebDevStudios.",
-	"author": "WebDevStudios <contact@webdevstudios.com>",
-	"license": "GPL-2.0-or-later",
-	"keywords": [
-		"WordPress",
-		"Theme"
-	],
-	"homepage": "https://github.com/WebDevStudios/wds-bt/#readme",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/WebDevStudios/wds-bt.git"
-	},
-	"bugs": {
-		"url": "https://github.com/WebDevStudios/wds-bt/issues"
-	},
-	"engines": {
-		"node": ">=20",
-		"npm": ">=10"
-	},
-	"dependencies": {
-		"@inquirer/prompts": "5.0.4",
-		"chalk": "5.3.0",
-		"commander": "12.1.0",
-		"copyfiles": "^2.4.1",
-		"execa": "9.1.0",
-		"fs-extra": "11.2.0",
-		"make-dir-cli": "4.0.0",
-		"markdown-table": "3.0.3",
-		"replace-in-file": "7.1.0",
-		"rimraf": "5.0.7",
-		"webpack-merge": "^5.10.0"
-	},
-	"devDependencies": {
-		"@babel/plugin-transform-class-static-block": "7.24.6",
-		"@evilmartians/lefthook": "1.6.12",
-		"@wordpress/env": "9.10.0",
-		"@wordpress/prettier-config": "3.15.0",
-		"@wordpress/scripts": "^27.9.0",
-		"clean-webpack-plugin": "4.0.0",
-		"copy-webpack-plugin": "12.0.2",
-		"cross-env": "7.0.3",
-		"eslint-plugin-eslint-comments": "3.2.0",
-		"eslint-webpack-plugin": "4.2.0",
-		"glob": "^10.4.1",
-		"html_codesniffer": "2.5.1",
-		"inquirer": "9.2.22",
-		"lint-staged": "15.2.4",
-		"mini-css-extract-plugin": "2.9.0",
-		"npm-run-all": "4.1.5",
-		"postcss-move-props-to-bg-image-query": "4.0.0",
-		"postcss-preset-env": "9.5.14",
-		"puppeteer-core": "22.10.0",
-		"stylelint-webpack-plugin": "5.0.1"
-	},
-	"scripts": {
-		"a11y": "pa11y-ci",
-		"build": "wp-scripts build assets/index.js --output-path=build",
-		"format": "wp-scripts format && npm run format:php && stylelint \"**/*.scss\" --fix",
-		"format:css": "wp-scripts format-style",
-		"format:php": "composer run-script fix",
-		"lint": "run-p lint:*",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"lint:md:docs": "wp-scripts lint-md-docs",
-		"lint:php": "composer run-script lint",
-		"lint:pkg-json": "wp-scripts lint-pkg-json",
-		"packages-update": "wp-scripts packages-update",
-		"postinstall": "npx lefthook install",
-		"preinstall": ". ~/.nvm/nvm.sh && nvm install && nvm use",
-		"report": "composer run-script report",
-		"reset": "rm -rf node_modules vendor && rm -f package-lock.json composer.lock",
-		"setup": "npm run reset && npm i && composer i",
-		"start": "wp-scripts start"
-	},
-	"lint-staged": {
-		"*.js": [
-			"wp-scripts lint-js"
-		],
-		"*.php": [
-			"composer run lint"
-		],
-		"*.scss": [
-			"wp-scripts lint-style"
-		]
-	}
+  "name": "wds-bt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A starter block theme from WebDevStudios.",
+  "author": "WebDevStudios <contact@webdevstudios.com>",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "WordPress",
+    "Theme"
+  ],
+  "homepage": "https://github.com/WebDevStudios/wds-bt/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebDevStudios/wds-bt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebDevStudios/wds-bt/issues"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  },
+  "dependencies": {
+    "chalk": "5.3.0",
+    "commander": "12.1.0",
+    "copyfiles": "^2.4.1",
+    "execa": "9.1.0",
+    "fs-extra": "11.2.0",
+    "make-dir-cli": "4.0.0",
+    "markdown-table": "3.0.3",
+    "replace-in-file": "7.1.0",
+    "rimraf": "5.0.7"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-class-static-block": "7.24.6",
+    "@evilmartians/lefthook": "1.6.12",
+    "@wordpress/env": "9.10.0",
+    "@wordpress/prettier-config": "3.15.0",
+    "@wordpress/scripts": "^27.9.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "cross-env": "^7.0.3",
+    "eslint-plugin-eslint-comments": "3.2.0",
+    "eslint-webpack-plugin": "^4.2.0",
+    "glob": "^10.4.1",
+    "html_codesniffer": "2.5.1",
+    "inquirer": "^9.2.22",
+    "lint-staged": "15.2.4",
+    "mini-css-extract-plugin": "^2.9.0",
+    "npm-run-all": "4.1.5",
+    "puppeteer-core": "22.10.0",
+    "stylelint-webpack-plugin": "^5.0.1"
+  },
+  "resolutions": {
+    "core-js": "^3.23.3"
+  },
+  "scripts": {
+    "a11y": "pa11y-ci",
+    "build": "wp-scripts build",
+    "format": "wp-scripts format && npm run format:php",
+    "format:css": "wp-scripts format-style",
+    "format:php": "composer run-script fix",
+    "lint": "run-p lint:*",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "lint:md:docs": "wp-scripts lint-md-docs",
+    "lint:php": "composer run-script lint",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "packages-update": "wp-scripts packages-update",
+    "postinstall": "npx lefthook install",
+    "preinstall": ". ~/.nvm/nvm.sh && nvm install && nvm use",
+    "report": "composer run-script report",
+    "reset": "rm -rf node_modules vendor build package-lock.json composer.lock",
+    "setup": "npm run reset && npm i && composer i",
+    "start": "wp-scripts start"
+  },
+  "lint-staged": {
+    "*.js": [
+      "wp-scripts lint-js"
+    ],
+    "*.php": [
+      "composer run lint"
+    ],
+    "*.scss": [
+      "wp-scripts lint-style"
+    ]
+  }
 }
