@@ -18,14 +18,14 @@ function preload_scripts() {
 	if ( is_readable( $asset_file_path ) ) {
 		$asset_file = include $asset_file_path;
 	} else {
-		$asset_file = [
+		$asset_file = array(
 			'version'      => '1.0.0',
-			'dependencies' => [ 'wp-polyfill' ],
-		];
+			'dependencies' => array( 'wp-polyfill' ),
+		);
 	}
 
 	?>
-	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/style.css?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="style">
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/css/style.css?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="style">
 	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/js/index.js?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="script">
 	<?php
 }

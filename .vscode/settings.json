@@ -1,11 +1,11 @@
 {
 	"phpcs.enable": true,
-	"phpcs.executablePath": "/vendor/bin/phpcs",
+	"phpcs.executablePath": "./vendor/bin/phpcs",
 	"phpcs.standard": "WordPress",
 	"phpcbf.enable": true,
 	"phpcbf.documentFormattingProvider": true,
 	"phpcbf.onsave": true,
-	"phpcbf.executablePath": "/vendor/bin/phpcbf",
+	"phpcbf.executablePath": "./vendor/bin/phpcbf",
 	"phpcbf.standard": "WordPress",
 
 	"workbench.colorCustomizations": {

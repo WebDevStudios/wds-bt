@@ -1,15 +1,15 @@
 {
     "defaults": {
-		"standard": "WCAG2AA",
-		"level": "error",
-		"timeout": 20000,
+        "standard": "WCAG2AA",
+        "level": "error",
+        "timeout": 20000,
         "reporters": [
             "cli",
             "pa11y-ci-reporter-html"
         ],
-		"ignore": []
+        "ignore": []
     },
     "urls": [
-        "http://wdsbt.local/"
+        "${SITE_URL}"
     ]
 }
