@@ -140,7 +140,8 @@
 		display: none !important; /* stylelint-disable-line declaration-no-important */
 	}
 	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(
-	.is-menu-open) {
+	.is-menu-open
+) {
 		background-color: inherit;
 		display: block !important; /* stylelint-disable-line declaration-no-important */
 		position: relative;
@@ -162,7 +163,9 @@
 		display: flex;
 	}
 
-	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+	.is-menu-open
+) {
 		display: none;
 	}
 }
