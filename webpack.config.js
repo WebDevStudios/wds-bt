@@ -6,7 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const { glob } = require('glob');
-const RtlCssPlugin = require('rtlcss-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const PostCssRtl = require('postcss-rtl');
 
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
@@ -17,7 +18,7 @@ const coreBlockEntryPaths = glob
 	.reduce((acc, filePath) => {
 		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
 		const blockPath = filePath.split(/[\\/]/).slice(-2, -1)[0];
-		acc[`blocks/${blockPath}/${entryKey}`] = filePath;
+		acc[`css/blocks/${blockPath}/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -48,7 +49,18 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					'css-loader',
-					'postcss-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								plugins: [
+									// eslint-disable-next-line import/no-extraneous-dependencies
+									require('autoprefixer'),
+									PostCssRtl(),
+								],
+							},
+						},
+					},
 					'sass-loader',
 				],
 			},
@@ -78,10 +90,6 @@ module.exports = {
 				// Output other CSS files according to their paths
 				return '[name].css';
 			},
-		}),
-
-		new RtlCssPlugin({
-			filename: '[name]-rtl.css',
 		}),
 
 		new CopyPlugin({
