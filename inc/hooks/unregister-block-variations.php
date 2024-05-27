@@ -12,13 +12,13 @@ namespace WebDevStudios\wdsbt;
  *
  * @return void
  */
-function remove_core_blocks_gutenberg_frontend() {
+function remove_core_blocks_gutenberg_editor() {
 	wp_enqueue_script(
 		'unregister_core_blocks',
 		get_template_directory_uri() . '/build/js/filters.js',
-		array( 'wp-blocks', 'wp-dom-ready' ),
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
 		wp_get_theme()->get( 'Version' ),
 		true
 	);
 }
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\remove_core_blocks_gutenberg_frontend' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\remove_core_blocks_gutenberg_editor' );

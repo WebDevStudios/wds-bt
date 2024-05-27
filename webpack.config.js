@@ -1,6 +1,8 @@
 const path = require('path');
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const CopyPlugin = require('copy-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -18,7 +20,7 @@ const coreBlockEntryPaths = glob
 	.reduce((acc, filePath) => {
 		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
 		const blockPath = filePath.split(/[\\/]/).slice(-2, -1)[0];
-		acc[`css/blocks/${blockPath}/${entryKey}`] = filePath;
+		acc[`blocks/${blockPath}/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -82,14 +84,7 @@ module.exports = {
 		...defaultConfig.plugins,
 
 		new MiniCssExtractPlugin({
-			filename: (pathData) => {
-				// Output `style.css` and `style-rtl.css` directly into the `css` folder
-				if (pathData.chunk.name === 'style') {
-					return '[name].css';
-				}
-				// Output other CSS files according to their paths
-				return '[name].css';
-			},
+			filename: '[name].css',
 		}),
 
 		new CopyPlugin({
@@ -115,9 +110,22 @@ module.exports = {
 			],
 		}),
 
-		new CleanWebpackPlugin(),
+		new SVGSpritemapPlugin('assets/images/icons/*.svg', {
+			output: {
+				filename: 'images/icons/sprite.svg',
+			},
+			sprite: {
+				prefix: false,
+			},
+		}),
 
+		new CleanWebpackPlugin(),
 		new ESLintPlugin(),
 		new StylelintPlugin(),
 	],
+	performance: {
+		maxAssetSize: 550000, // Increase the asset size limit to 550 KB
+		maxEntrypointSize: 550000, // Increase the entry point size limit to 550 KB
+		hints: 'warning', // You can set this to 'error' to make the build fail on these warnings or 'false' to disable them
+	},
 };
