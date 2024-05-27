@@ -23,7 +23,7 @@ function enqueue_block_stylesheet() {
 	 */
 
 	// Enqueue styles from the core block folder.
-	foreach ( glob( get_parent_theme_file_path( '/build/css/blocks/core/*.css' ) ) as $stylesheet ) {
+	foreach ( glob( get_parent_theme_file_path( '/build/blocks/core/*.css' ) ) as $stylesheet ) {
 		$block_name = basename( $stylesheet, '.css' );
 		$handle     = 'wdsbt-' . $block_name . '-style';
 
@@ -31,7 +31,7 @@ function enqueue_block_stylesheet() {
 			'core/' . $block_name,
 			array(
 				'handle' => $handle,
-				'src'    => get_parent_theme_file_uri( '/build/css/blocks/core/' . $block_name . '.css' ),
+				'src'    => get_parent_theme_file_uri( '/build/blocks/core/' . $block_name . '.css' ),
 				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
 				'path'   => $stylesheet,
 			)

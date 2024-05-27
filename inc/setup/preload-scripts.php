@@ -25,7 +25,7 @@ function preload_scripts() {
 	}
 
 	?>
-	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/css/style.css?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="style">
+	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/style.css?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="style">
 	<link rel="preload" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/build/js/index.js?ver=<?php echo esc_html( $asset_file['version'] ); ?>" as="script">
 	<?php
 }

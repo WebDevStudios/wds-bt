@@ -1,15 +1,12 @@
-/* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
-const CopyPlugin = require('@wordpress/scripts/node_modules/copy-webpack-plugin');
-const {
-	CleanWebpackPlugin,
-} = require('@wordpress/scripts/node_modules/clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const { glob } = require('glob');
+const RtlCssPlugin = require('rtlcss-webpack-plugin');
 
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
@@ -18,10 +15,9 @@ const coreBlockEntryPaths = glob
 		dotRelative: true,
 	})
 	.reduce((acc, filePath) => {
-		const entryKey = filePath
-			.replace('./assets/scss/', '')
-			.replace('.scss', '');
-		acc[entryKey] = filePath;
+		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
+		const blockPath = filePath.split(/[\\/]/).slice(-2, -1)[0];
+		acc[`blocks/${blockPath}/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -59,6 +55,7 @@ module.exports = {
 			{
 				test: /\.svg$/,
 				type: 'asset/inline',
+				use: 'svg-transform-loader',
 			},
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -73,7 +70,18 @@ module.exports = {
 		...defaultConfig.plugins,
 
 		new MiniCssExtractPlugin({
-			filename: 'css/[name].css',
+			filename: (pathData) => {
+				// Output `style.css` and `style-rtl.css` directly into the `css` folder
+				if (pathData.chunk.name === 'style') {
+					return '[name].css';
+				}
+				// Output other CSS files according to their paths
+				return '[name].css';
+			},
+		}),
+
+		new RtlCssPlugin({
+			filename: '[name]-rtl.css',
 		}),
 
 		new CopyPlugin({
@@ -105,5 +113,3 @@ module.exports = {
 		new StylelintPlugin(),
 	],
 };
-/* eslint-enable eslint-comments/disable-enable-pair */
-/* eslint-enable import/no-extraneous-dependencies */
