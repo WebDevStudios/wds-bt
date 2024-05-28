@@ -3,20 +3,20 @@
 .wp-block-post-author {
 	.wp-block-post-author__byline {
 		font-family: var(--wp--preset--font-family--body);
-		font-size: var(--wp--preset--font-size--tiny);
+		font-size: var(--wp--preset--font-size--xxs);
 	}
 
 	.wp-block-post-author__name {
 		a {
 			font-family: var(--wp--preset--font-family--headline);
-			font-size: var(--wp--preset--font-size--medium);
+			font-size: var(--wp--preset--font-size--m);
 			text-decoration: none;
 		}
 	}
 
 	.wp-block-post-author__bio {
 		font-family: var(--wp--preset--font-family--body);
-		font-size: var(--wp--preset--font-size--x-small);
+		font-size: var(--wp--preset--font-size--xs);
 		margin-top: 0.5rem;
 	}
 }

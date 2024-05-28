@@ -32,13 +32,13 @@
 	&.is-style-large {
 		p {
 			font-size: var(
-				--wp--preset--font-size--medium
+				--wp--preset--font-size--m
 			) !important; /* stylelint-disable-line declaration-no-important */
 			font-style: inherit !important; /* stylelint-disable-line declaration-no-important */
 		}
 
 		cite {
-			font-size: var(--wp--preset--font-size--tiny);
+			font-size: var(--wp--preset--font-size--xxs);
 			text-align: left;
 		}
 	}
