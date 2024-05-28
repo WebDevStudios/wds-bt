@@ -8,8 +8,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const { glob } = require('glob');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const PostCssRtl = require('postcss-rtl');
 
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
@@ -58,7 +56,6 @@ module.exports = {
 								plugins: [
 									// eslint-disable-next-line import/no-extraneous-dependencies
 									require('autoprefixer'),
-									PostCssRtl(),
 								],
 							},
 						},
