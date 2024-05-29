@@ -8,9 +8,30 @@ textarea {
 	color: var(--wp--preset--color--black);
 	font-size: var(--wp-wp--preset--font-size--xs);
 	margin-top: 0.5rem;
-	padding: 0.75rem 1rem;
+	padding: 0.625rem 1rem;
 	width: 100%;
 }
+
+select {
+	appearance: none;
+	outline: 0;
+	background: url(../images/icons/icon-arrow-down.svg) no-repeat right 0.8em center / 1.4em;
+	cursor: pointer;
+
+	&::-ms-expand {
+		display: none;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	option {
+		background-color: var(--wp--preset--color--white);
+		color: inherit;
+	}
+}
+
 
 input[type='checkbox'],
 input[type='image'],
@@ -25,6 +46,7 @@ input[type='submit'],
 input[type='text'],
 textarea {
 	-webkit-appearance: none;
+	appearance: none;
 }
 
 input[type='submit'] {
