@@ -15,7 +15,8 @@ textarea {
 select {
 	appearance: none;
 	outline: 0;
-	background: url(../images/icons/icon-arrow-down.svg) no-repeat right 0.8em center / 1.4em;
+	background: url(../images/icons/icon-arrow-down.svg) no-repeat right 0.8em
+		center / 1.4em;
 	cursor: pointer;
 
 	&::-ms-expand {
@@ -31,7 +32,6 @@ select {
 		color: inherit;
 	}
 }
-
 
 input[type='checkbox'],
 input[type='image'],
