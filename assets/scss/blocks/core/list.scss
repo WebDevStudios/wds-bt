@@ -33,11 +33,6 @@ main,
 					padding-bottom: 0;
 				}
 			}
-
-			ul {
-				padding-bottom: 0;
-				padding-left: var(--wp--preset--spacing--30);
-			}
 		}
 	}
 
@@ -47,13 +42,16 @@ main,
 		&:not([class]),
 		&.wp-block-list {
 			list-style-position: inside;
-			padding-left: var(
-				--wp--preset--spacing--30
-			) !important; /* stylelint-disable-line declaration-no-important */
 
 			li {
 				padding-bottom: var(--wp--preset--spacing--20);
 				position: relative;
+
+				ol {
+					padding-left: var(
+						--wp--preset--spacing--30
+					) !important; /* stylelint-disable-line declaration-no-important */
+				}
 
 				&::marker {
 					font-weight: 700;
@@ -70,7 +68,6 @@ main,
 
 			ol {
 				padding-bottom: 0;
-				padding-left: var(--wp--preset--spacing--30);
 			}
 		}
 	}
