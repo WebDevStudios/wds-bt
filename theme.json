@@ -311,7 +311,7 @@
 				{
 					"fontFamily": "Roboto Mono",
 					"name": "Roboto Mono",
-					"slug": "roboto-mono",
+					"slug": "mono",
 					"fontFace": [
 						{
 							"fontFamily": "Roboto Mono",
@@ -460,8 +460,9 @@
 					}
 				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--s)",
-					"fontFamily": "var(--wp--preset--font-family--mono)"
+					"fontSize": "var(--wp--preset--font-size--xs)",
+					"fontFamily": "var(--wp--preset--font-family--mono)",
+					"lineHeight": "clamp(130%, 0.7600rem + 0.9178vw, 150%)"
 				}
 			},
 			"core/comments": {
@@ -541,7 +542,7 @@
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--headline)",
-					"fontSize": "var(--wp--preset--font-size--xxs)"
+					"fontSize": "0.75rem"
 				}
 			},
 			"core/group": {
@@ -620,7 +621,8 @@
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--s)",
 					"fontFamily": "var(--wp--preset--font-family--mono)"
-				}
+				},
+				"css": "overflow-x: auto;"
 			},
 			"core/pullquote": {
 				"border": {
