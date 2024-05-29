@@ -356,6 +356,12 @@
 					"slug": "m"
 				},
 				{
+					"fluid": false,
+					"name": "l",
+					"size": "1.375rem",
+					"slug": "l"
+				},
+				{
 					"fluid": {
 						"min": "1.5rem",
 						"max": "1.75rem"
@@ -369,7 +375,7 @@
 						"min": "1.5rem",
 						"max": "2.25rem"
 					},
-					"name": "xxl",
+					"name": "2xl",
 					"size": "2.25rem",
 					"slug": "xxl"
 				},
@@ -378,7 +384,7 @@
 						"min": "1.75rem",
 						"max": "3rem"
 					},
-					"name": "xxxl",
+					"name": "3xl",
 					"size": "3rem",
 					"slug": "xxxl"
 				},
@@ -387,7 +393,7 @@
 						"min": "2.25rem",
 						"max": "3.75rem"
 					},
-					"name": "xxxxl",
+					"name": "4xl",
 					"size": "3.75rem",
 					"slug": "xxxxl"
 				}
@@ -850,12 +856,12 @@
 			},
 			"h5": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--s)"
+					"fontSize": "var(--wp--preset--font-size--xs)"
 				}
 			},
 			"h6": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--xs)"
+					"fontSize": "var(--wp--preset--font-size--xxs)"
 				}
 			},
 			"heading": {
