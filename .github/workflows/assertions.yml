@@ -70,14 +70,11 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v4
               with:
-                  node-version: 20.12.2
+                  node-version: v20.12.2
                   cache: npm
 
             - name: Check Node version
               run: node -v
-
-            - name: Check Node version
-              run: npm -v
 
             - name: Install Node dependencies
               run: npm ci
@@ -98,14 +95,11 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v4
               with:
-                  node-version: 20.12.2
+                  node-version: v20.12.2
                   cache: npm
 
             - name: Check Node version
               run: node -v
-
-            - name: Check Node version
-              run: npm -v
 
             - name: Install Node dependencies
               run: npm ci
