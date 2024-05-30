@@ -42,6 +42,7 @@
 		"lint-staged": "15.2.4",
 		"mini-css-extract-plugin": "^2.9.0",
 		"npm-run-all": "4.1.5",
+		"pa11y-ci": "^3.1.0",
 		"postcss-loader": "^8.1.1",
 		"postcss-move-props-to-bg-image-query": "^4.0.0",
 		"postcss-preset-env": "^9.5.5",
@@ -55,7 +56,7 @@
 		"webpack-cli": "^5.1.4"
 	},
 	"scripts": {
-		"a11y": "pa11y-ci",
+		"a11y": "node a11y.cjs",
 		"build": "wp-scripts build --stats-error-details",
 		"format": "wp-scripts format && npm run format:php",
 		"format:css": "wp-scripts format-style",
@@ -74,6 +75,7 @@
 		"setup": "npm run reset && npm i && composer i && npm run build",
 		"start": "wp-scripts start"
 	},
+	"type": "module",
 	"lint-staged": {
 		"*.js": [
 			"wp-scripts lint-js"
