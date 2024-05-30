@@ -22,4 +22,50 @@
 			}
 		}
 	}
+
+
+}
+
+:root {
+	.wp-block-cover:not(.is-light),
+	.wp-block-cover-image:not(.is-light) {
+		.wp-block-buttons {
+
+			.wp-block-button {
+
+				&.is-style-outline {
+					.wp-block-button__link:not(.has-text-color):not(.has-link-color) {
+						border-color: var(--wp--preset--color--white);
+						color: var(--wp--preset--color--white);
+
+						&:hover {
+							color: var(--wp--preset--color--black);
+						}
+					}
+				}
+
+				&.is-style-minimal {
+					.wp-block-button__link:not(.has-text-color):not(.has-link-color) {
+						color: var(--wp--preset--color--white);
+
+						&:hover {
+							box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+							color: var(--wp--preset--color--black);
+						}
+					}
+				}
+
+				&.is-style-text {
+					.wp-block-button__link:not(.has-text-color):not(.has-link-color) {
+						color: var(--wp--preset--color--white);
+
+						&:hover {
+							box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+						}
+					}
+				}
+
+			}
+		}
+	}
 }
