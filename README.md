@@ -3,19 +3,21 @@
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Accessibility Test](https://github.com/WebDevStudios/wds-bt/actions/workflows/a11y.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/a11y.yml)
 [![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
+[![Security](https://github.com/WebDevStudios/wds-bt/actions/workflows/security.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/security.yml)
 
-Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blocks and site editor compatibility. Boasting a contemporary aesthetic, an intuitive interface, and seamless WordPress block editor integration, WDS BT ensures a polished and adaptable framework across all devices. It's crucial to understand that WDS BT is crafted as a foundational theme rather than a parent theme. This difference affords users a flexible starting point for customization. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
+<details>
+  <summary>Table of Contents</summary>
 
-***
-
-## Table of Contents
-
-- [Requirements](#requirements)
-- [Getting Started](#getting-started)
-- [Setup](#setup)
-- [Development](#development)
+- [🔎 Overview](#-overview)
+- [✨ Features](#-features)
+- [📌 Requirements](#-requirements)
+- [🚀 Getting Started](#-getting-started)
+- [💻 Development](#-development)
+  - [Theme Structure](#theme-structure)
+  - [Setup](#setup)
+  - [NPM Scripts](#npm-scripts)
+- [🤖 Customizations](#-customizations)
   - [Registering Block Styles](#registering-block-styles)
   - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
   - [Creating Block Variations](#creating-block-variations)
@@ -24,12 +26,42 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
   - [Responsive Mixins](#responsive-mixins)
   - [Mobile Only Mixins](#mobile-only-mixins)
 - [Stylelint Configuration](#stylelint-configuration)
-- [Theme Unit Test](#theme-unit-test)
-- [Contributing and Support](#contributing-and-support)
+  - [Extends](#extends)
+  - [Rules](#rules)
+- [🚹 Accessibility and Code Quality and Security Checks](#-accessibility-and-code-quality-and-security-checks)
+  - [A11y script (npm run a11y)](#a11y-script-npm-run-a11y)
+  - [Security Check (security.yml)](#security-check-securityyml)
+  - [Code Quality Check (assertions.yml)](#code-quality-check-assertionsyml)
+  - [Integration Process with LeftHook](#integration-process-with-lefthook)
+- [🤝 Contributing and Support](#-contributing-and-support)
+
+
+</details>
 
 ***
 
-## Requirements
+## 🔎 Overview
+Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blocks and site editor compatibility. Boasting a contemporary aesthetic, an intuitive interface, and seamless WordPress block editor integration, WDS BT ensures a polished and adaptable framework across all devices. It's crucial to understand that WDS BT is crafted as a foundational theme rather than a parent theme. This difference affords users a flexible starting point for customization. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
+
+## ✨ Features
+
+| Feature                                          | Description                                                                                         |
+|--------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Native Block Support                             | Stylish block theme tailored for WordPress with support for native blocks and site editor.          |
+| Contemporary Aesthetic                           | Boasts a contemporary aesthetic design to enhance the visual appeal of your website.                |
+| Intuitive Interface                              | Offers an intuitive interface for easy navigation and seamless user experience.                      |
+| Seamless Integration with Block Editor           | Integrates seamlessly with the WordPress block editor for efficient content creation and editing.     |
+| Foundation Theme, not Parent Theme               | Crafted as a foundational theme rather than a parent theme, providing flexibility for customization. |
+| Polished and Adaptable Framework                 | Ensures a polished and adaptable framework across all devices, enhancing responsiveness and usability. |
+| Responsive Design                                | Responsive design ensures optimal viewing experience across various screen sizes and devices.        |
+| Flexible Starting Point for Customization        | Provides a flexible starting point for customization, allowing users to tailor the theme to their needs. |
+| Automated Workflow Actions for Code Quality      | Automated workflow actions to verify code quality adherence using WordPress coding standards.        |
+| Contribution and Support                        | Welcomes contributions and support tickets from users, with detailed guidelines for submitting pull requests. |
+| Free Software with GPL License                  | Released under the terms of the GNU General Public License version 2 or any later version, ensuring freedom and openness. |
+
+***
+
+## 📌 Requirements
 
 - WordPress 6.4+
 - PHP 8.2+
@@ -40,7 +72,7 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 
 ***
 
-## Getting Started
+## 🚀 Getting Started
 
 1. Set up a local WordPress development environment, we recommend using [Local](https://localwp.com/).
 2. Ensure you are using WordPress 6.4+.
@@ -49,7 +81,142 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 
 ***
 
-## Setup
+## 💻 Development
+
+<details closed>
+  <summary><b>Theme Structure</b></summary>
+	<pre>
+		<code>
+			└── wds=bt/
+				├── CONTRIBUTING.md
+				├── README.md
+				├── a11y.cjs
+				├── assets
+				│   ├── fonts
+				│   ├── images
+				│   ├── index.js
+				│   ├── js
+				│   │   ├── block-filters
+				│   │   │   ├── index.js
+				│   │   │   └── unregister-core-embed.js
+				│   │   ├── block-variations
+				│   │   │   └── index.js
+				│   │   ├── global
+				│   │   │   ├── header.js
+				│   │   │   ├── index.js
+				│   │   │   └── table.js
+				│   │   ├── index.js
+				│   │   └── templates
+				│   │       └── index.js
+				│   └── scss
+				│       ├── abstracts
+				│       │   ├── _abstracts.scss
+				│       │   ├── _mobile-only-mixins.scss
+				│       │   ├── _responsive-mixins.scss
+				│       │   └── _utility.scss
+				│       ├── base
+				│       │   ├── _base.scss
+				│       │   ├── _global.scss
+				│       │   └── _pagination.scss
+				│       ├── blocks
+				│       │   └── core
+				│       │       ├── audio.scss
+				│       │       ├── button.scss
+				│       │       ├── calendar.scss
+				│       │       ├── code.scss
+				│       │       ├── comments.scss
+				│       │       ├── cover.scss
+				│       │       ├── file.scss
+				│       │       ├── footnotes.scss
+				│       │       ├── gallery.scss
+				│       │       ├── group.scss
+				│       │       ├── latest-comments.scss
+				│       │       ├── latest-posts.scss
+				│       │       ├── list.scss
+				│       │       ├── navigation.scss
+				│       │       ├── page-list.scss
+				│       │       ├── post-author.scss
+				│       │       ├── post-comments-form.scss
+				│       │       ├── post-navigation-link.scss
+				│       │       ├── post-terms.scss
+				│       │       ├── preformatted.scss
+				│       │       ├── pullquote.scss
+				│       │       ├── query-pagination.scss
+				│       │       ├── query.scss
+				│       │       ├── quote.scss
+				│       │       ├── search.scss
+				│       │       ├── separator.scss
+				│       │       ├── social-links.scss
+				│       │       ├── table.scss
+				│       │       ├── tag-cloud.scss
+				│       │       ├── verse.scss
+				│       │       └── video.scss
+				│       ├── components
+				│       │   ├── _components.scss
+				│       │   └── _forms.scss
+				│       ├── index.scss
+				│       ├── layout
+				│       │   ├── _footer.scss
+				│       │   ├── _header.scss
+				│       │   └── _layout.scss
+				│       └── pages
+				│           ├── _404.scss
+				│           ├── _archive.scss
+				│           ├── _pages.scss
+				│           └── _search.scss
+				├── composer.json
+				├── composer.lock
+				├── functions.php
+				├── inc
+				│   ├── functions
+				│   │   └── security.php
+				│   ├── hooks
+				│   │   ├── enable-svg.php
+				│   │   ├── enqueue-block-stylesheet.php
+				│   │   ├── register-block-categories.php
+				│   │   ├── register-block-pattern-categories.php
+				│   │   ├── register-block-styles.php
+				│   │   ├── register-block-variations.php
+				│   │   ├── remove-archive-title-prefix.php
+				│   │   └── unregister-block-variations.php
+				│   └── setup
+				│       ├── preload-scripts.php
+				│       ├── scripts.php
+				│       └── setup.php
+				├── lefthook.yml
+				├── package-lock.json
+				├── package.json
+				├── parts
+				│   ├── footer.html
+				│   └── header.html
+				├── patterns
+				│   ├── footer-default.php
+				│   └── header-default.php
+				├── phpcs.xml.dist
+				├── postcss.config.js
+				├── readme.txt
+				├── screenshot.png
+				├── style.css
+				├── styles
+				│   └── dark.json
+				├── templates
+				│   ├── 404.html
+				│   ├── archive.html
+				│   ├── index.html
+				│   ├── page-blank.html
+				│   ├── page-no-title.html
+				│   ├── page.html
+				│   ├── search.html
+				│   └── single.html
+				├── theme.json
+				├── webpack.config.js
+				└── webpack.prod.js
+		</code>
+	</pre>
+</details>
+
+<details closed>
+<summary><b>Setup</b></summary>
 
 From the command line, change directories to your new theme directory:
 
@@ -64,28 +231,36 @@ Install theme dependencies and trigger an initial build.
 ```bash
 npm i && composer i
 ```
+</details>
+
+
+### NPM Scripts
+
+*From the command line, type any of the following to perform an action:*
+
+|  | Command | Description |
+|-------|---------|-------------|
+| 🌐 | `npm run a11y` | Run accessibility tests using Pa11y-CI. |
+| 🛠️ | `npm run build` | Build the theme using `wp-scripts`. |
+| 📝 | `npm run format` | Format files using `wp-scripts` and `composer`. |
+| 🔍 | `npm run lint` | Run all linting scripts. |
+| 🎨 | `npm run lint:css` | Lint CSS files using `wp-scripts`. |
+| 🚀 | `npm run lint:js` | Lint JavaScript files using `wp-scripts`. |
+| 📚 | `npm run lint:md:docs` | Lint Markdown files in the `docs` directory using `wp-scripts`. |
+| 🐘 | `npm run lint:php` | Lint PHP files using `composer`. |
+| 📦 | `npm run lint:pkg-json` | Lint `package.json` and `composer.json` using `wp-scripts`. |
+| 🔄 | `npm run packages-update` | Update dependencies defined in `package.json` using `wp-scripts`. |
+| 🔄 | `npm run reset` | Remove `node_modules`, `vendor`, `build`, `package-lock.json`, and `composer.lock` files. |
+| 🛠️ | `npm run setup` | Reset, install dependencies, and build the theme. |
+| ▶️ | `npm run start` | Start the development server using `wp-scripts`. |
+
 
 ***
 
-## Development
+## 🤖 Customizations
 
-From the command line, type any of the following to perform an action:
-
-| Command | Action |
-| ------- | ------ |
-| `npm run a11y` | Triggers Pa11y CI for accessibility checks |
-| `npm run build` | Builds production-ready assets for a deployment |
-| `npm run format` | Fix all CSS, JS, and MD formatting errors automatically |
-| `npm run format-php` | Fix all PHP formatting errors automatically |
-| `npm run lint` | Check all CSS, JS, and MD files for errors |
-| `npm run lint-php` | Check all PHP files for errors |
-| `npm run report` | Gives detailed information on coding standards violations in PHP code |
-| `npm run setup` | Cleans the project and then installs both Node.js and PHP dependencies. |
-| `npm run start` | Builds assets and starts Live Reload server |
-
-***
-
-## Registering Block Styles
+<details closed>
+<summary><b>Registering Block Styles</b></summary>
 
 1. Open the `inc/hooks/register-block-styles.php` file in your theme directory.
 
@@ -103,9 +278,10 @@ From the command line, type any of the following to perform an action:
     ),
     ```
 
-***
+</details>
 
-## Overriding/Customizing Core Block Styles
+<details closed>
+<summary><b>Overriding/Customizing Core Block Styles</b></summary>
 
 1. Navigate to the `assets/scss/blocks/core` directory within your theme.
 
@@ -119,9 +295,10 @@ From the command line, type any of the following to perform an action:
     npm run build
     ```
 
-***
+</details>
 
-## Creating Block Variations
+<details closed>
+<summary><b>Creating Block Variations</b></summary>
 
 1. In the `assets/js/block-variations` directory within your theme, create a new JavaScript file. This file will contain the definition of your block variation.
 
@@ -146,17 +323,18 @@ From the command line, type any of the following to perform an action:
 
 > **_NOTE:_** To find the correct block name, open the block editor, launch the browser console and type `wp.blocks.getBlockTypes()`. You will see the complete list of block names (from core or third-party).
 
-***
+</details>
 
-## Unregister Blocks and Variations
+<details closed>
+<summary><b>Unregister Blocks and Variations</b></summary>
 
 This functionality allows you to unregister and disable specific core Gutenberg blocks, styles, and variations that are not needed on your WordPress website. By removing these unused blocks and variations, you can streamline the Gutenberg editor and improve the overall performance of your site.
 
-### Implementation
+#### Implementation
 
 The script in `assets/js/block-filters/unregister-core-embed.js` loops through a list of unused blocks and variations, unregistering them from the Gutenberg editor. Additionally, it keeps only the specified embed variations for the core/embed block.
 
-### Example
+<b>Example</b>
 
 ```javascript
 // List of Gutenberg blocks to unregister
@@ -185,11 +363,12 @@ const keepEmbeds = [
 ];
 ```
 
-***
+</details>
 
-## Mixins
+### Mixins
 
-### Responsive Mixins
+<details closed>
+<summary><b>Responsive Mixins</b></summary>
 
 This SCSS file `assets/scss/abstracts/_responsive-mixins.scss` provides mixins for creating responsive media queries with both minimum and maximum width conditions. The file promotes modular and maintainable styling by allowing the easy application of responsive styles based on screen width.
 
@@ -217,7 +396,10 @@ To use the responsive mixin, include it in your SCSS code and customize it accor
 }
 ```
 
-### Mobile Only Mixins
+</details>
+
+<details closed>
+<summary><b>Mobile Only Mixins</b></summary>
 
 This SCSS file `assets/scss/abstracts/_mobile-only-mixins.scss` contains a mixin called `mobile-only` designed to visually hide elements for accessibility (a11y) while making them visible on mobile devices.
 
@@ -229,12 +411,11 @@ Include the `mobile-only` mixin in your SCSS file where you want to hide element
   @include mobile-only;
 }
 ```
+</details>
 
-***
+### Stylelint Configuration
 
-## Stylelint Configuration
-
-### Extends
+#### Extends
 
 The configuration extends two base configurations:
 
@@ -243,7 +424,8 @@ The configuration extends two base configurations:
 
 These base configurations provide a foundation for enforcing consistent styles and conventions in SCSS files.
 
-### Rules
+<details closed>
+<summary><b>Rules</b></summary>
 
 - `declaration-no-important`: Disallows the use of !important in declarations.
 - `scss/at-rule-no-unknown`: Allows specific SCSS at-rules to be ignored, such as @apply, @layer, @variants, @responsive, and @screen.
@@ -255,29 +437,55 @@ These base configurations provide a foundation for enforcing consistent styles a
   - margin: allows only `em` and `rem`
   - padding: allows only `em` and `rem`
 
+</details>
+
 ***
 
-## Accessibility and Code Quality Checks
+## 🚹 Accessibility and Code Quality and Security Checks
 
-WDS BT is equipped with automated workflow actions that ensure accessibility compliance and uphold code quality standards with every commit. Here's what you need to know to ensure smooth integration and contribution:
+WDS BT is equipped with automated workflow actions that ensure code security and uphold code quality standards with every commit. Accessibility check has been integrated into the development process, guaranteeing that websites built with WDS BT prioritize accessibility compliance based on WCAG 2.2 standards. This proactive approach underscores WDS BT's commitment to providing an inclusive user experience for all.
 
-### Accessibility Check (a11y.yml)
+<details closed>
+<summary><b>A11y script (npm run a11y)</b></summary>
 
-- **Purpose**: To guarantee accessibility compliance based on WCAG 2.2 standards.
-- **Configuration**: The accessibility check is performed using `pa11y-ci` with a custom configuration in `a11y.yml`.
-- **Local URL Configuration**:
-  - Before running the accessibility check, ensure the local URL is correctly set in `.pa11yci`.
-  - Replace the `"urls"` array with the appropriate local URL of your environment.
-- **Violation Reports**: Any accessibility violations detected will be saved in the `pa11y-ci-report` folder for further analysis.
+- **Purpose**: To guarantee that the theme meets the Web Content Accessibility Guidelines (WCAG) standards.
+- **Configuration**: Accessibility checks are integrated into the development process using `pa11y-ci` by running `npm run a11y`.
+- **Local Configuration**:
+  - The `a11y.cjs` script prompts the developer to input a URL for testing accessibility.
+	- If no URL is provided, it defaults to https://wdsbt.local.
+	- The script runs pa11y-ci on the specified URL to perform the accessibility audit.
+- **Violation Reports**: Any detected accessibility violations are displayed in the console for immediate review and action.
 
-### Code Quality Check (assertions.yml)
+</details>
+
+<details closed>
+<summary><b>Security Check (security.yml)</b></summary>
+
+- **Purpose**: Perform security checks on dependencies to identify vulnerabilities.
+- **Configuration**: Uses `symfonycorp/security-checker-action@v5` for security scanning.
+- **Concurrency Handling**: Ensures only one instance runs per branch concurrently, cancelling previous runs.
+- **Job**:
+  - **Name**: Security check
+  - **OS**: Ubuntu latest
+- **Conditional Execution**:
+  - Runs only if:
+    - Not a scheduled event (`schedule`), or
+    - Scheduled event, but repository owner is not "webdevstudios."
+
+</details>
+
+<details closed>
+<summary><b>Code Quality Check (assertions.yml)</b></summary>
 
 - **Purpose**: To verify code quality adherence using WordPress coding standards.
 - **Configuration**: The code quality check is performed using predefined assertions in `assertions.yml`.
 - **Action Requirement**: All detected code issues and violations must be addressed and fixed before any commit can successfully pass through.
 - **Report Display**: The assertions report will appear in the command-line interface (CLI) during the checks.
 
-### Integration Process with LeftHook
+</details>
+
+<details closed>
+<summary><b>Integration Process with LeftHook</b></summary>
 
 1. **Commit Changes**: Make your changes to the codebase as usual.
 2. **Automated Checks on Commit**: LeftHook triggers automated checks upon each commit.
@@ -288,26 +496,11 @@ WDS BT is equipped with automated workflow actions that ensure accessibility com
 7. **Create Pull Request (PR)**: When you create a PR, the actions are triggered again to run on the PR branch.
 8. **Review PR Checks**: Review the checks on the PR to ensure compliance before merging.
 
-#### Note
-
-- Regularly monitor the accessibility and code quality reports to ensure ongoing compliance and maintain high standards within the project.
-- Collaborate with team members to address any detected issues promptly, fostering a culture of accessibility and code excellence.
+</details>
 
 ***
 
-## Theme Unit Test
-
-1. Download the theme test data from <https://github.com/WebDevStudios/wds-bt/blob/main/wdsunittestdata.wordpress.xml>
-2. Import test data into your WordPress install by going to Tools => Import => WordPress
-3. Select the XML file from your computer
-4. Click on “Upload file and import”.
-5. Under “Import Attachments,” check the “Download and import file attachments” box and click submit.
-
-_Note: You may have to repeat the Import step until you see “All Done” to obtain the full list of Posts and Media._
-
-***
-
-## Contributing and Support
+## 🤝 Contributing and Support
 
 Your contributions and [support tickets](https://github.com/WebDevStudios/wds-bt/issues) are welcome. Please see our [contributing guidelines](https://github.com/WebDevStudios/wds-bt/blob/main/CONTRIBUTING.md) before submitting a pull request.
 

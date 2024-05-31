@@ -33,7 +33,6 @@
 	},
 	"scripts": {
 		"fix": "./vendor/bin/phpcbf --report=summary,source",
-		"lint": "./vendor/bin/phpcs --report=summary,source",
-		"report": "./vendor/bin/phpcs --report=full --report-file=phpcs-report.txt"
+		"lint": "./vendor/bin/phpcs --report=summary,source"
 	}
 }
