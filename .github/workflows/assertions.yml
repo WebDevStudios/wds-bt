@@ -68,6 +68,9 @@ jobs:
           node-version: '20.12.2'
           cache: 'npm'
 
+      - name: Unset npm_config_prefix
+        run: unset npm_config_prefix
+
       - name: Check Node version
         run: node -v
 
@@ -91,6 +94,9 @@ jobs:
         with:
           node-version: '20.12.2'
           cache: 'npm'
+
+      - name: Unset npm_config_prefix
+        run: unset npm_config_prefix
 
       - name: Check Node version
         run: node -v
