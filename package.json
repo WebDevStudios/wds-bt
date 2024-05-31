@@ -56,7 +56,7 @@
 		"webpack-cli": "^5.1.4"
 	},
 	"scripts": {
-		"a11y": "node a11y.cjs",
+		"a11y": "pa11y-ci",
 		"build": "wp-scripts build --stats-error-details",
 		"format": "wp-scripts format && npm run format:php",
 		"format:css": "wp-scripts format-style",
@@ -75,7 +75,6 @@
 		"setup": "npm run reset && npm i && composer i && npm run build",
 		"start": "wp-scripts start"
 	},
-	"type": "module",
 	"lint-staged": {
 		"*.js": [
 			"wp-scripts lint-js"
