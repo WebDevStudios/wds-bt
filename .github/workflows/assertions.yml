@@ -1,110 +1,104 @@
 name: Code Quality
 
 on:
-    pull_request:
-    push:
-        branches:
-            - main
+  pull_request:
+  push:
+    branches:
+      - main
 
-# Cancel previous workflow run groups that have not completed.
 concurrency:
-    # Group workflow runs by workflow name, along with the head branch ref of the pull request
-    # or otherwise the branch or tag ref.
-    group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-    phpcs:
-        name: PHPCS check
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  phpcs:
+    name: PHPCS check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup PHP
-              uses: 'shivammathur/setup-php@v2'
-              with:
-                  php-version: '8.2'
-                  ini-values: 'memory_limit=1G'
-                  coverage: none
-                  tools: cs2pr
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          ini-values: 'memory_limit=1G'
+          coverage: none
+          tools: cs2pr
 
-            - name: Get Composer Cache Directory
-              id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-            - name: Configure Composer cache
-              uses: actions/cache@v4
-              with:
-                  path: ${{ steps.composer-cache.outputs.dir }}
-                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-composer-
+      - name: Configure Composer cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
-            - name: Install Composer dependencies
-              uses: 'ramsey/composer-install@v2'
-              with:
-                  # Bust the cache at least once a month - output format: YYYY-MM.
-                  custom-cache-suffix: $(date -u "+%Y-%m")
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
-            - name: Validate composer.json
-              run: composer --no-interaction validate --no-check-all
+      - name: Validate composer.json
+        run: composer --no-interaction validate --no-check-all
 
-            - name: Detect coding standard violations (PHPCS)
-              run: vendor/bin/phpcs --report-full --report-checkstyle=./phpcs-report.txt
+      - name: Detect coding standard violations (PHPCS)
+        run: vendor/bin/phpcs --report-full --report-checkstyle=./phpcs-report.txt
 
-            - name: Upload PHPCS report
-              uses: actions/upload-artifact@v2
-              with:
-                  name: phpcs-report
-                  path: phpcs-report.txt
+      - name: Upload PHPCS report
+        uses: actions/upload-artifact@v2
+        with:
+          name: phpcs-report
+          path: phpcs-report.txt
 
-    stylelint:
-        name: 'Lint: CSS'
-        runs-on: ubuntu-latest
+  stylelint:
+    name: 'Lint: CSS'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.12.2'
+          cache: 'npm'
 
-            - name: Setup Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: v20.12.2
-                  cache: npm
+      - name: Check Node version
+        run: node -v
 
-            - name: Check Node version
-              run: node -v
+      - name: Install Node dependencies
+        run: npm ci
+        env:
+          CI: true
 
-            - name: Install Node dependencies
-              run: npm ci
-              env:
-                  CI: true
+      - name: Lint Stylesheets
+        run: npm run lint:css
 
-            - name: Lint Stylesheets
-              run: npm run lint:css
+  eslint:
+    name: 'Lint: JS'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    eslint:
-        name: 'Lint: JS'
-        runs-on: ubuntu-latest
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.12.2'
+          cache: 'npm'
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+      - name: Check Node version
+        run: node -v
 
-            - name: Setup Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: v20.12.2
-                  cache: npm
+      - name: Install Node dependencies
+        run: npm ci
+        env:
+          CI: true
 
-            - name: Check Node version
-              run: node -v
-
-            - name: Install Node dependencies
-              run: npm ci
-              env:
-                  CI: true
-
-            - name: Lint JavaScript
-              run: npm run lint:js
+      - name: Lint JavaScript
+        run: npm run lint:js
