@@ -1,70 +1,110 @@
 name: Code Quality
 
 on:
-    pull_request:
-    push:
-        branches:
-            - main
+  pull_request:
+  push:
+    branches:
+      - main
 
-# Cancel previous workflow run groups that have not completed.
 concurrency:
-    # Group workflow runs by workflow name, along with the head branch ref of the pull request
-    # or otherwise the branch or tag ref.
-    group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-    lint-css:
-        name: 'Lint: CSS'
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+  phpcs:
+    name: PHPCS check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          ini-values: 'memory_limit=1G'
+          coverage: none
+          tools: cs2pr
 
-            - name: Install Node dependencies
-              run: npm ci
-              env:
-                  CI: true
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-            - name: Detect coding standard violations (stylelint)
-              run: npm run lint:css
+      - name: Configure Composer cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
-    lint-php:
-        name: 'Lint: PHP'
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: '8.2'
-                  coverage: none
-                  tools: cs2pr
+      - name: Validate composer.json
+        run: composer --no-interaction validate --no-check-all
 
-            - name: Get Composer Cache Directory
-              id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Detect coding standard violations (PHPCS)
+        run: vendor/bin/phpcs --report-full --report-checkstyle=./phpcs-report.txt
 
-            - name: Configure Composer cache
-              uses: actions/cache@v4
-              with:
-                  path: ${{ steps.composer-cache.outputs.dir }}
-                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-composer-
+      - name: Upload PHPCS report
+        uses: actions/upload-artifact@v2
+        with:
+          name: phpcs-report
+          path: phpcs-report.txt
 
-            - name: Install Composer dependencies
-              run: composer install --prefer-dist --optimize-autoloader --no-progress --no-interaction
+  stylelint:
+    name: 'Lint: CSS'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Validate composer.json
-              run: composer --no-interaction validate --no-check-all
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.12.2'
+          cache: 'npm'
 
-            - name: Detect coding standard violations (PHPCS)
-              run: npm run lint:php
+      - name: Unset npm_config_prefix
+        run: unset npm_config_prefix
+
+      - name: Check Node version
+        run: node -v
+
+      - name: Install Node dependencies
+        run: npm ci
+        env:
+          CI: true
+
+      - name: Lint Stylesheets
+        run: npm run lint:css
+
+  eslint:
+    name: 'Lint: JS'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.12.2'
+          cache: 'npm'
+
+      - name: Unset npm_config_prefix
+        run: unset npm_config_prefix
+
+      - name: Check Node version
+        run: node -v
+
+      - name: Install Node dependencies
+        run: npm ci
+        env:
+          CI: true
+
+      - name: Lint JavaScript
+        run: npm run lint:js

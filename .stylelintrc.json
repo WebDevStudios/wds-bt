@@ -1,8 +1,5 @@
 {
-	"extends": [
-		"@wordpress/stylelint-config/scss",
-		"stylelint-config-prettier"
-	],
+	"extends": ["@wordpress/stylelint-config/scss"],
 	"rules": {
 		"at-rule-empty-line-before": null,
 		"declaration-colon-newline-after": null,

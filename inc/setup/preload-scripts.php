@@ -18,10 +18,10 @@ function preload_scripts() {
 	if ( is_readable( $asset_file_path ) ) {
 		$asset_file = include $asset_file_path;
 	} else {
-		$asset_file = [
+		$asset_file = array(
 			'version'      => '1.0.0',
-			'dependencies' => [ 'wp-polyfill' ],
-		];
+			'dependencies' => array( 'wp-polyfill' ),
+		);
 	}
 
 	?>

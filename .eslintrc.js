@@ -1,7 +1,7 @@
 module.exports = {
 	extends: [
-		'plugin:@wordpress/eslint-plugin/recommended',
-		'plugin:eslint-comments/recommended',
+		'plugin:@wordpress/eslint-plugin/recommended-with-formatting',
+		'plugin:prettier/recommended',
 	],
 	parserOptions: {
 		ecmaVersion: 2021,

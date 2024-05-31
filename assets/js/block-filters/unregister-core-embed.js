@@ -2,60 +2,62 @@
  * Functions to unregister and disable specific core Gutenberg blocks, styles, and variations.
  */
 
-wp.domReady(() => {
-	// List of Gutenberg blocks to unregister.
-	const unusedBlocks = [
-		'core/file',
-		'core/rss',
-		'core/tag-cloud',
-		'core/missing',
-		'core/loginout',
-		'core/term-description',
-		'core/query-title',
-	];
+document.addEventListener('DOMContentLoaded', function () {
+	if (typeof wp !== 'undefined' && typeof wp.blocks !== 'undefined') {
+		// List of Gutenberg blocks to unregister.
+		const unusedBlocks = [
+			'core/latest-comments',
+			'core/rss',
+			'core/missing',
+		];
 
-	// List of Gutenberg block variations to unregister.
-	const unregisterBlockVariations = [
-		// Example:
-		// {
-		//     blockName: 'core/group',
-		//     blockVariationName: 'group-row',
-		//
-		//     blockName: 'core/group',
-		//     blockVariationName: 'group-stack',
-		// },
-	];
+		// List of Gutenberg block variations to unregister.
+		const unregisterBlockVariations = [
+			// Example:
+			// {
+			//     blockName: 'core/group',
+			//     blockVariationName: 'group-row',
+			// },
+			// {
+			//     blockName: 'core/group',
+			//     blockVariationName: 'group-stack',
+			// },
+		];
 
-	// Keep only the necessary embed variations.
-	const embedBlockVariations = wp.blocks.getBlockVariations('core/embed');
-	const keepEmbeds = [
-		'twitter',
-		'wordpress',
-		'spotify',
-		'soundcloud',
-		'flickr',
-	];
+		// Keep only the necessary embed variations.
+		const embedBlockVariations = wp.blocks.getBlockVariations('core/embed');
+		const keepEmbeds = [
+			'twitter',
+			'wordpress',
+			'spotify',
+			'soundcloud',
+			'flickr',
+		];
 
-	// Unregister unused blocks.
-	for (let i = 0; i < unusedBlocks.length; i++) {
-		wp.blocks.unregisterBlockType(unusedBlocks[i]);
-	}
+		// Unregister unused blocks.
+		unusedBlocks.forEach((block) => {
+			wp.blocks.unregisterBlockType(block);
+		});
 
-	// Unregister unused block variations.
-	for (let i = 0; i < unregisterBlockVariations.length; i++) {
-		wp.blocks.unregisterBlockVariation(
-			unregisterBlockVariations[i].blockName,
-			unregisterBlockVariations[i].blockVariationName
-		);
-	}
-
-	// Keep only necessary embed variations.
-	for (let i = 0; i < embedBlockVariations.length; i++) {
-		if (!keepEmbeds.includes(embedBlockVariations[i].name)) {
+		// Unregister unused block variations.
+		unregisterBlockVariations.forEach((variation) => {
 			wp.blocks.unregisterBlockVariation(
-				'core/embed',
-				embedBlockVariations[i].name
+				variation.blockName,
+				variation.blockVariationName
 			);
-		}
+		});
+
+		// Keep only necessary embed variations.
+		embedBlockVariations.forEach((variation) => {
+			if (!keepEmbeds.includes(variation.name)) {
+				wp.blocks.unregisterBlockVariation(
+					'core/embed',
+					variation.name
+				);
+			}
+		});
+	} else {
+		// eslint-disable-next-line no-console
+		console.error('wp.blocks object is not available.');
 	}
 });

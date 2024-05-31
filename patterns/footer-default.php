@@ -9,62 +9,56 @@
  */
 
 // Determine whether to display site logo or site title.
-$wds_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":126} /--><!-- wp:site-tagline /-->' : '<!-- wp:site-title /--><!-- wp:site-tagline /-->';
+$wds_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":200} /-->' : '<!-- wp:site-title /--><!-- wp:site-tagline /-->';
 
 // Generate the copyright information.
 $wds_copyright_info = esc_html__( 'Copyright &copy; ', 'wdsbt' ) . esc_attr( gmdate( 'Y' ) );
 ?>
 
-<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}},"layout":{"type":"constrained"},"metadata":{"name":"Footer"}} -->
-<div class="wp-block-group alignfull" style="margin-top:var(--wp--preset--spacing--30)">
+<!-- wp:group {"templateLock":"contentOnly","tagName":"footer","metadata":{"name":"Footer"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"className":"alignfull has-black-background-color has-background","layout":{"type":"constrained"}} -->
+<footer class="wp-block-group alignfull has-black-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 
-	<!-- wp:group {"style":{"spacing":{"blockGap":"0px"}},"layout":{"type":"flex","orientation":"vertical","flexWrap":"wrap","justifyContent":"stretch"}} -->
-	<div class="wp-block-group">
+	<!-- wp:columns {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"},"blockGap":{"top":"0"}}}} -->
+	<div class="wp-block-columns" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 
-		<!-- wp:group {"metadata":{"name":"Site Info"},"layout":{"type":"flex","orientation":"vertical"}} -->
-		<div class="wp-block-group">
+		<!-- wp:column {"width":"66.66%"} -->
+		<div class="wp-block-column" style="flex-basis:66.66%">
+
 			<?php echo wp_kses_post( $wds_site_info ); ?>
-		</div>
-		<!-- /wp:group -->
 
-		<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"className":"is-style-wide"} -->
-		<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide" style="margin-top:var(--wp--preset--spacing--50);margin-bottom:var(--wp--preset--spacing--50)"/>
-		<!-- /wp:separator -->
+			<!-- wp:social-links {"iconColor":"black","iconColorValue":"#000","iconBackgroundColor":"white","iconBackgroundColorValue":"#fff","className":"is-style-default"} -->
+			<ul class="wp-block-social-links has-icon-color has-icon-background-color is-style-default">
 
-		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"},"metadata":{"name":"Copyright"}} -->
-		<div class="wp-block-group">
+				<!-- wp:social-link {"url":"https://www.facebook.com/webdevstudios","service":"facebook"} /-->
 
-			<!-- wp:group {"metadata":{"name":"Theme Info"},"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
-			<div class="wp-block-group">
+				<!-- wp:social-link {"url":"https://twitter.com/webdevstudios","service":"x"} /-->
 
-				<!-- wp:paragraph -->
-				<p><?php echo wp_kses_post( $wds_copyright_info ); ?></p>
-				<!-- /wp:paragraph -->
+				<!-- wp:social-link {"url":"https://www.instagram.com/webdevstudios/","service":"instagram"} /-->
 
-			</div>
-			<!-- /wp:group -->
+				<!-- wp:social-link {"url":"https://www.linkedin.com/company/webdevstudios-llc-","service":"linkedin"} /-->
 
-			<!-- wp:social-links {"size":"has-normal-icon-size","className":"is-style-logos-only","layout":{"type":"flex","justifyContent":"right"}} -->
-			<ul class="wp-block-social-links has-normal-icon-size is-style-logos-only">
-
-				<!-- wp:social-link {"url":"#","service":"facebook"} /-->
-
-				<!-- wp:social-link {"url":"#","service":"x"} /-->
-
-				<!-- wp:social-link {"url":"#","service":"github"} /-->
-
-				<!-- wp:social-link {"url":"#","service":"WordPress"} /-->
-
-				<!-- wp:social-link {"url":"#","service":"instagram"} /-->
+				<!-- wp:social-link {"url":"https://www.youtube.com/channel/UCh3A6k9S5xKIh6nmKsTk0ag","service":"youtube"} /-->
 
 			</ul>
 			<!-- /wp:social-links -->
 
+			<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"#f78766"}}}},"textColor":"white"} -->
+			<p class="has-white-color has-text-color has-link-color">WDS-BT stands for: <em>WebDevStudios Block Theme</em>. It can be found in the <a href="https://github.com/WebDevStudios/wds-bt">wds-bt github repo.</a>&nbsp; The theme is stood up on WDSLab: <a href="https://wdsbt.wdslab.com">https://wdsbt.wdslab.com</a>&nbsp;</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"#f78766"}}}},"textColor":"white"} -->
+			<p class="has-white-color has-text-color has-link-color"><?php echo wp_kses_post( $wds_copyright_info ); ?></p>
+			<!-- /wp:paragraph -->
+
 		</div>
-		<!-- /wp:group -->
+		<!-- /wp:column -->
+
+		<!-- wp:column {"width":"33.33%"} -->
+		<div class="wp-block-column" style="flex-basis:33.33%">
+		</div>
+		<!-- /wp:column -->
 
 	</div>
-	<!-- /wp:group -->
+	<!-- /wp:columns -->
 
-</div>
+</footer>
 <!-- /wp:group -->

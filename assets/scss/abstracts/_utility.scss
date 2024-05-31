@@ -88,8 +88,7 @@ figure[class*=' blur-'] {
 	.site-header {
 		position: sticky;
 		top: var(
-			--wp-admin--admin-bar--height,
-			0
+			--wp-admin--admin-bar--height, 0
 		) !important; /* stylelint-disable-line declaration-no-important */
 		transition: top 0.5s;
 		z-index: 100;

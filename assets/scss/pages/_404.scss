@@ -21,7 +21,6 @@
 				content: '';
 				display: block;
 				left: 20vw;
-				vertical-align: middle;
 				width: 19.125rem;
 				height: 17.8125rem;
 			}
@@ -52,10 +51,7 @@
 					animation: glitchBotom 1.5s linear infinite;
 					clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
 					-webkit-clip-path: polygon(
-						0 67%,
-						100% 67%,
-						100% 100%,
-						0 100%
+						0 67%, 100% 67%, 100% 100%, 0 100%
 					);
 				}
 			}

@@ -3,7 +3,8 @@
 //   @include mobile-only;
 // }
 
-// Mixin for visually hiding elements for accessibility (a11y) with mobile-only visibility
+// Mixin for visually hiding elements for accessibility (a11y) with
+// mobile-only visibility
 @mixin mobile-only {
 	border: 0;
 	clip: rect(0, 0, 0, 0);

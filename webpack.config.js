@@ -1,6 +1,7 @@
 const path = require('path');
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const CopyPlugin = require('copy-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -48,7 +49,17 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					'css-loader',
-					'postcss-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								plugins: [
+									// eslint-disable-next-line import/no-extraneous-dependencies
+									require('autoprefixer'),
+								],
+							},
+						},
+					},
 					'sass-loader',
 				],
 			},
@@ -106,8 +117,12 @@ module.exports = {
 		}),
 
 		new CleanWebpackPlugin(),
-
 		new ESLintPlugin(),
 		new StylelintPlugin(),
 	],
+	performance: {
+		maxAssetSize: 550000, // Increase the asset size limit to 550 KB
+		maxEntrypointSize: 550000, // Increase the entry point size limit to 550 KB
+		hints: 'warning', // You can set this to 'error' to make the build fail on these warnings or 'false' to disable them
+	},
 };
