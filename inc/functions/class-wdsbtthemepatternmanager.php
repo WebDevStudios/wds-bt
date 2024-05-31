@@ -88,53 +88,81 @@ class WdsbtThemePatternManager {
 		}
 		?>
 		<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				const buttonGroup = $('<br /><div class="alignleft actions"></div>');
-				const importButton = $('<button type="button" class="button">Import Patterns</button> ');
-				const exportButton = $('<button type="button" class="button">Export Patterns</button>');
+			document.addEventListener('DOMContentLoaded', function () {
+				// Create button group div
+				const buttonGroup = document.createElement('div');
+				buttonGroup.className = 'alignleft actions';
+				buttonGroup.innerHTML = '<br />';
 
-				importButton.on('click', function() {
+				// Create import button
+				const importButton = document.createElement('button');
+				importButton.type = 'button';
+				importButton.className = 'button';
+				importButton.textContent = 'Import Patterns';
+
+				// Create export button
+				const exportButton = document.createElement('button');
+				exportButton.type = 'button';
+				exportButton.className = 'button';
+				exportButton.textContent = 'Export Patterns';
+
+				// Event listener for import button
+				importButton.addEventListener('click', function () {
 					if (confirm('Are you sure you want to import patterns from patterns.json?')) {
-						$.post(
-							PatternManagerAjax.ajax_url,
-							{
+						fetch(PatternManagerAjax.ajax_url, {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded',
+							},
+							body: new URLSearchParams({
 								action: 'import_patterns',
-								nonce: PatternManagerAjax.nonce
-							},
-							function(response) {
-								if (response.success) {
-									alert('Patterns imported successfully');
-									location.reload();
-								} else {
-									alert('Error: ' + response.data);
-								}
+								nonce: PatternManagerAjax.nonce,
+							}),
+						})
+						.then(response => response.json())
+						.then(response => {
+							if (response.success) {
+								alert('Patterns imported successfully');
+								location.reload();
+							} else {
+								alert('Error: ' + response.data);
 							}
-						);
+						})
+						.catch(error => console.error('Error:', error));
 					}
 				});
 
-				exportButton.on('click', function() {
+				// Event listener for export button
+				exportButton.addEventListener('click', function () {
 					if (confirm('Are you sure you want to export patterns to patterns.json?')) {
-						$.post(
-							PatternManagerAjax.ajax_url,
-							{
-								action: 'export_patterns',
-								nonce: PatternManagerAjax.nonce
+						fetch(PatternManagerAjax.ajax_url, {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded',
 							},
-							function(response) {
-								if (response.success) {
-									alert('Patterns exported successfully');
-								} else {
-									alert('Error: ' + response.data);
-								}
+							body: new URLSearchParams({
+								action: 'export_patterns',
+								nonce: PatternManagerAjax.nonce,
+							}),
+						})
+						.then(response => response.json())
+						.then(response => {
+							if (response.success) {
+								alert('Patterns exported successfully');
+							} else {
+								alert('Error: ' + response.data);
 							}
-						);
+						})
+						.catch(error => console.error('Error:', error));
 					}
 				});
 
-				buttonGroup.append(importButton);
-				buttonGroup.append(exportButton);
-				$('.wp-list-table').after(buttonGroup);
+				// Append buttons to button group
+				buttonGroup.appendChild(importButton);
+				buttonGroup.appendChild(exportButton);
+
+				// Append button group after .wp-list-table
+				document.querySelector('.wp-list-table').after(buttonGroup);
 			});
 		</script>
 		<?php
