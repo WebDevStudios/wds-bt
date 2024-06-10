@@ -9,7 +9,15 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blocks and site editor compatibility. Boasting a contemporary aesthetic, an intuitive interface, and seamless WordPress block editor integration, WDS BT ensures a polished and adaptable framework across all devices. It's crucial to understand that WDS BT is crafted as a foundational theme rather than a parent theme. This difference affords users a flexible starting point for customization. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
+Meet WDS BT, a stylish block theme, tailored for WordPress, featuring
+native blocks and site editor compatibility. Boasting a contemporary
+aesthetic, an intuitive interface, and seamless WordPress block editor
+integration, WDS BT ensures a polished and adaptable framework across
+all devices. It's crucial to understand that WDS BT is crafted as a
+foundational theme rather than a parent theme. This difference affords
+users a flexible starting point for customization. Elevate your website
+with WDS BT, where design effortlessly meets functionality, providing
+the ideal canvas for your creative expression.
 
 == Copyright ==
 

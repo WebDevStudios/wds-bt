@@ -287,7 +287,7 @@ npm i && composer i
 
 2. Create an SCSS file with the exact filename as the block name you want to customize. This file will house your custom styles for that specific core block.
 
-3. Files within the `assets/scss/blocks/core` directory are automatically enqueued, simplifying the integration of your custom styles into the WordPress block editor.
+3. Files within the `assets/scss/blocks/core` directory are automatically enqueued, simplifying the integration of your custom styles into the WordPress block editor. Do not import these files into the main `index.scss`
 
 4. After adding your custom SCSS file, run the following command to compile and apply your changes:
 

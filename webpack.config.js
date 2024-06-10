@@ -11,14 +11,13 @@ const { glob } = require('glob');
 
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
-	.sync('./assets/scss/blocks/**/*.scss', {
+	.sync('./assets/scss/blocks/core/*.scss', {
 		posix: true,
 		dotRelative: true,
 	})
 	.reduce((acc, filePath) => {
 		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
-		const blockPath = filePath.split(/[\\/]/).slice(-2, -1)[0];
-		acc[`blocks/${blockPath}/${entryKey}`] = filePath;
+		acc[`blocks/core/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
