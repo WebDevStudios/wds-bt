@@ -16,7 +16,7 @@
 		"allow-plugins": {
 			"composer/installers": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true,
-			"squizlabs/php_codesniffe": true,
+			"squizlabs/php_codesniffer": true,
 			"wp-coding-standards/wpcs": true
 		},
 		"sort-packages": true
