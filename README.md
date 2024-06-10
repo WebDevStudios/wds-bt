@@ -411,14 +411,36 @@ These base configurations provide a foundation for enforcing consistent styles a
 WDS BT is equipped with automated workflow actions that ensure code security and uphold code quality standards with every commit. Accessibility check has been integrated into the development process, guaranteeing that websites built with WDS BT prioritize accessibility compliance based on WCAG 2.2 standards. This proactive approach underscores WDS BT's commitment to providing an inclusive user experience for all.
 
 <details closed>
-<summary><b>A11y script (npm run a11y)</b></summary>
+<summary><b>A11y Test (npm run a11y)</b></summary>
 
 - **Purpose**: To guarantee that the theme meets the Web Content Accessibility Guidelines (WCAG) standards.
-- **Configuration**: Accessibility checks are integrated into the development process using `pa11y-ci` by running `npm run a11y`.
-- **Local Configuration**:
-  - The `a11y.cjs` script prompts the developer to input a URL for testing accessibility.
-	- If no URL is provided, it defaults to https://wdsbt.local.
-	- The script runs pa11y-ci on the specified URL to perform the accessibility audit.
+- **Running the A11y Test Script**:
+  - Accessibility checks are integrated into the development process using `pa11y-ci` by running:
+	```bash
+		npm run a11y
+	```
+  - You will be prompted to enter the URL of the site you want to test for accessibility. If you leave it blank, it will default to https://wdsbt.local.
+- **Script Details**:
+  The script performs the following actions
+  - **Prompts for URL**: You will be prompted to enter the URL of the site you want to test for accessibility. If you leave it blank, it will default to https://wdsbt.local.
+  - **Checks for Sitemap**: Attempts to access the sitemap at `[URL]/wp-sitemap.xml`.
+  - **Runs Accessibility Tests**:
+    - If the sitemap is found, the script runs `pa11y-ci` on the sitemap URL.
+	  ```bash
+		$ npm run a11y
+		Please enter the URL to test for accessibility (leave blank to use your local: https://wdsbt.local):
+		> https://example.com
+		Sitemap found at https://example.com/wp-sitemap.xml. Running pa11y-ci on the sitemap...
+		[output from pa11y-ci]
+	  ```
+	- If the sitemap is not found, the script runs pa11y-ci on the main page URL.
+	  ```bash
+		$ npm run a11y
+		Please enter the URL to test for accessibility (leave blank to use your local: https://wdsbt.local):
+		> https://example.com
+		No sitemap found at https://example.com/wp-sitemap.xml. Running pa11y-ci on the main page...
+		[output from pa11y-ci]
+	  ```
 - **Violation Reports**: Any detected accessibility violations are displayed in the console for immediate review and action.
 
 </details>
@@ -470,6 +492,12 @@ WDS BT is equipped with automated workflow actions that ensure code security and
 Your contributions and [support tickets](https://github.com/WebDevStudios/wds-bt/issues) are welcome. Please see our [contributing guidelines](https://github.com/WebDevStudios/wds-bt/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
 WDS BT is free software, and is released under the terms of the GNU General Public License version 2 or any later version. See [LICENSE.md](https://github.com/WebDevStudios/wds-bt/blob/main/LICENSE.md) for complete license.
+
+***
+
+## Acknowledgement
+
+While the WDS-BT theme has evolved significantly, it was initially inspired by the [Powder](https://github.com/bgardner/powder) theme. We acknowledge and thank the creators of Powder for their work.
 
 ***
 
