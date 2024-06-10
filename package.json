@@ -56,7 +56,7 @@
 		"webpack-cli": "^5.1.4"
 	},
 	"scripts": {
-		"a11y": "pa11y-ci",
+		"a11y": "node a11y.cjs",
 		"build": "wp-scripts build --stats-error-details",
 		"format": "wp-scripts format && npm run format:php",
 		"format:css": "wp-scripts format-style",
@@ -84,5 +84,8 @@
 		"*.scss": [
 			"wp-scripts lint-style"
 		]
+	},
+	"dependencies": {
+		"node-fetch": "^3.3.2"
 	}
 }

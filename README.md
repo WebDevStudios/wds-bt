@@ -1,4 +1,4 @@
-# WDS BT <!-- omit in toc -->
+# WDS BT
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
@@ -6,44 +6,33 @@
 [![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
 [![Security](https://github.com/WebDevStudios/wds-bt/actions/workflows/security.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/security.yml)
 
+
 <details>
-  <summary>Table of Contents</summary>
+	<summary><b>Table of Contents</b></summary>
+	<a name="back-to-top"></a>
 
-- [🔎 Overview](#-overview)
-- [✨ Features](#-features)
-- [📌 Requirements](#-requirements)
-- [🚀 Getting Started](#-getting-started)
-- [💻 Development](#-development)
-  - [Theme Structure](#theme-structure)
-  - [Setup](#setup)
-  - [NPM Scripts](#npm-scripts)
-- [🤖 Customizations](#-customizations)
-  - [Registering Block Styles](#registering-block-styles)
-  - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
-  - [Creating Block Variations](#creating-block-variations)
-  - [Unregister Blocks and Variations](#unregister-blocks-and-variations)
-- [Mixins](#mixins)
-  - [Responsive Mixins](#responsive-mixins)
-  - [Mobile Only Mixins](#mobile-only-mixins)
-- [Stylelint Configuration](#stylelint-configuration)
-  - [Extends](#extends)
-  - [Rules](#rules)
-- [🚹 Accessibility and Code Quality and Security Checks](#-accessibility-and-code-quality-and-security-checks)
-  - [A11y script (npm run a11y)](#a11y-script-npm-run-a11y)
-  - [Security Check (security.yml)](#security-check-securityyml)
-  - [Code Quality Check (assertions.yml)](#code-quality-check-assertionsyml)
-  - [Integration Process with LeftHook](#integration-process-with-lefthook)
-- [🤝 Contributing and Support](#-contributing-and-support)
-
+- [Overview](#overview)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Getting Started](#getting-started)
+- [Development](#development)
+	- [NPM Scripts](#npm-scripts)
+- [Customizations](#customizations)
+		- [Implementation](#implementation)
+	- [Mixins](#mixins)
+	- [Stylelint Configuration](#stylelint-configuration)
+		- [Extends](#extends)
+- [Accessibility and Code Quality and Security Checks](#accessibility-and-code-quality-and-security-checks)
+- [Contributing and Support](#contributing-and-support)
 
 </details>
 
 ***
 
-## 🔎 Overview
+## Overview
 Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blocks and site editor compatibility. Boasting a contemporary aesthetic, an intuitive interface, and seamless WordPress block editor integration, WDS BT ensures a polished and adaptable framework across all devices. It's crucial to understand that WDS BT is crafted as a foundational theme rather than a parent theme. This difference affords users a flexible starting point for customization. Elevate your website with WDS BT, where design effortlessly meets functionality, providing the ideal canvas for your creative expression.
 
-## ✨ Features
+## Features
 
 | Feature                                          | Description                                                                                         |
 |--------------------------------------------------|-----------------------------------------------------------------------------------------------------|
@@ -59,9 +48,10 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 | Contribution and Support                        | Welcomes contributions and support tickets from users, with detailed guidelines for submitting pull requests. |
 | Free Software with GPL License                  | Released under the terms of the GNU General Public License version 2 or any later version, ensuring freedom and openness. |
 
+[🔝 Back to Top](#wds-bt)
 ***
 
-## 📌 Requirements
+## Requirements
 
 - WordPress 6.4+
 - PHP 8.2+
@@ -70,18 +60,19 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 - [Composer](https://getcomposer.org/)
 - License: [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-***
 
-## 🚀 Getting Started
+***
+## Getting Started
 
 1. Set up a local WordPress development environment, we recommend using [Local](https://localwp.com/).
 2. Ensure you are using WordPress 6.4+.
 3. Clone / download this repository into the `/wp-content/themes/` directory of your new WordPress instance.
 4. In the WordPress admin, use the Appearance > Themes screen to activate the theme.
 
+[🔝 Back to Top](#wds-bt)
 ***
 
-## 💻 Development
+## Development
 
 <details closed>
   <summary><b>Theme Structure</b></summary>
@@ -120,37 +111,9 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 				│       │   └── _pagination.scss
 				│       ├── blocks
 				│       │   └── core
-				│       │       ├── audio.scss
-				│       │       ├── button.scss
-				│       │       ├── calendar.scss
-				│       │       ├── code.scss
-				│       │       ├── comments.scss
-				│       │       ├── cover.scss
-				│       │       ├── file.scss
-				│       │       ├── footnotes.scss
-				│       │       ├── gallery.scss
-				│       │       ├── group.scss
-				│       │       ├── latest-comments.scss
-				│       │       ├── latest-posts.scss
-				│       │       ├── list.scss
-				│       │       ├── navigation.scss
-				│       │       ├── page-list.scss
-				│       │       ├── post-author.scss
-				│       │       ├── post-comments-form.scss
-				│       │       ├── post-navigation-link.scss
-				│       │       ├── post-terms.scss
-				│       │       ├── preformatted.scss
-				│       │       ├── pullquote.scss
-				│       │       ├── query-pagination.scss
-				│       │       ├── query.scss
-				│       │       ├── quote.scss
-				│       │       ├── search.scss
-				│       │       ├── separator.scss
-				│       │       ├── social-links.scss
-				│       │       ├── table.scss
-				│       │       ├── tag-cloud.scss
-				│       │       ├── verse.scss
-				│       │       └── video.scss
+				│       │       ├── ...
+				│       │   └── custom
+				│       │       ├── _custom.scss
 				│       ├── components
 				│       │   ├── _components.scss
 				│       │   └── _forms.scss
@@ -255,9 +218,10 @@ npm i && composer i
 | ▶️ | `npm run start` | Start the development server using `wp-scripts`. |
 
 
+[🔝 Back to Top](#wds-bt)
 ***
 
-## 🤖 Customizations
+## Customizations
 
 <details closed>
 <summary><b>Registering Block Styles</b></summary>
@@ -439,9 +403,10 @@ These base configurations provide a foundation for enforcing consistent styles a
 
 </details>
 
+[🔝 Back to Top](#wds-bt)
 ***
 
-## 🚹 Accessibility and Code Quality and Security Checks
+## Accessibility and Code Quality and Security Checks
 
 WDS BT is equipped with automated workflow actions that ensure code security and uphold code quality standards with every commit. Accessibility check has been integrated into the development process, guaranteeing that websites built with WDS BT prioritize accessibility compliance based on WCAG 2.2 standards. This proactive approach underscores WDS BT's commitment to providing an inclusive user experience for all.
 
@@ -500,8 +465,12 @@ WDS BT is equipped with automated workflow actions that ensure code security and
 
 ***
 
-## 🤝 Contributing and Support
+## Contributing and Support
 
 Your contributions and [support tickets](https://github.com/WebDevStudios/wds-bt/issues) are welcome. Please see our [contributing guidelines](https://github.com/WebDevStudios/wds-bt/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
 WDS BT is free software, and is released under the terms of the GNU General Public License version 2 or any later version. See [LICENSE.md](https://github.com/WebDevStudios/wds-bt/blob/main/LICENSE.md) for complete license.
+
+***
+
+[🔝 Back to Top](#wds-bt)
