@@ -69,7 +69,7 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"packages-update": "wp-scripts packages-update",
 		"postinstall": "npx lefthook install",
-		"preinstall": "if [ -z \"$CI\" ]; then . ~/.nvm/nvm.sh && nvm install && nvm use; fi",
+		"preinstall": "cross-env npm_config_legacy_peer_deps=false",
 		"reset": "rm -rf node_modules vendor build package-lock.json composer.lock",
 		"setup": "npm run reset && npm i && composer i && npm run build",
 		"start": "wp-scripts start"
@@ -84,8 +84,5 @@
 		"*.scss": [
 			"wp-scripts lint-style"
 		]
-	},
-	"dependencies": {
-		"node-fetch": "^3.3.2"
 	}
 }
