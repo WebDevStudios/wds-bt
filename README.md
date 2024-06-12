@@ -33,6 +33,7 @@
   - [Security Check (security.yml)](#security-check-securityyml)
   - [Code Quality Check (assertions.yml)](#code-quality-check-assertionsyml)
   - [Integration Process with LeftHook](#integration-process-with-lefthook)
+- [😻 Acknowledgements](#-acknowledgements)
 - [🤝 Contributing and Support](#-contributing-and-support)
 
 
@@ -497,6 +498,12 @@ WDS BT is equipped with automated workflow actions that ensure code security and
 8. **Review PR Checks**: Review the checks on the PR to ensure compliance before merging.
 
 </details>
+
+***
+
+## 😻 Acknowledgements
+
+The WDS-BT theme was initially inspired by the [Powder](https://github.com/bgardner/powder) theme. We acknowledge and thank the creators of Powder for their work.
 
 ***
 
