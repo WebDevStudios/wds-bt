@@ -2,10 +2,10 @@ pre-commit:
     commands:
         formatphp:
             glob: '*.php'
-            run: composer run-script fix {staged_files}
+            run: composer run-script phpcs-fix {staged_files}
         lintphp:
             glob: '*.php'
-            run: composer run-script lint {staged_files}
+            run: composer run-script phpcs {staged_files}
         formatstyles:
             glob: '*.{css,scss}'
             run: npx prettier {staged_files} --write
