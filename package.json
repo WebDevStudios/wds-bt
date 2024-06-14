@@ -56,8 +56,8 @@
 		"webpack-cli": "^5.1.4"
 	},
 	"scripts": {
-		"a11y": "pa11y-ci",
-		"build": "wp-scripts build --stats-error-details",
+		"a11y": "node a11y.cjs",
+		"build": "wp-scripts build --stats-error-details --progress",
 		"format": "wp-scripts format && npm run format:php",
 		"format:css": "wp-scripts format-style",
 		"format:php": "composer run-script fix",
@@ -69,7 +69,7 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"packages-update": "wp-scripts packages-update",
 		"postinstall": "npx lefthook install",
-		"preinstall": "if [ -z \"$CI\" ]; then . ~/.nvm/nvm.sh && nvm install && nvm use; fi",
+		"preinstall": "cross-env npm_config_legacy_peer_deps=false",
 		"reset": "rm -rf node_modules vendor build package-lock.json composer.lock",
 		"setup": "npm run reset && npm i && composer i && npm run build",
 		"start": "wp-scripts start"
