@@ -39,7 +39,13 @@ async function run() {
 		},
 	]);
 
-	const url = answers.url || defaultPath; // Use default path if no URL is provided
+	let url = answers.url || defaultPath; // Use default path if no URL is provided
+
+	// Normalize URL by removing trailing slash if it exists
+	if (url.endsWith('/')) {
+		url = url.slice(0, -1);
+	}
+
 	const sitemapUrl = `${url}/wp-sitemap.xml`;
 
 	try {

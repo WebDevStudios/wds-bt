@@ -57,7 +57,7 @@
 	},
 	"scripts": {
 		"a11y": "node a11y.cjs",
-		"build": "wp-scripts build --stats-error-details",
+		"build": "wp-scripts build --stats-error-details --progress",
 		"format": "wp-scripts format && npm run format:php",
 		"format:css": "wp-scripts format-style",
 		"format:php": "composer run-script fix",
