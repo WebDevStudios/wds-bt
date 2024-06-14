@@ -8,20 +8,20 @@
 
 
 <details>
-	<summary><b>Table of Contents</b></summary>
-	<a name="back-to-top"></a>
+    <summary><b>Table of Contents</b></summary>
+    <a name="back-to-top"></a>
 
 - [Overview](#overview)
 - [Features](#features)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
 - [Development](#development)
-	- [NPM Scripts](#npm-scripts)
+    - [NPM Scripts](#npm-scripts)
 - [Customizations](#customizations)
-		- [Implementation](#implementation)
-	- [Mixins](#mixins)
-	- [Stylelint Configuration](#stylelint-configuration)
-		- [Extends](#extends)
+        - [Implementation](#implementation)
+    - [Mixins](#mixins)
+    - [Stylelint Configuration](#stylelint-configuration)
+        - [Extends](#extends)
 - [Accessibility and Code Quality and Security Checks](#accessibility-and-code-quality-and-security-checks)
 - [Contributing and Support](#contributing-and-support)
 
@@ -75,107 +75,107 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 ## Development
 
 <details closed>
-  <summary><b>Theme Structure</b></summary>
-	<pre>
-		<code>
-			└── wds=bt/
-				├── CONTRIBUTING.md
-				├── README.md
-				├── a11y.cjs
-				├── assets
-				│   ├── fonts
-				│   ├── images
-				│   ├── index.js
-				│   ├── js
-				│   │   ├── block-filters
-				│   │   │   ├── index.js
-				│   │   │   └── unregister-core-embed.js
-				│   │   ├── block-variations
-				│   │   │   └── index.js
-				│   │   ├── global
-				│   │   │   ├── header.js
-				│   │   │   ├── index.js
-				│   │   │   └── table.js
-				│   │   ├── index.js
-				│   │   └── templates
-				│   │       └── index.js
-				│   └── scss
-				│       ├── abstracts
-				│       │   ├── _abstracts.scss
-				│       │   ├── _mobile-only-mixins.scss
-				│       │   ├── _responsive-mixins.scss
-				│       │   └── _utility.scss
-				│       ├── base
-				│       │   ├── _base.scss
-				│       │   ├── _global.scss
-				│       │   └── _pagination.scss
-				│       ├── blocks
-				│       │   └── core
-				│       │       ├── ...
-				│       │   └── custom
-				│       │       ├── _custom.scss
-				│       ├── components
-				│       │   ├── _components.scss
-				│       │   └── _forms.scss
-				│       ├── index.scss
-				│       ├── layout
-				│       │   ├── _footer.scss
-				│       │   ├── _header.scss
-				│       │   └── _layout.scss
-				│       └── pages
-				│           ├── _404.scss
-				│           ├── _archive.scss
-				│           ├── _pages.scss
-				│           └── _search.scss
-				├── composer.json
-				├── composer.lock
-				├── functions.php
-				├── inc
-				│   ├── functions
-				│   │   └── security.php
-				│   ├── hooks
-				│   │   ├── enable-svg.php
-				│   │   ├── enqueue-block-stylesheet.php
-				│   │   ├── register-block-categories.php
-				│   │   ├── register-block-pattern-categories.php
-				│   │   ├── register-block-styles.php
-				│   │   ├── register-block-variations.php
-				│   │   ├── remove-archive-title-prefix.php
-				│   │   └── unregister-block-variations.php
-				│   └── setup
-				│       ├── preload-scripts.php
-				│       ├── scripts.php
-				│       └── setup.php
-				├── lefthook.yml
-				├── package-lock.json
-				├── package.json
-				├── parts
-				│   ├── footer.html
-				│   └── header.html
-				├── patterns
-				│   ├── footer-default.php
-				│   └── header-default.php
-				├── phpcs.xml.dist
-				├── postcss.config.js
-				├── readme.txt
-				├── screenshot.png
-				├── style.css
-				├── styles
-				│   └── dark.json
-				├── templates
-				│   ├── 404.html
-				│   ├── archive.html
-				│   ├── index.html
-				│   ├── page-blank.html
-				│   ├── page-no-title.html
-				│   ├── page.html
-				│   ├── search.html
-				│   └── single.html
-				├── theme.json
-				├── webpack.config.js
-				└── webpack.prod.js
-		</code>
-	</pre>
+ <summary><b>Theme Structure</b></summary>
+ <pre>
+  <code>
+    └── wds=bt/
+        ├── CONTRIBUTING.md
+        ├── README.md
+        ├── a11y.cjs
+        ├── assets
+        │   ├── fonts
+        │   ├── images
+        │   ├── index.js
+        │   ├── js
+        │   │   ├── block-filters
+        │   │   │   ├── index.js
+        │   │   │   └── unregister-core-embed.js
+        │   │   ├── block-variations
+        │   │   │   └── index.js
+        │   │   ├── global
+        │   │   │   ├── header.js
+        │   │   │   ├── index.js
+        │   │   │   └── table.js
+        │   │   ├── index.js
+        │   │   └── templates
+        │   │       └── index.js
+        │   └── scss
+        │       ├── abstracts
+        │       │   ├── _abstracts.scss
+        │       │   ├── _mobile-only-mixins.scss
+        │       │   ├── _responsive-mixins.scss
+        │       │   └── _utility.scss
+        │       ├── base
+        │       │   ├── _base.scss
+        │       │   ├── _global.scss
+        │       │   └── _pagination.scss
+        │       ├── blocks
+        │       │   └── core
+        │       │       ├── ...
+        │       │   └── custom
+        │       │       ├── _custom.scss
+        │       ├── components
+        │       │   ├── _components.scss
+        │       │   └── _forms.scss
+        │       ├── index.scss
+        │       ├── layout
+        │       │   ├── _footer.scss
+        │       │   ├── _header.scss
+        │       │   └── _layout.scss
+        │       └── pages
+        │           ├── _404.scss
+        │           ├── _archive.scss
+        │           ├── _pages.scss
+        │           └── _search.scss
+        ├── composer.json
+        ├── composer.lock
+        ├── functions.php
+        ├── inc
+        │   ├── functions
+        │   │   └── security.php
+        │   ├── hooks
+        │   │   ├── enable-svg.php
+        │   │   ├── enqueue-block-stylesheet.php
+        │   │   ├── register-block-categories.php
+        │   │   ├── register-block-pattern-categories.php
+        │   │   ├── register-block-styles.php
+        │   │   ├── register-block-variations.php
+        │   │   ├── remove-archive-title-prefix.php
+        │   │   └── unregister-block-variations.php
+        │   └── setup
+        │       ├── preload-scripts.php
+        │       ├── scripts.php
+        │       └── setup.php
+        ├── lefthook.yml
+        ├── package-lock.json
+        ├── package.json
+        ├── parts
+        │   ├── footer.html
+        │   └── header.html
+        ├── patterns
+        │   ├── footer-default.php
+        │   └── header-default.php
+        ├── phpcs.xml.dist
+        ├── postcss.config.js
+        ├── readme.txt
+        ├── screenshot.png
+        ├── style.css
+        ├── styles
+        │   └── dark.json
+        ├── templates
+        │   ├── 404.html
+        │   ├── archive.html
+        │   ├── index.html
+        │   ├── page-blank.html
+        │   ├── page-no-title.html
+        │   ├── page.html
+        │   ├── search.html
+        │   └── single.html
+        ├── theme.json
+        ├── webpack.config.js
+        └── webpack.prod.js
+  </code>
+ </pre>
 </details>
 
 <details closed>
@@ -187,12 +187,12 @@ From the command line, change directories to your new theme directory:
 cd /wp-content/themes/your-theme
 ```
 
-Install theme dependencies and trigger an initial build.
+The command below will remove `node_modules`, `vendor`, `build`, `package-lock.json`, and `composer.lock` files. Install theme dependencies and trigger an initial build.
 
 >Note: You will need to have Composer 2 and NPM 10 installed first.
 
 ```bash
-npm i && composer i
+npm run setup
 ```
 </details>
 
@@ -416,9 +416,9 @@ WDS BT is equipped with automated workflow actions that ensure code security and
 - **Purpose**: To guarantee that the theme meets the Web Content Accessibility Guidelines (WCAG) standards.
 - **Running the A11y Test Script**:
   - Accessibility checks are integrated into the development process using `pa11y-ci` by running:
-	```bash
-		npm run a11y
-	```
+    ```bash
+        npm run a11y
+    ```
   - You will be prompted to enter the URL of the site you want to test for accessibility. If you leave it blank, it will default to https://wdsbt.local.
 - **Script Details**:
   The script performs the following actions
@@ -426,21 +426,21 @@ WDS BT is equipped with automated workflow actions that ensure code security and
   - **Checks for Sitemap**: Attempts to access the sitemap at `[URL]/wp-sitemap.xml`.
   - **Runs Accessibility Tests**:
     - If the sitemap is found, the script runs `pa11y-ci` on the sitemap URL.
-	  ```bash
-		$ npm run a11y
-		Please enter the URL to test for accessibility (leave blank to use your local: https://wdsbt.local):
-		> https://example.com
-		Sitemap found at https://example.com/wp-sitemap.xml. Running pa11y-ci on the sitemap...
-		[output from pa11y-ci]
-	  ```
-	- If the sitemap is not found, the script runs pa11y-ci on the main page URL.
-	  ```bash
-		$ npm run a11y
-		Please enter the URL to test for accessibility (leave blank to use your local: https://wdsbt.local):
-		> https://example.com
-		No sitemap found at https://example.com/wp-sitemap.xml. Running pa11y-ci on the main page...
-		[output from pa11y-ci]
-	  ```
+      ```bash
+        $ npm run a11y
+        Please enter the URL to test for accessibility (leave blank to use your local: https://wdsbt.local):
+        > https://example.com
+        Sitemap found at https://example.com/wp-sitemap.xml. Running pa11y-ci on the sitemap...
+        [output from pa11y-ci]
+      ```
+    - If the sitemap is not found, the script runs pa11y-ci on the main page URL.
+      ```bash
+        $ npm run a11y
+        Please enter the URL to test for accessibility (leave blank to use your local: https://wdsbt.local):
+        > https://example.com
+        No sitemap found at https://example.com/wp-sitemap.xml. Running pa11y-ci on the main page...
+        [output from pa11y-ci]
+      ```
 - **Violation Reports**: Any detected accessibility violations are displayed in the console for immediate review and action.
 
 </details>
