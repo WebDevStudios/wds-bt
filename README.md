@@ -495,9 +495,9 @@ WDS BT is free software, and is released under the terms of the GNU General Publ
 
 ***
 
-## Acknowledgement
+## Acknowledgements
 
-While the WDS-BT theme has evolved significantly, it was initially inspired by the [Powder](https://github.com/bgardner/powder) theme. We acknowledge and thank the creators of Powder for their work.
+The WDS-BT theme was initially inspired by the [Powder](https://github.com/bgardner/powder) theme. We acknowledge and thank the creators of Powder for their work.
 
 ***
 
