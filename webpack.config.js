@@ -1,23 +1,23 @@
 const path = require('path');
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const CopyPlugin = require('copy-webpack-plugin');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const { glob } = require('glob');
+const postcssRTL = require('postcss-rtl');
 
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
-	.sync('./assets/scss/blocks/core/*.scss', {
+	.sync('./assets/scss/blocks/**/*.scss', {
 		posix: true,
 		dotRelative: true,
 	})
 	.reduce((acc, filePath) => {
 		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
-		acc[`blocks/core/${entryKey}`] = filePath;
+		acc[`css/blocks/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -51,11 +51,20 @@ module.exports = {
 					{
 						loader: 'postcss-loader',
 						options: {
-							postcssOptions: {
-								plugins: [
-									// eslint-disable-next-line import/no-extraneous-dependencies
-									require('autoprefixer'),
-								],
+							postcssOptions: (loader) => {
+								const options = {
+									plugins: [require('autoprefixer')],
+								};
+
+								if (loader.filename) {
+									const isRTL =
+										loader.filename.includes('-rtl.css');
+									if (isRTL) {
+										options.plugins.push(postcssRTL());
+									}
+								}
+
+								return options;
 							},
 						},
 					},
@@ -80,7 +89,7 @@ module.exports = {
 		...defaultConfig.plugins,
 
 		new MiniCssExtractPlugin({
-			filename: '[name].css',
+			filename: '[name].css', // Output LTR styles to build/css directory
 		}),
 
 		new CopyPlugin({
