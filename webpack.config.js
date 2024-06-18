@@ -29,7 +29,7 @@ const blockEntryPaths = glob
 		const entryKey = filePath
 			.replace('./assets/blocks/', '')
 			.replace('/index.js', '');
-		acc[`../blocks/${entryKey}`] = filePath;
+		acc[`../blocks/${entryKey}/index`] = filePath;
 		return acc;
 	}, {});
 
@@ -39,7 +39,7 @@ const blockScssPaths = glob
 		const entryKey = filePath
 			.replace('./assets/blocks/', '')
 			.replace('/style.scss', '');
-		acc[`../blocks/${entryKey}`] = filePath;
+		acc[`../blocks/${entryKey}/style`] = filePath;
 		return acc;
 	}, {});
 
@@ -50,6 +50,28 @@ const styleScssPaths = glob
 		acc[`css/${entryKey}`] = filePath;
 		return acc;
 	}, {});
+
+// CopyPlugin patterns to include PHP and JSON files
+const copyPluginPatterns = [
+	{
+		from: './assets/blocks/**/*.php',
+		to: ({ context, absoluteFilename }) => {
+			return absoluteFilename.replace(
+				`${context}/assets/blocks/`,
+				'../blocks/'
+			);
+		},
+	},
+	{
+		from: './assets/blocks/**/*.json',
+		to: ({ context, absoluteFilename }) => {
+			return absoluteFilename.replace(
+				`${context}/assets/blocks/`,
+				'../blocks/'
+			);
+		},
+	},
+];
 
 module.exports = {
 	...defaultConfig,
@@ -177,6 +199,7 @@ module.exports = {
 					context: path.resolve(process.cwd(), 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
+				...copyPluginPatterns, // Include patterns for PHP and JSON files
 			],
 		}),
 
