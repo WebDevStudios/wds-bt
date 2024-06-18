@@ -1,12 +1,13 @@
 const path = require('path');
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const RemovePlugin = require('remove-files-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
-const { glob } = require('glob');
+const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
@@ -21,17 +22,58 @@ const coreBlockEntryPaths = glob
 		return acc;
 	}, {});
 
+// Dynamically generate entry points for each block
+const blockEntryPaths = glob
+	.sync('./assets/blocks/**/index.js', { posix: true, dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = filePath
+			.replace('./assets/blocks/', '')
+			.replace('/index.js', '');
+		acc[`../blocks/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
+const blockScssPaths = glob
+	.sync('./assets/blocks/**/style.scss', { posix: true, dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = filePath
+			.replace('./assets/blocks/', '')
+			.replace('/style.scss', '');
+		acc[`../blocks/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
+const styleScssPaths = glob
+	.sync('./assets/scss/index.scss', { posix: true, dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = 'style';
+		acc[`css/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
 module.exports = {
 	...defaultConfig,
 	entry: {
-		style: './assets/scss/index.scss',
 		index: './assets/js/index.js',
 		variations: './assets/js/block-variations/index.js',
 		filters: './assets/js/block-filters/index.js',
+		...styleScssPaths,
+		...blockEntryPaths,
+		...blockScssPaths,
 		...coreBlockEntryPaths,
 	},
 	output: {
-		filename: 'js/[name].js',
+		filename: (pathData) => {
+			const entryName = pathData.chunk.name;
+			if (
+				entryName.includes('css/blocks') ||
+				blockEntryPaths[entryName] ||
+				blockScssPaths[entryName]
+			) {
+				return '[name].js';
+			}
+			return 'js/[name].js';
+		},
 		path: path.resolve(__dirname, 'build'),
 	},
 	module: {
@@ -83,13 +125,36 @@ module.exports = {
 					filename: 'fonts/[name][ext]',
 				},
 			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env', '@babel/preset-react'],
+					},
+				},
+			},
 		],
 	},
 	plugins: [
 		...defaultConfig.plugins,
 
 		new MiniCssExtractPlugin({
-			filename: '[name].css', // Output LTR styles to build/css directory
+			filename: (pathData) => {
+				const entryName = pathData.chunk.name;
+				if (
+					entryName.includes('css/blocks') ||
+					blockEntryPaths[entryName] ||
+					blockScssPaths[entryName]
+				) {
+					return '[name].css';
+				}
+				if (entryName === 'css/style') {
+					return 'css/style.css';
+				}
+				return '[name].css';
+			},
 		}),
 
 		new CopyPlugin({
@@ -121,6 +186,30 @@ module.exports = {
 			},
 			sprite: {
 				prefix: false,
+			},
+		}),
+
+		new RemovePlugin({
+			after: {
+				log: false,
+				test: [
+					{
+						folder: path.resolve(__dirname, 'build'),
+						method: (absoluteItemPath) => {
+							return new RegExp(/\.js/, 'm').test(
+								absoluteItemPath
+							);
+						},
+					},
+					{
+						folder: path.resolve(__dirname, 'build'),
+						method: (absoluteItemPath) => {
+							return new RegExp(/\.php$/, 'm').test(
+								absoluteItemPath
+							);
+						},
+					},
+				],
 			},
 		}),
 

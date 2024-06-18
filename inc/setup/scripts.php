@@ -25,7 +25,7 @@ function scripts() {
 	}
 
 	// Register styles & scripts.
-	wp_enqueue_style( 'wdsbt-styles', get_stylesheet_directory_uri() . '/build/style.css', [], $asset_file['version'] );
+	wp_enqueue_style( 'wdsbt-styles', get_stylesheet_directory_uri() . '/build/css/style.css', [], $asset_file['version'] );
 	wp_enqueue_script( 'wdsbt-scripts', get_stylesheet_directory_uri() . '/build/js/index.js', $asset_file['dependencies'], $asset_file['version'], true );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );
