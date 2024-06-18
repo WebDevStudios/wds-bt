@@ -86,7 +86,7 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\enqueue_block_styles' );
  * @return array An array containing information about block stylesheets.
  */
 function get_block_stylesheets() {
-	$css_dir             = get_stylesheet_directory() . '/assets/css';
+	$css_dir             = get_stylesheet_directory() . '/build/css';
 	$exclude_stylesheets = array( 'style.css', 'style-rtl.css' );
 
 	$css_files = array_diff(
@@ -101,10 +101,10 @@ function get_block_stylesheets() {
 
 			$block_name = $matches[1] . '/' . $matches[2];
 
-			return [
+			return array(
 				'path' => $css_file,
-				'src'  => str_replace( $css_dir, get_stylesheet_directory_uri() . '/assets/css', $css_file ),
-			];
+				'src'  => str_replace( $css_dir, get_stylesheet_directory_uri() . '/build/css', $css_file ),
+			);
 		},
 		$css_files
 	);

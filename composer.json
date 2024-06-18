@@ -33,7 +33,7 @@
 		"wp-coding-standards/wpcs": "^3.1.0"
 	},
 	"scripts": {
-		"phpcs": "./vendor/bin/phpcs --report=summary,source",
+		"phpcs": "./vendor/bin/phpcs --report=full,source",
 		"phpcs-fix": "./vendor/bin/phpcbf --report=summary,source"
 	}
 }
