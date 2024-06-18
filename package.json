@@ -21,6 +21,9 @@
 		"node": ">=20",
 		"npm": ">=10"
 	},
+	"dependencies": {
+		"svgo": "^3.3.2"
+	},
 	"devDependencies": {
 		"@babel/core": "^7.24.7",
 		"@babel/plugin-transform-class-static-block": "7.24.6",
@@ -99,8 +102,5 @@
 		"*.scss": [
 			"wp-scripts lint-style"
 		]
-	},
-	"dependencies": {
-		"svgo": "^3.3.2"
 	}
 }

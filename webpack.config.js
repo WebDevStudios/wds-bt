@@ -217,15 +217,15 @@ module.exports = {
 				log: false,
 				test: [
 					{
-						folder: path.resolve(__dirname, 'build'),
+						folder: path.resolve(__dirname, 'build/css/blocks'),
 						method: (absoluteItemPath) => {
-							return new RegExp(/\.js/, 'm').test(
+							return new RegExp(/\.js$/, 'm').test(
 								absoluteItemPath
 							);
 						},
 					},
 					{
-						folder: path.resolve(__dirname, 'build'),
+						folder: path.resolve(__dirname, 'build/css/blocks'),
 						method: (absoluteItemPath) => {
 							return new RegExp(/\.php$/, 'm').test(
 								absoluteItemPath
