@@ -17,6 +17,7 @@
 - [Getting Started](#getting-started)
 - [Development](#development)
     - [NPM Scripts](#npm-scripts)
+- [Creating Custom Blocks](#creating-blocks)
 - [Customizations](#customizations)
         - [Implementation](#implementation)
     - [Mixins](#mixins)
@@ -205,6 +206,7 @@ npm run setup
 |-------|---------|-------------|
 | 🌐 | `npm run a11y` | Run accessibility tests using Pa11y-CI. |
 | 🛠️ | `npm run build` | Build the theme using `wp-scripts`. |
+| 🔨 | `npm run create-block` | Create a custom block with Webpack and @wordpress/create-block. |
 | 📝 | `npm run format` | Format files using `wp-scripts` and `composer`. |
 | 🔍 | `npm run lint` | Run all linting scripts. |
 | 🎨 | `npm run lint:css` | Lint CSS files using `wp-scripts`. |
@@ -216,6 +218,30 @@ npm run setup
 | 🔄 | `npm run reset` | Remove `node_modules`, `vendor`, `build`, `package-lock.json`, and `composer.lock` files. |
 | 🛠️ | `npm run setup` | Reset, install dependencies, and build the theme. |
 | ▶️ | `npm run start` | Start the development server using `wp-scripts`. |
+
+
+[🔝 Back to Top](#wds-bt)
+***
+
+## Creating Blocks
+
+1. Run the Block Creation Script
+   Navigate to your project root in the terminal and run the following command to create a new block:
+
+```bash
+npm run create-block
+```
+
+Follow the prompts to configure your new block. The script will scaffold a new block structure inside assets/blocks/.
+
+2. Build your block
+   After editing and configuring your block, build your project to compile assets using webpack:
+
+```bash
+npm run build
+```
+This will process JavaScript, SCSS, optimize images, and generate necessary files in the build/ directory and custom blocks will have files generated in the blocks/ directory.
+
 
 
 [🔝 Back to Top](#wds-bt)
