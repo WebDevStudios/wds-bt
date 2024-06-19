@@ -31,7 +31,7 @@ function setup() {
 
 	// Gutenberg editor styles support.
 	add_theme_support( 'editor-styles' );
-	add_editor_style( 'build/style.css' );
+	add_editor_style( 'build/css/style.css' );
 
 	remove_action( 'wp_footer', 'the_block_template_skip_link' );
 
