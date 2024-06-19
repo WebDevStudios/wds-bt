@@ -20,4 +20,4 @@ function register_block_variations() {
 	);
 }
 
-add_filter( 'enqueue_block_editor_assets', __NAMESPACE__ . '\register_block_variations', 10, 1 );
+add_filter( 'enqueue_block_assets', __NAMESPACE__ . '\register_block_variations', 10, 1 );
