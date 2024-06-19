@@ -10,9 +10,14 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
+// Function to check for the existence of files matching a pattern
+function hasFiles(pattern) {
+	return glob.sync(pattern, { posix: true, dotRelative: true }).length > 0;
+}
+
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
-	.sync('./assets/scss/blocks/**/*.scss', {
+	.sync('./assets/scss/blocks/core/*.scss', {
 		posix: true,
 		dotRelative: true,
 	})
@@ -52,8 +57,11 @@ const styleScssPaths = glob
 	}, {});
 
 // CopyPlugin patterns to include PHP and JSON files
-const copyPluginPatterns = [
-	{
+const copyPluginPatterns = [];
+
+// Only add PHP and JSON patterns if these files exist
+if (hasFiles('./assets/blocks/**/*.php')) {
+	copyPluginPatterns.push({
 		from: './assets/blocks/**/*.php',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
@@ -61,21 +69,26 @@ const copyPluginPatterns = [
 				'../blocks/'
 			);
 		},
-	},
-	{
-		from: './assets/blocks/**/*.json',
+	});
+}
+
+if (hasFiles('./assets/blocks/**/*.json')) {
+	copyPluginPatterns.push({
+		from: './assets/blocks/core/*.json',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				`${context}/assets/blocks/`,
 				'../blocks/'
 			);
 		},
-	},
-];
+	});
+}
 
 module.exports = {
 	...defaultConfig,
 	entry: {
+		...defaultConfig.entry,
+		admin: './assets/scss/editor.scss',
 		index: './assets/js/index.js',
 		variations: './assets/js/block-variations/index.js',
 		filters: './assets/js/block-filters/index.js',

@@ -74,7 +74,7 @@
 	},
 	"scripts": {
 		"a11y": "node a11y.cjs",
-		"build": "wp-scripts build --config webpack.config.js --webpack-src-dir=assets/blocks",
+		"build": "wp-scripts build --config webpack.config.js --webpack-src-dir=assets/blocks --stats-error-details --progress",
 		"create-block": "cd ./assets/blocks && npx @wordpress/create-block --namespace=wdsbt --template ../../inc/block-template --no-plugin",
 		"format": "wp-scripts format && npm run format:php",
 		"format:css": "wp-scripts format-style",
