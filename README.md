@@ -79,7 +79,7 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
   <summary><b>Theme Structure</b></summary>
 	<pre>
 		<code>
-			└── wds=bt/
+			└── wds-bt/
 				├── CONTRIBUTING.md
 				├── README.md
 				├── a11y.cjs
