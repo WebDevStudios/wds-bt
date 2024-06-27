@@ -23,7 +23,7 @@ vendor/
 
 # theme
 build/
-blocks/
+./blocks/
 
 #tests
 pa11y-ci-report/

@@ -26,6 +26,7 @@ module.exports = {
 		},
 	},
 	variants: {
+		static: {},
 		dynamic: {},
 		interactive: {
 			viewScriptModule: 'file:./view.js',
