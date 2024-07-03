@@ -50,7 +50,7 @@ const blockScssPaths = glob
 	}, {});
 
 const styleScssPaths = glob
-	.sync('./assets/scss/index.scss', { posix: true, dotRelative: true })
+	.sync('./assets/scss/_index.scss', { posix: true, dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = 'style';
 		acc[`css/${entryKey}`] = filePath;
