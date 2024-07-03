@@ -76,107 +76,133 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 ## Development
 
 <details closed>
- <summary><b>Theme Structure</b></summary>
- <pre>
-  <code>
-    └── wds=bt/
-        ├── CONTRIBUTING.md
-        ├── README.md
-        ├── a11y.cjs
-        ├── assets
-        │   ├── fonts
-        │   ├── images
-        │   ├── index.js
-        │   ├── js
-        │   │   ├── block-filters
-        │   │   │   ├── index.js
-        │   │   │   └── unregister-core-embed.js
-        │   │   ├── block-variations
-        │   │   │   └── index.js
-        │   │   ├── global
-        │   │   │   ├── header.js
-        │   │   │   ├── index.js
-        │   │   │   └── table.js
-        │   │   ├── index.js
-        │   │   └── templates
-        │   │       └── index.js
-        │   └── scss
-        │       ├── abstracts
-        │       │   ├── _abstracts.scss
-        │       │   ├── _mobile-only-mixins.scss
-        │       │   ├── _responsive-mixins.scss
-        │       │   └── _utility.scss
-        │       ├── base
-        │       │   ├── _base.scss
-        │       │   ├── _global.scss
-        │       │   └── _pagination.scss
-        │       ├── blocks
-        │       │   └── core
-        │       │       ├── ...
-        │       │   └── custom
-        │       │       ├── _custom.scss
-        │       ├── components
-        │       │   ├── _components.scss
-        │       │   └── _forms.scss
-        │       ├── index.scss
-        │       ├── layout
-        │       │   ├── _footer.scss
-        │       │   ├── _header.scss
-        │       │   └── _layout.scss
-        │       └── pages
-        │           ├── _404.scss
-        │           ├── _archive.scss
-        │           ├── _pages.scss
-        │           └── _search.scss
-        ├── composer.json
-        ├── composer.lock
-        ├── functions.php
-        ├── inc
-        │   ├── functions
-        │   │   └── security.php
-        │   ├── hooks
-        │   │   ├── enable-svg.php
-        │   │   ├── enqueue-block-stylesheet.php
-        │   │   ├── register-block-categories.php
-        │   │   ├── register-block-pattern-categories.php
-        │   │   ├── register-block-styles.php
-        │   │   ├── register-block-variations.php
-        │   │   ├── remove-archive-title-prefix.php
-        │   │   └── unregister-block-variations.php
-        │   └── setup
-        │       ├── preload-scripts.php
-        │       ├── scripts.php
-        │       └── setup.php
-        ├── lefthook.yml
-        ├── package-lock.json
-        ├── package.json
-        ├── parts
-        │   ├── footer.html
-        │   └── header.html
-        ├── patterns
-        │   ├── footer-default.php
-        │   └── header-default.php
-        ├── phpcs.xml.dist
-        ├── postcss.config.js
-        ├── readme.txt
-        ├── screenshot.png
-        ├── style.css
-        ├── styles
-        │   └── dark.json
-        ├── templates
-        │   ├── 404.html
-        │   ├── archive.html
-        │   ├── index.html
-        │   ├── page-blank.html
-        │   ├── page-no-title.html
-        │   ├── page.html
-        │   ├── search.html
-        │   └── single.html
-        ├── theme.json
-        ├── webpack.config.js
-        └── webpack.prod.js
-  </code>
- </pre>
+  <summary><b>Theme Structure</b></summary>
+	<pre>
+		<code>
+			└── wds-bt/
+				├── CONTRIBUTING.md
+				├── README.md
+				├── a11y.cjs
+				├── assets
+				│   ├── fonts
+				│   ├── images
+				│   ├── index.js
+				│   ├── js
+				│   │   ├── block-filters
+				│   │   │   ├── index.js
+				│   │   │   └── unregister-core-embed.js
+				│   │   ├── block-variations
+				│   │   │   └── index.js
+				│   │   ├── global
+				│   │   │   ├── header.js
+				│   │   │   ├── index.js
+				│   │   │   └── table.js
+				│   │   ├── index.js
+				│   │   └── templates
+				│   │       └── index.js
+				│   └── scss
+				│       ├── _index.scss
+				│       ├── abstracts
+				│       │   ├── _index.scss
+				│       │   ├── mobile-only-mixins.scss
+				│       │   ├── responsive-mixins.scss
+				│       │   └── utility.scss
+				│       ├── base
+				│       │   ├── _index.scss
+				|       |   ├── forms.scss
+				│       │   ├── global.scss
+				│       │   └── pagination.scss
+				│       ├── blocks
+				│       │   └── core
+				│       │       ├── audio.scss
+				│       │       ├── button.scss
+				│       │       ├── calendar.scss
+				│       │       ├── code.scss
+				│       │       ├── comments.scss
+				│       │       ├── cover.scss
+				│       │       ├── file.scss
+				│       │       ├── footnotes.scss
+				│       │       ├── gallery.scss
+				│       │       ├── group.scss
+				│       │       ├── latest-comments.scss
+				│       │       ├── latest-posts.scss
+				│       │       ├── list.scss
+				│       │       ├── navigation.scss
+				│       │       ├── page-list.scss
+				│       │       ├── post-author.scss
+				│       │       ├── post-comments-form.scss
+				│       │       ├── post-navigation-link.scss
+				│       │       ├── post-terms.scss
+				│       │       ├── preformatted.scss
+				│       │       ├── pullquote.scss
+				│       │       ├── query-pagination.scss
+				│       │       ├── query.scss
+				│       │       ├── quote.scss
+				│       │       ├── search.scss
+				│       │       ├── separator.scss
+				│       │       ├── social-links.scss
+				│       │       ├── table.scss
+				│       │       ├── tag-cloud.scss
+				│       │       ├── verse.scss
+				│       │       └── video.scss
+				│       ├── template-parts 
+				│       │   ├── _index.scss
+				│       │   ├── footer.scss
+				│       │   └── header.scss
+				│       └── pages
+				│           ├── _index.scss
+				│           ├── 404.scss
+				│           ├── archive.scss
+				│           └── search.scss
+				├── composer.json
+				├── composer.lock
+				├── functions.php
+				├── inc
+				│   ├── functions
+				│   │   └── security.php
+				│   ├── hooks
+				│   │   ├── enable-svg.php
+				│   │   ├── enqueue-block-stylesheet.php
+				│   │   ├── register-block-categories.php
+				│   │   ├── register-block-pattern-categories.php
+				│   │   ├── register-block-styles.php
+				│   │   ├── register-block-variations.php
+				│   │   ├── remove-archive-title-prefix.php
+				│   │   └── unregister-block-variations.php
+				│   └── setup
+				│       ├── preload-scripts.php
+				│       ├── scripts.php
+				│       └── setup.php
+				├── lefthook.yml
+				├── package-lock.json
+				├── package.json
+				├── parts
+				│   ├── footer.html
+				│   └── header.html
+				├── patterns
+				│   ├── footer-default.php
+				│   └── header-default.php
+				├── phpcs.xml.dist
+				├── postcss.config.js
+				├── readme.txt
+				├── screenshot.png
+				├── style.css
+				├── styles
+				│   └── dark.json
+				├── templates
+				│   ├── 404.html
+				│   ├── archive.html
+				│   ├── index.html
+				│   ├── page-blank.html
+				│   ├── page-no-title.html
+				│   ├── page.html
+				│   ├── search.html
+				│   └── single.html
+				├── theme.json
+				├── webpack.config.js
+				└── webpack.prod.js
+		</code>
+	</pre>
 </details>
 
 <details closed>

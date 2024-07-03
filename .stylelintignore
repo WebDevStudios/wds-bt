@@ -1,5 +1,5 @@
-./blocks/
 build/
+/blocks/
 vendor/
 node_modules/
 !.*.js
