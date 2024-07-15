@@ -4,15 +4,19 @@
 	.wp-block-post {
 		border-radius: 10px;
 		box-shadow:
-			0 8px 16px 0 rgba(48, 49, 51, 0.1),
-			0 0 1px 0 rgba(48, 49, 51, 0.05);
+			0 0.5rem 1rem 0 rgba(48, 49, 51, 0.1),
+			0 0 0.0625rem 0 rgba(48, 49, 51, 0.05);
 
 		> *:not(.wp-block-post-featured-image):not(hr) {
 			padding: 0.5rem 1.875rem;
 		}
 
 		.wp-block-post-featured-image {
-			border-top-left-radius: 10px;
+
+			img {
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+			}
 		}
 
 		.wp-block-post-terms {
@@ -46,7 +50,7 @@
 		}
 
 		hr {
-			border-top: 1px;
+			border-top: 10px;
 			margin: 0;
 		}
 
