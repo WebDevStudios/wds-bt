@@ -605,6 +605,34 @@
 					"fontSize": "var(--wp--preset--font-size--xxxl)"
 				}
 			},
+			"core/post-terms": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--headline)",
+					"fontSize": "0.75rem",
+					"fontWeight": "400",
+					"textTransform": "uppercase"
+				},
+				"spacing": {
+					"padding": {
+						"top": "0.75rem",
+						"right": "0.75rem",
+						"bottom": "0.75rem",
+						"left": "0"
+					}
+				},
+				"elements": {
+					"link": {
+						"spacing": {
+							"padding": {
+								"left": "0"
+							}
+						},
+						"typography": {
+							"fontWeight": "400"
+						}
+					}
+				}
+			},
 			"core/preformatted": {
 				"color": {
 					"background": "var(--wp--preset--color--primary-50)",
