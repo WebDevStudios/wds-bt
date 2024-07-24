@@ -226,6 +226,7 @@
 			]
 		},
 		"spacing": {
+			"defaultSpacingSizes": false,
 			"spacingScale": {
 				"steps": 1
 			},
@@ -269,6 +270,7 @@
 			"units": ["%", "px", "em", "rem", "vh", "vw"]
 		},
 		"typography": {
+			"defaultFontSizes": false,
 			"dropCap": false,
 			"fontFamilies": [
 				{
