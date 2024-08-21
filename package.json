@@ -30,10 +30,10 @@
 		"@babel/preset-env": "^7.24.7",
 		"@babel/preset-react": "^7.24.7",
 		"@evilmartians/lefthook": "1.6.12",
-		"@wordpress/env": "^10.3.0",
-		"@wordpress/eslint-plugin": "^20.0.0",
-		"@wordpress/prettier-config": "^4.3.0",
-		"@wordpress/scripts": "^28.3.0",
+		"@wordpress/env": "^10.6.0",
+		"@wordpress/eslint-plugin": "^20.3.0",
+		"@wordpress/prettier-config": "^4.6.0",
+		"@wordpress/scripts": "^28.6.0",
 		"autoprefixer": "^10.4.19",
 		"babel-loader": "^9.1.3",
 		"clean-webpack-plugin": "^4.0.0",
@@ -74,7 +74,7 @@
 	},
 	"scripts": {
 		"a11y": "node a11y.cjs",
-		"build": "wp-scripts build --config webpack.config.js --webpack-src-dir=assets/blocks --stats-error-details --progress",
+		"build": "rm -rf build blocks && wp-scripts build --config webpack.config.js --webpack-src-dir=assets/blocks --stats-error-details --progress",
 		"create-block": "run-s create-block:run",
 		"create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=wdsbt --template ../../inc/block-template --no-plugin",
 		"format": "wp-scripts format && npm run format:php",
@@ -91,7 +91,7 @@
 		"preinstall": "cross-env npm_config_legacy_peer_deps=false",
 		"reset": "rm -rf node_modules vendor build blocks package-lock.json composer.lock",
 		"setup": "npm run reset && npm i && composer i && npm run build",
-		"start": "cross-env NODE_ENV=development wp-scripts start"
+		"start": "rm -rf build blocks && cross-env NODE_ENV=development wp-scripts start"
 	},
 	"lint-staged": {
 		"*.js": [
