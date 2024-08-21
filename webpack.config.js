@@ -75,7 +75,7 @@ if (hasFiles('./assets/blocks/**/*.php')) {
 
 if (hasFiles('./assets/blocks/**/*.json')) {
 	copyPluginPatterns.push({
-		from: './assets/blocks/core/*.json',
+		from: './assets/blocks/**/*.json',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				`${context}/assets/blocks/`,
