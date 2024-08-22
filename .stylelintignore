@@ -1,6 +1,6 @@
 /blocks/
 !assets/blocks/
-/blocks/
+/build/
 vendor/
 node_modules/
 !.*.js
