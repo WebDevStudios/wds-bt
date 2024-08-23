@@ -1,0 +1,19 @@
+/** cards **/
+
+.related-posts-query {
+	.wp-block-post {
+		.wp-block-read-more {
+			color: var(--wp--preset--color--primary-500);
+			font-size: var(--wp--preset--font-size--xxs);
+			font-weight: 300;
+			margin-bottom: 0.75rem;
+			margin-top: 0.75rem;
+			text-decoration: underline;
+
+			&:hover,
+			&:focus {
+				color: var(--wp--preset--color--primary-300);
+			}
+		}
+	}
+}

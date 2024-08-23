@@ -1,4 +1,5 @@
-blocks/
+/blocks/
+!assets/blocks/
 build/
 node_modules/
 vendor/

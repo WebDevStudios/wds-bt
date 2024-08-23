@@ -145,7 +145,7 @@ Meet WDS BT, a stylish block theme, tailored for WordPress, featuring native blo
 				│       │       ├── tag-cloud.scss
 				│       │       ├── verse.scss
 				│       │       └── video.scss
-				│       ├── template-parts 
+				│       ├── template-parts
 				│       │   ├── _index.scss
 				│       │   ├── footer.scss
 				│       │   └── header.scss
@@ -299,7 +299,7 @@ This will process JavaScript, SCSS, optimize images, and generate necessary file
 <details closed>
 <summary><b>Overriding/Customizing Block Styles</b></summary>
 
-1. Navigate to the `assets/scss/blocks/` directory within your theme. If overriding a core block style, use the `core` folder, if overriding a block from a plugin use the `custom` folder.
+1. Navigate to the `assets/scss/blocks/` directory within your theme. If overriding a core block style, use the `core` folder, if overriding a block from a plugin use the `third-party` folder.
 
 2. Create an SCSS file with the exact filename as the block name you want to customize. This file will house your custom styles for that specific block.
 

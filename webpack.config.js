@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
@@ -74,7 +75,7 @@ if (hasFiles('./assets/blocks/**/*.php')) {
 
 if (hasFiles('./assets/blocks/**/*.json')) {
 	copyPluginPatterns.push({
-		from: './assets/blocks/core/*.json',
+		from: './assets/blocks/**/*.json',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				`${context}/assets/blocks/`,
@@ -161,7 +162,7 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.js$/,
+				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
@@ -253,6 +254,10 @@ module.exports = {
 		new ESLintPlugin(),
 		new StylelintPlugin(),
 	],
+	optimization: {
+		minimize: true,
+		minimizer: [new TerserPlugin()],
+	},
 	performance: {
 		maxAssetSize: 550000, // Increase the asset size limit to 550 KB
 		maxEntrypointSize: 550000, // Increase the entry point size limit to 550 KB
