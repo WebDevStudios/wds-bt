@@ -614,23 +614,28 @@
 					"fontWeight": "400",
 					"textTransform": "uppercase"
 				},
-				"spacing": {
-					"padding": {
-						"top": "0.75rem",
-						"right": "0.75rem",
-						"bottom": "0.75rem",
-						"left": "0"
-					}
-				},
 				"elements": {
 					"link": {
+						"color": {
+							"background": "var(--wp--preset--color--primary-50)",
+							"text": "var(--wp--preset--color--grey-700)"
+						},
+						":hover": {
+							"color": {
+								"background": "var(--wp--preset--color--primary-100)"
+							}
+						},
 						"spacing": {
 							"padding": {
-								"left": "0"
+								"top": "0",
+								"right": "0.75rem",
+								"bottom": "0",
+								"left": "0.75rem"
 							}
 						},
 						"typography": {
-							"fontWeight": "400"
+							"fontWeight": "600",
+							"textDecoration": "none"
 						}
 					}
 				}
