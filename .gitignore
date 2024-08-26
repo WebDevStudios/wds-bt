@@ -9,7 +9,7 @@
 Thumbs.db
 
 # node
-.env
+./.env
 .env.local
 logs
 *.log
