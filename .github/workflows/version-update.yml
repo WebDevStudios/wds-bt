@@ -30,9 +30,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Create a new branch for the version update
-        env:
-          BRANCH_NAME: version-update-$(date +%s)
         run: |
+          BRANCH_NAME="version-update-$(date +%s)"
           git checkout -b $BRANCH_NAME
           git add .env style.css package.json composer.json
           git commit -m "Automated version update after merge to main"
@@ -42,7 +41,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ env.BRANCH_NAME }}
+          branch: version-update-${{ steps.update-version.outputs.BRANCH_NAME }}
           title: "Automated Version Update"
           body: "This pull request contains the automated version and build updates."
           base: main
