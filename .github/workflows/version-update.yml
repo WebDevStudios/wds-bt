@@ -24,10 +24,18 @@ jobs:
       - name: Run version update script
         run: node updateVersion.js
 
-      - name: Commit and push changes
+      - name: Create a new branch for the version update
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b version-update-$(date +%s)
           git add .env style.css package.json composer.json
           git commit -m "Automated version update after merge to main"
-          git push origin main
+          git push origin version-update-$(date +%s)
+
+      - name: Create a Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: version-update-$(date +%s)
+          title: "Automated Version Update"
+          body: "This pull request contains the automated version and build updates."
+          base: main
