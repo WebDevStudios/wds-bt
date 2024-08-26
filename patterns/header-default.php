@@ -12,7 +12,7 @@
 $wds_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":150,"shouldSyncIcon":true,"style":{"layout":{"selfStretch":"fit","flexSize":null}}} /-->' : '<!-- wp:site-title /-->';
 ?>
 
-<!-- wp:group {"tagName":"header","metadata":{"name":"Header"},"align":"full","style":{"spacing":{"margin":{"top":"0px"},"padding":{"top":"30px","bottom":"30px"}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
+<!-- wp:group {"tagName":"div","metadata":{"name":"Header"},"align":"full","style":{"spacing":{"margin":{"top":"0px"},"padding":{"top":"30px","bottom":"30px"}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-white-background-color has-background" id="top" style="margin-top:0px;padding-top:30px;padding-bottom:30px">
 
 	<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
