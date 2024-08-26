@@ -24,6 +24,11 @@ jobs:
       - name: Run version update script
         run: node updateVersion.js
 
+      - name: Configure Git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Create a new branch for the version update
         run: |
           git checkout -b version-update-$(date +%s)
