@@ -1,47 +1,47 @@
 name: Update Version on Merge to Main
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  update-version:
-    runs-on: ubuntu-latest
+    update-version:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+            - name: Install dependencies
+              run: npm install
 
-      - name: Run version update script
-        run: node updateVersion.js
+            - name: Run version update script
+              run: node updateVersion.js
 
-      - name: Configure Git author
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+            - name: Configure Git author
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Create a new branch for the version update
-        run: |
-          BRANCH_NAME="version-update-$(date +%s)"
-          git checkout -b $BRANCH_NAME
-          git add .env style.css package.json composer.json
-          git commit -m "Automated version update after merge to main"
-          git push origin $BRANCH_NAME
+            - name: Create a new branch for the version update
+              run: |
+                  BRANCH_NAME="version-update-$(date +%s)"
+                  git checkout -b $BRANCH_NAME
+                  git add .env style.css package.json composer.json
+                  git commit -m "Automated version update after merge to main"
+                  git push origin $BRANCH_NAME
 
-      - name: Create a Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: version-update-${{ steps.update-version.outputs.BRANCH_NAME }}
-          title: "Automated Version Update"
-          body: "This pull request contains the automated version and build updates."
-          base: main
+            - name: Create a Pull Request
+              uses: peter-evans/create-pull-request@v5
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: version-update-${{ steps.update-version.outputs.BRANCH_NAME }}
+                  title: 'Automated Version Update'
+                  body: 'This pull request contains the automated version and build updates.'
+                  base: main
