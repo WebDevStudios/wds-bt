@@ -11,46 +11,63 @@ const TerserPlugin = require('terser-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
+// Detect Windows platform
+const isWin = process.platform === 'win32';
+
 // Function to check for the existence of files matching a pattern
 function hasFiles(pattern) {
-	return glob.sync(pattern, { posix: true, dotRelative: true }).length > 0;
+	return glob.sync(pattern, { dotRelative: true }).length > 0;
 }
 
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
-	.sync('./assets/scss/blocks/core/*.scss', {
-		posix: true,
-		dotRelative: true,
-	})
+	.sync('./assets/scss/blocks/core/*.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
 		acc[`css/blocks/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
-// Dynamically generate entry points for each block
+// Dynamically generate entry points for each block, including `view.js`
 const blockEntryPaths = glob
-	.sync('./assets/blocks/**/index.js', { posix: true, dotRelative: true })
+	.sync('./assets/blocks/**/index.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
-		const entryKey = filePath
-			.replace('./assets/blocks/', '')
-			.replace('/index.js', '');
+		const entryKey = isWin
+			? filePath
+					.replace('./assets/blocks\\', '')
+					.replace('\\index.js', '')
+			: filePath.replace('./assets/blocks/', '').replace('/index.js', '');
 		acc[`../blocks/${entryKey}/index`] = filePath;
 		return acc;
 	}, {});
 
-const blockScssPaths = glob
-	.sync('./assets/blocks/**/style.scss', { posix: true, dotRelative: true })
+// Include view.js files if they exist
+const blockViewPaths = glob
+	.sync('./assets/blocks/**/view.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
-		const entryKey = filePath
-			.replace('./assets/blocks/', '')
-			.replace('/style.scss', '');
+		const entryKey = isWin
+			? filePath.replace('./assets/blocks\\', '').replace('\\view.js', '')
+			: filePath.replace('./assets/blocks/', '').replace('/view.js', '');
+		acc[`../blocks/${entryKey}/view`] = filePath;
+		return acc;
+	}, {});
+
+const blockScssPaths = glob
+	.sync('./assets/blocks/**/style.scss', { dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = isWin
+			? filePath
+					.replace('./assets/blocks\\', '')
+					.replace('\\style.scss', '')
+			: filePath
+					.replace('./assets/blocks/', '')
+					.replace('/style.scss', '');
 		acc[`../blocks/${entryKey}/style`] = filePath;
 		return acc;
 	}, {});
 
 const styleScssPaths = glob
-	.sync('./assets/scss/_index.scss', { posix: true, dotRelative: true })
+	.sync('./assets/scss/_index.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = 'style';
 		acc[`css/${entryKey}`] = filePath;
@@ -95,6 +112,7 @@ module.exports = {
 		filters: './assets/js/block-filters/index.js',
 		...styleScssPaths,
 		...blockEntryPaths,
+		...blockViewPaths, // Add view.js paths here
 		...blockScssPaths,
 		...coreBlockEntryPaths,
 	},
@@ -104,7 +122,8 @@ module.exports = {
 			if (
 				entryName.includes('css/blocks') ||
 				blockEntryPaths[entryName] ||
-				blockScssPaths[entryName]
+				blockScssPaths[entryName] ||
+				blockViewPaths[entryName] // Make sure view.js is handled
 			) {
 				return '[name].js';
 			}
@@ -182,7 +201,8 @@ module.exports = {
 				if (
 					entryName.includes('css/blocks') ||
 					blockEntryPaths[entryName] ||
-					blockScssPaths[entryName]
+					blockScssPaths[entryName] ||
+					blockViewPaths[entryName] // Ensure view.css is handled
 				) {
 					return '[name].css';
 				}
@@ -237,6 +257,7 @@ module.exports = {
 								absoluteItemPath
 							);
 						},
+						// For .php
 					},
 					{
 						folder: path.resolve(__dirname, 'build/css/blocks'),

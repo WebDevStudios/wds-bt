@@ -18,7 +18,7 @@ module.exports = {
 		category: 'wds-blocks',
 		dashicon: 'pets',
 		description: 'A custom block created by the create-block for the theme',
-		namespace: 'wdsbt',
+		namespace: 'freeman',
 		render: 'file:./render.php',
 		version: '1.0.0',
 		customPackageJSON: {
