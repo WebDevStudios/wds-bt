@@ -103,10 +103,11 @@
 		}
 
 		&.has-child {
-
 			.wp-block-navigation__submenu-container {
 				border: none;
-				box-shadow: 0 16px 24px 0 rgba(48, 49, 51, 0.09), 0 0 1px 0 rgba(48, 49, 51, 0.05);
+				box-shadow:
+					0 16px 24px 0 rgba(48, 49, 51, 0.09),
+					0 0 1px 0 rgba(48, 49, 51, 0.05);
 				padding: 0.3125rem;
 
 				> .wp-block-navigation-item {
@@ -115,7 +116,7 @@
 					padding: 0;
 					width: 100%;
 
-					>.wp-block-navigation-item__content {
+					> .wp-block-navigation-item__content {
 						display: block;
 						flex-grow: unset;
 						gap: 0;
@@ -124,7 +125,6 @@
 
 						&:hover,
 						&:active {
-
 							.wp-block-navigation-item__label {
 								color: var(--wp--preset--color--white);
 								position: relative;
@@ -165,11 +165,9 @@
 							position: absolute;
 							width: 50%;
 						}
-
 					}
 				}
 			}
-
 		}
 	}
 
@@ -182,7 +180,6 @@
 		}
 	}
 }
-
 
 @include responsive-max(833px) {
 	.wp-block-navigation__container.is-responsive {
