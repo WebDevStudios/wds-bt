@@ -3,7 +3,6 @@
 /* -- Navigation -- */
 
 .wp-block-navigation {
-
 	.wp-block-navigation-item {
 		padding: 0.5rem 0.625rem;
 
@@ -185,11 +184,8 @@
 }
 
 .wp-block-navigation__responsive-container {
-
 	&.is-menu-open {
-
 		.wp-block-navigation__responsive-container-content {
-
 			.wp-block-navigation-item,
 			.wp-block-navigation__container,
 			.wp-block-page-list {
@@ -210,7 +206,6 @@
 			}
 
 			.has-child {
-
 				.wp-block-navigation__submenu-container {
 					box-shadow: none;
 					min-width: 100%;
@@ -238,14 +233,12 @@
 	}
 }
 
-
 /* Mobile only menu */
 @include responsive-max(833px) {
 	.wp-block-navigation__container.is-responsive {
 		width: 100%;
 	}
 }
-
 
 @include responsive-min(834px) {
 	.wp-block-navigation__responsive-container-open:not(.always-shown) {
