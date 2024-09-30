@@ -186,6 +186,21 @@
 				}
 			]
 		},
+		"custom": {
+			"header": {
+				"text": "var(--wp--preset--color--black)",
+				"background": "var(--wp--preset--color--white)",
+				"svg": "var(--wp--preset--color--grey-500)"
+			},
+			"navigation": {
+				"background": "var(--wp--preset--color--black)",
+				"link": "var(--wp--preset--color--black)",
+				"link-hover": "var(--wp--preset--color--grey-800)",
+				"sublink": "var(--wp--preset--color--black)",
+				"sublink-hover": "var(--wp--preset--color--white)",
+				"sublink-background": "var(--wp--preset--color--black)"
+			}
+		},
 		"layout": {
 			"contentSize": "1160px",
 			"wideSize": "1200px"

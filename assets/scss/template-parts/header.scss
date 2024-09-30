@@ -1,7 +1,64 @@
 /* -- Header -- */
 
 /* -- Header Search -- */
+.is-root-container,
 .site-header {
+	background-color: var(--wp--custom--header--background);
+	color: var(--wp--custom--header--text);
+	min-height: 5.75rem;
+	transition:
+		min-height 0.2s ease,
+		background-color 0.2s ease,
+		padding 0.2s ease;
+
+	.header-container {
+		padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+
+		.wp-block-site-logo {
+			max-width: 12.5rem;
+
+			.custom-logo-link {
+				align-items: center;
+				display: inline-flex;
+				height: 100%;
+			}
+
+			.custom-logo {
+				max-height: 5.625rem;
+				width: auto;
+			}
+
+			.custom-logo-svg {
+				max-height: 5.625rem;
+				width: auto;
+
+				mask {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&.scrolled {
+		min-height: 3.75rem;
+
+		.header-container {
+			padding: 0.3125rem var(--wp--preset--spacing--30);
+
+			.wp-block-site-logo {
+				max-width: 7.5rem;
+
+				.custom-logo {
+					max-height: 1.625rem;
+				}
+
+				.custom-logo-svg {
+					max-height: 1.625rem;
+				}
+			}
+		}
+	}
+
 	.wp-block-search {
 		&.wp-block-search__button-inside {
 			.wp-block-search__inside-wrapper {
@@ -11,7 +68,7 @@
 					background-color: transparent;
 
 					svg {
-						fill: var(--wp--preset--color--grey-500);
+						fill: var(--wp--custom--header--svg);
 						min-height: 1.875rem;
 						min-width: 1.875rem;
 					}
@@ -25,7 +82,7 @@
 					background-color: transparent;
 
 					svg {
-						fill: var(--wp--preset--color--grey-500);
+						fill: var(--wp--custom--header--svg);
 						min-height: 1.875rem;
 						min-width: 1.875rem;
 					}

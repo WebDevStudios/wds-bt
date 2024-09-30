@@ -2,22 +2,22 @@
 
 /*
 .my-element {
-  width: 100%;
+	width: 100%;
 
-  // Apply styles when the screen width is 600px or more.
-  @include responsive-min(600px) {
-    // Your responsive styles for min-width: 600px.
-  }
+	// Apply styles when the screen width is 600px or more.
+	@include responsive-min(600px) {
+		// Your responsive styles for min-width: 600px.
+	}
 
-  // Apply styles when the screen width is up to 600px
-  @include responsive-max(600px) {
-    // Your responsive styles for max-width: 600px.
-  }
+	// Apply styles when the screen width is up to 600px
+	@include responsive-max(600px) {
+		// Your responsive styles for max-width: 600px.
+	}
 
-  // Apply styles when the screen width is between 600px and 1200px.
-  @include responsive-min(600px) and (max-width: 1200px) {
-    // Your responsive styles for a range of widths.
-  }
+	// Apply styles when the screen width is between 600px and 1200px.
+	@include responsive-range(600px, 1200px) {
+		// Your responsive styles for a range of widths.
+	}
 }
 */
 
@@ -31,6 +31,13 @@
 // Define mixin for media queries with max width
 @mixin responsive-max($max-width) {
 	@media only screen and (max-width: $max-width) {
+		@content;
+	}
+}
+
+// Define mixin for media queries with min and max width (range)
+@mixin responsive-range($min-width, $max-width) {
+	@media only screen and (min-width: $min-width) and (max-width: $max-width) {
 		@content;
 	}
 }

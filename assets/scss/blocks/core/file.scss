@@ -20,20 +20,28 @@
 	}
 
 	.wp-block-file__button {
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
 		margin-left: 1.5rem;
+		position: relative;
+		z-index: 1;
 
 		&::after {
 			background-color: currentcolor;
 			content: '';
 			display: inline-block;
 			height: 1rem;
+			left: unset;
 			margin-left: 0.5rem;
-			margin-top: -0.125rem;
+			margin-right: unset;
 			mask-image: url(../../../images/icons/icon-download.svg);
 			mask-size: contain;
-			position: relative;
+			position: absolute;
+			right: 0.75rem;
 			vertical-align: middle;
 			width: 1rem;
+			z-index: 0;
 		}
 	}
 

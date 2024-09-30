@@ -6,7 +6,7 @@ This template is configured to generate a block that is ready for block registra
 
 Run the following in the terminal of your choice:
 
-`npx @wordpress/create-block --template ../../inc/block-template  --no-plugin`
+`npm run create-block`
 
 
 ## Structure
@@ -14,13 +14,13 @@ Run the following in the terminal of your choice:
 Once the command has completed, the following structure will be created:
 
 ``` text
-📁src
-└── 📁blocks
-    └── 📁{example-block}
+📁blocks
+  └── 📁{example-block}
         └── block.json
         └── edit.js
         └── editor.scss
         └── index.js
         └── render.php
+        └── view.js
         └── style.scss
 ```
