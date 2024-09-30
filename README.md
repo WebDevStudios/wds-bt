@@ -542,76 +542,15 @@ WDS BT is equipped with automated workflow actions that ensure code security and
 
 ## Automated Versioning Process
 
-This theme uses an automated versioning system that increments the `BUILD` number automatically upon merges to the `main` branch. The `VERSION` is manually controlled and is reflected in the `composer.json` and `package.json` files. The `BUILD` number is automatically appended to the `VERSION` in `style.css`.
+To handle cache busting for CSS and JS files, this theme automatically appends the file modification time as a version parameter to the URLs of enqueued styles and scripts, ensuring that browsers fetch the most recent version whenever the files are updated.
+
 
 <details>
   <summary><strong>How It Works</strong></summary>
 
-  1. **VERSION**: Manually set in the `.env` file. This is reflected in the `composer.json` and `package.json` files.
-     - Format: `X.Y.Z` (Semantic Versioning)
-     - This value is manually updated by the developer.
-
-  2. **BUILD**: Automatically increments on merges to the `main` branch. This is appended to the `VERSION` in the `style.css` file.
-     - Format: `1.0.0x` where `x` is the build number.
-
-</details>
-
-<details>
-  <summary><strong>Example</strong></summary>
-
-  Suppose the `.env` file has the following values:
-
-  ```plaintext
-  VERSION=1.0.0
-  BUILD=4
-  ```
-
-  After merging a PR into the `main` branch:
-
-  - The `BUILD` increments to `5`.
-  - The version in `style.css` becomes `Version: 1.0.005`.
-  - The `composer.json` and `package.json` will still reflect `1.0.0`.
-
-</details>
-
-<details>
-  <summary><strong>Modifying the Version</strong></summary>
-
-  - To update the `VERSION`, manually edit the `.env` file:
-    ```plaintext
-    VERSION=1.1.0
-    BUILD=0
-    ```
-  - The `BUILD` should not be manually modified except for specific scenarios, such as resetting the build number after a major version change.
-
-</details>
-
-<details>
-  <summary><strong>Workflow</strong></summary>
-
-  When a PR is merged into the `main` branch, the following occurs automatically:
-
-  1. The `BUILD` number increments.
-  2. The `style.css` is updated to reflect the `VERSION + BUILD`.
-  3. The `composer.json` and `package.json` files are updated with only the `VERSION`.
-  4. The updated files are committed back to the `main` branch.
-
-</details>
-
-<details>
-  <summary><strong>Manual Execution</strong></summary>
-
-  You can manually trigger the versioning process locally if necessary by running:
-
-  ```bash
-  npm run update-version
-  ```
-
-  This will:
-
-  - Increment the `BUILD` number.
-  - Update the version in `style.css`.
-  - Ensure `composer.json` and `package.json` reflect the correct `VERSION`.
+  1. Hooking into the `style_loader_src` and `script_loader_src` filters, which handle the URLs of enqueued styles and scripts.
+  2. Using the `filemtime()` function to retrieve the last modified time of the `style.css` file, appending it as the version (`ver`) parameter in the asset URLs.
+  3. This ensures that browsers always fetch the latest version of your CSS and JS files, preventing them from serving cached versions after updates.
 
 </details>
 

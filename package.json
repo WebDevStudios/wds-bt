@@ -92,8 +92,7 @@
     "preinstall": "cross-env npm_config_legacy_peer_deps=false",
     "reset": "rm -rf node_modules vendor build blocks package-lock.json composer.lock",
     "setup": "npm run reset && npm i && composer i && npm run build",
-    "start": "rm -rf build blocks && cross-env NODE_ENV=development wp-scripts start",
-    "update-version": "node updateVersion.js"
+    "start": "rm -rf build blocks && cross-env NODE_ENV=development wp-scripts start"
   },
   "lint-staged": {
     "*.js": [
