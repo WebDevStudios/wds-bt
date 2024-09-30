@@ -407,7 +407,7 @@ To use the responsive mixin, include it in your SCSS code and customize it accor
   }
 
   // Apply styles when the screen width is between 600px and 1200px
-  @include responsive-min(600px) and (max-width: 1200px) {
+  @include responsive-range(600px, 1200px) {
     /* Your responsive styles for a range of widths */
   }
 }
