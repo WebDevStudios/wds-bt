@@ -6,7 +6,10 @@
 	background-color: var(--wp--custom--header--background);
 	color: var(--wp--custom--header--text);
 	min-height: 5.75rem;
-	transition: min-height 0.2s ease, background-color 0.2s ease, padding 0.2s ease;
+	transition:
+		min-height 0.2s ease,
+		background-color 0.2s ease,
+		padding 0.2s ease;
 
 	.header-container {
 		padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
@@ -54,7 +57,6 @@
 				}
 			}
 		}
-
 	}
 
 	.wp-block-search {
