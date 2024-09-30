@@ -14,8 +14,10 @@ function handleScroll() {
 
 		if (scrollTop > lastScrollTop) {
 			siteHeader.style.top = '-100%';
+			siteHeader.classList.add('scrolled');
 		} else {
 			siteHeader.style.top = '0';
+			siteHeader.classList.remove('scrolled');
 		}
 
 		lastScrollTop = scrollTop;
