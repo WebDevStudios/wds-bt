@@ -30,7 +30,7 @@
 			}
 
 			&:hover::before {
-				background: var(--wp--preset--color--black);
+				background: var(--wp--custom--navigation--background);
 				bottom: 0;
 				content: '';
 				height: 3px;
@@ -40,7 +40,7 @@
 			}
 
 			&:hover::after {
-				background: var(--wp--preset--color--black);
+				background: var(--wp--custom--navigation--background);
 				bottom: 0;
 				content: '';
 				height: 3px;
@@ -50,22 +50,21 @@
 			}
 
 			&:hover,
-			&:active,
+			&:focus,
 			&[aria-current='page'] {
-				-webkit-text-stroke: 0.5px var(--wp--preset--color--black);
+				-webkit-text-stroke: 0.5px var(--wp--custom--navigation--link-hover);
 				outline: none;
 			}
 
 			&[aria-current='page'] {
-				-webkit-text-stroke: 0.5px var(--wp--preset--color--black);
+				-webkit-text-stroke: 0.5px var(--wp--custom--navigation--link-hover);
 
-				&:hover,
-				&:active {
+				&:hover {
 					-webkit-text-stroke: unset;
 				}
 
 				&::before {
-					background: var(--wp--preset--color--black);
+					background: var(--wp--custom--navigation--background);
 					bottom: 0;
 					content: '';
 					height: 3px;
@@ -75,7 +74,7 @@
 				}
 
 				&::after {
-					background: var(--wp--preset--color--black);
+					background: var(--wp--custom--navigation--background);
 					bottom: 0;
 					content: '';
 					height: 3px;
@@ -128,7 +127,7 @@
 						&:hover,
 						&:active {
 							.wp-block-navigation-item__label {
-								color: var(--wp--preset--color--white);
+								color: var(--wp--custom--navigation--sublink-hover);
 								position: relative;
 								z-index: 1;
 							}
@@ -149,7 +148,7 @@
 						}
 
 						&:hover::before {
-							background: var(--wp--preset--color--black);
+							background: var(--wp--custom--navigation--sublink-background);
 							bottom: 0;
 							content: '';
 							height: 100%;
@@ -159,7 +158,7 @@
 						}
 
 						&:hover::after {
-							background: var(--wp--preset--color--black);
+							background: var(--wp--custom--navigation--sublink-background);
 							bottom: 0;
 							content: '';
 							height: 100%;
@@ -213,7 +212,7 @@
 					width: 100%;
 
 					.wp-block-navigation-item__content {
-						color: var(--wp--preset--color--black);
+						color: var(--wp--custom--navigation--link);
 
 						&:hover::before,
 						&:hover::after {
@@ -223,7 +222,7 @@
 						&:hover,
 						&:focus {
 							.wp-block-navigation-item__label {
-								color: var(--wp--preset--color--black);
+								color: var(--wp--custom--navigation--link-hover);
 							}
 						}
 					}
