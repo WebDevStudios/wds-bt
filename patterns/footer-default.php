@@ -15,7 +15,7 @@ $wds_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":200} /-->' : '<
 $wds_copyright_info = esc_html__( 'Copyright &copy; ', 'wdsbt' ) . esc_attr( gmdate( 'Y' ) );
 ?>
 
-<!-- wp:group {"templateLock":"contentOnly","tagName":"footer","metadata":{"name":"Footer"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"className":"alignfull has-black-background-color has-background","layout":{"type":"constrained"}} -->
+<!-- wp:group {"tagName":"footer","metadata":{"name":"Footer"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"className":"alignfull has-black-background-color has-background","layout":{"type":"constrained"}} -->
 <footer class="wp-block-group alignfull has-black-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 
 	<!-- wp:columns {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"},"blockGap":{"top":"0"}}}} -->
