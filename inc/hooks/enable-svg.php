@@ -7,10 +7,20 @@
 
 namespace WebDevStudios\wdsbt;
 
+// Include Composer autoloader
+$autoloader_path = dirname( __FILE__, 3 ) . '/vendor/autoload.php';
+if ( file_exists( $autoloader_path ) ) {
+	require_once $autoloader_path;
+} else {
+	error_log( 'Composer autoloader not found. Path tried: ' . $autoloader_path );
+}
+
+use enshrined\svgSanitize\Sanitizer;
+
 /**
  * Add mime types to upload_mimes array.
  *
- * @param array $mimes  Array of mime types.
+ * @param array $mimes Array of mime types.
  * @return array
  */
 function wdsbt_add_mime_types( $mimes ) {
@@ -20,24 +30,26 @@ function wdsbt_add_mime_types( $mimes ) {
 add_filter( 'upload_mimes', __NAMESPACE__ . '\wdsbt_add_mime_types' );
 
 /**
- * Checks the filetype.
+ * Sanitize SVG files during upload.
  *
- * @param array  $data Array of file type data.
- * @param string $file Full path to the file.
- * @param string $filename The name of the file (may differ from $file due to $file being in a tmp directory).
- * @param array  $mimes Array of mime types keyed by their file extension regex, or null if none were provided.
+ * @param array $file An array of data for a single file.
  * @return array
  */
-function wdsbt_check_filetype( $data, $file, $filename, $mimes ) {
-	$filetype = wp_check_filetype( $filename, $mimes );
-
-	return [
-		'ext'             => $filetype['ext'],
-		'type'            => $filetype['type'],
-		'proper_filename' => $data['proper_filename'],
-	];
+function wdsbt_sanitize_svg_upload( $file ) {
+	if ( $file['type'] === 'image/svg+xml' ) {
+		$sanitizer = new Sanitizer();
+		$dirty_svg = file_get_contents( $file['tmp_name'] );
+		$clean_svg = $sanitizer->sanitize( $dirty_svg );
+		
+		if ( $clean_svg === false ) {
+			$file['error'] = 'SVG sanitization failed';
+		} else {
+			file_put_contents( $file['tmp_name'], $clean_svg );
+		}
+	}
+	return $file;
 }
-add_filter( 'wp_check_filetype_and_ext', __NAMESPACE__ . '\wdsbt_check_filetype', 10, 4 );
+add_filter( 'wp_handle_upload_prefilter', __NAMESPACE__ . '\wdsbt_sanitize_svg_upload' );
 
 /**
  * Fix for displaying svg files in media library.

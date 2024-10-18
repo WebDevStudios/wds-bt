@@ -23,7 +23,8 @@
     "sort-packages": true
   },
   "require": {
-    "composer/installers": "^2.3.0"
+    "composer/installers": "^2.3.0",
+    "enshrined/svg-sanitize": "^0.20.0"
   },
   "require-dev": {
     "php": ">=8.2",
