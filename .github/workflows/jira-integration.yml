@@ -30,7 +30,7 @@ jobs:
                       "key": "'"$JIRA_PROJECT_KEY"'"
                    },
                    "summary": "'"$ISSUE_TITLE"'",
-                   "description": "Issue URL: $ISSUE_URL\n\n$ISSUE_BODY",
+                   "description": "'"$ISSUE_BODY"'",
                    "issuetype": {
                       "name": "Task"
                    }
