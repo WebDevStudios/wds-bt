@@ -1,0 +1,39 @@
+name: Create Jira Ticket on Issue Creation
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-jira-ticket:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Jira Ticket
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+        run: |
+          curl -X POST -u "$JIRA_EMAIL:$JIRA_API_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{
+                "fields": {
+                   "project": {
+                      "key": "'"$JIRA_PROJECT_KEY"'"
+                   },
+                   "summary": "'"$ISSUE_TITLE"'",
+                   "description": "Issue URL: $ISSUE_URL\n\n$ISSUE_BODY",
+                   "issuetype": {
+                      "name": "Task"
+                   }
+               }
+          }' \
+          "$JIRA_BASE_URL/rest/api/2/issue/"
