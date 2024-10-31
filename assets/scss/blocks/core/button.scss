@@ -19,23 +19,6 @@
 			opacity: 0.15;
 			pointer-events: none;
 		}
-
-		&::after {
-			background-color: currentcolor;
-			content: '';
-			display: inline-block;
-			height: 1rem;
-			margin-left: 0.5rem;
-			margin-right: unset;
-			mask-image: url(../../../images/icons/icon-circle-right.svg);
-			mask-size: contain;
-			left: unset;
-			position: absolute;
-			right: 0.75rem;
-			vertical-align: middle;
-			width: 1rem;
-			z-index: 0;
-		}
 	}
 
 	&.is-style-minimal,
@@ -68,36 +51,21 @@
 	&.has-size-m {
 		.wp-block-button__link {
 			font-size: var(--wp--preset--font-size--s);
-			padding: 0.625rem 2.5rem 0.625rem 1.25rem;
-
-			&::after {
-				height: 1.25rem;
-				width: 1.25rem;
-			}
+			padding: 0.625rem 1.25rem 0.625rem 1.25rem;
 		}
 	}
 
 	&.has-size-l {
 		.wp-block-button__link {
 			font-size: var(--wp--preset--font-size--m);
-			padding: 0.9375rem 3rem 0.9375rem 1.25rem;
-
-			&::after {
-				height: 1.5rem;
-				width: 1.5rem;
-			}
+			padding: 0.9375rem 1.25rem 0.9375rem 1.25rem;
 		}
 	}
 
 	&.has-size-xl {
 		.wp-block-button__link {
 			font-size: var(--wp--preset--font-size--l);
-			padding: 0.9375rem 3rem 0.9375rem 1.25rem;
-
-			&::after {
-				height: 1.75rem;
-				width: 1.75rem;
-			}
+			padding: 0.9375rem 1.25rem 0.9375rem 1.25rem;
 		}
 	}
 }
