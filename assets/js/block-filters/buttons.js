@@ -8,6 +8,7 @@ import {
 	Button,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import TokenList from '@wordpress/token-list';
 
 /**
  * Renders the edit component for the button block.
@@ -15,14 +16,30 @@ import { __ } from '@wordpress/i18n';
  * @param {Object}   props                       - The properties passed to the component.
  * @param {Object}   props.attributes            - The attributes of the button block.
  * @param {string}   props.attributes.buttonSize - The size of the button.
+ * @param {string}   props.attributes.className  - The current classname.
  * @param {Function} props.setAttributes         - The function to set the attributes of the button block.
  * @return {JSX.Element} The rendered edit component.
  */
-function Edit({ attributes: { buttonSize }, setAttributes }) {
+function Edit({ attributes: { buttonSize, className }, setAttributes }) {
+	// Replace the current size with a new size in the existing list of classes, but only if a value for them exists.
+	const replaceActiveSize = (currentSize, newSize) => {
+		const currentClasses = new TokenList(className);
+
+		if (currentSize) {
+			currentClasses.remove(`has-size-${currentSize}`);
+		}
+
+		if (newSize) {
+			currentClasses.add(`has-size-${newSize}`);
+		}
+
+		return currentClasses.value;
+	};
+
 	const handleChange = (newSize) => {
 		// Check if we are toggling the size off
 		const size = buttonSize === newSize ? undefined : newSize;
-		const buttonClass = buttonSize !== newSize ? 'has-size-' + newSize : '';
+		const buttonClass = replaceActiveSize(buttonSize, size);
 
 		// Update attributes.
 		setAttributes({
