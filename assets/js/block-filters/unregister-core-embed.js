@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			'core/latest-comments',
 			'core/rss',
 			'core/missing',
+			'core/spacer',
 		];
 
 		// List of Gutenberg block variations to unregister.
