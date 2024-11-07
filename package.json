@@ -22,8 +22,17 @@
     "npm": ">=10"
   },
   "dependencies": {
+    "body-parser": "^1.20.3",
+    "braces": "^3.0.3",
+    "cookie": "^1.0.1",
     "dotenv": "^16.4.5",
-    "svgo": "^3.3.2"
+    "express": "^4.21.1",
+    "got": "^14.4.4",
+    "postcss": "^8.4.47",
+    "send": "^1.1.0",
+    "serve-static": "^1.16.2",
+    "svgo": "^3.3.2",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
