@@ -5,5 +5,5 @@
  */
 
 // Import the block filter file.
-import './unregister-core-embed';
+import './unregister-core-blocks';
 import './buttons';
