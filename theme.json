@@ -457,7 +457,7 @@
 						"spacing": {
 							"padding": {
 								"bottom": "0",
-								"left": "0.75rem",
+								"left": "0",
 								"right": "0.75rem",
 								"top": "0"
 							}
