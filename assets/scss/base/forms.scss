@@ -4,7 +4,7 @@ input,
 select,
 textarea {
 	border-radius: 6px;
-	border: 2px solid var(--wp--preset--color--grey-300) !important; /* stylelint-disable-line declaration-no-important */
+	border: 2px solid var(--wp--preset--color--contrast) !important; /* stylelint-disable-line declaration-no-important */
 	color: var(--wp--preset--color--black);
 	font-size: var(--wp-wp--preset--font-size--xs);
 	margin-top: 0.5rem;
@@ -61,7 +61,7 @@ textarea:focus {
 }
 
 ::placeholder {
-	color: var(--wp--preset--color--grey-500);
+	color: var(--wp--preset--color--contrast);
 }
 
 label {

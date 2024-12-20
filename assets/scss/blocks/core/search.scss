@@ -42,7 +42,7 @@
 
 		.wp-block-search__inside-wrapper {
 			align-items: center;
-			border-color: var(--wp--preset--color--grey-300);
+			border-color: var(--wp--preset--color--contrast);
 			position: relative;
 
 			.wp-block-search__input {
@@ -57,7 +57,7 @@
 
 	&.wp-block-search__button-inside {
 		.wp-block-search__inside-wrapper {
-			border-color: var(--wp--preset--color--grey-300);
+			border-color: var(--wp--preset--color--contrast);
 			padding: 0.625rem 0.875rem 0.625rem 0;
 			position: relative;
 

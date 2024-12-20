@@ -2,8 +2,13 @@
 
 /* -- Button -- */
 .wp-block-button {
+	display: contents;
+
 	.wp-block-button__link {
 		align-items: center;
+		background-color: var(--wp--preset--color--primary);
+		border: 1px solid var(--wp--preset--color--primary);
+		color: var(--wp--preset--color--base);
 		display: inline-flex;
 		justify-content: center;
 		position: relative;
@@ -19,29 +24,50 @@
 			opacity: 0.15;
 			pointer-events: none;
 		}
-	}
 
-	&.is-style-minimal,
-	&.is-style-text {
-		.wp-block-button__link {
-			background-color: transparent;
-			border: 1px solid transparent;
-			color: var(--wp--preset--color--primary-500);
+		&:hover {
+			background-color: var(--wp--preset--color--accent);
+			border: 1px solid var(--wp--preset--color--accent);
+			color: var(--wp--preset--color--base);
 		}
 	}
 
-	&.is-style-outline,
 	&.is-style-minimal {
 		.wp-block-button__link {
+			background-color: transparent;
+			border: 1px solid transparent;
+			color: var(--wp--preset--color--primary);
+
 			&:hover {
-				background-color: var(--wp--preset--color--primary-50);
-				border: 1px solid var(--wp--preset--color--primary-500);
+				background-color: var(--wp--preset--color--primary);
+				border: 1px solid var(--wp--preset--color--primary);
+				color: var(--wp--preset--color--base);
+			}
+		}
+	}
+
+	&.is-style-outline {
+		.wp-block-button__link {
+			background-color: transparent;
+			border: 1px solid var(--wp--preset--color--primary);
+			color: var(--wp--preset--color--primary);
+
+			&:hover {
+				background-color: var(--wp--preset--color--primary);
+				border: 1px solid var(--wp--preset--color--primary);
+				color: var(--wp--preset--color--base);
 			}
 		}
 	}
 
 	&.is-style-text {
 		.wp-block-button__link {
+			background-color: transparent;
+			border: 1px solid transparent;
+			color: var(--wp--preset--color--primary);
+			padding-left: 0;
+			padding-right: 0;
+
 			&:hover {
 				color: var(--wp--preset--color--primary-700);
 			}

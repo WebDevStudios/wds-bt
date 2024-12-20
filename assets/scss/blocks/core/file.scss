@@ -8,14 +8,14 @@
 	) !important; /* stylelint-disable-line declaration-no-important */
 
 	a:not(.wp-element-button) {
-		box-shadow: inset 0 -2px 0 0 var(--wp--preset--color--grey-400);
+		box-shadow: inset 0 -2px 0 0 var(--wp--preset--color--contrast);
 		padding-bottom: 0.125rem;
 		text-decoration: none;
 
 		&:hover,
 		&:focus {
-			box-shadow: inset 0 -2px 0 0 var(--wp--preset--color--primary-500);
-			color: var(--wp--preset--color--primary-500);
+			box-shadow: inset 0 -2px 0 0 var(--wp--preset--color--primary);
+			color: var(--wp--preset--color--primary);
 		}
 	}
 

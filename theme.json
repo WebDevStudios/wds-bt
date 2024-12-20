@@ -34,7 +34,7 @@
 					"slug": "tertiary"
 				},
 				{
-					"color": "color-mix(in srgb, currentColor 20%, transparent)",
+					"color": "color-mix(in srgb, #000 20%, transparent)",
 					"name": "Accent",
 					"slug": "accent"
 				}
@@ -254,6 +254,7 @@
 							"width": "1px"
 						},
 						"color": {
+							"background": "transparent",
 							"text": "var:preset|color|primary"
 						},
 						"spacing": {
@@ -452,12 +453,12 @@
 						},
 						"color": {
 							"background": "var:preset|color|primary)",
-							"text": "var:preset|color|grey-700)"
+							"text": "var:preset|color|accent)"
 						},
 						"spacing": {
 							"padding": {
 								"bottom": "0",
-								"left": "0",
+								"left": "0.75rem",
 								"right": "0.75rem",
 								"top": "0"
 							}
@@ -682,7 +683,7 @@
 					"padding": {
 						"bottom": "0.5rem",
 						"left": "1rem",
-						"right": "2.5rem",
+						"right": "1rem",
 						"top": "0.5rem"
 					}
 				},

@@ -37,14 +37,14 @@
 	.wp-block-comment-edit-link,
 	.wp-block-comment-reply-link {
 		a {
-			color: var(--wp--preset--color--primary-500);
+			color: var(--wp--preset--color--primary);
 			font-family: var(--wp--preset--font-family--headline);
 			font-size: var(--wp--preset--font-size--xs);
 			text-decoration: none;
 
 			&:hover,
 			&:active {
-				color: var(--wp--preset--color--primary-700);
+				color: var(--wp--preset--color--primary);
 			}
 		}
 	}

@@ -20,7 +20,7 @@
 	}
 
 	.post-page-numbers {
-		color: var(--wp--preset--color--primary-500);
+		color: var(--wp--preset--color--primary);
 		padding-right: 0.625rem;
 		text-decoration: none;
 		text-indent: 0;
@@ -34,13 +34,13 @@
 		}
 
 		&.current {
-			color: var(--wp--preset--color--primary-700);
+			color: var(--wp--preset--color--primary);
 			font-weight: 700;
 		}
 
 		&:hover,
 		&:focus {
-			color: var(--wp--preset--color--primary-700);
+			color: var(--wp--preset--color--primary);
 		}
 	}
 }

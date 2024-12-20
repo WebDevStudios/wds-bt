@@ -11,8 +11,8 @@
 
 ?>
 
-<!-- wp:group {"metadata":{"name":"Hero"},"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"primary-50","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-primary-50-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
+<!-- wp:group {"metadata":{"name":"Hero"},"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"primary","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-primary-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 
 	<!-- wp:columns {"verticalAlignment":null,"align":"wide"} -->
 	<div class="wp-block-columns alignwide">

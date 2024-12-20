@@ -52,12 +52,12 @@
 				},
 				":hover": {
 					"color": {
-						"text": "var(--wp--preset--color--accent)"
+						"text": "var(--wp--preset--color--contrast)"
 					}
 				},
 				":focus": {
 					"color": {
-						"text": "var(--wp--preset--color--accent)"
+						"text": "var(--wp--preset--color--contrast)"
 					}
 				},
 				":visited": {

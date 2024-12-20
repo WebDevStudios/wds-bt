@@ -6,6 +6,10 @@
 	justify-content: flex-start;
 	gap: var(--wp--preset--spacing--10);
 
+	a:first-of-type {
+		padding-left: 0;
+	}
+
 	.wp-block-post-terms__separator {
 		display: none;
 	}
