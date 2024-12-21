@@ -9,6 +9,9 @@ const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const path = require('path');
 const glob = require('glob');
 
+// Detect Windows platform
+const isWin = process.platform === 'win32';
+
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
 	.sync('./assets/scss/blocks/core/*.scss', { dotRelative: true })
@@ -18,12 +21,60 @@ const coreBlockEntryPaths = glob
 		return acc;
 	}, {});
 
+// Dynamically generate entry points for each block`
+const blockEntryPaths = glob
+	.sync('./assets/blocks/**/index.js', { dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = isWin
+			? filePath
+					.replace('./assets/blocks\\', '')
+					.replace('\\index.js', '')
+			: filePath.replace('./assets/blocks/', '').replace('/index.js', '');
+		acc[`../blocks/${entryKey}/index`] = filePath;
+		return acc;
+	}, {});
+
+// Include view.js files if they exist
+const blockViewPaths = glob
+	.sync('./assets/blocks/**/view.js', { dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = isWin
+			? filePath.replace('./assets/blocks\\', '').replace('\\view.js', '')
+			: filePath.replace('./assets/blocks/', '').replace('/view.js', '');
+		acc[`../blocks/${entryKey}/view`] = filePath;
+		return acc;
+	}, {});
+
+const blockScssPaths = glob
+	.sync('./assets/blocks/**/style.scss', { dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = isWin
+			? filePath
+					.replace('./assets/blocks\\', '')
+					.replace('\\style.scss', '')
+			: filePath
+					.replace('./assets/blocks/', '')
+					.replace('/style.scss', '');
+		acc[`../blocks/${entryKey}/style`] = filePath;
+		return acc;
+	}, {});
+
 // Add any new entry points by extending the webpack config.
 module.exports = {
 	...defaultConfig,
 	...{
 		entry: {
-			'js/editor': path.resolve(process.cwd(), 'assets/js', 'index.js'),
+			'js/index': path.resolve(process.cwd(), 'assets/js', 'index.js'),
+			'js/variations': path.resolve(
+				process.cwd(),
+				'assets/js/block-variations',
+				'index.js'
+			),
+			'js/filters': path.resolve(
+				process.cwd(),
+				'assets/js/block-filters',
+				'index.js'
+			),
 			'css/style': path.resolve(
 				process.cwd(),
 				'assets/scss',
@@ -35,6 +86,9 @@ module.exports = {
 				'editor.scss'
 			),
 			...coreBlockEntryPaths,
+			...blockEntryPaths,
+			...blockViewPaths,
+			...blockScssPaths,
 		},
 		plugins: [
 			// Include WP's plugin config.

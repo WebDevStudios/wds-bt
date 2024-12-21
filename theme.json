@@ -83,14 +83,7 @@
 					"slug": "70"
 				}
 			],
-			"units": [
-				"%",
-				"px",
-				"em",
-				"rem",
-				"vh",
-				"vw"
-			]
+			"units": ["%", "px", "em", "rem", "vh", "vw"]
 		},
 		"typography": {
 			"writingMode": true,
@@ -175,9 +168,7 @@
 					"fontFamily": "Inter, sans-serif",
 					"fontFace": [
 						{
-							"src": [
-								"file:./assets/fonts/inter/Inter.woff2"
-							],
+							"src": ["file:./assets/fonts/inter/Inter.woff2"],
 							"fontWeight": "400 500 700",
 							"fontStyle": "normal",
 							"fontFamily": "Inter"
