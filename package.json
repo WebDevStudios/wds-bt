@@ -42,6 +42,7 @@
 		"cross-env": "^7.0.3",
 		"css-minimizer-webpack-plugin": "^7.0.0",
 		"eslint-webpack-plugin": "^4.2.0",
+		"fs-extra": "^11.2.0",
 		"glob": "^11.0.0",
 		"html_codesniffer": "2.5.1",
 		"inquirer": "^12.2.0",
