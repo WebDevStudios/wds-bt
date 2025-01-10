@@ -6,7 +6,6 @@ const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
 
-
 // Detect Windows platform to handle backslashes
 const isWin = process.platform === 'win32';
 
