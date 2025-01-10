@@ -6,6 +6,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
 
+
 // Detect Windows platform to handle backslashes
 const isWin = process.platform === 'win32';
 
@@ -21,6 +22,21 @@ const blockStyleEntries = glob
 					.replace('/style.scss', '');
 
 		entries[`../blocks/${blockName}/style`] = filePath;
+		return entries;
+	}, {});
+
+const blockEditorEntries = glob
+	.sync('./assets/blocks/**/editor.scss', { dotRelative: true })
+	.reduce((entries, filePath) => {
+		const blockName = isWin
+			? filePath
+					.replace('./assets\\blocks\\', '')
+					.replace('\\editor.scss', '')
+			: filePath
+					.replace('./assets/blocks/', '')
+					.replace('/editor.scss', '');
+
+		entries[`../blocks/${blockName}/editor`] = filePath;
 		return entries;
 	}, {});
 
@@ -73,6 +89,7 @@ const entryPoints = {
 	...otherEntries,
 	...coreBlockEntries,
 	...blockStyleEntries,
+	...blockEditorEntries,
 	...blockIndexEntries,
 	...blockViewEntries,
 };
