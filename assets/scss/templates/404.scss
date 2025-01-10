@@ -1,3 +1,5 @@
+@use '../abstracts/responsive-mixins';
+
 /* -- 404 -- */
 
 .error404 {
@@ -51,7 +53,10 @@
 					animation: glitchBotom 1.5s linear infinite;
 					clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
 					-webkit-clip-path: polygon(
-						0 67%, 100% 67%, 100% 100%, 0 100%
+						0 67%,
+						100% 67%,
+						100% 100%,
+						0 100%
 					);
 				}
 			}
@@ -100,7 +105,7 @@
 		}
 	}
 
-	@include responsive-max(600px) {
+	@include responsive-mixins.responsive-max(600px) {
 		.not-found {
 			.error-title {
 				&::before {

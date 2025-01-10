@@ -1,3 +1,5 @@
+@use 'responsive-mixins';
+
 // Example usage:
 // .my-element {
 //   @include mobile-only;
@@ -18,7 +20,7 @@
 	white-space: nowrap;
 	width: 1px;
 
-	@include responsive-max(833px) {
+	@include responsive-mixins.responsive-max(833px) {
 		clip: auto;
 		display: block;
 		height: auto;

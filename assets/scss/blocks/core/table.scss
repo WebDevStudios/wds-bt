@@ -1,4 +1,4 @@
-@import '../../abstracts/responsive-mixins';
+@use '../../abstracts/responsive-mixins';
 
 /* -- table -- */
 
@@ -31,7 +31,7 @@
 		font-weight: 700;
 	}
 
-	@include responsive-max(600px) {
+	@include responsive-mixins.responsive-max(600px) {
 		thead {
 			border: none;
 			clip: rect(0 0 0 0);

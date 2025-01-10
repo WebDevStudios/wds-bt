@@ -1,4 +1,4 @@
-@import '../../abstracts/responsive-mixins';
+@use '../../abstracts/responsive-mixins';
 
 /* -- List -- */
 
@@ -14,7 +14,7 @@ main,
 				padding-left: var(--wp--preset--spacing--50);
 				position: relative;
 
-				@include responsive-max(600px) {
+				@include responsive-mixins.responsive-max(600px) {
 					padding-left: var(--wp--preset--spacing--70);
 				}
 

@@ -1,4 +1,4 @@
-@import '../../abstracts/responsive-mixins';
+@use '../../abstracts/responsive-mixins';
 
 /* -- comments -- */
 
@@ -53,7 +53,7 @@
 		ol {
 			padding-left: 4rem;
 
-			@include responsive-max(600px) {
+			@include responsive-mixins.responsive-max(600px) {
 				padding-left: 2rem;
 			}
 		}

@@ -1,4 +1,4 @@
-@import '../../abstracts/responsive-mixins';
+@use '../../abstracts/responsive-mixins';
 
 /* -- file -- */
 
@@ -45,7 +45,7 @@
 		}
 	}
 
-	@include responsive-max(600px) {
+	@include responsive-mixins.responsive-max(600px) {
 		display: flex;
 		flex-direction: column;
 
