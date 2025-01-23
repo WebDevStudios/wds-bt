@@ -11,9 +11,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
-// Detect Windows platform
-const isWin = process.platform === 'win32';
-
 // Function to check for the existence of files matching a pattern
 function hasFiles(pattern) {
 	return glob.sync(pattern, { dotRelative: true }).length > 0;
@@ -32,12 +29,12 @@ const coreBlockEntryPaths = glob
 const blockEntryPaths = glob
 	.sync('./assets/blocks/**/index.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
-		const entryKey = isWin
-			? filePath
-					.replace('./assets/blocks\\', '')
-					.replace('\\index.js', '')
-			: filePath.replace('./assets/blocks/', '').replace('/index.js', '');
+		const entryKey = filePath
+			.replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+			.replace('./assets/blocks/', '')
+			.replace('/index.js', '');
 		acc[`../blocks/${entryKey}/index`] = filePath;
+
 		return acc;
 	}, {});
 
@@ -45,23 +42,23 @@ const blockEntryPaths = glob
 const blockViewPaths = glob
 	.sync('./assets/blocks/**/view.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
-		const entryKey = isWin
-			? filePath.replace('./assets/blocks\\', '').replace('\\view.js', '')
-			: filePath.replace('./assets/blocks/', '').replace('/view.js', '');
-		acc[`../blocks/${entryKey}/view`] = filePath;
+		const entryKey = filePath
+			.replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+			.replace('./assets/blocks/', '')
+			.replace('/view.js', '');
+		if (!filePath.includes('interactivity')) {
+			acc[`../blocks/${entryKey}/view`] = filePath;
+		}
 		return acc;
 	}, {});
 
 const blockScssPaths = glob
 	.sync('./assets/blocks/**/style.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
-		const entryKey = isWin
-			? filePath
-					.replace('./assets/blocks\\', '')
-					.replace('\\style.scss', '')
-			: filePath
-					.replace('./assets/blocks/', '')
-					.replace('/style.scss', '');
+		const entryKey = filePath
+			.replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+			.replace('./assets/blocks/', '')
+			.replace('/style.scss', '');
 		acc[`../blocks/${entryKey}/style`] = filePath;
 		return acc;
 	}, {});
@@ -83,7 +80,19 @@ if (hasFiles('./assets/blocks/**/*.php')) {
 		from: './assets/blocks/**/*.php',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
-				`${context}/assets/blocks/`,
+				path.resolve(context, 'assets/blocks') + path.sep,
+				'../blocks/'
+			);
+		},
+	});
+}
+
+if (hasFiles('./assets/blocks/**/view.js')) {
+	copyPluginPatterns.push({
+		from: './assets/blocks/**/view.js',
+		to: ({ context, absoluteFilename }) => {
+			return absoluteFilename.replace(
+				path.resolve(context, 'assets/blocks') + path.sep,
 				'../blocks/'
 			);
 		},
@@ -95,7 +104,7 @@ if (hasFiles('./assets/blocks/**/*.json')) {
 		from: './assets/blocks/**/*.json',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
-				`${context}/assets/blocks/`,
+				path.resolve(context, 'assets/blocks') + path.sep,
 				'../blocks/'
 			);
 		},
@@ -192,6 +201,9 @@ module.exports = {
 			},
 		],
 	},
+	resolve: {
+		preferRelative: true,
+	},
 	plugins: [
 		...defaultConfig.plugins,
 
@@ -267,21 +279,53 @@ module.exports = {
 							);
 						},
 					},
+					{
+						folder: path.resolve(__dirname, 'build/css/blocks'),
+						method: (absoluteItemPath) => {
+							return new RegExp(/view.js$/, 'm').test(
+								absoluteItemPath
+							);
+						},
+					},
 				],
 			},
 		}),
 
-		new CleanWebpackPlugin(),
-		new ESLintPlugin(),
-		new StylelintPlugin(),
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'build/**')],
+		}),
+
+		new ESLintPlugin({
+			extensions: ['js', 'jsx'],
+			exclude: 'node_modules',
+		}),
+
+		new StylelintPlugin({
+			configFile: '.stylelintrc.json',
+			files: '**/*.s?(a|c)ss',
+		}),
+
+		new TerserPlugin({
+			terserOptions: {
+				output: {
+					comments: false,
+				},
+			},
+			extractComments: false,
+		}),
 	],
 	optimization: {
 		minimize: true,
-		minimizer: [new TerserPlugin()],
-	},
-	performance: {
-		maxAssetSize: 550000, // Increase the asset size limit to 550 KB
-		maxEntrypointSize: 550000, // Increase the entry point size limit to 550 KB
-		hints: 'warning', // You can set this to 'error' to make the build fail on these warnings or 'false' to disable them
+		minimizer: [
+			new TerserPlugin({
+				parallel: true,
+				terserOptions: {
+					output: {
+						comments: false,
+					},
+				},
+				extractComments: false,
+			}),
+		],
 	},
 };
