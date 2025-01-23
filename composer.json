@@ -1,7 +1,7 @@
 {
   "name": "webdevstudios/wds-bt",
   "version": "1.0.0",
-  "description": "A block starter theme from WebDevStudios.",
+  "description": "A FSE/Gutenberg block starter theme from WebDevStudios.",
   "type": "wordpress-theme",
   "license": "GPL-2.0-or-later",
   "authors": [
