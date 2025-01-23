@@ -24,16 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			// },
 		];
 
-		// Keep only the necessary embed variations.
-		const embedBlockVariations = wp.blocks.getBlockVariations('core/embed');
-		const keepEmbeds = [
-			'twitter',
-			'wordpress',
-			'spotify',
-			'soundcloud',
-			'flickr',
-		];
-
 		// Unregister unused blocks.
 		unusedBlocks.forEach((block) => {
 			wp.blocks.unregisterBlockType(block);
@@ -45,16 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				variation.blockName,
 				variation.blockVariationName
 			);
-		});
-
-		// Keep only necessary embed variations.
-		embedBlockVariations.forEach((variation) => {
-			if (!keepEmbeds.includes(variation.name)) {
-				wp.blocks.unregisterBlockVariation(
-					'core/embed',
-					variation.name
-				);
-			}
 		});
 	} else {
 		// eslint-disable-next-line no-console
