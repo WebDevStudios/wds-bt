@@ -11,12 +11,10 @@ const TerserPlugin = require('terser-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
-// Function to check for the existence of files matching a pattern
 function hasFiles(pattern) {
 	return glob.sync(pattern, { dotRelative: true }).length > 0;
 }
 
-// Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
 	.sync('./assets/scss/blocks/core/*.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -25,7 +23,6 @@ const coreBlockEntryPaths = glob
 		return acc;
 	}, {});
 
-// Dynamically generate entry points for each block, including `view.js`
 const blockEntryPaths = glob
 	.sync('./assets/blocks/**/index.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -38,7 +35,6 @@ const blockEntryPaths = glob
 		return acc;
 	}, {});
 
-// Include view.js files if they exist
 const blockViewPaths = glob
 	.sync('./assets/blocks/**/view.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -71,10 +67,16 @@ const styleScssPaths = glob
 		return acc;
 	}, {});
 
-// CopyPlugin patterns to include PHP and JSON files
+const editorScssPaths = glob
+	.sync('./assets/scss/editor.scss', { dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = 'editor';
+		acc[`css/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
 const copyPluginPatterns = [];
 
-// Only add PHP and JSON patterns if these files exist
 if (hasFiles('./assets/blocks/**/*.php')) {
 	copyPluginPatterns.push({
 		from: './assets/blocks/**/*.php',
@@ -115,13 +117,13 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		...defaultConfig.entry,
-		admin: './assets/scss/editor.scss',
 		index: './assets/js/index.js',
 		variations: './assets/js/block-variations/index.js',
 		filters: './assets/js/block-filters/index.js',
 		...styleScssPaths,
+		...editorScssPaths,
 		...blockEntryPaths,
-		...blockViewPaths, // Add view.js paths here
+		...blockViewPaths,
 		...blockScssPaths,
 		...coreBlockEntryPaths,
 	},
@@ -132,7 +134,7 @@ module.exports = {
 				entryName.includes('css/blocks') ||
 				blockEntryPaths[entryName] ||
 				blockScssPaths[entryName] ||
-				blockViewPaths[entryName] // Make sure view.js is handled
+				blockViewPaths[entryName]
 			) {
 				return '[name].js';
 			}
@@ -214,12 +216,15 @@ module.exports = {
 					entryName.includes('css/blocks') ||
 					blockEntryPaths[entryName] ||
 					blockScssPaths[entryName] ||
-					blockViewPaths[entryName] // Ensure view.css is handled
+					blockViewPaths[entryName]
 				) {
 					return '[name].css';
 				}
 				if (entryName === 'css/style') {
 					return 'css/style.css';
+				}
+				if (entryName === 'css/editor') {
+					return 'css/editor.css';
 				}
 				return '[name].css';
 			},
@@ -245,7 +250,7 @@ module.exports = {
 					context: path.resolve(process.cwd(), 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
-				...copyPluginPatterns, // Include patterns for PHP and JSON files
+				...copyPluginPatterns,
 			],
 		}),
 
@@ -262,28 +267,44 @@ module.exports = {
 			after: {
 				log: false,
 				test: [
+					// Remove all JS files inside build/css/blocks
 					{
 						folder: path.resolve(__dirname, 'build/css/blocks'),
 						method: (absoluteItemPath) =>
 							/\.js$/.test(absoluteItemPath),
+						removeFolders: true,
 					},
+					// Remove all PHP files inside build/css/blocks
 					{
 						folder: path.resolve(__dirname, 'build/css/blocks'),
 						method: (absoluteItemPath) =>
 							/\.php$/.test(absoluteItemPath),
+						removeFolders: true,
 					},
+					// Remove .asset.php files inside ALL subdirectories of blocks/
+					...glob
+						.sync('blocks/**/', { absolute: true })
+						.map((folder) => ({
+							folder,
+							method: (absoluteItemPath) =>
+								/\.asset\.php$/.test(absoluteItemPath),
+							removeFolders: true,
+						})),
+					// Remove all PHP files inside build/js
 					{
 						folder: path.resolve(__dirname, 'build/js'),
 						method: (absoluteItemPath) =>
 							/\.php$/.test(absoluteItemPath),
+						removeFolders: true,
 					},
+					// Remove anything containing 'css' inside build/js
 					{
 						folder: path.resolve(__dirname, 'build/js'),
 						method: (absoluteItemPath) =>
 							/css/.test(absoluteItemPath),
+						removeFolders: true,
 					},
 				],
-				removeFolders: true,
 			},
 		}),
 
