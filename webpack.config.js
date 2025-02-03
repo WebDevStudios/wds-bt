@@ -264,30 +264,26 @@ module.exports = {
 				test: [
 					{
 						folder: path.resolve(__dirname, 'build/css/blocks'),
-						method: (absoluteItemPath) => {
-							return new RegExp(/\.js$/, 'm').test(
-								absoluteItemPath
-							);
-						},
-						// For .php
+						method: (absoluteItemPath) =>
+							/\.js$/.test(absoluteItemPath),
 					},
 					{
 						folder: path.resolve(__dirname, 'build/css/blocks'),
-						method: (absoluteItemPath) => {
-							return new RegExp(/\.php$/, 'm').test(
-								absoluteItemPath
-							);
-						},
+						method: (absoluteItemPath) =>
+							/\.php$/.test(absoluteItemPath),
 					},
 					{
-						folder: path.resolve(__dirname, 'build/css/blocks'),
-						method: (absoluteItemPath) => {
-							return new RegExp(/view.js$/, 'm').test(
-								absoluteItemPath
-							);
-						},
+						folder: path.resolve(__dirname, 'build/js'),
+						method: (absoluteItemPath) =>
+							/\.php$/.test(absoluteItemPath),
+					},
+					{
+						folder: path.resolve(__dirname, 'build/js'),
+						method: (absoluteItemPath) =>
+							/css/.test(absoluteItemPath),
 					},
 				],
+				removeFolders: true,
 			},
 		}),
 
