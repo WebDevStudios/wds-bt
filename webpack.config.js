@@ -94,6 +94,14 @@ const variationsJsPaths = glob
 		return acc;
 	}, {});
 
+const editorJsPaths = glob
+	.sync('./assets/js/editor.js', { dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = 'editor';
+		acc[`js/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
 const copyPluginPatterns = [];
 
 if (hasFiles('./assets/blocks/**/*.{php,json}')) {
@@ -105,23 +113,28 @@ if (hasFiles('./assets/blocks/**/*.{php,json}')) {
 				'../blocks/'
 			);
 		},
+		noErrorOnMissing: true,
 	});
 }
 
-copyPluginPatterns.push({
-	from: './assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}',
-	to: ({ context, absoluteFilename }) => {
-		return absoluteFilename.replace(
-			path.resolve(context, 'assets/blocks') + path.sep,
-			'../blocks/'
-		);
-	},
-});
+if (hasFiles('./assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}')) {
+	copyPluginPatterns.push({
+		from: './assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}',
+		to: ({ context, absoluteFilename }) => {
+			return absoluteFilename.replace(
+				path.resolve(context, 'assets/blocks') + path.sep,
+				'../blocks/'
+			);
+		},
+		noErrorOnMissing: true,
+	});
+}
 
 module.exports = {
 	...defaultConfig,
 	entry: {
 		...defaultConfig.entry,
+		...editorJsPaths,
 		...scriptJsPaths,
 		...variationsJsPaths,
 		...filtersJsPaths,

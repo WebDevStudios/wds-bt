@@ -5,5 +5,4 @@
  */
 
 // Import the block filter file.
-import './unregister-core-blocks';
 import './buttons';
