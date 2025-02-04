@@ -22,6 +22,10 @@
     "npm": ">=10"
   },
   "dependencies": {
+    "@wordpress/block-editor": "^14.12.0",
+    "@wordpress/blocks": "^14.6.0",
+    "@wordpress/components": "^29.3.0",
+    "@wordpress/token-list": "^3.17.0",
     "body-parser": "^1.20.3",
     "braces": "^3.0.3",
     "cookie": "^1.0.1",
