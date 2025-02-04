@@ -3,15 +3,7 @@
  */
 wp.domReady(() => {
 	// List of the Gutenberg blocks that would be unregistered
-	const unusedBlocks = [
-		'core/latest-comments',
-		'core/missing',
-		'core/file',
-		'core/rss',
-		'core/tag-cloud',
-		'core/page-break',
-		'core/more',
-	];
+	const unusedBlocks = ['core/latest-comments', 'core/missing'];
 
 	const embedBlockVariations = wp.blocks.getBlockVariations('core/embed');
 	const keepEmbeds = [

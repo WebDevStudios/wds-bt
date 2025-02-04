@@ -73,7 +73,7 @@ function Edit({
 			<PanelBody title={__('Button Sizes')}>
 				<PanelRow>
 					<ButtonGroup aria-label={__('Button Sizes')}>
-						{['donate', 'xl', 'l', 'm', 's'].map((sizeValue) => {
+						{['xl', 'l', 'm', 's'].map((sizeValue) => {
 							return (
 								<Button
 									key={sizeValue}

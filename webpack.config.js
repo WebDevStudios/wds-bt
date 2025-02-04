@@ -3,6 +3,7 @@ const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const RemovePlugin = require('remove-files-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
@@ -10,9 +11,21 @@ const TerserPlugin = require('terser-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
+// Function to check for the existence of files matching a pattern
 function hasFiles(pattern) {
 	return glob.sync(pattern, { dotRelative: true }).length > 0;
 }
+
+// Dynamically generate entry points for each file inside 'assets/scss/blocks'
+const coreBlockEntryPaths = glob
+	.sync('./assets/scss/blocks/core/*.scss', { dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
+		acc[`css/blocks/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
+// Dynamically generate entry points for each block, including `view.js`
 const blockEntryPaths = glob
 	.sync('./assets/blocks/**/index.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -21,9 +34,11 @@ const blockEntryPaths = glob
 			.replace('./assets/blocks/', '')
 			.replace('/index.js', '');
 		acc[`../blocks/${entryKey}/index`] = filePath;
+
 		return acc;
 	}, {});
 
+// Include view.js files if they exist
 const blockViewPaths = glob
 	.sync('./assets/blocks/**/view.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -31,7 +46,9 @@ const blockViewPaths = glob
 			.replace(new RegExp(`\\${path.sep}`, 'g'), '/')
 			.replace('./assets/blocks/', '')
 			.replace('/view.js', '');
-		acc[`../blocks/${entryKey}/view`] = filePath;
+		if (!filePath.includes('interactivity')) {
+			acc[`../blocks/${entryKey}/view`] = filePath;
+		}
 		return acc;
 	}, {});
 
@@ -43,14 +60,6 @@ const blockScssPaths = glob
 			.replace('./assets/blocks/', '')
 			.replace('/style.scss', '');
 		acc[`../blocks/${entryKey}/style`] = filePath;
-		return acc;
-	}, {});
-
-const coreBlockEntryPaths = glob
-	.sync('./assets/scss/blocks/core/*.scss', { dotRelative: true })
-	.reduce((acc, filePath) => {
-		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
-		acc[`css/blocks/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -70,63 +79,43 @@ const editorScssPaths = glob
 		return acc;
 	}, {});
 
-const scriptJsPaths = glob
-	.sync('./assets/js/index.js', { dotRelative: true })
-	.reduce((acc, filePath) => {
-		const entryKey = 'index';
-		acc[`js/${entryKey}`] = filePath;
-		return acc;
-	}, {});
-
-const filtersJsPaths = glob
-	.sync('./assets/js/block-filters/index.js', { dotRelative: true })
-	.reduce((acc, filePath) => {
-		const entryKey = 'filters';
-		acc[`js/${entryKey}`] = filePath;
-		return acc;
-	}, {});
-
-const variationsJsPaths = glob
-	.sync('./assets/js/block-variations/index.js', { dotRelative: true })
-	.reduce((acc, filePath) => {
-		const entryKey = 'variations';
-		acc[`js/${entryKey}`] = filePath;
-		return acc;
-	}, {});
-
-const editorJsPaths = glob
-	.sync('./assets/js/editor.js', { dotRelative: true })
-	.reduce((acc, filePath) => {
-		const entryKey = 'editor';
-		acc[`js/${entryKey}`] = filePath;
-		return acc;
-	}, {});
-
+// CopyPlugin patterns to include PHP and JSON files
 const copyPluginPatterns = [];
 
-if (hasFiles('./assets/blocks/**/*.{php,json}')) {
+// Only add PHP and JSON patterns if these files exist
+if (hasFiles('./assets/blocks/**/*.php')) {
 	copyPluginPatterns.push({
-		from: './assets/blocks/**/*.{php,json}',
+		from: './assets/blocks/**/*.php',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				path.resolve(context, 'assets/blocks') + path.sep,
 				'../blocks/'
 			);
 		},
-		noErrorOnMissing: true,
 	});
 }
 
-if (hasFiles('./assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}')) {
+if (hasFiles('./assets/blocks/**/view.js')) {
 	copyPluginPatterns.push({
-		from: './assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}',
+		from: './assets/blocks/**/view.js',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				path.resolve(context, 'assets/blocks') + path.sep,
 				'../blocks/'
 			);
 		},
-		noErrorOnMissing: true,
+	});
+}
+
+if (hasFiles('./assets/blocks/**/*.json')) {
+	copyPluginPatterns.push({
+		from: './assets/blocks/**/*.json',
+		to: ({ context, absoluteFilename }) => {
+			return absoluteFilename.replace(
+				path.resolve(context, 'assets/blocks') + path.sep,
+				'../blocks/'
+			);
+		},
 	});
 }
 
@@ -134,16 +123,31 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		...defaultConfig.entry,
-		...editorJsPaths,
-		...scriptJsPaths,
-		...variationsJsPaths,
-		...filtersJsPaths,
-		...editorScssPaths,
+		editor: './assets/js/editor.js',
+		index: './assets/js/index.js',
+		variations: './assets/js/block-variations/index.js',
+		filters: './assets/js/block-filters/index.js',
 		...styleScssPaths,
+		...editorScssPaths,
 		...blockEntryPaths,
 		...blockViewPaths,
 		...blockScssPaths,
 		...coreBlockEntryPaths,
+	},
+	output: {
+		filename: (pathData) => {
+			const entryName = pathData.chunk.name;
+			if (
+				entryName.includes('css/blocks') ||
+				blockEntryPaths[entryName] ||
+				blockScssPaths[entryName] ||
+				blockViewPaths[entryName] // Make sure view.js is handled
+			) {
+				return '[name].js';
+			}
+			return 'js/[name].js';
+		},
+		path: path.resolve(__dirname, 'build'),
 	},
 	module: {
 		rules: [
@@ -152,18 +156,6 @@ module.exports = {
 				type: 'asset/resource',
 				generator: {
 					filename: 'images/[name][ext]',
-				},
-			},
-			{
-				test: /\.svg$/,
-				type: 'asset/inline',
-				use: 'svg-transform-loader',
-			},
-			{
-				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				type: 'asset/resource',
-				generator: {
-					filename: 'fonts/[name][ext]',
 				},
 			},
 			{
@@ -195,23 +187,53 @@ module.exports = {
 				],
 			},
 			{
+				test: /\.svg$/,
+				type: 'asset/inline',
+				use: 'svg-transform-loader',
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf)$/,
+				type: 'asset/resource',
+				generator: {
+					filename: 'fonts/[name][ext]',
+				},
+			},
+			{
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
 					options: {
 						presets: ['@babel/preset-env', '@babel/preset-react'],
-						plugins: ['@babel/plugin-transform-react-jsx'],
 					},
 				},
 			},
 		],
 	},
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, 'build'),
+	resolve: {
+		preferRelative: true,
 	},
 	plugins: [
+		...defaultConfig.plugins,
+
+		new MiniCssExtractPlugin({
+			filename: (pathData) => {
+				const entryName = pathData.chunk.name;
+				if (
+					entryName.includes('css/blocks') ||
+					blockEntryPaths[entryName] ||
+					blockScssPaths[entryName] ||
+					blockViewPaths[entryName] // Ensure view.css is handled
+				) {
+					return '[name].css';
+				}
+				if (entryName === 'css/style') {
+					return 'css/style.css';
+				}
+				return '[name].css';
+			},
+		}),
+
 		new CopyPlugin({
 			patterns: [
 				{
@@ -232,9 +254,19 @@ module.exports = {
 					context: path.resolve(process.cwd(), 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
-				...copyPluginPatterns,
+				...copyPluginPatterns, // Include patterns for PHP and JSON files
 			],
 		}),
+
+		new SVGSpritemapPlugin('assets/images/icons/*.svg', {
+			output: {
+				filename: 'images/icons/sprite.svg',
+			},
+			sprite: {
+				prefix: false,
+			},
+		}),
+
 		new RemovePlugin({
 			after: {
 				log: false,
@@ -246,11 +278,20 @@ module.exports = {
 								absoluteItemPath
 							);
 						},
+						// For .php
 					},
 					{
-						folder: path.resolve(__dirname, 'build/css'),
+						folder: path.resolve(__dirname, 'build/css/blocks'),
 						method: (absoluteItemPath) => {
-							return new RegExp(/\.js$/, 'm').test(
+							return new RegExp(/\.php$/, 'm').test(
+								absoluteItemPath
+							);
+						},
+					},
+					{
+						folder: path.resolve(__dirname, 'build/css/blocks'),
+						method: (absoluteItemPath) => {
+							return new RegExp(/view.js$/, 'm').test(
 								absoluteItemPath
 							);
 						},
@@ -258,19 +299,21 @@ module.exports = {
 				],
 			},
 		}),
-		new SVGSpritemapPlugin('assets/images/icons/*.svg', {
-			output: { filename: 'images/icons/sprite.svg' },
-			sprite: { prefix: false },
+
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'build/**')],
 		}),
-		new MiniCssExtractPlugin({ filename: '[name].css' }),
+
 		new ESLintPlugin({
 			extensions: ['js', 'jsx'],
 			exclude: 'node_modules',
 		}),
+
 		new StylelintPlugin({
 			configFile: '.stylelintrc.json',
 			files: '**/*.s?(a|c)ss',
 		}),
+
 		new TerserPlugin({
 			terserOptions: {
 				output: {
@@ -282,9 +325,16 @@ module.exports = {
 	],
 	optimization: {
 		minimize: true,
-		minimizer: [new TerserPlugin()],
-	},
-	resolve: {
-		extensions: ['.js', '.jsx'],
+		minimizer: [
+			new TerserPlugin({
+				parallel: true,
+				terserOptions: {
+					output: {
+						comments: false,
+					},
+				},
+				extractComments: false,
+			}),
+		],
 	},
 };
