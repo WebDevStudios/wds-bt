@@ -5,11 +5,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 	if (typeof wp !== 'undefined' && typeof wp.blocks !== 'undefined') {
 		// List of Gutenberg blocks to unregister.
-		const unusedBlocks = [
-			'core/latest-comments',
-			'core/rss',
-			'core/missing',
-		];
+		const unusedBlocks = ['core/latest-comments', 'core/missing'];
 
 		// List of Gutenberg block variations to unregister.
 		const unregisterBlockVariations = [
