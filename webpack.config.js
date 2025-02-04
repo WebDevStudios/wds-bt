@@ -70,7 +70,6 @@ const editorScssPaths = glob
 		return acc;
 	}, {});
 
-
 const scriptJsPaths = glob
 	.sync('./assets/js/index.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -259,7 +258,7 @@ module.exports = {
 			configFile: '.stylelintrc.json',
 			files: '**/*.s?(a|c)ss',
 		}),
-				new TerserPlugin({
+		new TerserPlugin({
 			terserOptions: {
 				output: {
 					comments: false,
