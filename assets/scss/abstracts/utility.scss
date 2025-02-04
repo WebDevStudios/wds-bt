@@ -1,3 +1,5 @@
+@use 'responsive-mixins';
+
 /* -- Utility -- */
 
 /* -- Image Blur -- */
@@ -96,13 +98,13 @@ figure[class*=' blur-'] {
 }
 
 /* Media Queries */
-@include responsive-max(600px) {
+@include responsive-mixins.responsive-max(600px) {
 	.is-style-hidden-mobile {
 		display: none !important; /* stylelint-disable-line declaration-no-important */
 	}
 }
 
-@include responsive-max(782px) {
+@include responsive-mixins.responsive-max(782px) {
 	.wp-block-columns.is-style-column-reverse {
 		flex-direction: column-reverse;
 	}

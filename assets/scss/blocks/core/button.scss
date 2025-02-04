@@ -1,4 +1,4 @@
-@import '../../abstracts/responsive-mixins';
+@use '../../abstracts/responsive-mixins';
 
 /* -- Button -- */
 .wp-block-button {
@@ -70,7 +70,7 @@
 	}
 }
 
-@include responsive-max(600px) {
+@include responsive-mixins.responsive-max(600px) {
 	.wp-block-buttons {
 		flex-direction: column;
 		gap: 0.75rem !important; /* stylelint-disable-line declaration-no-important */
