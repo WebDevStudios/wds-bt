@@ -33,3 +33,9 @@ $context = array();
 	<?php esc_html_e( '{{title}} – hello from a dynamic block!', '{{textdomain}}' ); ?>
 </p>
 {{/isDynamicVariant}}
+{{#isStaticVariant}}
+?>
+<p <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>>
+	<?php esc_html_e( '{{title}} – hello from a Static block!', '{{textdomain}}' ); ?>
+</p>
+{{/isStaticVariant}}

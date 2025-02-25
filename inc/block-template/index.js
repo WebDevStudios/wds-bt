@@ -18,8 +18,12 @@ module.exports = {
 		category: 'wds-blocks',
 		dashicon: 'pets',
 		description: 'A custom block created by the create-block for the theme',
-		namespace: 'freeman',
+		namespace: 'wdsbt',
+		editorScript: 'file:./index.js',
+		editorStyle: 'file:./index.css',
+		style: 'file:./style.css',
 		render: 'file:./render.php',
+		viewScriptModule: 'file:./view.js',
 		version: '1.0.0',
 		customPackageJSON: {
 			prettier: '@wordpress/prettier-config',
@@ -29,7 +33,6 @@ module.exports = {
 		static: {},
 		dynamic: {},
 		interactive: {
-			viewScriptModule: 'file:./view.js',
 			customScripts: {
 				build: 'wp-scripts build --experimental-modules',
 				start: 'wp-scripts start --experimental-modules',

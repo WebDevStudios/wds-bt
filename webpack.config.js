@@ -16,6 +16,9 @@ function hasFiles(pattern) {
 	return glob.sync(pattern, { dotRelative: true }).length > 0;
 }
 
+// Remove all files from the build directory except for the specified folders.
+const excludedFolders = ['css', 'js', 'fonts', 'images'];
+
 // Dynamically generate entry points for each file inside 'assets/scss/blocks'
 const coreBlockEntryPaths = glob
 	.sync('./assets/scss/blocks/core/*.scss', { dotRelative: true })
@@ -79,13 +82,12 @@ const editorScssPaths = glob
 		return acc;
 	}, {});
 
-// CopyPlugin patterns to include PHP and JSON files
+// CopyPlugin patterns to include PHP, JSON and image files
 const copyPluginPatterns = [];
 
-// Only add PHP and JSON patterns if these files exist
-if (hasFiles('./assets/blocks/**/*.php')) {
+if (hasFiles('./assets/blocks/**/*.{php,json}')) {
 	copyPluginPatterns.push({
-		from: './assets/blocks/**/*.php',
+		from: './assets/blocks/**/*.{php,json}',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				path.resolve(context, 'assets/blocks') + path.sep,
@@ -95,27 +97,16 @@ if (hasFiles('./assets/blocks/**/*.php')) {
 	});
 }
 
-if (hasFiles('./assets/blocks/**/view.js')) {
+if (hasFiles('./assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}')) {
 	copyPluginPatterns.push({
-		from: './assets/blocks/**/view.js',
+		from: './assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}',
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				path.resolve(context, 'assets/blocks') + path.sep,
 				'../blocks/'
 			);
 		},
-	});
-}
-
-if (hasFiles('./assets/blocks/**/*.json')) {
-	copyPluginPatterns.push({
-		from: './assets/blocks/**/*.json',
-		to: ({ context, absoluteFilename }) => {
-			return absoluteFilename.replace(
-				path.resolve(context, 'assets/blocks') + path.sep,
-				'../blocks/'
-			);
-		},
+		noErrorOnMissing: true,
 	});
 }
 
@@ -141,7 +132,7 @@ module.exports = {
 				entryName.includes('css/blocks') ||
 				blockEntryPaths[entryName] ||
 				blockScssPaths[entryName] ||
-				blockViewPaths[entryName] // Make sure view.js is handled
+				blockViewPaths[entryName]
 			) {
 				return '[name].js';
 			}
@@ -223,7 +214,7 @@ module.exports = {
 					entryName.includes('css/blocks') ||
 					blockEntryPaths[entryName] ||
 					blockScssPaths[entryName] ||
-					blockViewPaths[entryName] // Ensure view.css is handled
+					blockViewPaths[entryName]
 				) {
 					return '[name].css';
 				}
@@ -254,7 +245,7 @@ module.exports = {
 					context: path.resolve(process.cwd(), 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
-				...copyPluginPatterns, // Include patterns for PHP and JSON files
+				...copyPluginPatterns,
 			],
 		}),
 
@@ -272,29 +263,39 @@ module.exports = {
 				log: false,
 				test: [
 					{
-						folder: path.resolve(__dirname, 'build/css/blocks'),
-						method: (absoluteItemPath) => {
-							return new RegExp(/\.js$/, 'm').test(
-								absoluteItemPath
-							);
-						},
-						// For .php
+						folder: path.resolve(__dirname, 'build'),
+						method: (absoluteItemPath) =>
+							/\.php$/.test(absoluteItemPath),
+						recursive: true,
 					},
 					{
-						folder: path.resolve(__dirname, 'build/css/blocks'),
-						method: (absoluteItemPath) => {
-							return new RegExp(/\.php$/, 'm').test(
-								absoluteItemPath
-							);
-						},
+						folder: path.resolve(__dirname, 'build/css'),
+						method: (absoluteItemPath) =>
+							/\.js$/.test(absoluteItemPath),
+						recursive: true,
 					},
 					{
-						folder: path.resolve(__dirname, 'build/css/blocks'),
+						folder: path.resolve(__dirname, 'build/js'),
+						method: (absoluteItemPath) =>
+							!/\.js$/.test(absoluteItemPath),
+						recursive: true,
+					},
+					{
+						folder: path.resolve(__dirname, 'build'),
 						method: (absoluteItemPath) => {
-							return new RegExp(/view.js$/, 'm').test(
-								absoluteItemPath
+							return !excludedFolders.some((folder) =>
+								absoluteItemPath.includes(
+									path.resolve(__dirname, `build/${folder}`)
+								)
 							);
 						},
+						recursive: true,
+					},
+					{
+						folder: path.resolve(__dirname, 'blocks'),
+						method: (absoluteItemPath) =>
+							/\.asset\.php$/.test(absoluteItemPath),
+						recursive: true,
 					},
 				],
 			},
