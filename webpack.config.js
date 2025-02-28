@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
@@ -336,6 +337,37 @@ module.exports = {
 				},
 				extractComments: false,
 			}),
+			new ImageMinimizerPlugin({
+				minimizer: {
+					implementation: ImageMinimizerPlugin.imageminGenerate,
+					options: {
+						plugins: [
+							['gifsicle', { interlaced: true }],
+							['jpegtran', { progressive: true }],
+							['optipng', { optimizationLevel: 5 }],
+							[
+								'svgo',
+								{
+									plugins: [
+										{
+											name: 'preset-default',
+											params: {
+												overrides: {
+													removeViewBox: false,
+												},
+											},
+										},
+									],
+								},
+							],
+						],
+					},
+				},
+			}),
 		],
+	},
+	performance: {
+		maxAssetSize: 500000,
+		hints: 'warning',
 	},
 };
