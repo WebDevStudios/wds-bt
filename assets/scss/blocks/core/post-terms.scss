@@ -7,6 +7,7 @@
 	gap: var(--wp--preset--spacing--10);
 
 	.wp-block-post-terms__separator {
+		/* stylelint-disable selector-class-pattern */
 		display: none;
 	}
 }

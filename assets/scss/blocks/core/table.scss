@@ -1,7 +1,5 @@
 @use '../../abstracts/responsive-mixins';
 
-/* -- table -- */
-
 .wp-block-table {
 	border-collapse: separate !important; /* stylelint-disable-line declaration-no-important */
 
@@ -22,6 +20,7 @@
 	}
 
 	tbody {
+
 		tr:nth-child(odd) {
 			background-color: var(--wp--preset--color--primary-50);
 		}
@@ -32,9 +31,10 @@
 	}
 
 	@include responsive-mixins.responsive-max(600px) {
+
 		thead {
 			border: none;
-			clip: rect(0 0 0 0);
+			clip: rect(0, 0, 0, 0);
 			height: 1px;
 			margin: -0.0625rem;
 			overflow: hidden;
@@ -44,23 +44,24 @@
 		}
 
 		tbody {
-			tr:nth-child(odd) {
-				background-color: var(--wp--preset--color--white);
-			}
-		}
 
-		tr {
-			display: block;
-			margin-bottom: 1rem;
-
-			td {
+			tr {
 				display: block;
+				margin-bottom: 1rem;
 
-				&::before {
-					content: attr(data-label);
-					display: inline-block;
-					font-weight: 700;
-					width: 50%;
+				&:nth-child(odd) {
+					background-color: var(--wp--preset--color--white);
+				}
+
+				td {
+					display: block;
+
+					&::before {
+						content: attr(data-label);
+						display: inline-block;
+						font-weight: 700;
+						width: 50%;
+					}
 				}
 			}
 		}

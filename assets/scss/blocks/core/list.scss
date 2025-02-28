@@ -4,7 +4,9 @@
 
 main,
 .wp-block-post-content {
+
 	ul {
+
 		&:not([class]),
 		&.wp-block-list {
 			list-style-type: none;
@@ -39,6 +41,7 @@ main,
 	/* -- Ordered List -- */
 
 	ol {
+
 		&:not([class]),
 		&.wp-block-list {
 			list-style-position: inside;

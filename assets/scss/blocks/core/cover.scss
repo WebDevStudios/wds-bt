@@ -1,11 +1,15 @@
 /* -- Cover -- */
 
 .wp-block-cover {
+
 	&.is-style-gradient {
+
 		.has-background-dim:not([class*='-background-color']) {
 			background-color: transparent;
 			background-image: linear-gradient(
-				to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)
+				to top,
+				rgba(0, 0, 0, 0.6),
+				rgba(0, 0, 0, 1)
 			);
 			opacity: 1;
 		}
@@ -17,6 +21,7 @@
 		) !important; /* stylelint-disable-line declaration-no-important */
 
 		.wp-block-button {
+
 			.wp-block-button__link {
 				border-radius: 6px !important; /* stylelint-disable-line declaration-no-important */
 			}
@@ -25,14 +30,19 @@
 }
 
 :root {
+
 	.wp-block-cover:not(.is-light),
 	.wp-block-cover-image:not(.is-light) {
+
 		.wp-block-buttons {
+
 			.wp-block-button {
+
 				&.is-style-outline {
+
 					.wp-block-button__link:not(.has-text-color):not(
-					.has-link-color
-				) {
+							.has-link-color
+						) {
 						border-color: var(--wp--preset--color--white);
 						color: var(--wp--preset--color--white);
 
@@ -43,9 +53,10 @@
 				}
 
 				&.is-style-minimal {
+
 					.wp-block-button__link:not(.has-text-color):not(
-					.has-link-color
-				) {
+							.has-link-color
+						) {
 						color: var(--wp--preset--color--white);
 
 						&:hover {
@@ -57,9 +68,10 @@
 				}
 
 				&.is-style-text {
+
 					.wp-block-button__link:not(.has-text-color):not(
-					.has-link-color
-				) {
+							.has-link-color
+						) {
 						color: var(--wp--preset--color--white);
 
 						&:hover {

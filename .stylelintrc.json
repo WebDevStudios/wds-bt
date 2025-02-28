@@ -2,8 +2,8 @@
 	"extends": ["@wordpress/stylelint-config/scss"],
 	"rules": {
 		"declaration-no-important": true,
-		"no-descending-specificity": false,
-		"selector-class-pattern": false,
+		"no-descending-specificity": null,
+		"selector-class-pattern": null,
 		"scss/at-rule-no-unknown": [
 			true,
 			{

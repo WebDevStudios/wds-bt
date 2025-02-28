@@ -62,7 +62,9 @@
 	}
 
 	.wp-block-search {
+
 		&.wp-block-search__button-inside {
+
 			.wp-block-search__inside-wrapper {
 				padding: 0;
 
@@ -79,7 +81,9 @@
 		}
 
 		&.wp-block-search__button-only {
+
 			.wp-block-search__inside-wrapper {
+
 				.wp-block-search__button {
 					background-color: transparent;
 
@@ -95,7 +99,9 @@
 }
 
 @include responsive-mixins.responsive-max(833px) {
+
 	.site-header {
+
 		.wp-block-search {
 			width: 100%;
 		}

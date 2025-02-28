@@ -3,6 +3,7 @@
 /* -- 404 -- */
 
 .error404 {
+
 	.not-found {
 		align-items: center;
 		display: flex;
@@ -53,7 +54,10 @@
 					animation: glitchBotom 1.5s linear infinite;
 					clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
 					-webkit-clip-path: polygon(
-						0 67%, 100% 67%, 100% 100%, 0 100%
+						0 67%,
+						100% 67%,
+						100% 100%,
+						0 100%
 					);
 				}
 			}
@@ -61,50 +65,62 @@
 	}
 
 	@keyframes glitch {
+
 		2%,
 		64% {
 			transform: translate(2px, 0) skew(0deg);
 		}
+
 		4%,
 		60% {
 			transform: translate(-2px, 0) skew(0deg);
 		}
+
 		62% {
 			transform: translate(0, 0) skew(5deg);
 		}
 	}
 
 	@keyframes glitchTop {
+
 		2%,
 		64% {
 			transform: translate(2px, -2px);
 		}
+
 		4%,
 		60% {
 			transform: translate(-2px, 2px);
 		}
+
 		62% {
 			transform: translate(13px, -1px) skew(-13deg);
 		}
 	}
 
 	@keyframes glitchBotom {
+
 		2%,
 		64% {
 			transform: translate(-2px, 0);
 		}
+
 		4%,
 		60% {
 			transform: translate(-2px, 0);
 		}
+
 		62% {
 			transform: translate(-22px, 5px) skew(21deg);
 		}
 	}
 
 	@include responsive-mixins.responsive-max(600px) {
+
 		.not-found {
+
 			.error-title {
+
 				&::before {
 					height: 7.1875rem;
 					width: 9.0625rem;

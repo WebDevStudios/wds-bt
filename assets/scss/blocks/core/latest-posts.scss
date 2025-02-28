@@ -1,4 +1,5 @@
 @use '../../abstracts/responsive-mixins';
+/* stylelint-disable selector-class-pattern */
 
 /* -- latest-posts -- */
 
@@ -103,6 +104,7 @@
 	}
 
 	&.is-grid {
+
 		li {
 			padding-left: 0;
 
@@ -140,3 +142,4 @@
 		}
 	}
 }
+/* stylelint-enable selector-class-pattern */

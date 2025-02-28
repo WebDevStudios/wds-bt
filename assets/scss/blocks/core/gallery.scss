@@ -1,8 +1,11 @@
 /* -- gallery -- */
 
 .wp-block-gallery {
+
 	&.has-nested-images {
+
 		figure.wp-block-image {
+
 			figcaption {
 				background: var(
 					--wp--preset--color--white
