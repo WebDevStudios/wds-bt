@@ -1,20 +1,7 @@
 {
-	"customTemplates": [
-		{
-			"name": "page-blank",
-			"postTypes": [
-				"page"
-			],
-			"title": "Page: Blank"
-		},
-		{
-			"name": "page-no-title",
-			"postTypes": [
-				"page"
-			],
-			"title": "Page: No Title"
-		}
-	],
+	"title": "Light Mode",
+	"version": 3,
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
 	"description": "Light mode palette for the theme",
 	"settings": {
 		"appearanceTools": true,
@@ -256,9 +243,7 @@
 		"spacing": {
 			"defaultSpacingSizes": false,
 			"spacingScale": {
-				"theme": {
-					"steps": 1
-				}
+				"steps": 1
 			},
 			"spacingSizes": [
 				{
@@ -297,14 +282,7 @@
 					"slug": "70"
 				}
 			],
-			"units": [
-				"%",
-				"px",
-				"em",
-				"rem",
-				"vh",
-				"vw"
-			]
+			"units": ["%", "px", "em", "rem", "vh", "vw"]
 		},
 		"typography": {
 			"defaultFontSizes": false,
@@ -322,9 +300,7 @@
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400 500 700",
-							"src": [
-								"file:./build/fonts/inter/Inter.woff2"
-							]
+							"src": ["file:./build/fonts/inter/Inter.woff2"]
 						}
 					],
 					"fontFamily": "Inter, sans-serif",
@@ -999,7 +975,16 @@
 			"title": "Footer"
 		}
 	],
-	"title": "Light Mode",
-	"version": 3,
-	"$schema": "https://schemas.wp.org/wp/6.7/theme.json"
+	"customTemplates": [
+		{
+			"name": "page-blank",
+			"postTypes": ["page"],
+			"title": "Page: Blank"
+		},
+		{
+			"name": "page-no-title",
+			"postTypes": ["page"],
+			"title": "Page: No Title"
+		}
+	]
 }
