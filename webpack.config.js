@@ -20,9 +20,18 @@ function hasFiles(pattern) {
 // Remove all files from the build directory except for the specified folders.
 const excludedFolders = ['css', 'js', 'fonts', 'images'];
 
-// Dynamically generate entry points for each file inside 'assets/scss/blocks'
+// Dynamically generate entry points for each file inside 'assets/scss/blocks/core'
 const coreBlockEntryPaths = glob
 	.sync('./assets/scss/blocks/core/*.scss', { dotRelative: true })
+	.reduce((acc, filePath) => {
+		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
+		acc[`css/blocks/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
+// Dynamically generate entry points for each file inside 'assets/scss/blocks/third-party'
+const thirdPartyBlockEntryPaths = glob
+	.sync('./assets/scss/blocks/third-party/*.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = filePath.split(/[\\/]/).pop().replace('.scss', '');
 		acc[`css/blocks/${entryKey}`] = filePath;
@@ -125,6 +134,7 @@ module.exports = {
 		...blockViewPaths,
 		...blockScssPaths,
 		...coreBlockEntryPaths,
+		...thirdPartyBlockEntryPaths,
 	},
 	output: {
 		filename: (pathData) => {
