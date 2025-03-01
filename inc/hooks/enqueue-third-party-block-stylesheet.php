@@ -46,9 +46,8 @@ function enqueue_third_party_block_overrides() {
 	$extract_block_names( $blocks, $block_names );
 	$block_names = array_unique( $block_names );
 
-	// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		error_log( 'Third‑party blocks found: ' . print_r( $block_names, true ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+		error_log( 'Third‑party blocks found: ' . print_r( $block_names, true ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log, WordPress.PHP.DevelopmentFunctions.error_log_print_r
 	}
 
 	foreach ( $block_names as $block_name ) {
@@ -64,10 +63,12 @@ function enqueue_third_party_block_overrides() {
 				array(),
 				filemtime( $style_file )
 			);
-			error_log( "Enqueued style for block {$block_name} as {$handle}" ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 
-		} else {
-			error_log( "No style file found for block {$block_name}; looked for {$style_file}" ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( "Enqueued style for block {$block_name} as {$handle}" ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			}
+		} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( "No style file found for block {$block_name}; looked for {$style_file}" ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 
 		}
 	}
