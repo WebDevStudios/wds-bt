@@ -73,4 +73,4 @@ function enqueue_third_party_block_overrides() {
 		}
 	}
 }
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_third_party_block_overrides' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_third_party_block_overrides' );
