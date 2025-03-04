@@ -317,8 +317,10 @@ module.exports = {
 		}),
 
 		new ESLintPlugin({
+			configType: 'eslintrc',
 			extensions: ['js', 'jsx'],
 			exclude: 'node_modules',
+			eslintPath: require.resolve('eslint/use-at-your-own-risk'),
 		}),
 
 		new StylelintPlugin({
