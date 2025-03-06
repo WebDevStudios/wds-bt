@@ -1,23 +1,32 @@
 pre-commit:
+    parallel: true
     commands:
         formatphp:
             glob: '*.php'
             run: composer run-script phpcs-fix {staged_files}
+            stage_fixed: true
         lintphp:
             glob: '*.php'
             run: composer run-script phpcs {staged_files}
+
         formatstyles:
             glob: '*.{css,scss}'
-            run: npx prettier {staged_files} --write
+            run: npx prettier --write {staged_files}
+            stage_fixed: true
         lintstyles:
             glob: '*.{css,scss}'
-            run: npx stylelint {staged_files} --fix
+            run: npx stylelint --fix {staged_files}
+            stage_fixed: true
+
         formatjavascript:
             glob: '*.{js,ts,tsx}'
-            run: npx prettier {staged_files} --write
+            run: npx prettier --write {staged_files}
+            stage_fixed: true
         lintjavascript:
             glob: '*.{js,ts,tsx}'
-            run: npx eslint {staged_files} --fix
+            run: npx eslint --fix {staged_files}
+            stage_fixed: true
+
         other:
             glob: '*.{yml,json,html}'
             exclude: 'group_*.json' # Exclude specific files
@@ -26,15 +35,24 @@ pre-commit:
                 for file in $staged_files
                 do
                   if [[ ! "$file" =~ ^templates/ ]]; then
-                    npx prettier "$file" --write
+                    npx prettier --write "$file"
                   fi
                 done
             stage_fixed: true
-            stage: pre-commit
+
         merge-conflict:
-            run: echo "Resolve merge conflicts before committing"
+            run: |
+                CONFLICT_FILES=$(git diff --cached --name-only --diff-filter=U)
+                if [ ! -z "$CONFLICT_FILES" ]; then
+                    echo "🚨 Merge conflicts detected in the following files:"
+                    echo "$CONFLICT_FILES"
+                    exit 1
+                fi
+            stage: false
+
         exit-status:
-            run: echo "All pre-commit checks passed"
+            run: echo "✅ All pre-commit checks passed!"
+
         templates-exclude:
-            glob: 'templates/**' # Match all files and subdirectories within templates folder
+            glob: 'templates/**' # Skip all files in templates folder
             run: echo "Skipping templates folder"

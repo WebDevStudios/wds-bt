@@ -109,7 +109,7 @@
     "lint:php": "composer run-script phpcs",
     "lint:pkg-json": "wp-scripts lint-pkg-json",
     "packages-update": "wp-scripts packages-update",
-    "postinstall": "npx lefthook install",
+	"postinstall": "npx lefthook install && git config --local core.hooksPath .git/hooks",
     "preinstall": "cross-env npm_config_legacy_peer_deps=true",
     "reset": "rm -rf node_modules vendor build blocks package-lock.json composer.lock",
     "setup": "npm run reset && npm i && composer i && npm run build",
