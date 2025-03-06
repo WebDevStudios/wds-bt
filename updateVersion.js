@@ -31,27 +31,32 @@ const updateJsonFile = (filePath) => {
 	console.log(`Updated version in ${filePath} to ${version}`);
 };
 
-const stylePath = './style.css';
-if (fs.existsSync(stylePath)) {
-	let styleContent = fs.readFileSync(stylePath, 'utf8');
-	const currentVersionMatch = styleContent.match(/(Version:\s*)([^\n]+)/);
-
-	if (currentVersionMatch && currentVersionMatch[2].trim() === version) {
-		console.log(
-			`No update needed for ${stylePath} (already version ${version}).`
-		);
-	} else {
-		styleContent = styleContent.replace(
-			/(Version:\s*)([^\n]+)/,
-			`$1${version}`
-		);
-		fs.writeFileSync(stylePath, styleContent, 'utf8');
-		console.log(`Updated version in ${stylePath} to ${version}`);
+const updateTextFile = (filePath, regex, replacement) => {
+	if (!fs.existsSync(filePath)) {
+		return;
 	}
-}
 
+	let fileContent = fs.readFileSync(filePath, 'utf8');
+
+	if (regex.test(fileContent)) {
+		fileContent = fileContent.replace(regex, replacement);
+		fs.writeFileSync(filePath, fileContent, 'utf8');
+		console.log(`Updated version in ${filePath} to ${version}`);
+	} else {
+		console.warn(
+			`Version pattern not found in ${filePath}, skipping update.`
+		);
+	}
+};
+
+// Update version in style.css
+updateTextFile('./style.css', /(Version:\s*)([^\n]+)/, `$1${version}`);
+
+// Update version in README.md
+updateTextFile('./README.md', /(## Version:\s*)([^\n]+)/, `$1${version}`);
+
+// Update JSON-based files
 updateJsonFile('./package.json');
-
 updateJsonFile('./composer.json');
 
 console.log('Version update process completed.');
