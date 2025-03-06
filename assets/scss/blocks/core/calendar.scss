@@ -21,6 +21,7 @@
 		}
 
 		thead {
+
 			th {
 				font-size: var(--wp--preset--font-size--xxs);
 				font-weight: 700;
@@ -30,6 +31,7 @@
 		}
 
 		tr {
+
 			td {
 				padding: 1rem 0.75rem;
 
@@ -66,6 +68,7 @@
 		width: 100%;
 
 		.wp-calendar-nav-prev {
+
 			a {
 				display: block;
 				height: 1.5rem;
@@ -90,6 +93,7 @@
 
 				&:hover,
 				&:focus {
+
 					&::before {
 						background-color: var(--wp--preset--color--primary-500);
 					}
@@ -98,6 +102,7 @@
 		}
 
 		.wp-calendar-nav-next {
+
 			a {
 				display: block;
 				height: 1.5rem;
@@ -121,6 +126,7 @@
 
 				&:hover,
 				&:focus {
+
 					&::before {
 						background-color: var(--wp--preset--color--primary-500);
 					}

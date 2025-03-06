@@ -1,4 +1,4 @@
-@import '../../abstracts/responsive-mixins';
+@use '../../abstracts/responsive-mixins';
 
 /* -- comments -- */
 
@@ -15,6 +15,7 @@
 	}
 
 	.wp-block-comment-author-name {
+
 		a {
 			color: var(--wp--preset--color--black);
 			font-family: var(--wp--preset--font-family--headline);
@@ -25,6 +26,7 @@
 	}
 
 	.wp-block-comment-date {
+
 		a {
 			color: var(--wp--preset--color--black);
 			font-family: var(--wp--preset--font-family--headline);
@@ -36,6 +38,7 @@
 
 	.wp-block-comment-edit-link,
 	.wp-block-comment-reply-link {
+
 		a {
 			color: var(--wp--preset--color--primary-500);
 			font-family: var(--wp--preset--font-family--headline);
@@ -50,10 +53,11 @@
 	}
 
 	.wp-block-comment-template {
+
 		ol {
 			padding-left: 4rem;
 
-			@include responsive-max(600px) {
+			@include responsive-mixins.responsive-max(600px) {
 				padding-left: 2rem;
 			}
 		}

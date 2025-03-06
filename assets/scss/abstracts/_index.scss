@@ -1,4 +1,4 @@
 // 'abstracts/' holds files with variables, mixins, and functions.
-@import './mobile-only-mixins';
-@import './responsive-mixins';
-@import './utility';
+@use 'mobile-only-mixins';
+@use 'responsive-mixins';
+@use 'utility';

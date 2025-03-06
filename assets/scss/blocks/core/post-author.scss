@@ -1,12 +1,16 @@
+/* stylelint-disable selector-class-pattern */
+
 /* -- post-author -- */
 
 .wp-block-post-author {
+
 	.wp-block-post-author__byline {
 		font-family: var(--wp--preset--font-family--body);
 		font-size: var(--wp--preset--font-size--xxs);
 	}
 
 	.wp-block-post-author__name {
+
 		a {
 			font-family: var(--wp--preset--font-family--headline);
 			font-size: var(--wp--preset--font-size--m);
@@ -20,3 +24,5 @@
 		margin-top: 0.5rem;
 	}
 }
+
+/* stylelint-enable selector-class-pattern */

@@ -1,5 +1,5 @@
-@import './abstracts';
-@import './base';
-@import './patterns/';
-@import './template-parts';
-@import './templates';
+@use 'abstracts';
+@use 'base';
+@use 'patterns';
+@use 'template-parts';
+@use 'templates';

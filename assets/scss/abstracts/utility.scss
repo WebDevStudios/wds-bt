@@ -1,3 +1,5 @@
+@use 'responsive-mixins';
+
 /* -- Utility -- */
 
 /* -- Image Blur -- */
@@ -85,10 +87,12 @@ figure[class*=' blur-'] {
 /* Header */
 
 .js-enabled {
+
 	.site-header {
 		position: sticky;
 		top: var(
-			--wp-admin--admin-bar--height, 0
+			--wp-admin--admin-bar--height,
+			0
 		) !important; /* stylelint-disable-line declaration-no-important */
 		transition: top 0.5s;
 		z-index: 100;
@@ -96,13 +100,15 @@ figure[class*=' blur-'] {
 }
 
 /* Media Queries */
-@include responsive-max(600px) {
+@include responsive-mixins.responsive-max(600px) {
+
 	.is-style-hidden-mobile {
 		display: none !important; /* stylelint-disable-line declaration-no-important */
 	}
 }
 
-@include responsive-max(782px) {
+@include responsive-mixins.responsive-max(782px) {
+
 	.wp-block-columns.is-style-column-reverse {
 		flex-direction: column-reverse;
 	}

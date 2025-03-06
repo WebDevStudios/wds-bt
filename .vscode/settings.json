@@ -14,5 +14,6 @@
 		"activityBarBadge.foreground": "#fff",
 		"statusBar.background": "#f3713c",
 		"statusBar.foreground": "#fff"
-	}
+	},
+	"todo-tree.tree.scanMode": "workspace"
 }

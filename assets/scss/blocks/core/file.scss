@@ -1,4 +1,5 @@
-@import '../../abstracts/responsive-mixins';
+@use '../../abstracts/responsive-mixins';
+/* stylelint-disable selector-class-pattern */
 
 /* -- file -- */
 
@@ -45,7 +46,7 @@
 		}
 	}
 
-	@include responsive-max(600px) {
+	@include responsive-mixins.responsive-max(600px) {
 		display: flex;
 		flex-direction: column;
 
@@ -69,3 +70,4 @@
 		}
 	}
 }
+/* stylelint-enable selector-class-pattern */

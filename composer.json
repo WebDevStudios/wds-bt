@@ -1,6 +1,6 @@
 {
   "name": "webdevstudios/wds-bt",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A FSE/Gutenberg block starter theme from WebDevStudios.",
   "type": "wordpress-theme",
   "license": "GPL-2.0-or-later",
@@ -28,8 +28,8 @@
   "require-dev": {
     "php": ">=8.2",
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
-    "phpcompatibility/phpcompatibility-wp": "^2.1.5",
-    "squizlabs/php_codesniffer": "^3.10.2",
+    "phpcompatibility/phpcompatibility-wp": "^2.1.6",
+    "squizlabs/php_codesniffer": "^3.11.3",
     "wp-cli/wp-cli-bundle": "^2.11.0",
     "wp-coding-standards/wpcs": "^3.1.0"
   },

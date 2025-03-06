@@ -4,7 +4,9 @@
 	gap: 0.75rem;
 
 	&.is-style-logos-only {
+
 		.wp-social-link {
+
 			.wp-block-social-link-anchor {
 				color: var(--wp--preset--color--primary-500);
 				fill: var(--wp--preset--color--primary-500);
@@ -14,6 +16,7 @@
 	}
 
 	&.has-visible-labels {
+
 		.wp-social-link {
 			background-color: var(--wp--preset--color--primary-500);
 
@@ -26,6 +29,7 @@
 	}
 
 	&.is-style-icon {
+
 		.wp-social-link {
 			background-color: var(--wp--preset--color--primary-500);
 

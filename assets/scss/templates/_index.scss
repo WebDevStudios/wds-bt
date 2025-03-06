@@ -1,4 +1,4 @@
 // 'templates/' houses styles for site editor templates.
-@import './archive';
-@import './search';
-@import './404';
+@use 'archive';
+@use 'search';
+@use '404' as error;
