@@ -40,7 +40,7 @@ const thirdPartyBlockEntryPaths = glob
 
 // Dynamically generate entry points for each block, including `view.js`
 const blockEntryPaths = glob
-	.sync('./assets/blocks/**/index.js', { dotRelative: true })
+	.sync('./assets/blocks/**/*.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = filePath
 			.replace(new RegExp(`\\${path.sep}`, 'g'), '/')
@@ -80,7 +80,7 @@ const styleScssPaths = glob
 	.sync('./assets/scss/_index.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = 'style';
-		acc[`css/${entryKey}`] = filePath;
+		acc[`./css/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -88,7 +88,7 @@ const editorScssPaths = glob
 	.sync('./assets/scss/editor.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = 'editor';
-		acc[`css/${entryKey}`] = filePath;
+		acc[`./css/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -131,7 +131,6 @@ module.exports = {
 		...styleScssPaths,
 		...editorScssPaths,
 		...blockEntryPaths,
-		...blockViewPaths,
 		...blockScssPaths,
 		...coreBlockEntryPaths,
 		...thirdPartyBlockEntryPaths,
@@ -240,19 +239,19 @@ module.exports = {
 			patterns: [
 				{
 					from: '**/*.{jpg,jpeg,png,gif,svg}',
-					to: 'images/[path][name][ext]',
+					to: './images/[path][name][ext]',
 					context: path.resolve(process.cwd(), 'assets/images'),
 					noErrorOnMissing: true,
 				},
 				{
 					from: '*.svg',
-					to: 'images/icons/[name][ext]',
+					to: './images/icons/[name][ext]',
 					context: path.resolve(process.cwd(), 'assets/images/icons'),
 					noErrorOnMissing: true,
 				},
 				{
 					from: '**/*.{woff,woff2,eot,ttf,otf}',
-					to: 'fonts/[path][name][ext]',
+					to: './fonts/[path][name][ext]',
 					context: path.resolve(process.cwd(), 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
