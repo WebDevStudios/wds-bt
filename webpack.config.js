@@ -150,6 +150,12 @@ module.exports = {
 		},
 		path: path.resolve(__dirname, 'build'),
 	},
+	cache: {
+		type: 'filesystem',
+		buildDependencies: {
+			config: [__filename],
+		},
+	},
 	module: {
 		rules: [
 			{
@@ -206,6 +212,7 @@ module.exports = {
 					loader: 'babel-loader',
 					options: {
 						presets: ['@babel/preset-env', '@babel/preset-react'],
+						cacheDirectory: true,
 					},
 				},
 			},
@@ -316,10 +323,8 @@ module.exports = {
 		}),
 
 		new ESLintPlugin({
-			configType: 'eslintrc',
 			extensions: ['js', 'jsx'],
 			exclude: 'node_modules',
-			eslintPath: require.resolve('eslint/use-at-your-own-risk'),
 		}),
 
 		new StylelintPlugin({

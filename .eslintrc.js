@@ -1,19 +1,15 @@
 module.exports = {
-	extends: [
-		'plugin:@wordpress/eslint-plugin/recommended-with-formatting',
-		'plugin:prettier/recommended',
-	],
-	parserOptions: {
-		ecmaVersion: 2021,
-	},
 	root: true,
+	extends: [require.resolve('@wordpress/eslint-plugin/configs/recommended')],
+	rules: {
+		camelcase: 'warn',
+		'@wordpress/no-global-event-listener': 'off',
+	},
 	env: {
 		browser: true,
-		es6: true,
-		jquery: true,
+		node: true,
 	},
-	rules: {
-		'@wordpress/no-global-event-listener': 0, // Disable. We don't use React-based components.
-		camelcase: 1,
+	globals: {
+		jQuery: 'readonly',
 	},
 };
