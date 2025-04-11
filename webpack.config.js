@@ -148,28 +148,33 @@ module.exports = {
 				test: /\.(sa|sc|c)ss$/,
 				use: [
 					MiniCssExtractPlugin.loader,
-					'css-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: true,
+						},
+					},
 					{
 						loader: 'postcss-loader',
 						options: {
+							sourceMap: true,
 							postcssOptions: (loader) => {
 								const options = {
 									plugins: [require('autoprefixer')],
 								};
-
-								if (loader.filename) {
-									const isRTL =
-										loader.filename.includes('-rtl.css');
-									if (isRTL) {
-										options.plugins.push(postcssRTL());
-									}
+								if (loader.filename?.includes('-rtl.css')) {
+									options.plugins.push(postcssRTL());
 								}
-
 								return options;
 							},
 						},
 					},
-					'sass-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true,
+						},
+					},
 				],
 			},
 			{
@@ -190,6 +195,7 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
+						cacheDirectory: true,
 						presets: ['@babel/preset-env', '@babel/preset-react'],
 					},
 				},
@@ -198,6 +204,12 @@ module.exports = {
 	},
 	resolve: {
 		preferRelative: true,
+	},
+	cache: {
+		type: 'filesystem',
+		buildDependencies: {
+			config: [__filename],
+		},
 	},
 	plugins: [
 		...defaultConfig.plugins,
