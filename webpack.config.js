@@ -37,30 +37,16 @@ const thirdPartyBlockEntryPaths = glob
 		return acc;
 	}, {});
 
-// Dynamically generate entry points for each block, including `view.js`
-const blockEntryPaths = glob
+// Grab all JS files (edit.js, view.js, index.js, view.jsx, etc.)
+const allBlockJsPaths = glob
 	.sync('./assets/blocks/**/*.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
-		const entryKey = filePath
+		const relativePath = filePath
 			.replace(new RegExp(`\\${path.sep}`, 'g'), '/')
-			.replace('./assets/blocks/', '')
-			.replace('/index.js', '');
-		acc[`../blocks/${entryKey}/index`] = filePath;
-
-		return acc;
-	}, {});
-
-// Include view.js files if they exist
-const blockViewPaths = glob
-	.sync('./assets/blocks/**/view.js', { dotRelative: true })
-	.reduce((acc, filePath) => {
-		const entryKey = filePath
-			.replace(new RegExp(`\\${path.sep}`, 'g'), '/')
-			.replace('./assets/blocks/', '')
-			.replace('/view.js', '');
-		if (!filePath.includes('interactivity')) {
-			acc[`../blocks/${entryKey}/view`] = filePath;
-		}
+			.replace('./assets/blocks/', '');
+		const fileName = path.basename(filePath, '.js');
+		const dir = path.dirname(relativePath);
+		acc[`../blocks/${dir}/${fileName}`] = filePath;
 		return acc;
 	}, {});
 
@@ -79,7 +65,7 @@ const styleScssPaths = glob
 	.sync('./assets/scss/_index.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = 'style';
-		acc[`./css/${entryKey}`] = filePath;
+		acc[`css/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -87,7 +73,7 @@ const editorScssPaths = glob
 	.sync('./assets/scss/editor.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
 		const entryKey = 'editor';
-		acc[`./css/${entryKey}`] = filePath;
+		acc[`css/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -129,7 +115,7 @@ module.exports = {
 		filters: './assets/js/block-filters/index.js',
 		...styleScssPaths,
 		...editorScssPaths,
-		...blockEntryPaths,
+		...allBlockJsPaths,
 		...blockScssPaths,
 		...coreBlockEntryPaths,
 		...thirdPartyBlockEntryPaths,
@@ -139,21 +125,15 @@ module.exports = {
 			const entryName = pathData.chunk.name;
 			if (
 				entryName.includes('css/blocks') ||
-				blockEntryPaths[entryName] ||
+				coreBlockEntryPaths[entryName] ||
 				blockScssPaths[entryName] ||
-				blockViewPaths[entryName]
+				allBlockJsPaths[entryName]
 			) {
 				return '[name].js';
 			}
 			return 'js/[name].js';
 		},
 		path: path.resolve(__dirname, 'build'),
-	},
-	cache: {
-		type: 'filesystem',
-		buildDependencies: {
-			config: [__filename],
-		},
 	},
 	module: {
 		rules: [
@@ -211,7 +191,6 @@ module.exports = {
 					loader: 'babel-loader',
 					options: {
 						presets: ['@babel/preset-env', '@babel/preset-react'],
-						cacheDirectory: true,
 					},
 				},
 			},
@@ -228,9 +207,8 @@ module.exports = {
 				const entryName = pathData.chunk.name;
 				if (
 					entryName.includes('css/blocks') ||
-					blockEntryPaths[entryName] ||
-					blockScssPaths[entryName] ||
-					blockViewPaths[entryName]
+					allBlockJsPaths[entryName] ||
+					blockScssPaths[entryName]
 				) {
 					return '[name].css';
 				}
@@ -245,19 +223,19 @@ module.exports = {
 			patterns: [
 				{
 					from: '**/*.{jpg,jpeg,png,gif,svg}',
-					to: './images/[path][name][ext]',
+					to: 'images/[path][name][ext]',
 					context: path.resolve(process.cwd(), 'assets/images'),
 					noErrorOnMissing: true,
 				},
 				{
 					from: '*.svg',
-					to: './images/icons/[name][ext]',
+					to: 'images/icons/[name][ext]',
 					context: path.resolve(process.cwd(), 'assets/images/icons'),
 					noErrorOnMissing: true,
 				},
 				{
 					from: '**/*.{woff,woff2,eot,ttf,otf}',
-					to: './fonts/[path][name][ext]',
+					to: 'fonts/[path][name][ext]',
 					context: path.resolve(process.cwd(), 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
