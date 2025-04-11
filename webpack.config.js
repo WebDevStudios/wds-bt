@@ -333,6 +333,11 @@ module.exports = {
 	],
 	optimization: {
 		minimize: true,
+		splitChunks: {
+			chunks: 'all',
+			minSize: 20000,
+			automaticNameDelimiter: '-',
+		},
 		minimizer: [
 			new TerserPlugin({
 				parallel: true,
