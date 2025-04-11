@@ -98,11 +98,12 @@
 		"terser-webpack-plugin": "^5.3.14",
 		"thread-loader": "^4.0.4",
 		"webpack": "^5.98.0",
-		"webpack-cli": "^6.0.1"
+		"webpack-cli": "^6.0.1",
+		"webpackbar": "^7.0.0"
 	},
 	"scripts": {
 		"a11y": "node a11y.cjs",
-		"build": "rm -rf build blocks && npx wp-scripts build --config webpack.config.js --webpack-src-dir=assets/blocks --stats-error-details --progress",
+		"build": "rimraf build blocks && cross-env NODE_ENV=production wp-scripts build --config webpack.config.js --progress",
 		"create-block": "run-s create-block:run",
 		"create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=wdsbt --template ../../inc/block-template --no-plugin",
 		"format": "wp-scripts format && npm run format:php && npm run format:js",

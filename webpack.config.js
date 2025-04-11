@@ -10,6 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
+const WebpackBar = require('webpackbar');
 
 // Function to check for the existence of files matching a pattern
 function hasFiles(pattern) {
@@ -324,6 +325,11 @@ module.exports = {
 			},
 			extractComments: false,
 		}),
+
+		new WebpackBar({
+			name: 'WDS BT Build',
+			color: 'green',
+		}),
 	],
 	optimization: {
 		minimize: true,
@@ -365,6 +371,16 @@ module.exports = {
 				},
 			}),
 		],
+	},
+	stats: {
+		all: false,
+		errors: true,
+		warnings: true,
+		assets: true,
+		builtAt: true,
+		colors: true,
+		modules: false,
+		entrypoints: false,
 	},
 	performance: {
 		maxAssetSize: 500000,
