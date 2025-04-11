@@ -110,7 +110,7 @@
 		"format:php": "composer run-script phpcs-fix",
 		"lint": "run-p lint:*",
 		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
+		"lint:js": "wp-scripts lint-js --quiet",
 		"lint:md:docs": "wp-scripts lint-md-docs",
 		"lint:php": "composer run-script phpcs",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
