@@ -375,7 +375,7 @@ module.exports = {
 	stats: {
 		all: false,
 		errors: true,
-		warnings: true,
+		warnings: false,
 		assets: true,
 		builtAt: true,
 		colors: true,
