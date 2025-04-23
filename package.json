@@ -1,6 +1,6 @@
 {
   "name": "wds-bt",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "private": true,
   "description": "A starter block theme from WebDevStudios.",
   "author": "WebDevStudios <contact@webdevstudios.com>",
@@ -100,7 +100,7 @@
     "create-block": "run-s create-block:run",
     "create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=wdsbt --template ../../inc/block-template --no-plugin",
     "format": "wp-scripts format && npm run format:php",
-    "format:css": "wp-scripts format ./assets/**/*.scss",
+    "format:css": "wp-scripts format '**/*.scss'",
     "format:php": "composer run-script phpcs-fix",
     "lint": "run-p lint:*",
     "lint:css": "wp-scripts lint-style",
