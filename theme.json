@@ -5,6 +5,13 @@
 	"description": "Light mode palette for the theme",
 	"settings": {
 		"appearanceTools": true,
+		"blocks": {
+			"core/group": {
+				"shadow": {
+					"__experimentalSkipSerialization": true
+				}
+			}
+		},
 		"color": {
 			"defaultGradients": false,
 			"defaultPalette": false,
@@ -237,6 +244,11 @@
 					"name": "Elevation 600",
 					"shadow": "0 24px 40px 0 rgba(48, 49, 51, 0.08), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
 					"slug": "elevation-600"
+				},
+				{
+					"name": "Light 400",
+					"shadow": "0 0 1px 0 rgba(48, 49, 51, 0.05), 0 8px 16px 0 rgba(48, 49, 51, 0.10)",
+					"slug": "light-400"
 				}
 			]
 		},
@@ -348,6 +360,12 @@
 				}
 			],
 			"fontSizes": [
+				{
+					"fluid": false,
+					"name": "xxxs",
+					"size": "0.75rem",
+					"slug": "xxxs"
+				},
 				{
 					"fluid": false,
 					"name": "xxs",
