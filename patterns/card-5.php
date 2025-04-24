@@ -10,9 +10,9 @@
 ?>
 <!-- wp:group {"metadata":{"name":"Card #5"},"style":{"shadow":"var:preset|shadow|light-400","spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}},"border":{"radius":"10px"}},"backgroundColor":"white","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group has-white-background-color has-background" style="border-radius:10px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10);box-shadow:var(--wp--preset--shadow--light-400)">
-	<!-- wp:cover {"allowedBlocks":[],"templateLock":"all","url":"<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/Placeholder.jpg","dimRatio":0,"isUserOverlayColor":true,"isDark":false,"sizeSlug":"full","style":{"dimensions":{"aspectRatio":"1"},"border":{"radius":"6px"},"layout":{"selfStretch":"fixed","flexSize":"80px"}},"layout":{"type":"default"}} -->
-	<div class="wp-block-cover is-light" style="border-radius:6px"><img class="wp-block-cover__image-background  size-full" alt="" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/Placeholder.jpg" data-object-fit="cover"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container"></div></div>
-	<!-- /wp:cover -->
+	<!-- wp:image {"width":"80px","aspectRatio":"1","scale":"cover","className":"is-style-default","style":{"border":{"radius":"6px"}}} -->
+	<figure class="wp-block-image is-resized has-custom-border is-style-default"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/Placeholder.jpg" alt="" style="border-radius:6px;aspect-ratio:1;object-fit:cover;width:80px"/></figure>
+	<!-- /wp:image -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"4px"},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"default"}} -->
 <div class="wp-block-group">
