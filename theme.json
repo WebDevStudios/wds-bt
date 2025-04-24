@@ -213,6 +213,15 @@
 				"sublink-hover": "var(--wp--preset--color--white)"
 			}
 		},
+		"dimensions": {
+			"aspectRatios": [
+				{
+					"name": "Custom - 89:41",
+					"slug": "89-41",
+					"ratio": "89/41"
+				}
+			]
+		},
 		"layout": {
 			"contentSize": "1160px",
 			"wideSize": "1200px"
