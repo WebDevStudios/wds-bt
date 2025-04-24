@@ -21,7 +21,7 @@
 
 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"1.5rem"}}}} -->
 <div class="wp-block-buttons" style="margin-top:1.5rem"><!-- wp:button {"className":"is-style-fill"} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button">Button</a></div>
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Button', 'wdsbt' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div></div>
