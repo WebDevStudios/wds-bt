@@ -190,6 +190,11 @@
 					"color": "#fff",
 					"name": "White",
 					"slug": "white"
+				},
+				{
+					"color": "rgba(18, 18, 18, 0.05)",
+					"name": "Black Alpha 50",
+					"slug": "black-alpha-50"
 				}
 			]
 		},
@@ -607,13 +612,7 @@
 				}
 			},
 			"core/paragraph": {
-				"spacing": {
-					"margin": {
-						"top": "var(--wp--preset--spacing--30)"
-					}
-				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--xs)",
 					"letterSpacing": "0.002em",
 					"lineHeight": "clamp(130%, 0.7600rem + 0.9178vw, 150%)"
 				}
