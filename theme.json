@@ -183,6 +183,11 @@
 					"color": "#fff",
 					"name": "White",
 					"slug": "white"
+				},
+				{
+					"color": "rgba(18, 18, 18, 0.05)",
+					"name": "Black Alpha 50",
+					"slug": "black-alpha-50"
 				}
 			]
 		},
@@ -237,6 +242,11 @@
 					"name": "Elevation 600",
 					"shadow": "0 24px 40px 0 rgba(48, 49, 51, 0.08), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
 					"slug": "elevation-600"
+				},
+				{
+					"name": "Light 400",
+					"shadow": "0 0 1px 0 rgba(48, 49, 51, 0.05), 0 8px 16px 0 rgba(48, 49, 51, 0.10)",
+					"slug": "light-400"
 				}
 			]
 		},
@@ -589,13 +599,7 @@
 				}
 			},
 			"core/paragraph": {
-				"spacing": {
-					"margin": {
-						"top": "var(--wp--preset--spacing--30)"
-					}
-				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--xs)",
 					"letterSpacing": "0.002em",
 					"lineHeight": "clamp(130%, 0.7600rem + 0.9178vw, 150%)"
 				}

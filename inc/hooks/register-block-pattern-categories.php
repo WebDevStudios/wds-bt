@@ -40,6 +40,13 @@ function register_custom_block_pattern_categories() {
 			'description' => __( 'A collection of template patterns designed for WDS BT.', 'wdsbt' ),
 		)
 	);
+	register_block_pattern_category(
+		'cards',
+		array(
+			'label'       => __( 'Cards', 'wdsbt' ),
+			'description' => __( 'A collection of card patterns designed for WDS BT.', 'wdsbt' ),
+		)
+	);
 
 	// Remove default patterns.
 	remove_theme_support( 'core-block-patterns' );
