@@ -360,6 +360,12 @@
 			"fontSizes": [
 				{
 					"fluid": false,
+					"name": "xxxs",
+					"size": "0.75rem",
+					"slug": "xxs"
+				},
+				{
+					"fluid": false,
 					"name": "xxs",
 					"size": "0.875rem",
 					"slug": "xxs"
