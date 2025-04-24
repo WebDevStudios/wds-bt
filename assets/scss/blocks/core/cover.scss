@@ -16,9 +16,7 @@
 	}
 
 	.wp-block-buttons {
-		margin-top: var(
-			--wp--preset--spacing--30
-		) !important; /* stylelint-disable-line declaration-no-important */
+		margin-top: var(--wp--preset--spacing--30);
 
 		.wp-block-button {
 
