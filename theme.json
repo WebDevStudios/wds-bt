@@ -325,7 +325,7 @@
 							"fontFamily": "Inter",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
-							"fontWeight": "400 500 700",
+							"fontWeight": "400 500 600 700",
 							"src": ["file:./build/fonts/inter/Inter.woff2"]
 						}
 					],
@@ -969,7 +969,7 @@
 					"text": "var(--wp--preset--color--primary-500)"
 				},
 				"typography": {
-					"textDecoration": "none"
+					"textDecoration": "underline"
 				}
 			}
 		},
