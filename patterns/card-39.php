@@ -15,7 +15,7 @@
 <!-- /wp:image -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
-<div class="wp-block-group"><!-- wp:post-title {"fontSize":"l"} /-->
+<div class="wp-block-group"><!-- wp:post-title {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|10"}}},"fontSize":"l"} /-->
 
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|grey-500"}}}},"textColor":"grey-500","fontSize":"xxs"} -->
 <p class="has-grey-500-color has-text-color has-link-color has-xxs-font-size"><?php esc_html_e( 'Enter a few lines of content here...', 'wdsbt' ); ?></p>
