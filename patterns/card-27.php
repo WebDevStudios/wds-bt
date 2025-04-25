@@ -9,9 +9,7 @@
 
 ?>
 <!-- wp:group {"metadata":{"name":"Card #27","categories":["Cards"],"patternName":"wdsbt/card-27"},"style":{"shadow":"var:preset|shadow|light-400","spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"blockGap":"0"},"border":{"radius":"10px"}},"backgroundColor":"white","layout":{"type":"default"}} -->
-<div class="wp-block-group has-white-background-color has-background" style="border-radius:10px;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;box-shadow:var(--wp--preset--shadow--light-400)"><!-- wp:cover {"useFeaturedImage":true,"dimRatio":50,"overlayColor":"black-alpha-50","isUserOverlayColor":true,"isDark":false,"templateLock":"all","lock":{"move":true,"remove":true},"style":{"dimensions":{"aspectRatio":"89/41"}}} -->
-<div class="wp-block-cover is-light"><span aria-hidden="true" class="wp-block-cover__background has-black-alpha-50-background-color has-background-dim"></span><div class="wp-block-cover__inner-container"></div></div>
-<!-- /wp:cover -->
+<div class="wp-block-group has-white-background-color has-background" style="border-radius:10px;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;box-shadow:var(--wp--preset--shadow--light-400)"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"89/41","overlayColor":"black-alpha-50","dimRatio":100,"style":{"border":{"radius":{"topLeft":"10px","topRight":"10px"}}}} /-->
 
 <!-- wp:group {"style":{"layout":{"selfStretch":"fit","flexSize":null},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|40","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"style":{"dimensions":{"minHeight":""},"spacing":{"blockGap":"0.5rem"}},"layout":{"type":"default"}} -->
@@ -24,11 +22,7 @@
 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"4px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
 <p>
-<?php
-/* Translators: 1. is the start of a 'a' HTML element, 2. is the end of a 'a' HTML element */
-printf( esc_html__( '%1$sText Link%2$s', 'wdsbt' ), '<a href="' . esc_url( '#' ) . '">', '</a>' );
-?>
-</p>
+<a href="#">Text Link</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:outermost/icon-block {"iconName":"universal-chevron-right-circle","iconColorValue":"#3B28CC","width":"16px"} -->
@@ -39,11 +33,7 @@ printf( esc_html__( '%1$sText Link%2$s', 'wdsbt' ), '<a href="' . esc_url( '#' )
 <!-- wp:group {"style":{"spacing":{"blockGap":"4px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
 <p>
-<?php
-/* Translators: 1. is the start of a 'a' HTML element, 2. is the end of a 'a' HTML element */
-printf( esc_html__( '%1$sText Link%2$s', 'wdsbt' ), '<a href="' . esc_url( '#' ) . '">', '</a>' );
-?>
-</p>
+<a href="#">Text Link</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:outermost/icon-block {"iconName":"universal-chevron-right-circle","iconColorValue":"#3B28CC","width":"16px"} -->
