@@ -25,6 +25,7 @@ function include_inc_files() {
 		'inc/functions/', // Custom functions that act independently of the theme templates.
 		'inc/hooks/', // Load custom filters and hooks.
 		'inc/setup/', // Theme setup.
+		'inc/performance', // Performance filters.
 	];
 
 	foreach ( $files as $include ) {
