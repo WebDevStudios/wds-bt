@@ -298,12 +298,6 @@ module.exports = {
 						},
 						recursive: true,
 					},
-					{
-						folder: path.resolve(__dirname, 'blocks'),
-						method: (absoluteItemPath) =>
-							/\.asset\.php$/.test(absoluteItemPath),
-						recursive: true,
-					},
 				],
 			},
 		}),
