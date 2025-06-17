@@ -8,6 +8,7 @@
  *
  * @package wdsbt
  */
+
 ?>
 
 <!-- wp:cover {"url":"http://wds-bt-patterns.local/wp-content/uploads/2025/06/webdevstudios-web-design-services-1024x681.jpg","id":9,"dimRatio":50,"customOverlayColor":"#776873","isUserOverlayColor":false,"sizeSlug":"large","align":"full","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->

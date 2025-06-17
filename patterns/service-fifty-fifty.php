@@ -8,6 +8,7 @@
  *
  * @package wdsbt
  */
+
 ?>
 
 <!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"backgroundColor":"grey-600","textColor":"white","layout":{"type":"flex","flexWrap":"nowrap"}} -->
