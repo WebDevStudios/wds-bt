@@ -15,7 +15,7 @@
 	<arg value="ps"/>
 
 	<!-- WordPress Core currently supports PHP 8.2+. -->
-	<config name="testVersion" value="8.2-"/>
+	<config name="testVersion" value="8.2-8.3"/>
 	<rule ref="PHPCompatibilityWP">
 		<include-pattern>*\.php</include-pattern>
 	</rule>
