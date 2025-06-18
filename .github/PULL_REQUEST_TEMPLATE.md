@@ -37,7 +37,7 @@ For visual alterations, provide screenshots or recordings for both desktop and m
 ## Added to documentation?
 
 - [ ] 📜 README.md
-- [ ] 📓 [Confluence](https://documentationlink.here)
+- [ ] 📓 [ClickUp](https://documentationlink.here)
 - [ ] 🙅 No documentation needed
 
 ## Added tests?
