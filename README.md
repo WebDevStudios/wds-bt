@@ -258,6 +258,44 @@ npm run setup
 | ▶️  | `npm run start`             | Start the development server.                                   |
 | 🔖  | `npm run version-update`    | Update the theme version based on environment variable.         |
 
+### Version Management
+
+To update the theme version across all files, follow these steps:
+
+1. **Update the `.env` file** with the new version:
+   ```bash
+   echo "VERSION=1.4.0" > .env
+   ```
+
+2. **Run the version update script**:
+   ```bash
+   npm run version-update
+   ```
+
+This will automatically update the version in:
+- `style.css` (theme header)
+- `package.json` (NPM package version)
+- `composer.json` (Composer package version)
+- `README.md` (documentation version)
+
+<details closed>
+<summary><b>Version Update Process</b></summary>
+
+The version update script (`updateVersion.js`) reads the `VERSION` environment variable from the `.env` file and updates all version references across the project. This ensures consistency across all files that reference the theme version.
+
+**Example workflow:**
+```bash
+# Update to version 1.4.0
+echo "VERSION=1.4.0" > .env
+npm run version-update
+
+# Commit the changes
+git add .
+git commit -m "WDSBT-XXX - bump version to 1.4.0"
+```
+
+</details>
+
 [🔝 Back to Top](#wds-bt)
 ***
 
