@@ -307,7 +307,7 @@ module.exports = {
 		}),
 
 		new StylelintPlugin({
-			configFile: '.stylelintrc.json',
+			configFile: 'stylelint.config.js',
 			files: '**/*.s?(a|c)ss',
 		}),
 

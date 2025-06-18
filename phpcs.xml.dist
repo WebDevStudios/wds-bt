@@ -53,6 +53,8 @@
 		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
 		<!-- Allow short prefixes. -->
 		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.ShortPrefixPassed"/>
+		<!-- Exclude deprecated sniff -->
+		<exclude name="Generic.Functions.CallTimePassByReference"/>
 	</rule>
 
 	<!-- Use WordPress "Docs" Coding Standards. -->
@@ -76,7 +78,11 @@
 		 Multiple valid prefixes can be provided as a comma-delimited list. -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="WebDevStudios\wdsbt,wds,wdsbt" />
+			<property name="prefixes" type="array">
+				<element value="WebDevStudios\wdsbt"/>
+				<element value="wds"/>
+				<element value="wdsbt"/>
+			</property>
 		</properties>
 	</rule>
 
@@ -84,8 +90,15 @@
 		 Multiple valid text domains can be provided as a comma-delimited list. -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array" value="wdsbt"/>
+			<property name="text_domain" type="array">
+				<element value="wdsbt"/>
+			</property>
 		</properties>
+	</rule>
+
+	<!-- Exclude deprecated sniff -->
+	<rule ref="Generic.Functions.CallTimePassByReference">
+		<exclude />
 	</rule>
 
 </ruleset>
