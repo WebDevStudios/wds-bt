@@ -150,7 +150,6 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
   └── 📁hooks
    └── enqueue-block-stylesheet.php
    └── enqueue-third-party-block-stylesheet.php
-   └── query-block-sticky-override.php
    └── register-block-categories.php
    └── register-block-filters.php
    └── register-block-pattern-categories.php
@@ -329,7 +328,7 @@ This will process JavaScript, SCSS, optimize images, and generate necessary file
 <summary><b>Overriding/Customizing Third Party Block Styles</b></summary>
 
 1. **Place Your Override SCSS Files**: Add your third‑party override SCSS files in `assets/scss/blocks/third-party/`.
-   - **Naming Convention:** Name each file using the block’s slug (the part after the namespace). For example, to override the `wdsbt/test` block, name the file `test.scss`.
+   - **Naming Convention:** Name each file using the block's slug (the part after the namespace). For example, to override the `wdsbt/test` block, name the file `test.scss`.
 
 2. **Third-Party Block Styles**: Files within the `assets/scss/blocks/third-party/` directory are automatically enqueued. Do not import these files into your main `index.scss`.
 
@@ -509,7 +508,7 @@ npm run lint:css
 
 ## Accessibility, Code Quality, and Security Checks
 
-WDS BT integrates automated workflow actions to maintain high standards of code security, quality, and accessibility. Accessibility checks are built into the development process, ensuring that websites developed with WDS BT comply with WCAG 2.2 standards. This proactive approach reflects WDS BT’s commitment to inclusivity and usability for all users.
+WDS BT integrates automated workflow actions to maintain high standards of code security, quality, and accessibility. Accessibility checks are built into the development process, ensuring that websites developed with WDS BT comply with WCAG 2.2 standards. This proactive approach reflects WDS BT's commitment to inclusivity and usability for all users.
 
 <details closed>
 <summary><b>Accessibility Test (npm run a11y)</b></summary>
