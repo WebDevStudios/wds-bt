@@ -1,0 +1,13 @@
+// Theme Options
+
+.wp-theme-wds-bt {
+	background: var(--wp--preset--color--white);
+	border: 1px solid var(--wp--preset--color--grey-600);
+	padding: 1.5rem;
+	border-radius: 8px;
+	box-shadow: var(--wp--preset--shadow--elevation-400);
+
+	h1 {
+		font-size: var(wp--preset--font-size--xxl);
+	}
+}

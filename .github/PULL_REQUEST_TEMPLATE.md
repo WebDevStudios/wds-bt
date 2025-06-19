@@ -34,10 +34,14 @@ REQUIRED. Please do not leave this blank.
 For visual alterations, provide screenshots or recordings for both desktop and mobile. You can utilize Loom for this purpose: https://www.loom.com/screen-recorder
 -->
 
+## AI Assistance
+
+- [ ] 🤖 This project was developed with the help of a LLM/AI such as Cursor, Gemini, etc.
+
 ## Added to documentation?
 
 - [ ] 📜 README.md
-- [ ] 📓 [Confluence](https://documentationlink.here)
+- [ ] 📓 [ClickUp](https://documentationlink.here)
 - [ ] 🙅 No documentation needed
 
 ## Added tests?

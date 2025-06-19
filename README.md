@@ -1,6 +1,6 @@
 # WDS BT
 
-## Version: 1.1.0
+## Version: 1.3.0
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
@@ -43,7 +43,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Native Block Support                             | Built for native WordPress blocks and site editor integration.                                      |
 | Responsive Design                                | Ensures optimal display and functionality across devices.                                           |
 | Foundation Theme                                 | Flexible base theme optimized for extensive customization.                                          |
-| Automated Code Quality                           | Workflow actions ensure adherence to WordPress coding standards.                                    |
+| Automated Code Quality                           | Modern linting configurations with PHP 8.3 compatibility, WordPress coding standards, and automated quality checks. |
 | Third-party Block Style Overrides                | Conditionally enqueue and override third-party block styles for efficient asset delivery.           |
 | Accessibility Compliance                         | Built-in WCAG 2.2 compliance with automated Pa11y checks.                                           |
 | Enhanced Webpack Configuration                   | Refined Webpack setup for improved dependency resolution and optimized asset management.            |
@@ -56,7 +56,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 ## Requirements
 
 - WordPress 6.4+
-- PHP 8.2+
+- PHP 8.2+ (fully tested with PHP 8.3)
 - [NPM](https://npmjs.com) (v10+)
 - [Node](https://nodejs.org) (v20+)
 - [Composer 2+](https://getcomposer.org/)
@@ -150,7 +150,6 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
   └── 📁hooks
    └── enqueue-block-stylesheet.php
    └── enqueue-third-party-block-stylesheet.php
-   └── query-block-sticky-override.php
    └── register-block-categories.php
    └── register-block-filters.php
    └── register-block-pattern-categories.php
@@ -259,6 +258,44 @@ npm run setup
 | ▶️  | `npm run start`             | Start the development server.                                   |
 | 🔖  | `npm run version-update`    | Update the theme version based on environment variable.         |
 
+### Version Management
+
+To update the theme version across all files, follow these steps:
+
+1. **Update the `.env` file** with the new version:
+   ```bash
+   echo "VERSION=1.4.0" > .env
+   ```
+
+2. **Run the version update script**:
+   ```bash
+   npm run version-update
+   ```
+
+This will automatically update the version in:
+- `style.css` (theme header)
+- `package.json` (NPM package version)
+- `composer.json` (Composer package version)
+- `README.md` (documentation version)
+
+<details closed>
+<summary><b>Version Update Process</b></summary>
+
+The version update script (`updateVersion.js`) reads the `VERSION` environment variable from the `.env` file and updates all version references across the project. This ensures consistency across all files that reference the theme version.
+
+**Example workflow:**
+```bash
+# Update to version 1.4.0
+echo "VERSION=1.4.0" > .env
+npm run version-update
+
+# Commit the changes
+git add .
+git commit -m "WDSBT-XXX - bump version to 1.4.0"
+```
+
+</details>
+
 [🔝 Back to Top](#wds-bt)
 ***
 
@@ -329,7 +366,7 @@ This will process JavaScript, SCSS, optimize images, and generate necessary file
 <summary><b>Overriding/Customizing Third Party Block Styles</b></summary>
 
 1. **Place Your Override SCSS Files**: Add your third‑party override SCSS files in `assets/scss/blocks/third-party/`.
-   - **Naming Convention:** Name each file using the block’s slug (the part after the namespace). For example, to override the `wdsbt/test` block, name the file `test.scss`.
+   - **Naming Convention:** Name each file using the block's slug (the part after the namespace). For example, to override the `wdsbt/test` block, name the file `test.scss`.
 
 2. **Third-Party Block Styles**: Files within the `assets/scss/blocks/third-party/` directory are automatically enqueued. Do not import these files into your main `index.scss`.
 
@@ -460,11 +497,11 @@ Include the `mobile-only` mixin in your SCSS file where you want to hide element
 
 ### Stylelint Configuration
 
-This theme follows the [WordPress Stylelint Config](https://www.npmjs.com/package/@wordpress/stylelint-config) with additional custom rules to maintain code consistency and enforce best practices.
+This theme uses a modern `stylelint.config.js` configuration that extends the [WordPress Stylelint Config](https://www.npmjs.com/package/@wordpress/stylelint-config) with additional custom rules to maintain code consistency and enforce best practices.
 
 #### Extending WordPress Stylelint Rules
 
-The configuration extends the base `@wordpress/stylelint-config/scss` ruleset, ensuring that all SCSS follows the WordPress coding standards while incorporating additional theme-specific preferences.
+The configuration extends the base WordPress stylelint ruleset, ensuring that all SCSS follows the WordPress coding standards while incorporating additional theme-specific preferences and PHP 8.3 compatibility.
 
 ### Running Stylelint
 
@@ -486,13 +523,12 @@ npm run lint:css
 - **`selector-class-pattern: null`**
   Disables restrictions on class naming conventions to support custom project structures.
 
-- **`scss/at-rule-no-unknown`**
-  Allows certain Tailwind-like SCSS directives:
-  - `apply`
-  - `layer`
-  - `variants`
-  - `responsive`
-  - `screen`
+- **`at-rule-no-unknown`**
+  Allows SCSS directives and WordPress-specific at-rules:
+  - `apply`, `layer`, `variants`, `responsive`, `screen`
+  - `use`, `include`, `each`, `if`, `else`, `for`, `while`
+  - `function`, `return`, `mixin`, `content`, `extend`
+  - `warn`, `error`, `debug`
 
 - **`declaration-property-unit-allowed-list`**
   Restricts certain CSS properties to specific units:
@@ -502,6 +538,73 @@ npm run lint:css
   - `margin`: `em`, `rem`
   - `padding`: `em`, `rem`
 
+- **`no-invalid-double-slash-comments: null`**
+  Allows SCSS-style double-slash comments (`//`).
+
+- **`comment-no-empty: null`**
+  Allows empty comments for documentation purposes.
+
+</details>
+
+### PHP Linting Configuration
+
+This theme uses PHP_CodeSniffer with WordPress coding standards and PHP 8.3 compatibility checks.
+
+#### PHP Compatibility
+
+- **PHP Version**: Fully tested with PHP 8.2+ and PHP 8.3
+- **WordPress Standards**: Follows WordPress-Extra and WordPress-Docs coding standards
+- **Compatibility**: Uses PHPCompatibilityWP for version-specific checks
+
+#### Running PHP Linting
+
+To check your PHP files for coding standard violations, run:
+
+```bash
+npm run lint:php
+```
+
+<details closed>
+<summary><b>PHP Configuration</b></summary>
+
+- **Configuration File**: `phpcs.xml.dist`
+- **Test Version**: PHP 8.2-8.3 compatibility
+- **Standards**: WordPress-Extra, WordPress-Docs
+- **Custom Rules**:
+  - Allows array short syntax
+  - Allows short prefixes for theme-specific functions
+  - Excludes deprecated sniffs for compatibility
+  - Theme-specific prefix validation: `WebDevStudios\wdsbt`, `wds`, `wdsbt`
+  - Text domain validation: `wdsbt`
+
+</details>
+
+### JavaScript Linting Configuration
+
+This theme uses ESLint with WordPress coding standards for JavaScript files.
+
+#### ESLint Setup
+
+- **Configuration**: Uses `.eslintrc.json` format for WordPress compatibility
+- **Standards**: WordPress ESLint plugin with recommended rules
+- **Version**: ESLint 8.x for full WordPress tooling compatibility
+
+#### Running JavaScript Linting
+
+To check your JavaScript files for coding standard violations, run:
+
+```bash
+npm run lint:js
+```
+
+<details closed>
+<summary><b>JavaScript Configuration</b></summary>
+
+- **Configuration File**: `.eslintrc.json`
+- **Standards**: WordPress ESLint plugin recommended rules
+- **Special Handling**: Webpack configuration files use Node.js environment
+- **Compatibility**: Optimized for WordPress block editor development
+
 </details>
 
 [🔝 Back to Top](#wds-bt)
@@ -509,7 +612,7 @@ npm run lint:css
 
 ## Accessibility, Code Quality, and Security Checks
 
-WDS BT integrates automated workflow actions to maintain high standards of code security, quality, and accessibility. Accessibility checks are built into the development process, ensuring that websites developed with WDS BT comply with WCAG 2.2 standards. This proactive approach reflects WDS BT’s commitment to inclusivity and usability for all users.
+WDS BT integrates automated workflow actions to maintain high standards of code security, quality, and accessibility. Accessibility checks are built into the development process, ensuring that websites developed with WDS BT comply with WCAG 2.2 standards. This proactive approach reflects WDS BT's commitment to inclusivity and usability for all users.
 
 <details closed>
 <summary><b>Accessibility Test (npm run a11y)</b></summary>
