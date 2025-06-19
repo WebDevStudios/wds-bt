@@ -29,3 +29,6 @@ build/
 #tests
 pa11y-ci-report/
 phpcs-report.txt
+
+# cursor
+.cursor/
