@@ -252,14 +252,14 @@ function copy_fonts_to_output( $fonts, $output_dir ) {
 			);
 
 			printf(
-				'  Copied %s to %s/\n',
+				"  Copied %s to %s/\n",
 				$font['filename'],
 				$standardized_slug
 			);
 		} else {
 
 			printf(
-				'  Failed to copy %s\n',
+				"  Failed to copy %s\n",
 				$font['filename']
 			);
 		}
@@ -316,14 +316,14 @@ function generate_font_preload( $fonts, $output_file ) {
 	if ( file_put_contents( $php_path, $php ) ) {
 
 		printf(
-			'Generated font preload: %s\n',
+			"Generated font preload: %s\n",
 			$output_file
 		);
 		return true;
 	} else {
 
 		printf(
-			'Failed to generate font preload\n'
+			"Failed to generate font preload\n"
 		);
 		return false;
 	}
@@ -365,20 +365,20 @@ function main() {
 	if ( empty( $fonts ) ) {
 
 		printf(
-			'No fonts found in %s\n',
+			"No fonts found in %s\n",
 			$wdsbt_config['input_dir']
 		);
 		exit( 1 );
 	}
 
 	printf(
-		'Found %d fonts:\n',
+		"Found %d fonts:\n",
 		count( $fonts )
 	);
 	foreach ( $fonts as $font ) {
 
 		printf(
-			'  - %s %s %s (%s)\n',
+			"  - %s %s %s (%s)\n",
 			$font['family'],
 			$font['weight'],
 			$font['style'],
@@ -412,12 +412,12 @@ function main() {
 	printf( "Generated files:\n" );
 
 	printf(
-		'  - Fonts: %s/\n',
+		"  - Fonts: %s/\n",
 		$wdsbt_config['output_dir']
 	);
 
 	printf(
-		'  - Preload: %s\n',
+		"  - Preload: %s\n",
 		$wdsbt_config['preload_output']
 	);
 

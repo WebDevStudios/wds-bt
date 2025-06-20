@@ -526,27 +526,26 @@ function main() {
 	check_dependencies();
 
 	// Scan for source fonts.
-
 	printf( "\nScanning for source fonts...\n" );
 	$source_fonts = scan_source_fonts( $wdsbt_config['input_dir'] );
 
 	if ( empty( $source_fonts ) ) {
 
 		printf(
-			'No source fonts found in %s\n',
+			"No source fonts found in %s\n",
 			$wdsbt_config['input_dir']
 		);
 		exit( 1 );
 	}
 
 	printf(
-		'Found %d source fonts:\n',
+		"Found %d source fonts:\n",
 		count( $source_fonts )
 	);
 	foreach ( $source_fonts as $font ) {
 
 		printf(
-			'  - %s %s %s\n',
+			"  - %s %s %s\n",
 			$font['family'],
 			$font['weight'],
 			$font['style']
@@ -584,17 +583,17 @@ function main() {
 	printf( "Generated files:\n" );
 
 	printf(
-		'  - Fonts: %s/\n',
+		"  - Fonts: %s/\n",
 		$wdsbt_config['output_dir']
 	);
 
 	printf(
-		'  - CSS: %s\n',
+		"  - CSS: %s\n",
 		$wdsbt_config['css_output']
 	);
 
 	printf(
-		'  - Preload: %s\n',
+		"  - Preload: %s\n",
 		$wdsbt_config['preload_output']
 	);
 
