@@ -104,7 +104,7 @@
 	},
 	"scripts": {
 		"a11y": "node a11y.cjs",
-		"build": "npm run fonts && rimraf build blocks && cross-env NODE_ENV=production wp-scripts build --config webpack.config.js --progress",
+		"build": "npm run fonts:generate && rimraf build blocks && cross-env NODE_ENV=production wp-scripts build --config webpack.config.js --progress",
 		"create-block": "run-s create-block:run",
 		"create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=wdsbt --template ../../inc/block-template --no-plugin",
 		"format": "wp-scripts format && npm run format:php && npm run format:js",
