@@ -38,6 +38,9 @@
 	<!-- Exclude the Node Modules directory. -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 
+	<!-- Exclude auto-generated files. -->
+	<exclude-pattern>inc/setup/font-preload.php</exclude-pattern>
+
 	<!-- Exclude minified Javascript files. -->
 	<exclude-pattern>*.min.js</exclude-pattern>
 
