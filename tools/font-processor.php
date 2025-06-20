@@ -102,23 +102,7 @@ function scan_font_files( $input_dir ) {
 			$folder_name   = basename( dirname( $file->getPathname() ) );
 			$font_metadata = parse_font_filename( $filename );
 
-			// Map folder name to font family based on purpose.
-			$folder_to_family = array(
-				'headline' => 'Inter', // Default headline font.
-				'body'     => 'Oxygen',    // Default body font.
-				'mono'     => 'Roboto Mono', // Default mono font.
-			);
-
-			// If folder is a purpose folder, use the mapped family.
-			if ( isset( $folder_to_family[ $folder_name ] ) ) {
-				$font_metadata['family'] = $folder_to_family[ $folder_name ];
-			} else {
-				// Fallback: try to detect from folder name as family name.
-				$folder_family = parse_font_filename( $folder_name );
-				if ( 'Unknown' !== $folder_family['family'] ) {
-					$font_metadata['family'] = $folder_family['family'];
-				}
-			}
+			// Always use the detected family from the filename. The folder name is only used for purpose.
 
 			$fonts[] = array(
 				'path'          => $file->getPathname(),
