@@ -117,13 +117,14 @@ function wdsbt_scan_font_directory( $directory ) {
 	foreach ( $iterator as $file ) {
 		if ( $file->isFile() && in_array( strtolower( $file->getExtension() ), array( 'woff2', 'woff', 'ttf', 'otf' ), true ) ) {
 			$relative_path = str_replace( $theme_dir . '/', '', $file->getPathname() );
-			$filename      = $file->getBasename();
+			$extension     = $file->getExtension();
+			$filename      = $file->getBasename( '.' . $extension );
 			$font_metadata = wdsbt_parse_font_filename( $filename );
 			$fonts[]       = array(
 				'path'          => $file->getPathname(),
 				'relative_path' => $relative_path,
 				'filename'      => $filename,
-				'extension'     => $file->getExtension(),
+				'extension'     => $extension,
 				'family'        => $font_metadata['family'],
 				'weight'        => $font_metadata['weight'],
 				'style'         => $font_metadata['style'],
@@ -141,9 +142,18 @@ function wdsbt_scan_font_directory( $directory ) {
  * @param string $label Label for output.
  */
 function wdsbt_print_fonts( $fonts, $label = 'Fonts' ) {
-	echo esc_html( $label ) . "\n";
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output, escaping not required.
+	printf( "%s\n", $label );
 	foreach ( $fonts as $font ) {
-		echo esc_html( '  - ' . $font['filename'] . '.' . $font['extension'] . ' | ' . $font['family'] . ' ' . $font['weight'] . ' ' . $font['style'] ) . "\n";
+		printf(
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output, escaping not required.
+			"  - %s.%s | %s %s %s\n",
+			$font['filename'], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
+			$font['extension'], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
+			$font['family'],    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
+			$font['weight'],    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
+			$font['style']      // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
+		);
 	}
 }
 
