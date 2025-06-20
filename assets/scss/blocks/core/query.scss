@@ -3,7 +3,9 @@
 /* -- Query loop == */
 
 .wp-block-query {
+
 	.wp-block-post-template {
+
 		.wp-block-post {
 			border-radius: 10px;
 			box-shadow:
@@ -73,6 +75,7 @@
 			}
 
 			.wp-block-post-author-name {
+
 				.wp-block-post-author-name__link {
 					color: var(--wp--preset--color--black);
 					display: block;
@@ -124,6 +127,7 @@
 		}
 
 		&.wp-block-post-template-is-layout-grid {
+
 			.wp-block-post {
 				margin-top: 0 !important;
 			}

@@ -104,12 +104,15 @@
 	},
 	"scripts": {
 		"a11y": "node a11y.cjs",
-		"build": "rimraf build blocks && cross-env NODE_ENV=production wp-scripts build --config webpack.config.js --progress",
+		"build": "npm run fonts && rimraf build blocks && cross-env NODE_ENV=production wp-scripts build --config webpack.config.js --progress",
 		"create-block": "run-s create-block:run",
 		"create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=wdsbt --template ../../inc/block-template --no-plugin",
 		"format": "wp-scripts format && npm run format:php && npm run format:js",
 		"format:css": "wp-scripts format ./assets/**/*.scss",
 		"format:php": "composer run-script phpcs-fix",
+		"fonts": "php tools/font-processor.php",
+		"fonts:detect": "php tools/font-detection.php",
+		"fonts:generate": "php tools/generate-theme-json.php",
 		"lint": "run-p lint:*",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
@@ -121,7 +124,7 @@
 		"preinstall": "npx cross-env npm_config_legacy_peer_deps=true",
 		"reset": "rm -rf node_modules vendor build blocks package-lock.json composer.lock",
 		"setup": "npm run reset && npm i && composer i && npm run build",
-		"start": "rm -rf build blocks && npx cross-env NODE_ENV=development wp-scripts start",
+		"start": "npm run fonts && rm -rf build blocks && npx cross-env NODE_ENV=development wp-scripts start",
 		"version-update": "dotenv node updateVersion.js"
 	},
 	"lint-staged": {

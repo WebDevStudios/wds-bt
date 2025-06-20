@@ -23,13 +23,13 @@ function exclude_sensitive_pages( array $paths ): array {
 	) {
 		$paths = array_merge(
 			$paths,
-			[
+			array(
 				'/cart/',
 				'/checkout/',
 				'/my-account/',
 				'/account/',
 				'/wp-login.php',
-			]
+			)
 		);
 	}
 	return $paths;

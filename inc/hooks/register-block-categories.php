@@ -15,12 +15,12 @@ namespace WebDevStudios\wdsbt;
  * @author WebDevStudios
  */
 function register_wds_category( $categories ) {
-	$custom_block_category = [
+	$custom_block_category = array(
 		'slug'  => __( 'wds-blocks-category', 'wdsbt' ),
 		'title' => __( 'WDS Blocks', 'wdsbt' ),
-	];
+	);
 
-	$categories_sorted    = [];
+	$categories_sorted    = array();
 	$categories_sorted[0] = $custom_block_category;
 
 	foreach ( $categories as $category ) {
