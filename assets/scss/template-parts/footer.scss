@@ -1,9 +1,14 @@
 /* -- footer -- */
 
 .site-footer {
-	background-color: var(--wp--preset--color--black);
-	border-top: 1px solid var(--wp--preset--color--grey-400);
-	padding-bottom: 0;
-	padding-top: 0;
-	margin-top: 0;
+	background-color: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+
+	a {
+		color: var(--wp--preset--color--accent-1);
+
+		&:hover {
+			color: var(--wp--preset--color--accent-2);
+		}
+	}
 }

@@ -6,6 +6,7 @@
     "settings": {
         "appearanceTools": true,
         "color": {
+            "custom": true,
             "defaultDuotone": false,
             "defaultGradients": false,
             "defaultPalette": false,
@@ -36,6 +37,23 @@
                     "slug": "accent-3"
                 }
             ]
+        },
+        "custom": {
+            "navigation--background": {
+                "background": "var:preset|color|accent-1"
+            },
+            "navigation--sublink-background": {
+                "background": "var:preset|color|accent-2"
+            },
+            "navigation--sublink-hover": {
+                "color": "var:preset|color|accent-2"
+            },
+            "navigation--link": {
+                "color": "var:preset|color|accent-1"
+            },
+            "navigation--link-hover": {
+                "color": "var:preset|color|accent-2"
+            }
         },
         "layout": {
             "contentSize": "1160px",
@@ -258,6 +276,13 @@
                     }
                 }
             },
+            "core/link": {
+                "elements": {
+                    "link": {
+                        "color": "var:preset|color|accent-1"
+                    }
+                }
+            },
             "core/list": {
                 "spacing": {
                     "padding": {
@@ -271,6 +296,9 @@
             "core/navigation": {
                 "spacing": {
                     "blockGap": "var:preset|spacing|20"
+                },
+                "typography": {
+                    "fontSize": "var:preset|font-size|small"
                 }
             },
             "core/paragraph": {

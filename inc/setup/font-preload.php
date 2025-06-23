@@ -5,7 +5,7 @@
 
 function wdsbt_font_preload_links() {
   $preload_links = [
-    'fonts/body/OpenSans-Italic-VariableFont_wdth,wght.ttf' => 'font/woff',
+    'fonts/body/oxygen-v15-latin-300.woff2' => 'font/woff2',
     'fonts/headline/Inter.woff2' => 'font/woff2',
     'fonts/mono/roboto-mono.woff2' => 'font/woff2',
   ];
