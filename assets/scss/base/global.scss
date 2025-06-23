@@ -12,6 +12,7 @@ body {
 	scroll-behavior: smooth;
 }
 
+a,
 button,
 input,
 textarea,
@@ -30,17 +31,18 @@ sup {
 }
 
 /** Link styles **/
-a {
-	color: var(--wp--preset--color--accent-1);
-	cursor: pointer;
-	padding: 0;
-	position: relative;
-	text-decoration: none;
-	text-overflow: ellipsis;
-	text-wrap: nowrap;
-	transition: all 0.2s ease-in-out;
+.entry-content,
+.site-footer {
 
-	&:not(.wp-block-social-link-anchor):not(.back-to-top) {
+	a {
+		color: var(--wp--preset--color--accent-1);
+		cursor: pointer;
+		padding: 0;
+		position: relative;
+		text-decoration: none;
+		text-overflow: ellipsis;
+		text-wrap: nowrap;
+		transition: all 0.2s ease-in-out;
 
 		&::before {
 			content: '';
@@ -81,10 +83,10 @@ a {
 				width: 50%;
 			}
 		}
-	}
 
-	&:focus {
-		outline: auto;
+		&:focus {
+			outline: auto;
+		}
 	}
 }
 
