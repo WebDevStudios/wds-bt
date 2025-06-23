@@ -120,11 +120,12 @@
 		"lint:php": "composer run-script phpcs",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"packages-update": "npx npm-check-updates -u && npm install && npm dedupe && npm audit fix",
-		"postinstall": "npx lefthook install && git config --local core.hooksPath .git/hooks",
+		"postinstall": "npx lefthook install && git config --local core.hooksPath .git/hooks && ./scripts/update-cursorrules.sh",
 		"preinstall": "npx cross-env npm_config_legacy_peer_deps=true",
 		"reset": "rm -rf node_modules vendor build blocks package-lock.json composer.lock",
 		"setup": "npm run reset && npm i && composer i && npm run build",
-		"start": "npm run fonts && rm -rf build blocks && npx cross-env NODE_ENV=development wp-scripts start",
+		"start": "rm -rf build blocks && npm run fonts && npx cross-env NODE_ENV=development wp-scripts start",
+		"update-cursorrules": "./scripts/update-cursorrules.sh",
 		"version-update": "dotenv node updateVersion.js"
 	},
 	"lint-staged": {
