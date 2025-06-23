@@ -372,8 +372,7 @@
         "typography": {
             "fontFamily": "var:preset|font-family|body",
             "fontSize": "var:preset|font-size|medium",
-            "fontWeight": "400",
-            "lineHeight": "clamp(130%, 0.7600rem + 0.9178vw, 150%)"
+            "fontWeight": "400"
         }
     },
     "templateParts": [
