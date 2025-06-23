@@ -10,6 +10,7 @@
 		padding: 0.5rem 0.625rem;
 
 		.wp-block-navigation-item__content {
+			color: var(--wp--custom--navigation-link--color);
 			cursor: pointer;
 			padding: 0;
 			position: relative;
@@ -18,41 +19,31 @@
 			text-wrap: nowrap;
 			transition: all 0.2s ease-in-out;
 
-			&::before {
-				content: '';
-				left: 50%;
-				transition: all 0.3s ease;
-				width: 0%;
-			}
-
-			&::after {
-				content: '';
-				left: 50%;
-				transition: all 0.3s ease;
-				width: 0;
-			}
-
 			&:hover,
 			&:focus {
-				-webkit-text-stroke: 0.5px
-					var(--wp--custom--navigation--link-hover);
+				-webkit-text-stroke: unset;
+				color: var(--wp--custom--navigation-link-hover--color);
 				outline: none;
 
 				&::before {
-					background: var(--wp--custom--navigation--background);
+					background: var(
+						--wp--custom--navigation-background--background
+					);
 					bottom: 0;
 					content: '';
-					height: 3px;
+					height: 2px;
 					left: 0;
 					position: absolute;
 					width: 50%;
 				}
 
 				&::after {
-					background: var(--wp--custom--navigation--background);
+					background: var(
+						--wp--custom--navigation-background--background
+					);
 					bottom: 0;
 					content: '';
-					height: 3px;
+					height: 2px;
 					left: 50%;
 					position: absolute;
 					width: 50%;
@@ -64,24 +55,28 @@
 			}
 
 			&[aria-current='page'] {
-				-webkit-text-stroke: 0.5px
-					var(--wp--custom--navigation--link-hover);
+				-webkit-text-stroke: unset;
+				color: var(--wp--custom--navigation-link-hover--color);
 
 				&::before {
-					background: var(--wp--custom--navigation--background);
+					background: var(
+						--wp--custom--navigation-background--background
+					);
 					bottom: 0;
 					content: '';
-					height: 3px;
+					height: 2px;
 					left: 0;
 					position: absolute;
 					width: 50%;
 				}
 
 				&::after {
-					background: var(--wp--custom--navigation--background);
+					background: var(
+						--wp--custom--navigation-background--background
+					);
 					bottom: 0;
 					content: '';
-					height: 3px;
+					height: 2px;
 					left: 50%;
 					position: absolute;
 					width: 50%;
@@ -124,7 +119,7 @@
 			box-shadow:
 				0 16px 24px 0 rgba(48, 49, 51, 0.09),
 				0 0 1px 0 rgba(48, 49, 51, 0.05);
-			padding: 0.3125rem;
+			padding: 0;
 
 			> .wp-block-navigation-item {
 				display: block;
@@ -152,7 +147,7 @@
 
 						&::before {
 							background: var(
-								--wp--custom--navigation--sublink-background
+								--wp--custom--navigation-sublink-background--background
 							);
 							bottom: 0;
 							content: '';
@@ -164,7 +159,7 @@
 
 						&::after {
 							background: var(
-								--wp--custom--navigation--sublink-background
+								--wp--custom--navigation-sublink-background--background
 							);
 							bottom: 0;
 							content: '';
@@ -175,7 +170,9 @@
 						}
 
 						.wp-block-navigation-item__label {
-							color: var(--wp--custom--navigation--sublink-hover);
+							color: var(
+								--wp--custom--navigation-sublink-hover--color
+							);
 							position: relative;
 							z-index: 1;
 						}
@@ -215,11 +212,24 @@
 				padding: 0;
 				width: 100%;
 
-				&:hover {
+				&:hover,
+				&:focus {
 
 					&::before,
 					&::after {
-						height: 3px;
+						content: none;
+					}
+				}
+
+				&[aria-current='page'] {
+
+					&:hover,
+					&:focus {
+
+						&::before,
+						&::after {
+							content: none;
+						}
 					}
 				}
 			}
@@ -233,7 +243,7 @@
 					width: 100%;
 
 					.wp-block-navigation-item__content {
-						color: var(--wp--custom--navigation--link);
+						color: var(--wp--custom--navigation-link--color);
 						margin-left: var(--wp--preset--spacing--20);
 						padding-left: 0;
 						width: calc(100% - var(--wp--preset--spacing--20));
@@ -243,12 +253,12 @@
 
 							&::before,
 							&::after {
-								height: 3px;
+								content: none;
 							}
 
 							.wp-block-navigation-item__label {
 								color: var(
-									--wp--custom--navigation--link-hover
+									--wp--custom--navigation-link-hover--color
 								);
 							}
 						}
@@ -261,12 +271,6 @@
 
 /* Mobile only menu */
 @include responsive-mixins.responsive-max(833px) {
-
-	.is-root-container .header-container,
-	.site-header .header-container {
-		padding-left: 0 !important;
-		padding-right: 0 !important;
-	}
 
 	.wp-block-navigation__container.is-responsive {
 		width: 100%;

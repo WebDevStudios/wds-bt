@@ -42,17 +42,17 @@
             "navigation--background": {
                 "background": "var:preset|color|accent-1"
             },
+            "navigation--link": {
+                "color": "var:preset|color|contrast"
+            },
+            "navigation--link-hover": {
+                "color": "var:preset|color|accent-1"
+            },
             "navigation--sublink-background": {
                 "background": "var:preset|color|accent-2"
             },
             "navigation--sublink-hover": {
-                "color": "var:preset|color|accent-2"
-            },
-            "navigation--link": {
-                "color": "var:preset|color|accent-1"
-            },
-            "navigation--link-hover": {
-                "color": "var:preset|color|accent-2"
+                "color": "var:preset|color|contrast"
             }
         },
         "layout": {
@@ -120,21 +120,6 @@
             },
             "fontFamilies": [
                 {
-                    "name": "Roboto Mono",
-                    "slug": "mono",
-                    "fontFamily": "Roboto Mono, sans-serif",
-                    "fontFace": [
-                        {
-                            "fontFamily": "Roboto Mono",
-                            "fontStyle": "normal",
-                            "fontWeight": "400",
-                            "src": [
-                                "file:./build/fonts/roboto-mono.woff2"
-                            ]
-                        }
-                    ]
-                },
-                {
                     "name": "Oxygen",
                     "slug": "body",
                     "fontFamily": "Oxygen, sans-serif",
@@ -144,7 +129,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "300",
                             "src": [
-                                "file:./build/fonts/oxygen-v15-latin-300.woff2"
+                                "file:./build/fonts/body/oxygen-v15-latin-300.woff2"
                             ]
                         },
                         {
@@ -176,6 +161,21 @@
                             "fontWeight": "400",
                             "src": [
                                 "file:./build/fonts/headline/Inter.woff2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Roboto Mono",
+                    "slug": "mono",
+                    "fontFamily": "Roboto Mono, sans-serif",
+                    "fontFace": [
+                        {
+                            "fontFamily": "Roboto Mono",
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "src": [
+                                "file:./build/fonts/mono/roboto-mono.woff2"
                             ]
                         }
                     ]
@@ -277,9 +277,15 @@
                 }
             },
             "core/link": {
-                "elements": {
-                    "link": {
-                        "color": "var:preset|color|accent-1"
+                "typography": {
+                    "textDecoration": "underline"
+                },
+                "hover": {
+                    "typography": {
+                        "textDecoration": "none"
+                    },
+                    "color": {
+                        "text": "var:preset|color|accent-3"
                     }
                 }
             },
@@ -356,7 +362,12 @@
         },
         "spacing": {
             "blockGap": "var:preset|spacing|30",
-            "padding": "0"
+            "padding": {
+                "left": "var:preset|spacing|30",
+                "right": "var:preset|spacing|30",
+                "top": "0",
+                "bottom": "0"
+            }
         },
         "typography": {
             "fontFamily": "var:preset|font-family|body",

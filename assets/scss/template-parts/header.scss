@@ -14,7 +14,6 @@
 		padding 0.2s ease;
 
 	.header-container {
-		padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
 
 		.wp-block-site-logo {
 			max-width: 12.5rem;
@@ -36,6 +35,23 @@
 
 				mask {
 					display: none;
+				}
+			}
+		}
+
+		.wp-block-site-title {
+
+			a {
+
+				&::before,
+				&::after {
+					content: none;
+				}
+
+				&:hover,
+				&:focus {
+					color: var(--wp--preset--color--accent-1);
+					outline: none;
 				}
 			}
 		}

@@ -1,14 +1,19 @@
 /* -- footer -- */
 
+/** Sticky footer styles **/
+main {
+	display: flex;
+	flex-direction: column;
+	min-height: 70vh;
+
+	.entry-content {
+		flex: 1 0 auto;
+	}
+}
+
 .site-footer {
 	background-color: var(--wp--preset--color--contrast);
 	color: var(--wp--preset--color--base);
-
-	a {
-		color: var(--wp--preset--color--accent-1);
-
-		&:hover {
-			color: var(--wp--preset--color--accent-2);
-		}
-	}
+	flex-shrink: 0;
+	margin-top: var(--wp--preset--spacing--70);
 }
