@@ -5,9 +5,11 @@
 	box-sizing: border-box;
 }
 
-html {
-	scroll-behavior: smooth;
+html,
+body {
+	padding: 0;
 	overflow-x: hidden;
+	scroll-behavior: smooth;
 }
 
 a,

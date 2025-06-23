@@ -6,239 +6,40 @@
     "settings": {
         "appearanceTools": true,
         "color": {
+            "defaultDuotone": false,
             "defaultGradients": false,
             "defaultPalette": false,
             "palette": [
                 {
-                    "color": "#23187A",
-                    "name": "Primary 700",
-                    "slug": "primary-700"
+                    "color": "#FFFFFF",
+                    "name": "Base",
+                    "slug": "base"
                 },
                 {
-                    "color": "#2F20A3",
-                    "name": "Primary 600",
-                    "slug": "primary-600"
+                    "color": "#3F4040",
+                    "name": "Contrast",
+                    "slug": "contrast"
                 },
                 {
-                    "color": "#3B28CC",
-                    "name": "Primary 500",
-                    "slug": "primary-500"
+                    "color": "#F47C48",
+                    "name": "Accent 1",
+                    "slug": "accent-1"
                 },
                 {
-                    "color": "#5E4DDC",
-                    "name": "Primary 400",
-                    "slug": "primary-400"
+                    "color": "#E2E4EB",
+                    "name": "Accent 2",
+                    "slug": "accent-2"
                 },
                 {
-                    "color": "#867AE5",
-                    "name": "Primary 300",
-                    "slug": "primary-300"
-                },
-                {
-                    "color": "#AEA6EE",
-                    "name": "Primary 200",
-                    "slug": "primary-200"
-                },
-                {
-                    "color": "#D7D3F6",
-                    "name": "Primary 100",
-                    "slug": "primary-100"
-                },
-                {
-                    "color": "#EBE9FB",
-                    "name": "Primary 50",
-                    "slug": "primary-50"
-                },
-                {
-                    "color": "#0035B0",
-                    "name": "Secondary 700",
-                    "slug": "secondary-700"
-                },
-                {
-                    "color": "#2667FF",
-                    "name": "Secondary 500",
-                    "slug": "secondary-500"
-                },
-                {
-                    "color": "#D4E1FF",
-                    "name": "Secondary 100",
-                    "slug": "secondary-100"
-                },
-                {
-                    "color": "#105A91",
-                    "name": "Tertiary 700",
-                    "slug": "tertiary-700"
-                },
-                {
-                    "color": "#2595E7",
-                    "name": "Tertiary 500",
-                    "slug": "tertiary-500"
-                },
-                {
-                    "color": "#D3EAFA",
-                    "name": "Tertiary 100",
-                    "slug": "tertiary-100"
-                },
-                {
-                    "color": "#15803D",
-                    "name": "Success 700",
-                    "slug": "success-700"
-                },
-                {
-                    "color": "#22C55E",
-                    "name": "Success",
-                    "slug": "success-500"
-                },
-                {
-                    "color": "#DCFCE7",
-                    "name": "Success 100",
-                    "slug": "success-100"
-                },
-                {
-                    "color": "#A16207",
-                    "name": "Warning 700",
-                    "slug": "warning-700"
-                },
-                {
-                    "color": "#EAB308",
-                    "name": "Warning",
-                    "slug": "warning-500"
-                },
-                {
-                    "color": "#FEF9C3",
-                    "name": "Warning 100",
-                    "slug": "warning-100"
-                },
-                {
-                    "color": "#B91C1C",
-                    "name": "Error 700",
-                    "slug": "error-700"
-                },
-                {
-                    "color": "#EF4444",
-                    "name": "Error",
-                    "slug": "error-500"
-                },
-                {
-                    "color": "#FEE2E2",
-                    "name": "Error 100",
-                    "slug": "error-100"
-                },
-                {
-                    "color": "#111827",
-                    "name": "Grey 900",
-                    "slug": "grey-900"
-                },
-                {
-                    "color": "#1F2937",
-                    "name": "Grey 800",
-                    "slug": "grey-800"
-                },
-                {
-                    "color": "#374151",
-                    "name": "Grey 700",
-                    "slug": "grey-700"
-                },
-                {
-                    "color": "#4B5563",
-                    "name": "Grey 600",
-                    "slug": "grey-600"
-                },
-                {
-                    "color": "#6B7280",
-                    "name": "Grey 500",
-                    "slug": "grey-500"
-                },
-                {
-                    "color": "#9CA3AF",
-                    "name": "Grey 400",
-                    "slug": "grey-400"
-                },
-                {
-                    "color": "#D1D5DB",
-                    "name": "Grey 300",
-                    "slug": "grey-300"
-                },
-                {
-                    "color": "#E5E7EB",
-                    "name": "Grey 200",
-                    "slug": "grey-200"
-                },
-                {
-                    "color": "#F3F4F6",
-                    "name": "Grey 100",
-                    "slug": "grey-100"
-                },
-                {
-                    "color": "#F9FAFB",
-                    "name": "Grey 50",
-                    "slug": "grey-50"
-                },
-                {
-                    "color": "#000",
-                    "name": "Black",
-                    "slug": "black"
-                },
-                {
-                    "color": "#fff",
-                    "name": "White",
-                    "slug": "white"
+                    "color": "color-mix(in srgb, currentColor 20%, transparent)",
+                    "name": "Accent 3",
+                    "slug": "accent-3"
                 }
             ]
-        },
-        "custom": {
-            "header": {
-                "background": "var:preset|color|white",
-                "svg": "var:preset|color|grey-500",
-                "text": "var:preset|color|black"
-            },
-            "navigation": {
-                "background": "var:preset|color|black",
-                "link": "var:preset|color|black",
-                "link-hover": "var:preset|color|grey-800",
-                "sublink": "var:preset|color|black",
-                "sublink-background": "var:preset|color|black",
-                "sublink-hover": "var:preset|color|white"
-            }
         },
         "layout": {
             "contentSize": "1160px",
             "wideSize": "1200px"
-        },
-        "shadow": {
-            "defaultPresets": false,
-            "presets": [
-                {
-                    "name": "Elevation 100",
-                    "shadow": "0 1px 1px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
-                    "slug": "elevation-100"
-                },
-                {
-                    "name": "Elevation 200",
-                    "shadow": "0 2px 4px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
-                    "slug": "elevation-200"
-                },
-                {
-                    "name": "Elevation 300",
-                    "shadow": "0 4px 8px 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
-                    "slug": "elevation-300"
-                },
-                {
-                    "name": "Elevation 400",
-                    "shadow": "0 8px 1rem 0 rgba(48, 49, 51, 0.1), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
-                    "slug": "elevation-400"
-                },
-                {
-                    "name": "Elevation 500",
-                    "shadow": "0 16px 24px 0 rgba(48, 49, 51, 0.09), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
-                    "slug": "elevation-500"
-                },
-                {
-                    "name": "Elevation 600",
-                    "shadow": "0 24px 40px 0 rgba(48, 49, 51, 0.08), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
-                    "slug": "elevation-600"
-                }
-            ]
         },
         "spacing": {
             "defaultSpacingSizes": false,
@@ -247,37 +48,37 @@
             },
             "spacingSizes": [
                 {
-                    "name": "1",
+                    "name": "Tiny",
                     "size": "1rem",
                     "slug": "10"
                 },
                 {
-                    "name": "2",
+                    "name": "X-Small",
                     "size": "1.25rem",
                     "slug": "20"
                 },
                 {
-                    "name": "3",
+                    "name": "Small",
                     "size": "min(1.875rem, 5vw)",
                     "slug": "30"
                 },
                 {
-                    "name": "4",
+                    "name": "Regular",
                     "size": "min(2rem, 6vw)",
                     "slug": "40"
                 },
                 {
-                    "name": "5",
+                    "name": "Large",
                     "size": "min(3.125rem, 6vw)",
                     "slug": "50"
                 },
                 {
-                    "name": "6",
+                    "name": "X-Large",
                     "size": "min(3.75rem, 7vw)",
                     "slug": "60"
                 },
                 {
-                    "name": "7",
+                    "name": "XX-Large",
                     "size": "min(4.375rem, 8vw)",
                     "slug": "70"
                 }
@@ -292,6 +93,7 @@
             ]
         },
         "typography": {
+            "writingMode": true,
             "defaultFontSizes": false,
             "fluid": {
                 "maxViewportWidth": "1200px",
@@ -299,6 +101,21 @@
                 "minViewportWidth": "600px"
             },
             "fontFamilies": [
+                {
+                    "name": "Roboto Mono",
+                    "slug": "mono",
+                    "fontFamily": "Roboto Mono, sans-serif",
+                    "fontFace": [
+                        {
+                            "fontFamily": "Roboto Mono",
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "src": [
+                                "file:./build/fonts/roboto-mono.woff2"
+                            ]
+                        }
+                    ]
+                },
                 {
                     "name": "Oxygen",
                     "slug": "body",
@@ -309,7 +126,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "300",
                             "src": [
-                                "file:./assets/fonts/body/oxygen-v15-latin-300.woff2"
+                                "file:./build/fonts/oxygen-v15-latin-300.woff2"
                             ]
                         },
                         {
@@ -317,7 +134,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "700",
                             "src": [
-                                "file:./assets/fonts/body/oxygen-v15-latin-700.woff2"
+                                "file:./build/fonts/body/oxygen-v15-latin-700.woff2"
                             ]
                         },
                         {
@@ -325,7 +142,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "400",
                             "src": [
-                                "file:./assets/fonts/body/oxygen-v15-latin-regular.woff2"
+                                "file:./build/fonts/body/oxygen-v15-latin-regular.woff2"
                             ]
                         }
                     ]
@@ -340,22 +157,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "400",
                             "src": [
-                                "file:./assets/fonts/headline/Inter.woff2"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "name": "Roboto Mono",
-                    "slug": "mono",
-                    "fontFamily": "Roboto Mono, sans-serif",
-                    "fontFace": [
-                        {
-                            "fontFamily": "Roboto Mono",
-                            "fontStyle": "normal",
-                            "fontWeight": "400",
-                            "src": [
-                                "file:./assets/fonts/mono/roboto-mono.woff2"
+                                "file:./build/fonts/headline/Inter.woff2"
                             ]
                         }
                     ]
@@ -364,69 +166,45 @@
             "fontSizes": [
                 {
                     "fluid": false,
-                    "name": "xxs",
+                    "name": "Small",
                     "size": "0.875rem",
-                    "slug": "xxs"
+                    "slug": "small"
                 },
                 {
-                    "fluid": false,
-                    "name": "xs",
+                    "fluid": {
+                        "max": "1.25rem",
+                        "min": "1rem"
+                    },
+                    "name": "Medium",
                     "size": "1rem",
-                    "slug": "xs"
-                },
-                {
-                    "fluid": false,
-                    "name": "s",
-                    "size": "1.125rem",
-                    "slug": "s"
-                },
-                {
-                    "fluid": false,
-                    "name": "m",
-                    "size": "1.25rem",
-                    "slug": "m"
-                },
-                {
-                    "fluid": false,
-                    "name": "l",
-                    "size": "1.375rem",
-                    "slug": "l"
+                    "slug": "medium"
                 },
                 {
                     "fluid": {
                         "max": "1.75rem",
                         "min": "1.5rem"
                     },
-                    "name": "xl",
-                    "size": "1.75rem",
-                    "slug": "xl"
+                    "name": "Large",
+                    "size": "1.5rem",
+                    "slug": "large"
                 },
                 {
                     "fluid": {
                         "max": "2.25rem",
                         "min": "1.5rem"
                     },
-                    "name": "2xl",
-                    "size": "2.25rem",
-                    "slug": "xxl"
+                    "name": "Extra Large",
+                    "size": "1.5rem",
+                    "slug": "x-large"
                 },
                 {
                     "fluid": {
                         "max": "3rem",
-                        "min": "1.75rem"
+                        "min": "2.15rem"
                     },
-                    "name": "3xl",
-                    "size": "3rem",
-                    "slug": "xxxl"
-                },
-                {
-                    "fluid": {
-                        "max": "3.75rem",
-                        "min": "2.25rem"
-                    },
-                    "name": "4xl",
-                    "size": "3.75rem",
-                    "slug": "xxxxl"
+                    "name": "Extra Extra Large",
+                    "size": "2.15rem",
+                    "slug": "xx-large"
                 }
             ]
         },
@@ -438,19 +216,16 @@
                 "variations": {
                     "outline": {
                         "border": {
-                            "color": "var:preset|color|primary-500",
+                            "color": "currentColor",
                             "style": "solid",
                             "width": "1px"
                         },
-                        "color": {
-                            "text": "var:preset|color|primary-500"
-                        },
                         "spacing": {
                             "padding": {
-                                "bottom": "0.5rem",
-                                "left": "1rem",
-                                "right": "1rem",
-                                "top": "0.5rem"
+                                "bottom": "calc(1rem - 1px)",
+                                "left": "calc(2.25rem - 1px)",
+                                "right": "calc(2.25rem - 1px)",
+                                "top": "calc(1rem - 1px)"
                             }
                         }
                     }
@@ -461,119 +236,18 @@
                     "blockGap": "var:preset|spacing|30"
                 }
             },
-            "core/calendar": {
-                "color": {
-                    "background": "var:preset|color|white",
-                    "text": "var:preset|color|black"
-                },
-                "spacing": {
-                    "margin": {
-                        "bottom": "var:preset|spacing|30",
-                        "top": "var:preset|spacing|30"
-                    }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|body",
-                    "fontSize": "var:preset|font-size|xs"
-                }
-            },
-            "core/code": {
-                "color": {
-                    "background": "var:preset|color|white",
-                    "text": "var:preset|color|black"
-                },
-                "spacing": {
-                    "padding": {
-                        "bottom": "1.5rem",
-                        "left": "1.5rem",
-                        "right": "1.5rem",
-                        "top": "1.5rem"
-                    }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|mono",
-                    "fontSize": "var:preset|font-size|xs",
-                    "lineHeight": "clamp(130%, 0.7600rem + 0.9178vw, 150%)"
-                }
-            },
-            "core/comments": {
-                "border": {
-                    "color": "var:preset|color|grey-200",
-                    "style": "solid",
-                    "width": "2px 0 0 0"
-                }
-            },
             "core/comments-title": {
                 "typography": {
-                    "fontSize": "var:preset|font-size|xl"
+                    "fontSize": "var:preset|font-size|x-large"
                 }
             },
             "core/cover": {
-                "elements": {
-                    "heading": {
-                        "typography": {
-                            "fontWeight": "600"
-                        }
-                    }
-                },
                 "spacing": {
                     "margin": {
                         "bottom": "0",
                         "top": "0"
                     },
-                    "padding": {
-                        "bottom": "var:preset|spacing|30",
-                        "left": "var:preset|spacing|30",
-                        "right": "var:preset|spacing|30",
-                        "top": "var:preset|spacing|30"
-                    }
-                }
-            },
-            "core/file": {
-                "border": {
-                    "color": "var:preset|color|grey-200",
-                    "style": "solid",
-                    "width": "0 0 2px 0"
-                },
-                "color": {
-                    "text": "var:preset|color|black"
-                },
-                "elements": {
-                    "link": {
-                        "color": {
-                            "text": "var:preset|color|black"
-                        },
-                        "typography": {
-                            "fontFamily": "var:preset|font-family|body",
-                            "fontSize": "var:preset|font-size|xs"
-                        }
-                    }
-                },
-                "spacing": {
-                    "padding": {
-                        "bottom": "1rem",
-                        "left": "0",
-                        "right": "0",
-                        "top": "1rem"
-                    }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|body",
-                    "fontSize": "var:preset|font-size|xs"
-                }
-            },
-            "core/footnotes": {
-                "border": {
-                    "color": "var:preset|color|grey-200",
-                    "style": "solid",
-                    "width": "2px 0"
-                },
-                "color": {
-                    "text": "var:preset|color|grey-500"
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|headline",
-                    "fontSize": "0.75rem"
+                    "padding": "var:preset|spacing|30"
                 }
             },
             "core/group": {
@@ -597,9 +271,6 @@
             "core/navigation": {
                 "spacing": {
                     "blockGap": "var:preset|spacing|20"
-                },
-                "typography": {
-                    "fontSize": "var:preset|font-size|xs"
                 }
             },
             "core/paragraph": {
@@ -609,7 +280,7 @@
                     }
                 },
                 "typography": {
-                    "fontSize": "var:preset|font-size|xs",
+                    "fontSize": "var:preset|font-size|small",
                     "letterSpacing": "0.002em",
                     "lineHeight": "clamp(130%, 0.7600rem + 0.9178vw, 150%)"
                 }
@@ -621,9 +292,6 @@
                             "fontWeight": "700"
                         }
                     }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|body"
                 }
             },
             "core/post-template": {
@@ -634,159 +302,12 @@
             "core/post-terms": {
                 "elements": {
                     "link": {
-                        ":hover": {
-                            "color": {
-                                "background": "var:preset|color|primary-100"
-                            }
-                        },
-                        "color": {
-                            "background": "var:preset|color|primary-50",
-                            "text": "var:preset|color|grey-700"
-                        },
                         "spacing": {
                             "padding": {
                                 "bottom": "0",
-                                "left": "0.75rem",
-                                "right": "0.75rem",
+                                "left": "var:preset|spacing|20",
+                                "right": "var:preset|spacing|20",
                                 "top": "0"
-                            }
-                        },
-                        "typography": {
-                            "fontWeight": "600",
-                            "textDecoration": "none"
-                        }
-                    }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|headline",
-                    "fontSize": "0.75rem",
-                    "fontWeight": "400",
-                    "textTransform": "uppercase"
-                }
-            },
-            "core/post-title": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xxxl"
-                }
-            },
-            "core/preformatted": {
-                "color": {
-                    "background": "var:preset|color|primary-50",
-                    "text": "var:preset|color|black"
-                },
-                "css": "overflow-x: auto;",
-                "spacing": {
-                    "padding": {
-                        "bottom": "0.75rem",
-                        "left": "0.75rem",
-                        "right": "0.75rem",
-                        "top": "0.75rem"
-                    }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|mono",
-                    "fontSize": "var:preset|font-size|s"
-                }
-            },
-            "core/pullquote": {
-                "border": {
-                    "color": "var:preset|color|grey-200",
-                    "style": "solid",
-                    "width": "2px 0"
-                },
-                "elements": {
-                    "cite": {
-                        "typography": {
-                            "fontFamily": "var:preset|font-family|body",
-                            "fontSize": "var:preset|font-size|xs",
-                            "fontStyle": "inherit"
-                        }
-                    }
-                },
-                "spacing": {
-                    "margin": {
-                        "bottom": "var:preset|spacing|30",
-                        "top": "var:preset|spacing|30"
-                    },
-                    "padding": {
-                        "bottom": "1.5rem",
-                        "left": "1.5rem",
-                        "right": "1.5rem",
-                        "top": "1.5rem"
-                    }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|headline",
-                    "fontSize": "var:preset|font-size|xl"
-                }
-            },
-            "core/query-title": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xxl",
-                    "fontStyle": "inherit"
-                }
-            },
-            "core/quote": {
-                "border": {
-                    "color": "var:preset|color|grey-200",
-                    "style": "solid",
-                    "width": "0 0 0 2px"
-                },
-                "elements": {
-                    "cite": {
-                        "typography": {
-                            "fontFamily": "var:preset|font-family|body",
-                            "fontSize": "0.75rem",
-                            "fontStyle": "inherit"
-                        }
-                    }
-                },
-                "spacing": {
-                    "margin": {
-                        "bottom": "var:preset|spacing|30",
-                        "top": "var:preset|spacing|30"
-                    },
-                    "padding": {
-                        "bottom": "0",
-                        "left": "1.5rem",
-                        "right": "1.5rem",
-                        "top": "0"
-                    }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|body"
-                },
-                "variations": {
-                    "plain": {
-                        "border": {
-                            "style": "none"
-                        },
-                        "spacing": {
-                            "padding": {
-                                "bottom": "0",
-                                "left": "0",
-                                "right": "0",
-                                "top": "0"
-                            }
-                        },
-                        "typography": {
-                            "fontStyle": "italic"
-                        }
-                    }
-                }
-            },
-            "core/search": {
-                "elements": {
-                    "button": {
-                        "border": {
-                            "width": "6px"
-                        },
-                        "spacing": {
-                            "padding": {
-                                "bottom": "0.5rem",
-                                "left": "1rem",
-                                "right": "1rem",
-                                "top": "0.5rem"
                             }
                         }
                     }
@@ -799,180 +320,19 @@
                     "style": "solid",
                     "width": "1px 0 0"
                 }
-            },
-            "core/site-title": {
-                "elements": {
-                    "link": {
-                        "typography": {
-                            "textDecoration": "none"
-                        }
-                    }
-                },
-                "typography": {
-                    "fontSize": "var:preset|font-size|xxl",
-                    "fontWeight": "800"
-                }
-            },
-            "core/social-links": {
-                "spacing": {
-                    "blockGap": "0.625rem"
-                }
-            },
-            "core/spacer": {
-                "spacing": {
-                    "margin": {
-                        "top": "0"
-                    }
-                }
-            },
-            "core/table": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xs"
-                }
-            },
-            "core/template-part": {
-                "spacing": {
-                    "margin": {
-                        "top": "0"
-                    }
-                }
             }
         },
         "color": {
-            "background": "var:preset|color|white",
-            "text": "var:preset|color|black"
-        },
-        "elements": {
-            "button": {
-                ":focus": {
-                    "outline": {
-                        "color": "var:preset|color|primary-300",
-                        "width": "4px"
-                    }
-                },
-                ":hover": {
-                    "color": {
-                        "background": "var:preset|color|primary-600",
-                        "text": "var:preset|color|white"
-                    }
-                },
-                ":visited": {
-                    "color": {
-                        "text": "var:preset|color|white"
-                    }
-                },
-                "border": {
-                    "color": "transparent",
-                    "radius": "4px",
-                    "style": "solid",
-                    "width": "1px"
-                },
-                "color": {
-                    "background": "var:preset|color|primary-500",
-                    "text": "var:preset|color|white"
-                },
-                "spacing": {
-                    "padding": {
-                        "bottom": "0.5rem",
-                        "left": "1rem",
-                        "right": "1rem",
-                        "top": "0.5rem"
-                    }
-                },
-                "typography": {
-                    "fontSize": "var:preset|font-size|xxs",
-                    "fontWeight": "400"
-                }
-            },
-            "caption": {
-                "spacing": {
-                    "margin": {
-                        "bottom": "0",
-                        "top": "0.625rem"
-                    }
-                },
-                "typography": {
-                    "fontFamily": "var:preset|font-family|body",
-                    "fontSize": "var:preset|font-size|xxs"
-                }
-            },
-            "h1": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xxxxl",
-                    "letterSpacing": "-0.02em"
-                }
-            },
-            "h2": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xxxl",
-                    "letterSpacing": "-0.01em"
-                }
-            },
-            "h3": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xxl",
-                    "letterSpacing": "-0.01em"
-                }
-            },
-            "h4": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xl",
-                    "letterSpacing": "-0.02em"
-                }
-            },
-            "h5": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xs"
-                }
-            },
-            "h6": {
-                "typography": {
-                    "fontSize": "var:preset|font-size|xxs"
-                }
-            },
-            "heading": {
-                "typography": {
-                    "fontFamily": "var:preset|font-family|headline",
-                    "fontWeight": "500",
-                    "lineHeight": "clamp(120%, 2.75rem + 0.17vw, 130%)"
-                }
-            },
-            "link": {
-                ":focus": {
-                    "color": {
-                        "text": "var:preset|color|primary-700"
-                    }
-                },
-                ":hover": {
-                    "color": {
-                        "text": "var:preset|color|primary-700"
-                    }
-                },
-                ":visited": {
-                    "color": {
-                        "text": "var:preset|color|primary-300"
-                    }
-                },
-                "color": {
-                    "text": "var:preset|color|primary-500"
-                },
-                "typography": {
-                    "textDecoration": "none"
-                }
-            }
+            "background": "var:preset|color|base",
+            "text": "var:preset|color|contrast"
         },
         "spacing": {
             "blockGap": "var:preset|spacing|30",
-            "padding": {
-                "bottom": "0",
-                "left": "var:preset|spacing|30",
-                "right": "var:preset|spacing|30",
-                "top": "0"
-            }
+            "padding": "0"
         },
         "typography": {
             "fontFamily": "var:preset|font-family|body",
-            "fontSize": "var:preset|font-size|xs",
+            "fontSize": "var:preset|font-size|medium",
             "fontWeight": "400",
             "lineHeight": "clamp(130%, 0.7600rem + 0.9178vw, 150%)"
         }
