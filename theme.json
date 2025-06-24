@@ -197,8 +197,8 @@
                 "link": "var:preset|color|black",
                 "link-hover": "var:preset|color|grey-800",
                 "sublink": "var:preset|color|black",
-                "sublink-background": "var:preset|color|black",
-                "sublink-hover": "var:preset|color|white"
+                "sublink-background": "var:preset|color|grey-300",
+                "sublink-hover": "var:preset|color|black"
             }
         },
         "layout": {
@@ -309,7 +309,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "300",
                             "src": [
-                                "file:./assets/fonts/body/oxygen-v15-latin-300.woff2"
+                                "file:./build/fonts/body/oxygen-v15-latin-300.woff2"
                             ]
                         },
                         {
@@ -317,7 +317,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "700",
                             "src": [
-                                "file:./assets/fonts/body/oxygen-v15-latin-700.woff2"
+                                "file:./build/fonts/body/oxygen-v15-latin-700.woff2"
                             ]
                         },
                         {
@@ -325,7 +325,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "400",
                             "src": [
-                                "file:./assets/fonts/body/oxygen-v15-latin-regular.woff2"
+                                "file:./build/fonts/body/oxygen-v15-latin-regular.woff2"
                             ]
                         }
                     ]
@@ -340,7 +340,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "400",
                             "src": [
-                                "file:./assets/fonts/headline/Inter.woff2"
+                                "file:./build/fonts/headline/Inter.woff2"
                             ]
                         }
                     ]
@@ -355,7 +355,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "400",
                             "src": [
-                                "file:./assets/fonts/mono/roboto-mono.woff2"
+                                "file:./build/fonts/mono/roboto-mono.woff2"
                             ]
                         }
                     ]
