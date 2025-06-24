@@ -2,7 +2,7 @@
 
 <!--
 REQUIRED. Please do not leave this blank. Use this format to link issue numbers:
-[#WDS-123](https://webdevstudios.atlassian.net/browse/WDS-123)
+[#WDSBT-123](https://app.clickup.com/t/9011385391/WDSBT-123)
 -->
 
 ## Link to test
@@ -17,7 +17,7 @@ REQUIRED. Please do not leave this blank. Use this format to link to the testing
 <!--
 REQUIRED. Please do not leave this blank.
 Example:
-1. [#WDS-123](https://webdevstudios.atlassian.net/browse/WDS-123) - This PR [adds/removes/fixes/replaces] the [feature/bug/etc].
+1. [#WDSBT-123](https://app.clickup.com/t/9011385391/WDSBT-123) - This PR [adds/removes/fixes/replaces] the [feature/bug/etc].
 2. Make sure to add the appropriate labels to this PR.
 -->
 
