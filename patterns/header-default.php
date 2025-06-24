@@ -14,7 +14,7 @@ $wds_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":150,"shouldSync
 
 <!-- wp:group {"className":"alignfull header-container","layout":{"type":"constrained"}} -->
 <div id="top" class="wp-block-group alignfull header-container"><!-- wp:group {"className":"header-container-grid","align":"wide","layout":{"type":"grid","columnCount":"2","minimumColumnWidth":null}} -->
-<div class="wp-block-group alignwide header-container-grid">
+<div class="wp-block-group header-container-grid">
 <?php echo wp_kses_post( $wds_site_info ); ?>
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
