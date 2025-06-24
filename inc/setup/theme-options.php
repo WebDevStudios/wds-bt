@@ -37,7 +37,7 @@ function render_settings_page() {
 	$debug_value   = get_option( $debug_option, false );
 
 	// Save on POST.
-	if ( isset( $_POST['settings_nonce'] ) && wp_verify_nonce( $_POST['settings_nonce'], 'save_settings' ) ) {
+	if ( isset( $_POST['settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['settings_nonce'] ) ), 'save_settings' ) ) {
 		$exclude_value = isset( $_POST[ $exclude_option ] );
 		$global_value  = isset( $_POST[ $global_option ] );
 		$debug_value   = isset( $_POST[ $debug_option ] );
