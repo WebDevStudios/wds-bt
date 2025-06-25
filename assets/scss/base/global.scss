@@ -36,7 +36,9 @@ sup {
 
 	a {
 
-		&:not(.wp-block-social-link-anchor):not(.back-to-top) {
+		&:not(.wp-block-social-link-anchor):not(.back-to-top):not(
+				.wp-block-button__link
+			) {
 			color: var(--wp--preset--color--accent-1);
 			cursor: pointer;
 			padding: 0;
