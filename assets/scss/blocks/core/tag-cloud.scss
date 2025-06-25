@@ -2,16 +2,16 @@
 
 $tag-cloud-colors: (
 	1: (
-		base: var(--wp--preset--color--primary-500),
-		hover: var(--wp--preset--color--primary-700),
+		base: var(--wp--preset--color--contrast),
+		hover: var(--wp--preset--color--accent-1),
 	),
 	2: (
-		base: var(--wp--preset--color--secondary-500),
-		hover: var(--wp--preset--color--secondary-700),
+		base: var(--wp--preset--color--accent-2),
+		hover: var(--wp--preset--color--accent-1),
 	),
 	3: (
-		base: var(--wp--preset--color--tertiary-500),
-		hover: var(--wp--preset--color--tertiary-700),
+		base: var(--wp--preset--color--accent-3),
+		hover: var(--wp--preset--color--contrast),
 	),
 	4: (
 		base: var(--wp--preset--color--grey-500),

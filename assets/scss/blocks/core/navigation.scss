@@ -285,12 +285,6 @@
 /* Mobile only menu */
 @include responsive-mixins.responsive-max(833px) {
 
-	.is-root-container .header-container,
-	.site-header .header-container {
-		padding-left: 0 !important;
-		padding-right: 0 !important;
-	}
-
 	.wp-block-navigation__container.is-responsive {
 		width: 100%;
 	}

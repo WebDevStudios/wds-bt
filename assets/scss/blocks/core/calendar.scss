@@ -40,7 +40,7 @@
 				}
 
 				a {
-					background-color: var(--wp--preset--color--primary-500);
+					background-color: var(--wp--preset--color--contrast);
 					border-radius: 8px;
 					color: var(--wp--preset--color--white);
 					display: inline-block;
@@ -49,8 +49,8 @@
 					&:hover,
 					&:focus,
 					&.current {
-						background-color: var(--wp--preset--color--primary-50);
-						color: var(--wp--preset--color--primary-500);
+						background-color: var(--wp--preset--color--accent-2);
+						color: var(--wp--preset--color--contrast);
 					}
 				}
 			}
@@ -95,7 +95,7 @@
 				&:focus {
 
 					&::before {
-						background-color: var(--wp--preset--color--primary-500);
+						background-color: var(--wp--preset--color--contrast);
 					}
 				}
 			}
@@ -128,7 +128,7 @@
 				&:focus {
 
 					&::before {
-						background-color: var(--wp--preset--color--primary-500);
+						background-color: var(--wp--preset--color--contrast);
 					}
 				}
 			}

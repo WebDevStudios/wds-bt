@@ -8,8 +8,8 @@
 		.wp-social-link {
 
 			.wp-block-social-link-anchor {
-				color: var(--wp--preset--color--primary-500);
-				fill: var(--wp--preset--color--primary-500);
+				color: var(--wp--preset--color--contrast);
+				fill: var(--wp--preset--color--contrast);
 				padding: 0;
 			}
 		}
@@ -18,7 +18,7 @@
 	&.has-visible-labels {
 
 		.wp-social-link {
-			background-color: var(--wp--preset--color--primary-500);
+			background-color: var(--wp--preset--color--contrast);
 
 			.wp-block-social-link-anchor {
 				color: var(--wp--preset--color--white);
@@ -31,7 +31,7 @@
 	&.is-style-icon {
 
 		.wp-social-link {
-			background-color: var(--wp--preset--color--primary-500);
+			background-color: var(--wp--preset--color--contrast);
 
 			.wp-block-social-link-anchor {
 				color: var(--wp--preset--color--white);
