@@ -1,56 +1,99 @@
-/* -- calendar -- */
+@use '../../abstracts/responsive-mixins';
+
+/* -- Calendar Block -- */
 
 .wp-block-calendar {
 	display: flex;
 	flex-direction: column-reverse;
 	position: relative;
+	margin: 0;
+	padding: 0;
 
 	.wp-calendar-table {
 		border: none;
+		border-collapse: collapse;
+		width: 100%;
 
 		th,
 		tr,
 		td {
 			border: none;
+			text-align: center;
 		}
 
 		caption {
-			font-size: var(--wp--preset--font-size--s);
+			font-size: var(--wp--preset--font-size--small);
 			font-weight: 700;
 			margin-bottom: 1.125rem;
+			text-align: center;
 		}
 
 		thead {
 
 			th {
-				font-size: var(--wp--preset--font-size--xxs);
+				font-size: var(--wp--preset--font-size--small);
 				font-weight: 700;
 				padding: 1rem 0.75rem;
 				text-transform: uppercase;
+				background-color: var(--wp--preset--color--accent-1-50);
 			}
 		}
 
-		tr {
+		tbody {
 
-			td {
-				padding: 1rem 0.75rem;
+			tr {
 
-				&:has(a) {
-					padding: 0;
+				td {
+					padding: 1rem 0.75rem;
+					transition: background-color 0.2s ease-in-out;
+
+					&:has(a) {
+						padding: 0;
+					}
+
+					a {
+						background-color: var(--wp--preset--color--contrast);
+						border-radius: 8px;
+						color: var(
+							--wp--preset--color--white
+						) !important; /* stylelint-disable-line declaration-no-important */
+						display: inline-block;
+						padding: 1rem 0.75rem;
+						text-decoration: none;
+						transition: all 0.2s ease-in-out;
+						width: 100%;
+						box-sizing: border-box;
+						-webkit-text-stroke: 0 !important; /* stylelint-disable-line declaration-no-important */
+
+						&:hover,
+						&:focus {
+							-webkit-text-stroke: 0 !important; /* stylelint-disable-line declaration-no-important */
+							background-color: var(
+								--wp--preset--color--accent-2
+							);
+							color: var(
+								--wp--preset--color--base
+							) !important; /* stylelint-disable-line declaration-no-important */
+							transform: translateY(-1px);
+						}
+
+						&.current {
+							background-color: var(
+								--wp--preset--color--accent-2
+							);
+							color: var(
+								--wp--preset--color--base
+							) !important; /* stylelint-disable-line declaration-no-important */
+							font-weight: 700;
+							-webkit-text-stroke: 0 !important; /* stylelint-disable-line declaration-no-important */
+						}
+					}
 				}
 
-				a {
-					background-color: var(--wp--preset--color--contrast);
-					border-radius: 8px;
-					color: var(--wp--preset--color--white);
-					display: inline-block;
-					padding: 1rem 0.75rem;
+				&:hover {
 
-					&:hover,
-					&:focus,
-					&.current {
-						background-color: var(--wp--preset--color--accent-2);
-						color: var(--wp--preset--color--contrast);
+					td {
+						background-color: var(--wp--preset--color--accent-1-25);
 					}
 				}
 			}
@@ -66,41 +109,9 @@
 		position: absolute;
 		top: 0;
 		width: 100%;
+		z-index: 1;
 
-		.wp-calendar-nav-prev {
-
-			a {
-				display: block;
-				height: 1.5rem;
-				overflow: hidden;
-				text-indent: -9999px;
-				width: 1.5rem;
-
-				&::before {
-					background-color: var(--wp--preset--color--black);
-					content: '';
-					display: inline-block;
-					height: 1.5rem;
-					mask-image: url(../../../images/icons/icon-circle-right.svg);
-					mask-size: contain;
-					position: absolute;
-					left: 0;
-					text-indent: 9999px;
-					transform: rotate(180deg);
-					vertical-align: middle;
-					width: 1.5rem;
-				}
-
-				&:hover,
-				&:focus {
-
-					&::before {
-						background-color: var(--wp--preset--color--contrast);
-					}
-				}
-			}
-		}
-
+		.wp-calendar-nav-prev,
 		.wp-calendar-nav-next {
 
 			a {
@@ -109,15 +120,18 @@
 				overflow: hidden;
 				text-indent: -9999px;
 				width: 1.5rem;
+				position: relative;
+				transition: transform 0.2s ease-in-out;
+				-webkit-text-stroke: 0 !important; /* stylelint-disable-line declaration-no-important */
 
 				&::before {
 					background-color: var(--wp--preset--color--black);
 					content: '';
 					display: inline-block;
 					height: 1.5rem;
-					right: 0;
 					mask-image: url(../../../images/icons/icon-circle-right.svg);
 					mask-size: contain;
+					mask-repeat: no-repeat;
 					position: absolute;
 					text-indent: 9999px;
 					vertical-align: middle;
@@ -126,9 +140,87 @@
 
 				&:hover,
 				&:focus {
+					transform: scale(1.1);
+					-webkit-text-stroke: 0 !important; /* stylelint-disable-line declaration-no-important */
 
 					&::before {
 						background-color: var(--wp--preset--color--contrast);
+					}
+				}
+			}
+		}
+
+		.wp-calendar-nav-prev {
+
+			a {
+
+				&::before {
+					left: 0;
+					transform: rotate(180deg);
+				}
+			}
+		}
+
+		.wp-calendar-nav-next {
+
+			a {
+
+				&::before {
+					right: 0;
+				}
+			}
+		}
+	}
+}
+
+/* -- Responsive Adjustments -- */
+@include responsive-mixins.responsive-max(600px) {
+
+	.wp-block-calendar {
+
+		.wp-calendar-table {
+
+			caption {
+				margin-bottom: 0.75rem;
+			}
+
+			thead {
+
+				th {
+					padding: 0.75rem 0.5rem;
+					font-size: var(--wp--preset--font-size--small);
+				}
+			}
+
+			tbody {
+
+				tr {
+
+					td {
+						padding: 0.75rem 0.5rem;
+
+						a {
+							padding: 0.75rem 0.5rem;
+							border-radius: 6px;
+						}
+					}
+				}
+			}
+		}
+
+		.wp-calendar-nav {
+			padding: 0 0.25rem;
+
+			.wp-calendar-nav-prev,
+			.wp-calendar-nav-next {
+
+				a {
+					height: 1.25rem;
+					width: 1.25rem;
+
+					&::before {
+						height: 1.25rem;
+						width: 1.25rem;
 					}
 				}
 			}
