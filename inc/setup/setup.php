@@ -37,5 +37,8 @@ function setup() {
 
 	// Add WooCommerce support.
 	add_theme_support( 'woocommerce' );
+
+	// Include dynamic theme.json functionality.
+	require_once get_template_directory() . '/inc/setup/dynamic-theme-json.php';
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );

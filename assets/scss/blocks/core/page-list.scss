@@ -8,20 +8,20 @@
 		padding-bottom: 0.75rem;
 
 		&::marker {
-			color: var(--wp--preset--color--primary-500);
+			color: var(--wp--preset--color--contrast);
 			font-size: var(--wp--preset--font-size--s);
 		}
 
 		a {
-			color: var(--wp--preset--color--primary-500);
+			color: var(--wp--preset--color--contrast);
 
 			&:visited {
-				color: var(--wp--preset--color--primary-500);
+				color: var(--wp--preset--color--contrast);
 			}
 
 			&:hover,
 			&:active {
-				color: var(--wp--preset--color--primary-700);
+				color: var(--wp--preset--color--accent-1);
 			}
 		}
 

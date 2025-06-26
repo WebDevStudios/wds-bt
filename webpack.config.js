@@ -11,6 +11,75 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 const WebpackBar = require('webpackbar');
+const { exec } = require('child_process');
+
+/**
+ * Custom plugin to generate theme.json after build
+ */
+class ThemeJsonGeneratorPlugin {
+	/**
+	 * Apply the plugin
+	 *
+	 * @param {Object} compiler Webpack compiler instance
+	 */
+	apply(compiler) {
+		compiler.hooks.afterEmit.tapAsync(
+			'ThemeJsonGeneratorPlugin',
+			(compilation, callback) => {
+				// Only run in production mode
+				if (process.env.NODE_ENV !== 'production') {
+					callback();
+					return;
+				}
+
+				exec(
+					'php tools/generate-theme-json.php 2>&1',
+					(error, stdout) => {
+						const logger = compilation.getLogger(
+							'ThemeJsonGeneratorPlugin'
+						);
+
+						// Filter out OPcache warning
+						const filteredOutput = stdout
+							.split('\n')
+							.filter(
+								(line) =>
+									!line.includes('Cannot load Zend OPcache')
+							)
+							.join('\n');
+
+						if (error) {
+							// Check if the only error was the OPcache warning
+							if (
+								error.message.includes(
+									'Cannot load Zend OPcache'
+								) &&
+								!error.message.includes('PHP Parse error') &&
+								!error.message.includes('PHP Fatal error')
+							) {
+								// Just log the filtered output and continue
+								if (filteredOutput.trim()) {
+									logger.info(filteredOutput);
+								}
+							} else {
+								// Real error occurred
+								compilation.errors.push(
+									new Error(
+										`Theme.json generation failed:\n${error.message}`
+									)
+								);
+							}
+						} else if (filteredOutput.trim()) {
+							logger.info(filteredOutput);
+						}
+
+						callback();
+					}
+				);
+			}
+		);
+	}
+}
 
 // Function to check for the existence of files matching a pattern
 function hasFiles(pattern) {
@@ -106,6 +175,15 @@ if (hasFiles('./assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}')) {
 	});
 }
 
+// Add a pattern to copy fonts from assets/fonts to build/fonts
+if (hasFiles('./assets/fonts/**/*.{woff,woff2,ttf,otf,eot}')) {
+	copyPluginPatterns.push({
+		from: './assets/fonts/**/*.{woff,woff2,ttf,otf,eot}',
+		to: 'fonts/[name][ext]',
+		noErrorOnMissing: true,
+	});
+}
+
 module.exports = {
 	...defaultConfig,
 	entry: {
@@ -189,6 +267,9 @@ module.exports = {
 				generator: {
 					filename: 'fonts/[name][ext]',
 				},
+				// Exclude fonts from assets/fonts from being processed by this rule,
+				// as they will be handled by the CopyPlugin.
+				exclude: path.resolve(__dirname, 'assets/fonts'),
 			},
 			{
 				test: /\.(js|jsx)$/,
@@ -216,19 +297,15 @@ module.exports = {
 		...defaultConfig.plugins,
 
 		new MiniCssExtractPlugin({
-			filename: (pathData) => {
-				const entryName = pathData.chunk.name;
+			filename: ({ chunk }) => {
 				if (
-					entryName.includes('css/blocks') ||
-					allBlockJsPaths[entryName] ||
-					blockScssPaths[entryName]
+					chunk.name.includes('css/blocks') ||
+					coreBlockEntryPaths[chunk.name] ||
+					blockScssPaths[chunk.name]
 				) {
 					return '[name].css';
 				}
-				if (entryName === 'css/style') {
-					return 'css/style.css';
-				}
-				return '[name].css';
+				return 'css/[name].css';
 			},
 		}),
 
@@ -252,16 +329,33 @@ module.exports = {
 					context: path.resolve(process.cwd(), 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
+				// Ensure fonts are always copied to build directory for theme.json fallback
+				{
+					from: 'assets/fonts/**/*.{woff,woff2,eot,ttf,otf}',
+					to: 'fonts/[path][name][ext]',
+					noErrorOnMissing: true,
+				},
 				...copyPluginPatterns,
 			],
 		}),
 
-		new SVGSpritemapPlugin('assets/images/icons/*.svg', {
+		new SVGSpritemapPlugin('./assets/images/icons/*.svg', {
 			output: {
 				filename: 'images/icons/sprite.svg',
+				svgo: {
+					plugins: [
+						{
+							name: 'removeStyleElement',
+							active: true,
+						},
+					],
+				},
 			},
 			sprite: {
-				prefix: false,
+				prefix: 'icon-',
+				generate: {
+					title: false,
+				},
 			},
 		}),
 
@@ -303,12 +397,22 @@ module.exports = {
 		}),
 
 		new CleanWebpackPlugin({
-			cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'build/**')],
+			cleanOnceBeforeBuildPatterns: ['**/*'],
+			cleanAfterEveryBuildPatterns: [
+				'!css/**',
+				'!js/**',
+				'!fonts/**',
+				'!images/**',
+			],
 		}),
 
 		new StylelintPlugin({
 			configFile: 'stylelint.config.js',
-			files: '**/*.s?(a|c)ss',
+			context: 'assets/scss',
+			files: '**/*.scss',
+			failOnError: false,
+			quiet: false,
+			emitErrors: true,
 		}),
 
 		new TerserPlugin({
@@ -321,10 +425,12 @@ module.exports = {
 		}),
 
 		new WebpackBar({
-			name: 'WDS BT Build',
+			name: 'Building WDSBT Theme',
 			color: 'green',
 		}),
-	],
+
+		new ThemeJsonGeneratorPlugin(),
+	].filter(Boolean),
 	optimization: {
 		minimize: true,
 		splitChunks: {

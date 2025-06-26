@@ -1,7 +1,7 @@
 /* -- separator -- */
 
 .wp-block-separator {
-	border-color: var(--wp--preset--color--grey-400);
+	border-color: var(--wp--preset--color--accent-1);
 	width: 12.5rem;
 
 	&.is-style-wide,
@@ -12,7 +12,7 @@
 	&.is-style-dots {
 
 		&::before {
-			color: var(--wp--preset--color--grey-400);
+			color: var(--wp--preset--color--accent-1);
 		}
 	}
 }
