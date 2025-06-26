@@ -35,6 +35,11 @@
 			background-color: transparent;
 			border: 1px solid transparent;
 			color: var(--wp--preset--color--contrast);
+
+			&:hover,
+			&:focus {
+				color: var(--wp--preset--color--accent-1);
+			}
 		}
 	}
 

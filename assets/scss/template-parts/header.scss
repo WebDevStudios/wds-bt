@@ -5,8 +5,8 @@
 /* -- Header Search -- */
 .is-root-container,
 .site-header {
-	background-color: var(--wp--custom--header--background);
-	color: var(--wp--custom--header--text);
+	background-color: var(--wp--custom--header-background--background);
+	color: var(--wp--custom--header-text--color);
 	min-height: 5.75rem;
 	transition:
 		min-height 0.2s ease,

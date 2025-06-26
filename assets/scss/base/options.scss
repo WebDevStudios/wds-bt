@@ -1,13 +1,32 @@
 // Theme Options
 
 .tools_page_wdsbt-settings {
-	background: var(--wp--preset--color--white);
-	border: 1px solid var(--wp--preset--color--grey-600);
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--accent-1);
 	padding: 1.5rem;
 	border-radius: 8px;
 	box-shadow: var(--wp--preset--shadow--elevation-400);
 
 	h1 {
-		font-size: var(wp--preset--font-size--xxl);
+		font-size: var(wp--preset--font-size--xx-large);
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+		margin-top: 0;
+	}
+
+	.wrap {
+		background: var(--wp--preset--color--base);
+		border: 1px solid var(--wp--preset--color--accent-1);
+		border-radius: 8px;
+		box-shadow: var(--wp--preset--shadow--elevation-400);
+		margin-bottom: 1.5rem;
+		max-width: 100%;
+		padding: 1.5rem;
+
+		h2 {
+			font-size: var(wp--preset--font-size--large);
+			font-weight: 700;
+			margin-bottom: 1.5rem;
+		}
 	}
 }

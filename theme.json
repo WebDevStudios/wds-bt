@@ -39,19 +39,28 @@
             ]
         },
         "custom": {
-            "navigation--background": {
-                "background": "var:preset|color|accent-1"
+            "header-background": {
+                "background": "var:preset|color|base"
             },
-            "navigation--link": {
+            "header-text": {
                 "color": "var:preset|color|contrast"
             },
-            "navigation--link-hover": {
+            "header-svg": {
                 "color": "var:preset|color|accent-1"
             },
-            "navigation--sublink-background": {
+            "navigation-background": {
+                "background": "var:preset|color|accent-1"
+            },
+            "navigation-link": {
+                "color": "var:preset|color|contrast"
+            },
+            "navigation-link-hover": {
+                "color": "var:preset|color|accent-1"
+            },
+            "navigation-sublink-background": {
                 "background": "var:preset|color|accent-2"
             },
-            "navigation--sublink-hover": {
+            "navigation-sublink-hover": {
                 "color": "var:preset|color|contrast"
             }
         },

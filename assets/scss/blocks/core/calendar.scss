@@ -75,6 +75,12 @@
 								--wp--preset--color--base
 							) !important; /* stylelint-disable-line declaration-no-important */
 							transform: translateY(-1px);
+
+							&::before,
+							&::after {
+								-webkit-text-stroke: 0 !important; /* stylelint-disable-line declaration-no-important */
+								background: none;
+							}
 						}
 
 						&.current {
@@ -90,9 +96,11 @@
 					}
 				}
 
-				&:hover {
+				&:hover,
+				&:focus {
 
 					td {
+						-webkit-text-stroke: 0 !important; /* stylelint-disable-line declaration-no-important */
 						background-color: var(--wp--preset--color--accent-1-25);
 					}
 				}
