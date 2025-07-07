@@ -7,6 +7,8 @@
 	.wp-block-post-author__byline {
 		font-family: var(--wp--preset--font-family--body);
 		font-size: var(--wp--preset--font-size--xxs);
+		margin-bottom: var(--wp--preset--spacing--20);
+		margin-top: var(--wp--preset--spacing--20);
 	}
 
 	.wp-block-post-author__name {

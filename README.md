@@ -1,6 +1,6 @@
 # WDS BT
 
-## Version: 1.1.0
+## Version: 1.3.0
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
@@ -18,6 +18,7 @@
   - [Getting Started](#getting-started)
   - [Development](#development)
     - [NPM Scripts](#npm-scripts)
+    - [Font Management](#font-management)
   - [Creating Blocks](#creating-blocks)
   - [Customizations](#customizations)
   - [Implementation](#implementation)
@@ -43,7 +44,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Native Block Support                             | Built for native WordPress blocks and site editor integration.                                      |
 | Responsive Design                                | Ensures optimal display and functionality across devices.                                           |
 | Foundation Theme                                 | Flexible base theme optimized for extensive customization.                                          |
-| Automated Code Quality                           | Workflow actions ensure adherence to WordPress coding standards.                                    |
+| Automated Code Quality                           | Modern linting configurations with PHP 8.3 compatibility, WordPress coding standards, and automated quality checks. |
 | Third-party Block Style Overrides                | Conditionally enqueue and override third-party block styles for efficient asset delivery.           |
 | Accessibility Compliance                         | Built-in WCAG 2.2 compliance with automated Pa11y checks.                                           |
 | Enhanced Webpack Configuration                   | Refined Webpack setup for improved dependency resolution and optimized asset management.            |
@@ -56,7 +57,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 ## Requirements
 
 - WordPress 6.4+
-- PHP 8.2+
+- PHP 8.2+ (fully tested with PHP 8.3)
 - [NPM](https://npmjs.com) (v10+)
 - [Node](https://nodejs.org) (v20+)
 - [Composer 2+](https://getcomposer.org/)
@@ -150,7 +151,6 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
   └── 📁hooks
    └── enqueue-block-stylesheet.php
    └── enqueue-third-party-block-stylesheet.php
-   └── query-block-sticky-override.php
    └── register-block-categories.php
    └── register-block-filters.php
    └── register-block-pattern-categories.php
@@ -242,22 +242,433 @@ npm run setup
 
 *From the command line, type any of the following to perform an action:*
 
-|     | Command                     | Description                                                     |
-|-----|-----------------------------|-----------------------------------------------------------------|
-| 🌐  | `npm run a11y`              | Run accessibility tests (Pa11y-CI).                             |
-| 🛠️  | `npm run build`             | Build the theme assets.                                         |
-| 🔨  | `npm run create-block`      | Scaffold a new block with various configurations.               |
-| 📝  | `npm run format`            | Format all code files (JS, SCSS, PHP).                          |
-| 🎨  | `npm run format:css`        | Format SCSS files.                                              |
-| 🐘  | `npm run format:php`        | Format PHP files.                                               |
-| 🔍  | `npm run lint`              | Run all linting scripts.                                        |
-| 🎨  | `npm run lint:css`          | Lint CSS files.                                                 |
-| 🚀  | `npm run lint:js`           | Lint JavaScript files.                                          |
-| 🐘  | `npm run lint:php`          | Lint PHP files.                                                 |
-| 🔄  | `npm run packages-update`   | Update dependencies defined in `package.json`.                  |
-| 🛠️  | `npm run setup`             | Reset, install dependencies, and build the theme.               |
-| ▶️  | `npm run start`             | Start the development server.                                   |
-| 🔖  | `npm run version-update`    | Update the theme version based on environment variable.         |
+|     | Command                     | Description                                             |
+|-----|-----------------------------|-------------------------------------------------------- |
+| 🌐   | `npm run a11y`              | Run accessibility tests (Pa11y-CI).                     |
+| 🛠️  | `npm run build`             | Build the theme assets.                                 |
+| 🔨  | `npm run create-block`      | Scaffold a new block with various configurations.       |
+| 📝  | `npm run format`            | Format all code files (JS, SCSS, PHP).                  |
+| 🎨  | `npm run format:css`        | Format SCSS files.                                      |
+| 🐘  | `npm run format:php`        | Format PHP files.                                       |
+| 🔤  | `npm run fonts`             | Process fonts and update theme.json.                    |
+| 🔍  | `npm run fonts:detect`      | Detect and list all available fonts.                    |
+| 🔧  | `npm run fonts:generate`    | Generate theme.json with detected fonts.                |
+| 🔍  | `npm run lint`              | Run all linting scripts.                                |
+| 🎨  | `npm run lint:css`          | Lint CSS files.                                         |
+| 🚀  | `npm run lint:js`           | Lint JavaScript files.                                  |
+| 🐘  | `npm run lint:php`          | Lint PHP files.                                         |
+| 🔄  | `npm run packages-update`   | Update dependencies defined in `package.json`.          |
+| 🛠️  | `npm run setup`             | Reset, install dependencies, and build the theme.       |
+| ▶️  | `npm run start`             | Start the development server.                           |
+| 🔖  | `npm run version-update`    | Update the theme version based on environment variable. |
+
+### Font Management
+
+WDS BT includes an automated font management system that organizes fonts by purpose and automatically generates the necessary files for optimal font loading and WordPress integration.
+
+<details closed>
+<summary><b>Font Organization</b></summary>
+
+Fonts are organized by their purpose/role for easy swapping and management:
+
+```
+assets/fonts/
+├── headline/
+│   ├── Inter.woff2
+│   └── Poppins-Bold.woff2
+├── body/
+│   ├── Oxygen-Regular.woff2
+│   └── OpenSans-Regular.woff2
+└── mono/
+    └── RobotoMono-Regular.woff2
+```
+
+**Benefits:**
+- **Easy font swapping**: Just replace files in each folder
+- **Clear purpose**: Each folder has a specific role
+- **Standardized slugs**: Automatically generates `headline`, `body`, `mono` slugs in theme.json
+- **Consistent paths**: CSS custom properties always use the same slugs
+
+**How it works:**
+1. Place fonts in the appropriate purpose folder (`headline/`, `body/`, `mono/`)
+2. The processor detects the purpose from the folder name
+3. Maps to standardized slugs in theme.json
+4. Generates correct CSS custom properties: `var(--wp--preset--font-family--headline)`, `var(--wp--preset--font-family--body)`, `var(--wp--preset--font-family--mono)`
+
+**To change fonts:**
+- **Headlines**: Replace files in `headline/` folder
+- **Body text**: Replace files in `body/` folder
+- **Code/mono**: Replace files in `mono/` folder
+
+</details>
+
+<details closed>
+<summary><b>Font Tools</b></summary>
+
+### Font Processor (`npm run fonts`)
+The main font processing tool that:
+- Scans `assets/fonts/` for font files
+- Copies fonts to `build/fonts/` maintaining folder structure
+- Generates preload links in `inc/setup/font-preload.php`
+- Updates `theme.json` with detected font families
+
+**Usage:**
+```bash
+npm run fonts
+# or
+php tools/font-processor.php
+```
+
+### Font Detection (`npm run fonts:detect`)
+Lists all available fonts in your theme for debugging and inspection.
+
+**Usage:**
+```bash
+npm run fonts:detect
+# or
+php tools/font-detection.php
+```
+
+**Output:**
+- Lists all fonts found in `assets/fonts/` and `build/fonts/`
+- Shows font family, weight, and style information
+- Helps identify what fonts are available
+
+### Font Generator (`npm run fonts:generate`)
+Advanced font processing with optimization and subsetting capabilities.
+
+**Usage:**
+```bash
+npm run fonts:generate
+# or
+php tools/font-generator.php
+```
+
+**Features:**
+- Font subsetting for smaller file sizes
+- Multiple format generation (WOFF2, WOFF)
+- CSS generation with @font-face declarations
+- Preload link generation
+
+</details>
+
+<details closed>
+<summary><b>Font Workflow</b></summary>
+
+### Adding New Fonts
+
+1. **Organize by purpose**: Place font files in the appropriate folder:
+   - `assets/fonts/headline/` for heading fonts
+   - `assets/fonts/body/` for body text fonts
+   - `assets/fonts/mono/` for monospace/code fonts
+
+2. **Run the font processor**:
+   ```bash
+   npm run fonts
+   ```
+
+3. **Verify the results**:
+   - Check `build/fonts/` for copied fonts
+   - Check `inc/setup/font-preload.php` for preload links
+   - Check `theme.json` for font family definitions
+
+### Using Fonts in Your Theme
+
+Fonts are automatically available as CSS custom properties:
+
+```scss
+.heading {
+  font-family: var(--wp--preset--font-family--headline);
+}
+
+.body-text {
+  font-family: var(--wp--preset--font-family--body);
+}
+
+.code {
+  font-family: var(--wp--preset--font-family--mono);
+}
+```
+
+### Font File Naming
+
+The system automatically detects font properties from filenames:
+
+- **Family detection**: From folder name or filename patterns
+- **Weight detection**: From filename patterns (e.g., `-300`, `-bold`, `-700`)
+- **Style detection**: From filename patterns (e.g., `-italic`, `-oblique`)
+
+**Supported patterns:**
+- Weights: `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`
+- Styles: `normal`, `italic`, `oblique`
+- Families: `Inter`, `Oxygen`, `Roboto Mono`, `Open Sans`, `Lato`, `Poppins`, etc.
+
+</details>
+
+<details closed>
+<summary><b>Font Debugging</b></summary>
+
+### Debug Information
+
+When `WP_DEBUG` is enabled, font detection debug information is displayed in the WordPress admin on the WDSBT Settings page.
+
+**To enable debug:**
+1. Set `WP_DEBUG = true` in your `wp-config.php`
+2. Visit the WDSBT Settings page in WordPress admin
+3. Look for the "Font Detection Debug" notice
+
+**Debug information includes:**
+- Number of fonts found in build and assets directories
+- List of detected font families with variant counts
+- Individual font variant details (weight, style, file path)
+
+### Troubleshooting
+
+**Fonts not appearing in theme.json:**
+1. Check that fonts are in the correct folders (`headline/`, `body/`, `mono/`)
+2. Verify font file extensions are supported (`.woff2`, `.woff`, `.ttf`, `.otf`)
+3. Run `npm run fonts:detect` to see what fonts are detected
+4. Check for any error messages in the font processor output
+
+**Preload links not working:**
+1. Ensure `inc/setup/font-preload.php` exists and is properly generated
+2. Check that the file is being included in your theme
+3. Verify the font paths in the preload links are correct
+
+**CSS custom properties not available:**
+1. Check that `theme.json` contains the font family definitions
+2. Verify the font slugs are correct (`headline`, `body`, `mono`)
+3. Ensure WordPress is generating the CSS custom properties
+
+</details>
+
+### Version Management
+
+The theme includes an automated version update system that ensures consistency across all files that reference the theme version.
+
+#### How to Update the Theme Version
+
+**Method 1: Using the .env file (Recommended)**
+
+1. **Update the `.env` file** with the new version:
+   ```bash
+   echo "VERSION=1.4.0" > .env
+   ```
+
+2. **Run the version update script**:
+   ```bash
+   npm run version-update
+   ```
+
+**Method 2: Using environment variable directly**
+
+```bash
+VERSION=1.4.0 npm run version-update
+```
+
+**Method 3: Using dotenv-cli (if installed globally)**
+
+```bash
+npx dotenv -e .env -- npm run version-update
+```
+
+#### What Gets Updated
+
+The version update script automatically updates the version in:
+- `style.css` (theme header)
+- `package.json` (NPM package version)
+- `composer.json` (Composer package version)
+- `README.md` (documentation version)
+
+#### Complete Workflow Example
+
+```bash
+# 1. Set the new version in .env file
+echo "VERSION=1.4.0" > .env
+
+# 2. Run the version update script
+npm run version-update
+
+# 3. Verify the changes
+git diff
+
+# 4. Commit the version bump
+git add .
+git commit -m "WDSBT-XXX - bump version to 1.4.0"
+
+# 5. Tag the release (optional)
+git tag -a v1.4.0 -m "Release version 1.4.0"
+git push origin v1.4.0
+```
+
+#### Release Types and Workflows
+
+**Patch Release (Bug Fixes)**
+For small bug fixes and minor updates (e.g., 1.4.0 → 1.4.1):
+
+```bash
+# 1. Create a patch branch
+git checkout -b patch/1.4.1
+
+# 2. Make your bug fixes
+# ... make changes ...
+
+# 3. Update version to patch
+echo "VERSION=1.4.1" > .env
+npm run version-update
+
+# 4. Commit changes
+git add .
+git commit -m "WDSBT-XXX - fix [specific issue]"
+
+# 5. Commit version bump
+git add .
+git commit -m "WDSBT-XXX - bump version to 1.4.1"
+
+# 6. Create pull request
+git push origin patch/1.4.1
+# ... create PR and merge ...
+
+# 7. Tag the release
+git checkout main
+git pull origin main
+git tag -a v1.4.1 -m "Patch release 1.4.1 - [brief description]"
+git push origin v1.4.1
+```
+
+**Minor Release (New Features)**
+For new features and enhancements (e.g., 1.4.0 → 1.5.0):
+
+```bash
+# 1. Create a feature branch
+git checkout -b feature/1.5.0
+
+# 2. Add new features
+# ... implement features ...
+
+# 3. Update version to minor
+echo "VERSION=1.5.0" > .env
+npm run version-update
+
+# 4. Update CHANGELOG.md (if maintained)
+# ... document new features ...
+
+# 5. Commit changes
+git add .
+git commit -m "WDSBT-XXX - add [new feature]"
+
+# 6. Commit version bump
+git add .
+git commit -m "WDSBT-XXX - bump version to 1.5.0"
+
+# 7. Create pull request and tag release
+# ... same as patch workflow ...
+```
+
+**Major Release (Breaking Changes)**
+For major updates with breaking changes (e.g., 1.4.0 → 2.0.0):
+
+```bash
+# 1. Create a major release branch
+git checkout -b release/2.0.0
+
+# 2. Implement breaking changes
+# ... make breaking changes ...
+
+# 3. Update version to major
+echo "VERSION=2.0.0" > .env
+npm run version-update
+
+# 4. Update documentation for breaking changes
+# ... update README, CHANGELOG, etc. ...
+
+# 5. Test thoroughly
+npm run build
+npm run lint
+npm run a11y
+
+# 6. Commit changes
+git add .
+git commit -m "WDSBT-XXX - breaking: [description of breaking changes]"
+
+# 7. Commit version bump
+git add .
+git commit -m "WDSBT-XXX - bump version to 2.0.0"
+
+# 8. Create pull request and tag release
+# ... same as patch workflow ...
+```
+
+#### Automated Patch Workflow
+
+For quick patches, you can use a streamlined workflow:
+
+```bash
+# Quick patch workflow
+git checkout -b hotfix/1.4.1
+# ... make quick fix ...
+echo "VERSION=1.4.1" > .env && npm run version-update
+git add . && git commit -m "WDSBT-XXX - hotfix: [issue description]"
+git push origin hotfix/1.4.1
+# ... create PR, merge, tag ...
+```
+
+#### Pre-release Versions
+
+For beta, alpha, or release candidate versions:
+
+```bash
+# Beta release
+echo "VERSION=1.4.0-beta.1" > .env
+npm run version-update
+
+# Alpha release
+echo "VERSION=1.4.0-alpha.1" > .env
+npm run version-update
+
+# Release candidate
+echo "VERSION=1.4.0-rc.1" > .env
+npm run version-update
+```
+
+#### Troubleshooting
+
+**Version not updating in all files:**
+1. Check that the `.env` file exists and contains the `VERSION` variable
+2. Ensure the version format is correct (e.g., `1.4.0`, not `v1.4.0`)
+3. Run `npm run version-update` with verbose output to see any errors
+
+**Permission errors:**
+1. Ensure you have write permissions to all theme files
+2. Check that no files are locked by other processes
+
+**Script not found:**
+1. Verify that `updateVersion.js` exists in the theme root
+2. Ensure Node.js is installed and accessible
+3. Run `npm install` to ensure all dependencies are installed
+
+<details closed>
+<summary><b>Version Update Process Details</b></summary>
+
+The version update script (`updateVersion.js`) reads the `VERSION` environment variable from the `.env` file and updates all version references across the project. This ensures consistency across all files that reference the theme version.
+
+**How it works:**
+1. Reads the `VERSION` environment variable
+2. Scans specific files for version patterns
+3. Updates version references while preserving formatting
+4. Provides feedback on what was updated
+
+**Supported version formats:**
+- Semantic versioning: `1.4.0`, `2.0.0`, `1.4.0-beta.1`
+- WordPress version format: `1.4.0`
+
+**Files processed:**
+- `style.css` - WordPress theme header
+- `package.json` - NPM package metadata
+- `composer.json` - Composer package metadata
+- `README.md` - Documentation version references
+
+</details>
 
 [🔝 Back to Top](#wds-bt)
 ***
@@ -329,7 +740,7 @@ This will process JavaScript, SCSS, optimize images, and generate necessary file
 <summary><b>Overriding/Customizing Third Party Block Styles</b></summary>
 
 1. **Place Your Override SCSS Files**: Add your third‑party override SCSS files in `assets/scss/blocks/third-party/`.
-   - **Naming Convention:** Name each file using the block’s slug (the part after the namespace). For example, to override the `wdsbt/test` block, name the file `test.scss`.
+   - **Naming Convention:** Name each file using the block's slug (the part after the namespace). For example, to override the `wdsbt/test` block, name the file `test.scss`.
 
 2. **Third-Party Block Styles**: Files within the `assets/scss/blocks/third-party/` directory are automatically enqueued. Do not import these files into your main `index.scss`.
 
@@ -460,11 +871,11 @@ Include the `mobile-only` mixin in your SCSS file where you want to hide element
 
 ### Stylelint Configuration
 
-This theme follows the [WordPress Stylelint Config](https://www.npmjs.com/package/@wordpress/stylelint-config) with additional custom rules to maintain code consistency and enforce best practices.
+This theme uses a modern `stylelint.config.js` configuration that extends the [WordPress Stylelint Config](https://www.npmjs.com/package/@wordpress/stylelint-config) with additional custom rules to maintain code consistency and enforce best practices.
 
 #### Extending WordPress Stylelint Rules
 
-The configuration extends the base `@wordpress/stylelint-config/scss` ruleset, ensuring that all SCSS follows the WordPress coding standards while incorporating additional theme-specific preferences.
+The configuration extends the base WordPress stylelint ruleset, ensuring that all SCSS follows the WordPress coding standards while incorporating additional theme-specific preferences and PHP 8.3 compatibility.
 
 ### Running Stylelint
 
@@ -486,13 +897,12 @@ npm run lint:css
 - **`selector-class-pattern: null`**
   Disables restrictions on class naming conventions to support custom project structures.
 
-- **`scss/at-rule-no-unknown`**
-  Allows certain Tailwind-like SCSS directives:
-  - `apply`
-  - `layer`
-  - `variants`
-  - `responsive`
-  - `screen`
+- **`at-rule-no-unknown`**
+  Allows SCSS directives and WordPress-specific at-rules:
+  - `apply`, `layer`, `variants`, `responsive`, `screen`
+  - `use`, `include`, `each`, `if`, `else`, `for`, `while`
+  - `function`, `return`, `mixin`, `content`, `extend`
+  - `warn`, `error`, `debug`
 
 - **`declaration-property-unit-allowed-list`**
   Restricts certain CSS properties to specific units:
@@ -502,6 +912,73 @@ npm run lint:css
   - `margin`: `em`, `rem`
   - `padding`: `em`, `rem`
 
+- **`no-invalid-double-slash-comments: null`**
+  Allows SCSS-style double-slash comments (`//`).
+
+- **`comment-no-empty: null`**
+  Allows empty comments for documentation purposes.
+
+</details>
+
+### PHP Linting Configuration
+
+This theme uses PHP_CodeSniffer with WordPress coding standards and PHP 8.3 compatibility checks.
+
+#### PHP Compatibility
+
+- **PHP Version**: Fully tested with PHP 8.2+ and PHP 8.3
+- **WordPress Standards**: Follows WordPress-Extra and WordPress-Docs coding standards
+- **Compatibility**: Uses PHPCompatibilityWP for version-specific checks
+
+#### Running PHP Linting
+
+To check your PHP files for coding standard violations, run:
+
+```bash
+npm run lint:php
+```
+
+<details closed>
+<summary><b>PHP Configuration</b></summary>
+
+- **Configuration File**: `phpcs.xml.dist`
+- **Test Version**: PHP 8.2-8.3 compatibility
+- **Standards**: WordPress-Extra, WordPress-Docs
+- **Custom Rules**:
+  - Allows array short syntax
+  - Allows short prefixes for theme-specific functions
+  - Excludes deprecated sniffs for compatibility
+  - Theme-specific prefix validation: `WebDevStudios\wdsbt`, `wds`, `wdsbt`
+  - Text domain validation: `wdsbt`
+
+</details>
+
+### JavaScript Linting Configuration
+
+This theme uses ESLint with WordPress coding standards for JavaScript files.
+
+#### ESLint Setup
+
+- **Configuration**: Uses `.eslintrc.json` format for WordPress compatibility
+- **Standards**: WordPress ESLint plugin with recommended rules
+- **Version**: ESLint 8.x for full WordPress tooling compatibility
+
+#### Running JavaScript Linting
+
+To check your JavaScript files for coding standard violations, run:
+
+```bash
+npm run lint:js
+```
+
+<details closed>
+<summary><b>JavaScript Configuration</b></summary>
+
+- **Configuration File**: `.eslintrc.json`
+- **Standards**: WordPress ESLint plugin recommended rules
+- **Special Handling**: Webpack configuration files use Node.js environment
+- **Compatibility**: Optimized for WordPress block editor development
+
 </details>
 
 [🔝 Back to Top](#wds-bt)
@@ -509,7 +986,7 @@ npm run lint:css
 
 ## Accessibility, Code Quality, and Security Checks
 
-WDS BT integrates automated workflow actions to maintain high standards of code security, quality, and accessibility. Accessibility checks are built into the development process, ensuring that websites developed with WDS BT comply with WCAG 2.2 standards. This proactive approach reflects WDS BT’s commitment to inclusivity and usability for all users.
+WDS BT integrates automated workflow actions to maintain high standards of code security, quality, and accessibility. Accessibility checks are built into the development process, ensuring that websites developed with WDS BT comply with WCAG 2.2 standards. This proactive approach reflects WDS BT's commitment to inclusivity and usability for all users.
 
 <details closed>
 <summary><b>Accessibility Test (npm run a11y)</b></summary>
