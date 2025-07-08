@@ -26,12 +26,7 @@ class ThemeJsonGeneratorPlugin {
 		compiler.hooks.afterEmit.tapAsync(
 			'ThemeJsonGeneratorPlugin',
 			(compilation, callback) => {
-				// Only run in production mode
-				if (process.env.NODE_ENV !== 'production') {
-					callback();
-					return;
-				}
-
+				// Always run the generator, regardless of environment
 				exec(
 					'php tools/generate-theme-json.php 2>&1',
 					(error, stdout) => {
