@@ -2,35 +2,6 @@
 
 .wp-block-group {
 
-	&.has-global-padding {
-
-		&.wp-block-group-is-layout-constrained {
-
-			&.alignfull {
-
-				> :where(
-						[class*='wp-block-']:not(.alignfull):not([class*='__']),
-						p,
-						h1,
-						h2,
-						h3,
-						h4,
-						h5,
-						h6,
-						ul,
-						ol
-					) {
-					padding-left: var(
-						--wp--style--root--padding-left
-					) !important; /* stylelint-disable-line declaration-no-important */
-					padding-right: var(
-						--wp--style--root--padding-right
-					) !important; /* stylelint-disable-line declaration-no-important */
-				}
-			}
-		}
-	}
-
 	.wp-block-column.is-layout-flow.wp-block-column-is-layout-flow & {
 		margin-block-start: var(--wp--preset--spacing--30);
 	}

@@ -37,7 +37,7 @@ function render_settings_page() {
 	$debug_value   = get_option( $debug_option, false );
 
 	// Save on POST.
-	if ( isset( $_POST['settings_nonce'] ) && wp_verify_nonce( $_POST['settings_nonce'], 'save_settings' ) ) {
+	if ( isset( $_POST['settings_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['settings_nonce'] ) ), 'save_settings' ) ) {
 		$exclude_value = isset( $_POST[ $exclude_option ] );
 		$global_value  = isset( $_POST[ $global_option ] );
 		$debug_value   = isset( $_POST[ $debug_option ] );
@@ -60,7 +60,7 @@ function render_settings_page() {
 
 	<div class="wrap">
 		<h1><?php esc_html_e( 'WDSBT Settings', 'wdsbt' ); ?></h1>
-		<small><?php esc_html_e( 'Control optional features for this block theme.', 'wdsbt' ); ?></small>
+		<p><?php esc_html_e( 'Control optional features for this block theme.', 'wdsbt' ); ?></p>
 
 		<div class="notice notice-info" style="margin-top: 20px;">
 			<p><?php echo wp_kses_post( $loading_status ); ?></p>
@@ -69,35 +69,36 @@ function render_settings_page() {
 		<form method="post" style="margin-top: 2em;">
 			<?php wp_nonce_field( 'save_settings', 'settings_nonce' ); ?>
 
-			<div class="card">
-				<h2 class="title"><?php esc_html_e( 'Performance Options', 'wdsbt' ); ?></h2>
+			<h2 class="title"><?php esc_html_e( 'Performance Options', 'wdsbt' ); ?></h2>
 
-				<label style="display: flex; align-items: center; gap: 12px;">
-					<input type="checkbox" name="<?php echo esc_attr( $global_option ); ?>" <?php checked( $global_value ); ?> />
-					<h3><?php esc_html_e( 'Disable Speculative Loading for the Entire Site', 'wdsbt' ); ?></h3>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'No pages will be prefetched or prerendered.', 'wdsbt' ); ?>
-				</p>
+			<hr />
 
-				<label style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
-					<input type="checkbox" name="<?php echo esc_attr( $exclude_option ); ?>" <?php checked( $exclude_value ); ?> />
-					<h3><?php esc_html_e( 'Exclude sensitive pages only (e.g., Cart, Checkout)', 'wdsbt' ); ?></h3>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'Recommended for e-commerce and membership sites.', 'wdsbt' ); ?>
-				</p>
+			<label style="display: flex; align-items: center; gap: 12px;">
+				<input type="checkbox" name="<?php echo esc_attr( $global_option ); ?>" <?php checked( $global_value ); ?> />
+				<h3><?php esc_html_e( 'Disable Speculative Loading for the Entire Site', 'wdsbt' ); ?></h3>
+			</label>
+			<p class="description">
+				<?php esc_html_e( 'No pages will be prefetched or prerendered.', 'wdsbt' ); ?>
+			</p>
 
-				<label style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
-					<input type="checkbox" name="<?php echo esc_attr( $debug_option ); ?>" <?php checked( $debug_value ); ?> />
-					<h3><?php esc_html_e( 'Enable debug logging for speculative loading in console', 'wdsbt' ); ?></h3>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'Logs whether a page was prerendered, is prerendering, or was loaded normally.', 'wdsbt' ); ?>
-				</p>
+			<label style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
+				<input type="checkbox" name="<?php echo esc_attr( $exclude_option ); ?>" <?php checked( $exclude_value ); ?> />
+				<h3><?php esc_html_e( 'Exclude sensitive pages only (e.g., Cart, Checkout)', 'wdsbt' ); ?></h3>
+			</label>
+			<p class="description">
+				<?php esc_html_e( 'Recommended for e-commerce and membership sites.', 'wdsbt' ); ?>
+			</p>
 
-				<?php submit_button( __( 'Save Settings', 'wdsbt' ) ); ?>
-			</div>
+			<label style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
+				<input type="checkbox" name="<?php echo esc_attr( $debug_option ); ?>" <?php checked( $debug_value ); ?> />
+				<h3><?php esc_html_e( 'Enable debug logging for speculative loading in console', 'wdsbt' ); ?></h3>
+			</label>
+			<p class="description">
+				<?php esc_html_e( 'Logs whether a page was prerendered, is prerendering, or was loaded normally.', 'wdsbt' ); ?>
+			</p>
+
+			<?php submit_button( __( 'Save Settings', 'wdsbt' ) ); ?>
+
 		</form>
 	</div>
 	<?php

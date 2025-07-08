@@ -5,8 +5,8 @@
 /* -- Header Search -- */
 .is-root-container,
 .site-header {
-	background-color: var(--wp--custom--header--background);
-	color: var(--wp--custom--header--text);
+	background-color: var(--wp--custom--header-background--background);
+	color: var(--wp--custom--header-text--color);
 	min-height: 5.75rem;
 	transition:
 		min-height 0.2s ease,
@@ -14,7 +14,6 @@
 		padding 0.2s ease;
 
 	.header-container {
-		padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
 
 		.wp-block-site-logo {
 			max-width: 12.5rem;
@@ -36,6 +35,23 @@
 
 				mask {
 					display: none;
+				}
+			}
+		}
+
+		.wp-block-site-title {
+
+			a {
+
+				&::before,
+				&::after {
+					content: none;
+				}
+
+				&:hover,
+				&:focus {
+					color: var(--wp--preset--color--accent-1);
+					outline: none;
 				}
 			}
 		}

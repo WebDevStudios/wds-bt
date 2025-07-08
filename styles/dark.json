@@ -48,21 +48,21 @@
 		"elements": {
 			"link": {
 				"color": {
-					"text": "var(--wp--preset--color--primary-300)"
+					"text": "var(--wp--preset--color--accent-1-300)"
 				},
 				":hover": {
 					"color": {
-						"text": "var(--wp--preset--color--primary-200)"
+						"text": "var(--wp--preset--color--accent-1-200)"
 					}
 				},
 				":focus": {
 					"color": {
-						"text": "var(--wp--preset--color--primary-200)"
+						"text": "var(--wp--preset--color--accent-1-200)"
 					}
 				},
 				":visited": {
 					"color": {
-						"text": "var(--wp--preset--color--primary-100)"
+						"text": "var(--wp--preset--color--accent-1-100)"
 					}
 				}
 			}

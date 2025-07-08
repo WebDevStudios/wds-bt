@@ -1,76 +1,33 @@
 @use '../../abstracts/responsive-mixins';
 
-/* -- List -- */
+/* -- List Styles -- */
 
 main,
 .wp-block-post-content {
 
-	ul {
-
-		&:not([class]),
-		&.wp-block-list {
-			list-style-type: none;
-
-			li {
-				padding-bottom: var(--wp--preset--spacing--20);
-				padding-left: var(--wp--preset--spacing--50);
-				position: relative;
-
-				@include responsive-mixins.responsive-max(600px) {
-					padding-left: var(--wp--preset--spacing--70);
-				}
-
-				&::before {
-					background-color: var(--wp--preset--color--grey-200);
-					content: '';
-					display: block;
-					height: 0.125rem;
-					left: 0;
-					position: absolute;
-					top: 0.5625rem;
-					width: 1.5rem;
-				}
-
-				&:last-child {
-					padding-bottom: 0;
-				}
-			}
-		}
-	}
-
-	/* -- Ordered List -- */
-
+	/* -- Common List Styles -- */
+	ul,
 	ol {
 
 		&:not([class]),
 		&.wp-block-list {
-			list-style-position: inside;
+			padding-left: var(--wp--preset--spacing--20);
 
 			li {
 				padding-bottom: var(--wp--preset--spacing--20);
-				position: relative;
-
-				ol {
-					padding-left: var(
-						--wp--preset--spacing--30
-					) !important; /* stylelint-disable-line declaration-no-important */
-				}
-
-				&::marker {
-					font-weight: 700;
-				}
 
 				&:last-child {
 					padding-bottom: 0;
 				}
 
-				.rich-text {
-					display: inline-block;
+				/* Nested lists */
+				ul,
+				ol {
+					padding-left: var(
+						--wp--preset--spacing--30
+					) !important; /* stylelint-disable-line declaration-no-important */
+					padding-bottom: 0;
 				}
-			}
-
-			ol {
-				padding-bottom: 0;
 			}
 		}
 	}
