@@ -238,6 +238,7 @@ npm run setup
 
 </details>
 
+
 ### NPM Scripts
 
 *From the command line, type any of the following to perform an action:*
@@ -1097,3 +1098,9 @@ The WDS-BT theme was initially inspired by the [Powder](https://github.com/bgard
 ***
 
 [🔝 Back to Top](#wds-bt)
+
+## Cross-Platform Compatibility
+
+This project uses [rimraf](https://www.npmjs.com/package/rimraf) in npm scripts instead of `rm -rf` to ensure compatibility across Windows, macOS, and Linux. All contributors can use the provided npm scripts without needing Git Bash or WSL on Windows.
+
+If you add new scripts that need to remove files or directories, please use `rimraf` instead of `rm -rf`.
