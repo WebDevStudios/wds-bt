@@ -104,7 +104,7 @@
 	},
 	"scripts": {
 		"a11y": "node a11y.cjs",
-		"build": "rm -rf build && npm run fonts:generate && rimraf build blocks && cross-env NODE_ENV=production wp-scripts build --config webpack.config.js --progress",
+		"build": "rimraf build && npm run fonts:generate && rimraf build blocks && wp-scripts build --config webpack.config.js --progress",
 		"create-block": "run-s create-block:run",
 		"create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=wdsbt --template ../../inc/block-template --no-plugin",
 		"format": "wp-scripts format && npm run format:php && npm run format:js",
@@ -122,9 +122,9 @@
 		"packages-update": "npx npm-check-updates -u && npm install && npm dedupe && npm audit fix",
 		"postinstall": "npx lefthook install && git config --local core.hooksPath .git/hooks && ./scripts/update-cursorrules.sh",
 		"preinstall": "npx cross-env npm_config_legacy_peer_deps=true",
-		"reset": "rm -rf node_modules vendor build blocks package-lock.json composer.lock",
+		"reset": "rimraf node_modules vendor build blocks package-lock.json composer.lock",
 		"setup": "npm run reset && npm i && composer i && npm run build",
-		"start": "rm -rf build blocks && npm run fonts && npx cross-env NODE_ENV=development wp-scripts start",
+		"start": "rimraf build blocks && npm run fonts && wp-scripts start",
 		"update-cursorrules": "./scripts/update-cursorrules.sh",
 		"version-update": "dotenv node updateVersion.js"
 	},
