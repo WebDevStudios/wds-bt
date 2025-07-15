@@ -1,4 +1,4 @@
-# WDS BT
+# WDS BT Base
 
 ## Version: 1.3.0
 
