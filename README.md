@@ -1082,6 +1082,14 @@ Bypassing Lefthook (`--no-verify`) is strictly prohibited, ensuring that all enf
 
 </details>
 
+## Cross-Platform Compatibility
+
+This project uses [rimraf](https://www.npmjs.com/package/rimraf) in npm scripts instead of `rm -rf` to ensure compatibility across Windows, macOS, and Linux. All contributors can use the provided npm scripts without needing Git Bash or WSL on Windows.
+
+If you add new scripts that need to remove files or directories, please use `rimraf` instead of `rm -rf`.
+
+[🔝 Back to Top](#wds-bt)
+
 ## Contributing and Support
 
 Your contributions and [support tickets](https://github.com/WebDevStudios/wds-bt/issues) are welcome. Please see our [contributing guidelines](https://github.com/WebDevStudios/wds-bt/blob/main/CONTRIBUTING.md) before submitting a pull request.
