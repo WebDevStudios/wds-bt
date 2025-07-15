@@ -3,7 +3,7 @@ name: Security
 on:
     pull_request:
         branches:
-            - main
+            - base
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
