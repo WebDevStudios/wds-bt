@@ -76,7 +76,7 @@ class ThemeJsonGeneratorPlugin {
 	}
 }
 
-// Function to check for the existence of files matching a pattern
+// Function to check for the existence of files matching a pattern.
 function hasFiles(pattern) {
 	return glob.sync(pattern, { dotRelative: true }).length > 0;
 }
@@ -84,7 +84,7 @@ function hasFiles(pattern) {
 // Remove all files from the build directory except for the specified folders.
 const excludedFolders = ['css', 'js', 'fonts', 'images'];
 
-// Dynamically generate entry points for each file inside 'assets/scss/blocks/core'
+// Dynamically generate entry points for each file inside 'assets/scss/blocks/core'.
 const coreBlockEntryPaths = glob
 	.sync('./assets/scss/blocks/core/*.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -93,7 +93,7 @@ const coreBlockEntryPaths = glob
 		return acc;
 	}, {});
 
-// Dynamically generate entry points for each file inside 'assets/scss/blocks/third-party'
+// Dynamically generate entry points for each file inside 'assets/scss/blocks/third-party'.
 const thirdPartyBlockEntryPaths = glob
 	.sync('./assets/scss/blocks/third-party/*.scss', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -142,7 +142,7 @@ const editorScssPaths = glob
 		return acc;
 	}, {});
 
-// CopyPlugin patterns to include PHP, JSON and image files
+// CopyPlugin patterns to include PHP, JSON and image files.
 const copyPluginPatterns = [];
 
 if (hasFiles('./assets/blocks/**/*.{php,json}')) {
@@ -166,15 +166,6 @@ if (hasFiles('./assets/blocks/**/*.{png,jpg,jpeg,gif,svg,webp}')) {
 				'../blocks/'
 			);
 		},
-		noErrorOnMissing: true,
-	});
-}
-
-// Add a pattern to copy fonts from assets/fonts to build/fonts
-if (hasFiles('./assets/fonts/**/*.{woff,woff2,ttf,otf,eot}')) {
-	copyPluginPatterns.push({
-		from: './assets/fonts/**/*.{woff,woff2,ttf,otf,eot}',
-		to: 'fonts/[name][ext]',
 		noErrorOnMissing: true,
 	});
 }
@@ -293,14 +284,10 @@ module.exports = {
 
 		new MiniCssExtractPlugin({
 			filename: ({ chunk }) => {
-				if (
-					chunk.name.includes('css/blocks') ||
-					coreBlockEntryPaths[chunk.name] ||
-					blockScssPaths[chunk.name]
-				) {
+				if (chunk.name.startsWith('css/blocks/')) {
 					return '[name].css';
 				}
-				return 'css/[name].css';
+				return '[name].css';
 			},
 		}),
 
@@ -320,14 +307,8 @@ module.exports = {
 				},
 				{
 					from: '**/*.{woff,woff2,eot,ttf,otf}',
-					to: 'fonts/[path][name][ext]',
+					to: 'fonts/[path]/[name][ext]',
 					context: path.resolve(process.cwd(), 'assets/fonts'),
-					noErrorOnMissing: true,
-				},
-				// Ensure fonts are always copied to build directory for theme.json fallback
-				{
-					from: 'assets/fonts/**/*.{woff,woff2,eot,ttf,otf}',
-					to: 'fonts/[path][name][ext]',
 					noErrorOnMissing: true,
 				},
 				...copyPluginPatterns,
