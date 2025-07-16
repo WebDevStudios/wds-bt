@@ -5,13 +5,13 @@
     "description": "Light mode palette for the theme",
     "settings": {
         "appearanceTools": true,
-		"blocks": {
-			"core/group": {
-				"shadow": {
-					"__experimentalSkipSerialization": true
-				}
-			}
-		},
+        "blocks": {
+            "core/group": {
+                "shadow": {
+                    "__experimentalSkipSerialization": true
+                }
+            }
+        },
         "color": {
             "defaultGradients": false,
             "defaultPalette": false,
@@ -66,11 +66,11 @@
                     "name": "Secondary 500",
                     "slug": "secondary-500"
                 },
-				{
-					"color": "#5185FF",
-					"name": "Secondary 400",
-					"slug": "secondary-400"
-				},
+                {
+                    "color": "#5185FF",
+                    "name": "Secondary 400",
+                    "slug": "secondary-400"
+                },
                 {
                     "color": "#D4E1FF",
                     "name": "Secondary 100",
@@ -196,16 +196,16 @@
                     "name": "White",
                     "slug": "white"
                 },
-				{
-					"color": "rgba(18, 18, 18, 0.05)",
-					"name": "Black Alpha 50",
-					"slug": "black-alpha-50"
-				},
-				{
-					"color": "rgba(255, 255, 255, 0.70)",
-					"name": "White Alpha 700",
-					"slug": "white-alpha-700"
-				}
+                {
+                    "color": "rgba(18, 18, 18, 0.05)",
+                    "name": "Black Alpha 50",
+                    "slug": "black-alpha-50"
+                },
+                {
+                    "color": "rgba(255, 255, 255, 0.70)",
+                    "name": "White Alpha 700",
+                    "slug": "white-alpha-700"
+                }
             ]
         },
         "custom": {
@@ -223,15 +223,15 @@
                 "sublink-hover": "var:preset|color|black"
             }
         },
-		"dimensions": {
-			"aspectRatios": [
-				{
-					"name": "Custom - 89:41",
-					"slug": "89-41",
-					"ratio": "89/41"
-				}
-			]
-		},
+        "dimensions": {
+            "aspectRatios": [
+                {
+                    "name": "Custom - 89:41",
+                    "slug": "89-41",
+                    "ratio": "89/41"
+                }
+            ]
+        },
         "layout": {
             "contentSize": "1160px",
             "wideSize": "1200px"
@@ -269,11 +269,11 @@
                     "shadow": "0 24px 40px 0 rgba(48, 49, 51, 0.08), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
                     "slug": "elevation-600"
                 },
-				{
-					"name": "Light 400",
-					"shadow": "0 0 1px 0 rgba(48, 49, 51, 0.05), 0 8px 16px 0 rgba(48, 49, 51, 0.10)",
-					"slug": "light-400"
-				}
+                {
+                    "name": "Light 400",
+                    "shadow": "0 0 1px 0 rgba(48, 49, 51, 0.05), 0 8px 16px 0 rgba(48, 49, 51, 0.10)",
+                    "slug": "light-400"
+                }
             ]
         },
         "spacing": {
@@ -398,12 +398,12 @@
                 }
             ],
             "fontSizes": [
-				{
-					"fluid": false,
-					"name": "xxxs",
-					"size": "0.75rem",
-					"slug": "xxxs"
-				},
+                {
+                    "fluid": false,
+                    "name": "xxxs",
+                    "size": "0.75rem",
+                    "slug": "xxxs"
+                },
                 {
                     "fluid": false,
                     "name": "xxs",
