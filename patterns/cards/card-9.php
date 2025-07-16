@@ -2,7 +2,7 @@
 /**
  * Title: Card #9
  * Slug: wdsbt/card-9
- * Categories: Cards
+ * Categories: cards
  *
  * @package wdsbt
  */

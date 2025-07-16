@@ -2,7 +2,7 @@
 /**
  * Title: Default header
  * Slug: wdsbt/header
- * Categories: header
+ * Categories: headers
  * Block Types: core/template-part/header
  *
  * @package wdsbt

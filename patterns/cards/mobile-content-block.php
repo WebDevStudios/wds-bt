@@ -2,7 +2,7 @@
 /**
  * Title: Mobile Content Block
  * Slug: wdsbt/mobile-content-block
- * Categories: Cards
+ * Categories: cards
  *
  * @package wdsbt
  */

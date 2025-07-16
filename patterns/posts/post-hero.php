@@ -2,7 +2,7 @@
 /**
  * Title: Single Post Hero
  * Slug: wdsbt/post-hero
- * Categories: posts
+ * Categories: hero
  * Template Types: single-post
  * Block Types: custom/post-hero
  *
