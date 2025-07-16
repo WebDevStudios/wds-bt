@@ -1,0 +1,15 @@
+{
+	"extends": ["plugin:@wordpress/eslint-plugin/recommended"],
+	"overrides": [
+		{
+			"files": ["webpack.config.js"],
+			"env": {
+				"node": true
+			},
+			"parserOptions": {
+				"ecmaVersion": 2021,
+				"sourceType": "script"
+			}
+		}
+	]
+}

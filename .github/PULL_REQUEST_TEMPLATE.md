@@ -2,7 +2,7 @@
 
 <!--
 REQUIRED. Please do not leave this blank. Use this format to link issue numbers:
-[#WDS-123](https://webdevstudios.atlassian.net/browse/WDS-123)
+[#WDSBT-123](https://app.clickup.com/t/9011385391/WDSBT-123)
 -->
 
 ## Link to test
@@ -17,7 +17,7 @@ REQUIRED. Please do not leave this blank. Use this format to link to the testing
 <!--
 REQUIRED. Please do not leave this blank.
 Example:
-1. [#WDS-123](https://webdevstudios.atlassian.net/browse/WDS-123) - This PR [adds/removes/fixes/replaces] the [feature/bug/etc].
+1. [#WDSBT-123](https://app.clickup.com/t/9011385391/WDSBT-123) - This PR [adds/removes/fixes/replaces] the [feature/bug/etc].
 2. Make sure to add the appropriate labels to this PR.
 -->
 
@@ -34,10 +34,14 @@ REQUIRED. Please do not leave this blank.
 For visual alterations, provide screenshots or recordings for both desktop and mobile. You can utilize Loom for this purpose: https://www.loom.com/screen-recorder
 -->
 
+## AI Assistance
+
+- [ ] 🤖 This project was developed with the help of a LLM/AI such as Cursor, Gemini, etc.
+
 ## Added to documentation?
 
 - [ ] 📜 README.md
-- [ ] 📓 [Confluence](https://documentationlink.here)
+- [ ] 📓 [ClickUp](https://documentationlink.here)
 - [ ] 🙅 No documentation needed
 
 ## Added tests?

@@ -1,0 +1,25 @@
+const js = require('@eslint/js');
+const wordpress = require('@wordpress/eslint-plugin');
+
+module.exports = [
+	js.configs.recommended,
+	wordpress.configs.recommended,
+	{
+		files: ['webpack.config.js'],
+		languageOptions: {
+			ecmaVersion: 2021,
+			sourceType: 'script',
+			globals: {
+				node: true,
+			},
+		},
+	},
+	{
+		ignores: [
+			'build/**',
+			'blocks/**',
+			'node_modules/**',
+			'vendor/**',
+		],
+	},
+];
