@@ -118,7 +118,31 @@ function get_block_stylesheets() {
 function register_blocks() {
 	$block_folders = glob( get_stylesheet_directory() . '/blocks/*', GLOB_ONLYDIR );
 	foreach ( $block_folders as $block_folder ) {
-		register_block_type( $block_folder );
+		$block_json = $block_folder . '/block.json';
+		if ( ! file_exists( $block_json ) ) {
+			continue;
+		}
+
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local block.json file is safe here.
+		$block_data = json_decode( file_get_contents( $block_json ), true );
+		$block_name = $block_data['name'] ?? '';
+
+		$handle = str_replace( '/', '-', $block_name ) . '-editor';
+
+		wp_register_script(
+			$handle,
+			get_template_directory_uri() . '/blocks/' . basename( $block_folder ) . '/index.js',
+			array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
+			filemtime( $block_folder . '/index.js' ),
+			true
+		);
+
+		register_block_type(
+			$block_folder,
+			array(
+				'editor_script' => $handle,
+			)
+		);
 	}
 }
 
