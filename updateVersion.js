@@ -16,7 +16,9 @@ const updateJsonFile = (filePath, label = filePath) => {
 	const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
 	if (jsonData.version === version) {
-		console.log(`No update needed for ${label} (already version ${version}).`);
+		console.log(
+			`No update needed for ${label} (already version ${version}).`
+		);
 		return;
 	}
 
@@ -40,7 +42,9 @@ const updateTextFile = (filePath, regex, replacement, label = filePath) => {
 	if (match) {
 		const currentVersion = match[2];
 		if (currentVersion === version) {
-			console.log(`No update needed for ${label} (already version ${version}).`);
+			console.log(
+				`No update needed for ${label} (already version ${version}).`
+			);
 			return;
 		}
 
@@ -53,9 +57,24 @@ const updateTextFile = (filePath, regex, replacement, label = filePath) => {
 };
 
 // Update all relevant files
-updateTextFile('./style.css', /(Version:\s*)([^\n]+)/, `$1${version}`, 'style.css');
-updateTextFile('./README.md', /(## Version:\s*)([^\n]+)/, `$1${version}`, 'README.md');
-updateTextFile('./readme.txt', /(Stable tag:\s*)([^\n]+)/, `$1${version}`, 'readme.txt');
+updateTextFile(
+	'./style.css',
+	/(Version:\s*)([^\n]+)/,
+	`$1${version}`,
+	'style.css'
+);
+updateTextFile(
+	'./README.md',
+	/(## Version:\s*)([^\n]+)/,
+	`$1${version}`,
+	'README.md'
+);
+updateTextFile(
+	'./readme.txt',
+	/(Stable tag:\s*)([^\n]+)/,
+	`$1${version}`,
+	'readme.txt'
+);
 updateJsonFile('./package.json', 'package.json');
 
 console.log('Version update process completed.');
