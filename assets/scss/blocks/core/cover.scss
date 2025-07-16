@@ -16,14 +16,12 @@
 	}
 
 	.wp-block-buttons {
-		margin-top: var(
-			--wp--preset--spacing--30
-		) !important; /* stylelint-disable-line declaration-no-important */
+		margin-top: var(--wp--preset--spacing--30);
 
 		.wp-block-button {
 
 			.wp-block-button__link {
-				border-radius: 6px !important; /* stylelint-disable-line declaration-no-important */
+				border-radius: 6px;
 			}
 		}
 	}
