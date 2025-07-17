@@ -34,4 +34,4 @@ function register_dynamic_block_pattern_categories() {
 		);
 	}
 }
-add_action( 'init', __NAMESPACE__ . '\register_dynamic_block_pattern_categories' );
+add_action( 'init', __NAMESPACE__ . '\register_dynamic_block_pattern_categories', 9 );

@@ -52,7 +52,17 @@ function render_settings_page() {
 	// Handle flush pattern registry request.
 	if ( isset( $_POST['wdsbt_flush_patterns'] ) && check_admin_referer( 'wdsbt_flush_patterns_action' ) ) {
 		wdsbt_flush_pattern_registry();
-		echo '<div class="notice notice-success is-dismissible"><p>Block pattern registry flushed and re-registered!</p></div>';
+		// Clear object cache.
+		if ( function_exists( 'wp_cache_flush' ) ) {
+			wp_cache_flush();
+		}
+		// Delete all transients.
+		global $wpdb;
+		$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%'" );
+		echo '<div class="notice notice-success is-dismissible"><p>Block pattern registry, Object cache and transients flushed.</p>';
+		echo '<p style="margin-top:1em;"><strong>Note:</strong> Due to WordPress caching, <u>new pattern categories and patterns may only appear after switching to another theme and back, or waiting for the cache to expire</u>. This is a WordPress limitation and does not affect production sites where patterns/categories are set before launch.</p></div>';
+		// Inject JS to notify the block editor.
+		echo "<script>if (window.localStorage) { localStorage.setItem('wdsbt_patterns_flushed', Date.now()); }</script>";
 	}
 
 	// Determine current status summary.
@@ -114,7 +124,7 @@ function render_settings_page() {
 				<form method="post">
 					<?php wp_nonce_field( 'wdsbt_flush_patterns_action' ); ?>
 					<p>
-						<input type="submit" name="wdsbt_flush_patterns" class="button button-primary" value="<?php esc_attr_e( 'Flush Pattern Registry & Re-register Patterns', 'wdsbt' ); ?>">
+						<input type="submit" name="wdsbt_flush_patterns" class="button button-primary" value="<?php esc_attr_e( 'Flush object cache and transients', 'wdsbt' ); ?>">
 					</p>
 				</form>
 			</div>
