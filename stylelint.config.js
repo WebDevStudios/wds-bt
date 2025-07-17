@@ -50,5 +50,6 @@ module.exports = {
 		],
 		'no-invalid-double-slash-comments': null,
 		'comment-no-empty': null,
+		'rule-empty-line-before': null,
 	},
 };

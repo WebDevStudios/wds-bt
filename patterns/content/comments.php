@@ -2,7 +2,7 @@
 /**
  * Title: Comments
  * Slug: wdsbt/comments
- * Categories: posts
+ * Categories: content
  * Block Types: custom/comments
  * Inserter: false
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Registers custom block pattern categories for the WDS BT theme.
+ * Dynamically register block pattern categories based on subfolders in /patterns.
  *
  * @package wdsbt
  */
@@ -8,40 +8,30 @@
 namespace WebDevStudios\wdsbt;
 
 /**
- * Registers custom block pattern categories for the WDS BT theme.
+ * Registers dynamic block pattern categories.
+ *
+ * @return void
  */
-function register_custom_block_pattern_categories() {
+function register_dynamic_block_pattern_categories() {
+	$patterns_dir = get_template_directory() . '/patterns/';
+	if ( ! is_dir( $patterns_dir ) ) {
+		return;
+	}
 
-	register_block_pattern_category(
-		'content',
-		array(
-			'label'       => __( 'Content', 'wdsbt' ),
-			'description' => __( 'A collection of content patterns designed for WDS BT.', 'wdsbt' ),
-		)
-	);
-	register_block_pattern_category(
-		'hero',
-		array(
-			'label'       => __( 'Hero', 'wdsbt' ),
-			'description' => __( 'A collection of hero patterns designed for WDS BT.', 'wdsbt' ),
-		)
-	);
-	register_block_pattern_category(
-		'page',
-		array(
-			'label'       => __( 'Pages', 'wdsbt' ),
-			'description' => __( 'A collection of page patterns designed for WDS BT.', 'wdsbt' ),
-		)
-	);
-	register_block_pattern_category(
-		'template',
-		array(
-			'label'       => __( 'Templates', 'wdsbt' ),
-			'description' => __( 'A collection of template patterns designed for WDS BT.', 'wdsbt' ),
-		)
-	);
+	// Get all subfolders in /patterns.
+	$subfolders = glob( $patterns_dir . '*', GLOB_ONLYDIR );
 
-	// Remove default patterns.
-	remove_theme_support( 'core-block-patterns' );
+	foreach ( $subfolders as $folder_path ) {
+		$slug = basename( $folder_path );
+		// Skip hidden folders or folders starting with a dot.
+		if ( strpos( $slug, '.' ) === 0 ) {
+			continue;
+		}
+		// Register the category using the folder name as the slug and a capitalized label.
+		register_block_pattern_category(
+			$slug,
+			[ 'label' => ucwords( str_replace( [ '-', '_' ], ' ', $slug ) ) ]
+		);
+	}
 }
-add_action( 'init', __NAMESPACE__ . '\register_custom_block_pattern_categories', 9 );
+add_action( 'init', __NAMESPACE__ . '\register_dynamic_block_pattern_categories' );

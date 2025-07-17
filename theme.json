@@ -5,6 +5,13 @@
     "description": "Light mode palette for the theme",
     "settings": {
         "appearanceTools": true,
+        "blocks": {
+            "core/group": {
+                "shadow": {
+                    "__experimentalSkipSerialization": true
+                }
+            }
+        },
         "color": {
             "defaultGradients": false,
             "defaultPalette": false,
@@ -58,6 +65,11 @@
                     "color": "#2667FF",
                     "name": "Secondary 500",
                     "slug": "secondary-500"
+                },
+                {
+                    "color": "#5185FF",
+                    "name": "Secondary 400",
+                    "slug": "secondary-400"
                 },
                 {
                     "color": "#D4E1FF",
@@ -183,6 +195,16 @@
                     "color": "#fff",
                     "name": "White",
                     "slug": "white"
+                },
+                {
+                    "color": "rgba(18, 18, 18, 0.05)",
+                    "name": "Black Alpha 50",
+                    "slug": "black-alpha-50"
+                },
+                {
+                    "color": "rgba(255, 255, 255, 0.70)",
+                    "name": "White Alpha 700",
+                    "slug": "white-alpha-700"
                 }
             ]
         },
@@ -200,6 +222,15 @@
                 "sublink-background": "var:preset|color|grey-300",
                 "sublink-hover": "var:preset|color|black"
             }
+        },
+        "dimensions": {
+            "aspectRatios": [
+                {
+                    "name": "Custom - 89:41",
+                    "slug": "89-41",
+                    "ratio": "89/41"
+                }
+            ]
         },
         "layout": {
             "contentSize": "1160px",
@@ -237,6 +268,11 @@
                     "name": "Elevation 600",
                     "shadow": "0 24px 40px 0 rgba(48, 49, 51, 0.08), 0 0 1px 0 rgba(48, 49, 51, 0.05)",
                     "slug": "elevation-600"
+                },
+                {
+                    "name": "Light 400",
+                    "shadow": "0 0 1px 0 rgba(48, 49, 51, 0.05), 0 8px 16px 0 rgba(48, 49, 51, 0.10)",
+                    "slug": "light-400"
                 }
             ]
         },
@@ -362,6 +398,12 @@
                 }
             ],
             "fontSizes": [
+                {
+                    "fluid": false,
+                    "name": "xxxs",
+                    "size": "0.75rem",
+                    "slug": "xxxs"
+                },
                 {
                     "fluid": false,
                     "name": "xxs",
@@ -957,7 +999,7 @@
                     "text": "var:preset|color|primary-500"
                 },
                 "typography": {
-                    "textDecoration": "none"
+                    "textDecoration": "underline"
                 }
             }
         },

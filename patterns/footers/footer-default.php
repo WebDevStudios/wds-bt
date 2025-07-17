@@ -2,7 +2,7 @@
 /**
  * Title: Default footer
  * Slug: wdsbt/footer
- * Categories: footer
+ * Categories: footers
  * Block Types: core/template-part/footer
  *
  * @package wdsbt

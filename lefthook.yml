@@ -48,7 +48,6 @@ pre-commit:
                     echo "$CONFLICT_FILES"
                     exit 1
                 fi
-            stage: false
 
         exit-status:
             run: echo "✅ All pre-commit checks passed!"
