@@ -49,6 +49,22 @@ function render_settings_page() {
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'wdsbt' ) . '</p></div>';
 	}
 
+	// Handle flush pattern registry request.
+	if ( isset( $_POST['wdsbt_flush_patterns'] ) && check_admin_referer( 'wdsbt_flush_patterns_action' ) ) {
+		wdsbt_flush_pattern_registry();
+		// Clear object cache.
+		if ( function_exists( 'wp_cache_flush' ) ) {
+			wp_cache_flush();
+		}
+		// Delete all transients.
+		global $wpdb;
+		$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%'" );
+		echo '<div class="notice notice-success is-dismissible"><p>Block pattern registry, Object cache and transients flushed.</p>';
+		echo '<p style="margin-top:1em;"><strong>Note:</strong> Due to WordPress caching, <u>new pattern categories and patterns may only appear after switching to another theme and back, or waiting for the cache to expire</u>. This is a WordPress limitation and does not affect production sites where patterns/categories are set before launch.</p></div>';
+		// Inject JS to notify the block editor.
+		echo "<script>if (window.localStorage) { localStorage.setItem('wdsbt_patterns_flushed', Date.now()); }</script>";
+	}
+
 	// Determine current status summary.
 	$loading_status = $global_value
 		? __( 'Speculative Loading is currently <strong>disabled globally</strong>.', 'wdsbt' )
@@ -60,45 +76,80 @@ function render_settings_page() {
 
 	<div class="wrap">
 		<h1><?php esc_html_e( 'WDSBT Settings', 'wdsbt' ); ?></h1>
-		<small><?php esc_html_e( 'Control optional features for this block theme.', 'wdsbt' ); ?></small>
+		<h2><?php esc_html_e( 'Control optional features for this block theme.', 'wdsbt' ); ?></h2>
 
 		<div class="notice notice-info" style="margin-top: 20px;">
 			<p><?php echo wp_kses_post( $loading_status ); ?></p>
 		</div>
 
-		<form method="post" style="margin-top: 2em;">
-			<?php wp_nonce_field( 'save_settings', 'settings_nonce' ); ?>
+		<div class="options-container" style="display: inline-flex; gap: 20px; width: 100%;">
 
 			<div class="card">
 				<h2 class="title"><?php esc_html_e( 'Performance Options', 'wdsbt' ); ?></h2>
 
-				<label style="display: flex; align-items: center; gap: 12px;">
-					<input type="checkbox" name="<?php echo esc_attr( $global_option ); ?>" <?php checked( $global_value ); ?> />
-					<h3><?php esc_html_e( 'Disable Speculative Loading for the Entire Site', 'wdsbt' ); ?></h3>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'No pages will be prefetched or prerendered.', 'wdsbt' ); ?>
-				</p>
+				<form method="post" style="margin-top: 2em;">
+					<?php wp_nonce_field( 'save_settings', 'settings_nonce' ); ?>
 
-				<label style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
-					<input type="checkbox" name="<?php echo esc_attr( $exclude_option ); ?>" <?php checked( $exclude_value ); ?> />
-					<h3><?php esc_html_e( 'Exclude sensitive pages only (e.g., Cart, Checkout)', 'wdsbt' ); ?></h3>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'Recommended for e-commerce and membership sites.', 'wdsbt' ); ?>
-				</p>
+					<label style="display: flex; align-items: center; gap: 12px;">
+						<input type="checkbox" name="<?php echo esc_attr( $global_option ); ?>" <?php checked( $global_value ); ?> />
+						<h3><?php esc_html_e( 'Disable Speculative Loading for the Entire Site', 'wdsbt' ); ?></h3>
+					</label>
+					<p class="description">
+						<?php esc_html_e( 'No pages will be prefetched or prerendered.', 'wdsbt' ); ?>
+					</p>
 
-				<label style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
-					<input type="checkbox" name="<?php echo esc_attr( $debug_option ); ?>" <?php checked( $debug_value ); ?> />
-					<h3><?php esc_html_e( 'Enable debug logging for speculative loading in console', 'wdsbt' ); ?></h3>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'Logs whether a page was prerendered, is prerendering, or was loaded normally.', 'wdsbt' ); ?>
-				</p>
+					<label style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
+						<input type="checkbox" name="<?php echo esc_attr( $exclude_option ); ?>" <?php checked( $exclude_value ); ?> />
+						<h3><?php esc_html_e( 'Exclude sensitive pages only (e.g., Cart, Checkout)', 'wdsbt' ); ?></h3>
+					</label>
+					<p class="description">
+						<?php esc_html_e( 'Recommended for e-commerce and membership sites.', 'wdsbt' ); ?>
+					</p>
 
-				<?php submit_button( __( 'Save Settings', 'wdsbt' ) ); ?>
+					<label style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
+						<input type="checkbox" name="<?php echo esc_attr( $debug_option ); ?>" <?php checked( $debug_value ); ?> />
+						<h3><?php esc_html_e( 'Enable debug logging for speculative loading in console', 'wdsbt' ); ?></h3>
+					</label>
+					<p class="description">
+						<?php esc_html_e( 'Logs whether a page was prerendered, is prerendering, or was loaded normally.', 'wdsbt' ); ?>
+					</p>
+
+					<?php submit_button( __( 'Save Settings', 'wdsbt' ) ); ?>
+				</form>
 			</div>
-		</form>
+
+			<div class="card">
+				<h2 class="title"><?php esc_html_e( 'Development Tools', 'wdsbt' ); ?></h2>
+
+				<form method="post">
+					<?php wp_nonce_field( 'wdsbt_flush_patterns_action' ); ?>
+					<p>
+						<input type="submit" name="wdsbt_flush_patterns" class="button button-primary" value="<?php esc_attr_e( 'Flush object cache and transients', 'wdsbt' ); ?>">
+					</p>
+				</form>
+			</div>
+		</div>
 	</div>
 	<?php
+}
+
+// Add flush pattern registry function if not present.
+if ( ! function_exists( 'wdsbt_flush_pattern_registry' ) ) {
+
+	/**
+	 * Flush pattern registry.
+	 */
+	function wdsbt_flush_pattern_registry() {
+		// Unregister all custom patterns (adjust 'wdsbt/' to your theme slug).
+		$patterns = \WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+		foreach ( $patterns as $pattern ) {
+			if ( strpos( $pattern['name'], 'wdsbt/' ) === 0 ) {
+				unregister_block_pattern( $pattern['name'] );
+			}
+		}
+		// Re-register categories and patterns.
+		if ( function_exists( 'wdsbt_register_dynamic_block_pattern_categories' ) ) {
+			wdsbt_register_dynamic_block_pattern_categories();
+		}
+	}
 }

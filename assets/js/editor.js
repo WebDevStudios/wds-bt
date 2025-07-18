@@ -33,3 +33,23 @@ wp.domReady(() => {
 		}
 	}
 });
+
+/* global alert */
+if (window.localStorage) {
+	window.addEventListener('storage', function (event) {
+		if (event.key === 'wdsbt_patterns_flushed') {
+			if (window.wp && window.wp.data) {
+				window.wp.data
+					.dispatch('core')
+					.invalidateResolution('getBlockPatterns');
+				window.wp.data
+					.dispatch('core')
+					.invalidateResolution('getBlockPatternCategories');
+				// eslint-disable-next-line no-alert
+				alert(
+					'Block patterns and categories have been refreshed. Please re-open the inserter to see new items.'
+				);
+			}
+		}
+	});
+}
