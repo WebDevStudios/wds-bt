@@ -43,67 +43,72 @@ if [ ! -f "package.json" ]; then
     print_warning "package.json not found in current directory"
 fi
 
-# Extract PHP version from composer.json
-print_status "Extracting PHP version from composer.json..."
+# Check if running in CI
+if [ "$CI" = "true" ]; then
+  print_status "CI environment detected. Skipping jq-dependent logic."
+else
+  # Extract PHP version from composer.json
+  print_status "Extracting PHP version from composer.json..."
 
-# Try to get PHP version from platform config first
-PHP_VERSION=$(jq -r '.["config"]["platform"]["php"] // empty' composer.json 2>/dev/null)
+  # Try to get PHP version from platform config first
+  PHP_VERSION=$(jq -r '.["config"]["platform"]["php"] // empty' composer.json 2>/dev/null)
 
-# If not found in platform config, try require-dev
-if [ -z "$PHP_VERSION" ] || [ "$PHP_VERSION" = "null" ]; then
-    PHP_VERSION=$(jq -r '.["require-dev"]["php"] // empty' composer.json 2>/dev/null)
-fi
+  # If not found in platform config, try require-dev
+  if [ -z "$PHP_VERSION" ] || [ "$PHP_VERSION" = "null" ]; then
+      PHP_VERSION=$(jq -r '.["require-dev"]["php"] // empty' composer.json 2>/dev/null)
+  fi
 
-# If still not found, try require
-if [ -z "$PHP_VERSION" ] || [ "$PHP_VERSION" = "null" ]; then
-    PHP_VERSION=$(jq -r '.["require"]["php"] // empty' composer.json 2>/dev/null)
-fi
+  # If still not found, try require
+  if [ -z "$PHP_VERSION" ] || [ "$PHP_VERSION" = "null" ]; then
+      PHP_VERSION=$(jq -r '.["require"]["php"] // empty' composer.json 2>/dev/null)
+  fi
 
-# Clean up version string (remove >=, ^, ~, etc.)
-PHP_VERSION=$(echo "$PHP_VERSION" | sed 's/[^0-9.]//g')
+  # Clean up version string (remove >=, ^, ~, etc.)
+  PHP_VERSION=$(echo "$PHP_VERSION" | sed 's/[^0-9.]//g')
 
-if [ -z "$PHP_VERSION" ] || [ "$PHP_VERSION" = "null" ]; then
-    print_error "Could not extract PHP version from composer.json"
-    print_status "Available PHP-related fields in composer.json:"
-    jq -r 'paths | select(.[-1] == "php") | join(".")' composer.json 2>/dev/null || print_warning "No PHP version found in composer.json"
-    exit 1
-fi
+  if [ -z "$PHP_VERSION" ] || [ "$PHP_VERSION" = "null" ]; then
+      print_error "Could not extract PHP version from composer.json"
+      print_status "Available PHP-related fields in composer.json:"
+      jq -r 'paths | select(.[-1] == "php") | join(".")' composer.json 2>/dev/null || print_warning "No PHP version found in composer.json"
+      exit 1
+  fi
 
-print_status "Extracted PHP version: $PHP_VERSION"
+  print_status "Extracted PHP version: $PHP_VERSION"
 
-# Extract additional information from composer.json
-print_status "Extracting additional information from composer.json..."
+  # Extract additional information from composer.json
+  print_status "Extracting additional information from composer.json..."
 
-COMPOSER_NAME=$(jq -r '.name // empty' composer.json 2>/dev/null)
-COMPOSER_DESCRIPTION=$(jq -r '.description // empty' composer.json 2>/dev/null)
-COMPOSER_VERSION=$(jq -r '.version // empty' composer.json 2>/dev/null)
-COMPOSER_LICENSE=$(jq -r '.license // empty' composer.json 2>/dev/null)
-COMPOSER_TYPE=$(jq -r '.type // empty' composer.json 2>/dev/null)
+  COMPOSER_NAME=$(jq -r '.name // empty' composer.json 2>/dev/null)
+  COMPOSER_DESCRIPTION=$(jq -r '.description // empty' composer.json 2>/dev/null)
+  COMPOSER_VERSION=$(jq -r '.version // empty' composer.json 2>/dev/null)
+  COMPOSER_LICENSE=$(jq -r '.license // empty' composer.json 2>/dev/null)
+  COMPOSER_TYPE=$(jq -r '.type // empty' composer.json 2>/dev/null)
 
-# Extract Node.js information from package.json if it exists
-NODE_VERSION=""
-NPM_VERSION=""
-PACKAGE_NAME=""
-PACKAGE_VERSION=""
-PACKAGE_DESCRIPTION=""
+  # Extract Node.js information from package.json if it exists
+  NODE_VERSION=""
+  NPM_VERSION=""
+  PACKAGE_NAME=""
+  PACKAGE_VERSION=""
+  PACKAGE_DESCRIPTION=""
 
-if [ -f "package.json" ]; then
-    print_status "Extracting information from package.json..."
+  if [ -f "package.json" ]; then
+      print_status "Extracting information from package.json..."
 
-    NODE_VERSION=$(jq -r '.engines.node // empty' package.json 2>/dev/null)
-    NPM_VERSION=$(jq -r '.engines.npm // empty' package.json 2>/dev/null)
-    PACKAGE_NAME=$(jq -r '.name // empty' package.json 2>/dev/null)
-    PACKAGE_VERSION=$(jq -r '.version // empty' package.json 2>/dev/null)
-    PACKAGE_DESCRIPTION=$(jq -r '.description // empty' package.json 2>/dev/null)
-fi
+      NODE_VERSION=$(jq -r '.engines.node // empty' package.json 2>/dev/null)
+      NPM_VERSION=$(jq -r '.engines.npm // empty' package.json 2>/dev/null)
+      PACKAGE_NAME=$(jq -r '.name // empty' package.json 2>/dev/null)
+      PACKAGE_VERSION=$(jq -r '.version // empty' package.json 2>/dev/null)
+      PACKAGE_DESCRIPTION=$(jq -r '.description // empty' package.json 2>/dev/null)
+  fi
 
-# Extract Composer scripts
-COMPOSER_SCRIPTS=$(jq -r '.scripts | to_entries[] | "  - " + .key + ": " + (if (.value|type)=="array" then (.value|join(" && ")) else .value end)' composer.json 2>/dev/null)
+  # Extract Composer scripts
+  COMPOSER_SCRIPTS=$(jq -r '.scripts | to_entries[] | "  - " + .key + ": " + (if (.value|type)=="array" then (.value|join(" && ")) else .value end)' composer.json 2>/dev/null)
 
-# Extract npm scripts
-NPM_SCRIPTS=""
-if [ -f "package.json" ]; then
-    NPM_SCRIPTS=$(jq -r '.scripts | to_entries[] | "  - " + .key + ": " + .value' package.json 2>/dev/null)
+  # Extract npm scripts
+  NPM_SCRIPTS=""
+  if [ -f "package.json" ]; then
+      NPM_SCRIPTS=$(jq -r '.scripts | to_entries[] | "  - " + .key + ": " + .value' package.json 2>/dev/null)
+  fi
 fi
 
 # Define Cursor rules directory
