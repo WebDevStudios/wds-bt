@@ -10,6 +10,8 @@ namespace WebDevStudios\wdsbt;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 
+require_once __DIR__ . '/helpers.php';
+
 /**
  * Get all available font files from a directory.
  *
@@ -202,28 +204,7 @@ function group_fonts_by_family( $fonts ) {
 	return $grouped;
 }
 
-/**
- * Map font family to standardized slug.
- *
- * @param string $family Font family name.
- * @return string Standardized slug.
- */
-function get_font_slug( $family ) {
-	$slug_mapping = array(
-		'Oxygen'           => 'body',
-		'Inter'            => 'headline',
-		'Roboto Mono'      => 'mono',
-		'Open Sans'        => 'body',
-		'Lato'             => 'body',
-		'Poppins'          => 'headline',
-		'Montserrat'       => 'headline',
-		'Raleway'          => 'headline',
-		'Playfair Display' => 'headline',
-		'Roboto'           => 'body',
-	);
 
-	return $slug_mapping[ $family ] ?? sanitize_title( $family );
-}
 
 /**
  * Filter theme.json data to include dynamically detected fonts.

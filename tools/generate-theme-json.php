@@ -9,6 +9,8 @@
 
 namespace WebDevStudios\wdsbt;
 
+require_once __DIR__ . '/helpers.php';
+
 /**
  * Scan directory for font files.
  *
@@ -20,9 +22,17 @@ function scan_font_directory( $directory ) {
 	$theme_dir = dirname( __DIR__, 1 );
 	$full_path = $theme_dir . '/' . $directory;
 
+
 	if ( ! is_dir( $full_path ) ) {
 		return $fonts;
 	}
+
+	// Keywords to ignore when detecting font family from filename.
+	$ignore_keywords = [
+		'100','200','300','400','500','600','700','800','900',
+		'thin','extralight','light','regular','medium','semibold',
+		'bold','extrabold','black','italic','oblique','normal'
+	];
 
 	$iterator = new \RecursiveIteratorIterator(
 		new \RecursiveDirectoryIterator( $full_path, \RecursiveDirectoryIterator::SKIP_DOTS )
@@ -34,10 +44,22 @@ function scan_font_directory( $directory ) {
 			$filename      = $file->getBasename();
 			$font_metadata = parse_font_filename( $filename );
 
+
 			// Detect font family from folder name (headline, body, mono).
 			$folder_name = basename( dirname( $file->getPathname() ) );
 
 			// Always use the detected family from the filename. The folder name is only used for purpose.
+			if ( 'Unknown' === $font_metadata['family'] ) {
+                // Remove extension
+                $base = preg_replace('/\.[^.]+$/','', $filename);
+                // Split by - or _
+                $parts = preg_split('/[-_]/', $base);
+                // Keep parts that are not in ignore_keywords
+                $clean_parts = array_filter($parts, function($part) use ($ignore_keywords) {
+                    return ! in_array(strtolower($part), $ignore_keywords, true);
+                });
+                $font_metadata['family'] = ucwords( implode(' ', $clean_parts) );
+            }
 
 			$variant_key = $font_metadata['family'] . '-' . $font_metadata['weight'] . '-' . $font_metadata['style'];
 
@@ -211,23 +233,6 @@ function sanitize_title( $title ) {
 	return trim( $title, '-' );
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\\get_font_slug' ) ) {
-	/**
-	 * Map font family to standardized slug.
-	 *
-	 * @param string $family Font family name.
-	 * @return string Standardized slug.
-	 */
-	function get_font_slug( $family ) {
-		$slug_mapping = array(
-			'Oxygen'      => 'body',
-			'Inter'       => 'headline',
-			'Roboto Mono' => 'mono',
-		);
-
-		return $slug_mapping[ $family ] ?? sanitize_title( $family );
-	}
-}
 
 /**
  * Generate theme.json with detected fonts.
