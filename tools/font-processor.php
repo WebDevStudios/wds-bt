@@ -139,85 +139,7 @@ function scan_font_files( $input_dir ) {
 	return $fonts;
 }
 
-/**
- * Parse font filename.
- *
- * @param string $filename Font filename to parse.
- * @return array Font metadata.
- */
-function parse_font_filename( $filename ) {
-	$metadata = array(
-		'family' => 'Unknown',
-		'weight' => '400',
-		'style'  => 'normal',
-	);
 
-	$family_patterns = array(
-		'inter'       => 'Inter',
-		'oxygen'      => 'Oxygen',
-		'roboto-mono' => 'Roboto Mono',
-		'roboto'      => 'Roboto',
-		'open-sans'   => 'Open Sans',
-		'lato'        => 'Lato',
-		'poppins'     => 'Poppins',
-		'montserrat'  => 'Montserrat',
-		'raleway'     => 'Raleway',
-		'playfair'    => 'Playfair Display',
-	);
-
-	$weight_patterns = array(
-		'-100'       => '100',
-		'-200'       => '200',
-		'-300'       => '300',
-		'-regular'   => '400',
-		'-normal'    => '400',
-		'-400'       => '400',
-		'-500'       => '500',
-		'-600'       => '600',
-		'-700'       => '700',
-		'-800'       => '800',
-		'-900'       => '900',
-		'thin'       => '100',
-		'extralight' => '200',
-		'light'      => '300',
-		'regular'    => '400',
-		'medium'     => '500',
-		'semibold'   => '600',
-		'bold'       => '700',
-		'extrabold'  => '800',
-		'black'      => '900',
-	);
-
-	$style_patterns = array(
-		'italic'  => 'italic',
-		'oblique' => 'oblique',
-	);
-
-	$lowercase_filename = strtolower( $filename );
-
-	foreach ( $family_patterns as $pattern => $family ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['family'] = $family;
-			break;
-		}
-	}
-
-	foreach ( $weight_patterns as $pattern => $weight ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['weight'] = $weight;
-			break;
-		}
-	}
-
-	foreach ( $style_patterns as $pattern => $style ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['style'] = $style;
-			break;
-		}
-	}
-
-	return $metadata;
-}
 
 /**
  * Copy fonts to output directory.
@@ -237,7 +159,7 @@ function copy_fonts_to_output( $fonts, $output_dir ) {
 
 	foreach ( $fonts as $font ) {
 		//$standardized_slug = get_font_slug( $font['family'] );
-		$standardized_slug = get_font_slug( $font['path'] );
+		$standardized_slug = wdsbt_get_font_slug( $font['path'] );
 		$family_dir        = $full_output_dir . '/' . $standardized_slug;
 
 		if ( ! is_dir( $family_dir ) ) {
@@ -308,7 +230,7 @@ function generate_font_preload( $fonts, $output_file ) {
 
 	foreach ( $preloaded as $font ) {
 		$format            = 'woff2' === $font['extension'] ? 'font/woff2' : 'font/woff';
-		$standardized_slug = get_font_slug( $font['family'] );
+		$standardized_slug = wdsbt_get_font_slug( $font['family'] );
 		$php              .= "    'fonts/{$standardized_slug}/{$font['filename']}' => '{$format}',\n";
 	}
 

@@ -203,7 +203,7 @@ function group_fonts_by_family( $fonts ) {
 		if ( ! isset( $grouped[ $family ] ) ) {
 			$grouped[ $family ] = array(
 				'name'       => $family,
-				'slug'       => get_font_slug( $family ),
+				'slug'       => wdsbt_get_font_slug( $family ),
 				'fontFamily' => $family . ', sans-serif',
 				'fontFace'   => array(),
 			);
