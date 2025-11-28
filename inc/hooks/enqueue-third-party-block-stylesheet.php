@@ -26,24 +26,38 @@ function enqueue_third_party_block_overrides() {
 		return;
 	}
 
-	$blocks      = parse_blocks( $post->post_content );
+	// Parse blocks efficiently with WP_Block_Processor (WordPress 6.9+), fallback to parse_blocks() for older versions.
 	$block_names = array();
 
-	$extract_block_names = function ( $blocks, &$block_names ) use ( &$extract_block_names ) {
-		foreach ( $blocks as $block ) {
-			if ( ! empty( $block['blockName'] ) ) {
-				// Only process non-core blocks.
-				if ( 0 !== strpos( $block['blockName'], 'core/' ) ) {
-					$block_names[] = $block['blockName'];
-				}
-			}
-			if ( ! empty( $block['innerBlocks'] ) ) {
-				$extract_block_names( $block['innerBlocks'], $block_names );
+	if ( class_exists( 'WP_Block_Processor' ) ) {
+		// WordPress 6.9+ - Use streaming block processor for better performance.
+		$processor = new \WP_Block_Processor( $post->post_content );
+		while ( $processor->next_block() ) {
+			$block_type = $processor->get_block_type();
+			// Only process non-core blocks.
+			if ( ! empty( $block_type ) && 0 !== strpos( $block_type, 'core/' ) ) {
+				$block_names[] = $block_type;
 			}
 		}
-	};
+	} else {
+		// Fallback for WordPress < 6.9.
+		$blocks              = parse_blocks( $post->post_content );
+		$extract_block_names = function ( $blocks, &$block_names ) use ( &$extract_block_names ) {
+			foreach ( $blocks as $block ) {
+				if ( ! empty( $block['blockName'] ) ) {
+					// Only process non-core blocks.
+					if ( 0 !== strpos( $block['blockName'], 'core/' ) ) {
+						$block_names[] = $block['blockName'];
+					}
+				}
+				if ( ! empty( $block['innerBlocks'] ) ) {
+					$extract_block_names( $block['innerBlocks'], $block_names );
+				}
+			}
+		};
+		$extract_block_names( $blocks, $block_names );
+	}
 
-	$extract_block_names( $blocks, $block_names );
 	$block_names = array_unique( $block_names );
 
 	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
