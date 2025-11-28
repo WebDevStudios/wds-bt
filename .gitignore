@@ -25,6 +25,7 @@ vendor/
 build/
 /blocks/
 !assets/blocks/
+inc/setup/font-preload.php
 
 #tests
 pa11y-ci-report/
