@@ -20,6 +20,17 @@ function register_block_showcase_shortcode() {
 add_action( 'init', __NAMESPACE__ . '\register_block_showcase_shortcode' );
 
 /**
+ * Allow data URIs in kses for block showcase images.
+ *
+ * @param array $protocols Allowed protocols.
+ * @return array Modified protocols.
+ */
+function allow_data_uris_in_showcase( $protocols ) {
+	$protocols[] = 'data';
+	return $protocols;
+}
+
+/**
  * Render block showcase shortcode.
  *
  * @param array  $atts    Shortcode attributes. Unused but required for shortcode signature.
@@ -61,8 +72,15 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 			$core_blocks_by_category[ $category ][ $block_name ] = $block_type;
 		}
 
-		// Display core blocks by category.
-		foreach ( $core_blocks_by_category as $category => $blocks ) :
+		// Define the order for core block categories.
+		$core_category_order = array( 'text', 'media', 'design', 'widgets', 'theme', 'embeds' );
+
+		// Display core blocks by category in the specified order.
+		foreach ( $core_category_order as $category ) :
+			if ( ! isset( $core_blocks_by_category[ $category ] ) || empty( $core_blocks_by_category[ $category ] ) ) {
+				continue;
+			}
+			$blocks = $core_blocks_by_category[ $category ];
 			if ( empty( $blocks ) ) {
 				continue;
 			}
@@ -85,8 +103,64 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<div class="wdsbt-showcase-block-meta">
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
 							</div>
+							<?php
+							$block_attributes = get_block_attributes_info( $block_type );
+							if ( ! empty( $block_attributes ) ) :
+								?>
+								<div class="wdsbt-showcase-block-attributes">
+									<details class="wdsbt-attributes-details">
+										<summary class="wdsbt-attributes-summary">Attributes (<?php echo esc_html( count( $block_attributes ) ); ?>)</summary>
+										<div class="wdsbt-attributes-list">
+											<?php foreach ( $block_attributes as $attr_name => $attr_info ) : ?>
+												<div class="wdsbt-attribute-item">
+													<code class="wdsbt-attribute-name"><?php echo esc_html( $attr_name ); ?></code>
+													<?php
+													$type_display = $attr_info['type'];
+													if ( is_array( $type_display ) || is_object( $type_display ) ) {
+														$type_display = wp_json_encode( $type_display );
+													} else {
+														$type_display = (string) $type_display;
+													}
+													?>
+													<span class="wdsbt-attribute-type"><?php echo esc_html( $type_display ); ?></span>
+													<?php if ( null !== $attr_info['default'] ) : ?>
+														<?php
+														$default_display = $attr_info['default'];
+														if ( is_array( $default_display ) || is_object( $default_display ) ) {
+															$default_display = wp_json_encode( $default_display );
+														} else {
+															$default_display = (string) $default_display;
+														}
+														?>
+														<span class="wdsbt-attribute-default">default: <?php echo esc_html( $default_display ); ?></span>
+													<?php endif; ?>
+													<?php if ( isset( $attr_info['enum'] ) && is_array( $attr_info['enum'] ) ) : ?>
+														<?php
+														$enum_display = array_map(
+															function ( $value ) {
+																if ( is_array( $value ) || is_object( $value ) ) {
+																	return wp_json_encode( $value );
+																}
+																return (string) $value;
+															},
+															$attr_info['enum']
+														);
+														?>
+														<span class="wdsbt-attribute-enum">options: <?php echo esc_html( implode( ', ', $enum_display ) ); ?></span>
+													<?php endif; ?>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									</details>
+								</div>
+							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
-								<?php echo wp_kses_post( $block_html ); ?>
+								<?php
+								// Temporarily allow data URIs for showcase images.
+								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+								echo wp_kses_post( $block_html );
+								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+								?>
 							</div>
 						</div>
 
@@ -114,8 +188,64 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<div class="wdsbt-showcase-block-meta">
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
 							</div>
+							<?php
+							$block_attributes = get_block_attributes_info( $block_type );
+							if ( ! empty( $block_attributes ) ) :
+								?>
+								<div class="wdsbt-showcase-block-attributes">
+									<details class="wdsbt-attributes-details">
+										<summary class="wdsbt-attributes-summary">Attributes (<?php echo esc_html( count( $block_attributes ) ); ?>)</summary>
+										<div class="wdsbt-attributes-list">
+											<?php foreach ( $block_attributes as $attr_name => $attr_info ) : ?>
+												<div class="wdsbt-attribute-item">
+													<code class="wdsbt-attribute-name"><?php echo esc_html( $attr_name ); ?></code>
+													<?php
+													$type_display = $attr_info['type'];
+													if ( is_array( $type_display ) || is_object( $type_display ) ) {
+														$type_display = wp_json_encode( $type_display );
+													} else {
+														$type_display = (string) $type_display;
+													}
+													?>
+													<span class="wdsbt-attribute-type"><?php echo esc_html( $type_display ); ?></span>
+													<?php if ( null !== $attr_info['default'] ) : ?>
+														<?php
+														$default_display = $attr_info['default'];
+														if ( is_array( $default_display ) || is_object( $default_display ) ) {
+															$default_display = wp_json_encode( $default_display );
+														} else {
+															$default_display = (string) $default_display;
+														}
+														?>
+														<span class="wdsbt-attribute-default">default: <?php echo esc_html( $default_display ); ?></span>
+													<?php endif; ?>
+													<?php if ( isset( $attr_info['enum'] ) && is_array( $attr_info['enum'] ) ) : ?>
+														<?php
+														$enum_display = array_map(
+															function ( $value ) {
+																if ( is_array( $value ) || is_object( $value ) ) {
+																	return wp_json_encode( $value );
+																}
+																return (string) $value;
+															},
+															$attr_info['enum']
+														);
+														?>
+														<span class="wdsbt-attribute-enum">options: <?php echo esc_html( implode( ', ', $enum_display ) ); ?></span>
+													<?php endif; ?>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									</details>
+								</div>
+							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
-								<?php echo wp_kses_post( $block_html ); ?>
+								<?php
+								// Temporarily allow data URIs for showcase images.
+								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+								echo wp_kses_post( $block_html );
+								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+								?>
 							</div>
 						</div>
 
@@ -142,8 +272,64 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<div class="wdsbt-showcase-block-meta">
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
 							</div>
+							<?php
+							$block_attributes = get_block_attributes_info( $block_type );
+							if ( ! empty( $block_attributes ) ) :
+								?>
+								<div class="wdsbt-showcase-block-attributes">
+									<details class="wdsbt-attributes-details">
+										<summary class="wdsbt-attributes-summary">Attributes (<?php echo esc_html( count( $block_attributes ) ); ?>)</summary>
+										<div class="wdsbt-attributes-list">
+											<?php foreach ( $block_attributes as $attr_name => $attr_info ) : ?>
+												<div class="wdsbt-attribute-item">
+													<code class="wdsbt-attribute-name"><?php echo esc_html( $attr_name ); ?></code>
+													<?php
+													$type_display = $attr_info['type'];
+													if ( is_array( $type_display ) || is_object( $type_display ) ) {
+														$type_display = wp_json_encode( $type_display );
+													} else {
+														$type_display = (string) $type_display;
+													}
+													?>
+													<span class="wdsbt-attribute-type"><?php echo esc_html( $type_display ); ?></span>
+													<?php if ( null !== $attr_info['default'] ) : ?>
+														<?php
+														$default_display = $attr_info['default'];
+														if ( is_array( $default_display ) || is_object( $default_display ) ) {
+															$default_display = wp_json_encode( $default_display );
+														} else {
+															$default_display = (string) $default_display;
+														}
+														?>
+														<span class="wdsbt-attribute-default">default: <?php echo esc_html( $default_display ); ?></span>
+													<?php endif; ?>
+													<?php if ( isset( $attr_info['enum'] ) && is_array( $attr_info['enum'] ) ) : ?>
+														<?php
+														$enum_display = array_map(
+															function ( $value ) {
+																if ( is_array( $value ) || is_object( $value ) ) {
+																	return wp_json_encode( $value );
+																}
+																return (string) $value;
+															},
+															$attr_info['enum']
+														);
+														?>
+														<span class="wdsbt-attribute-enum">options: <?php echo esc_html( implode( ', ', $enum_display ) ); ?></span>
+													<?php endif; ?>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									</details>
+								</div>
+							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
-								<?php echo wp_kses_post( $block_html ); ?>
+								<?php
+								// Temporarily allow data URIs for showcase images.
+								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+								echo wp_kses_post( $block_html );
+								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+								?>
 							</div>
 						</div>
 

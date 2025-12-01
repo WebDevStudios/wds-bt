@@ -71,8 +71,8 @@ function get_block_showcase_content( $block_name, $block_type ) {
 	// Core block defaults.
 	$core_defaults = array(
 		'core/paragraph'       => '<!-- wp:paragraph --><p>This is a paragraph block with <strong>formatted text</strong> and <em>emphasis</em>.</p><!-- /wp:paragraph -->',
-		'core/heading'         => '<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Heading Block</h3><!-- /wp:heading -->',
-		'core/list'            => '<!-- wp:list --><ul class="wp-block-list"><li>List item one</li><li>List item two</li><li>List item three</li></ul><!-- /wp:list -->',
+		'core/heading'         => '<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Heading H1</h1><!-- /wp:heading --><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Heading H2</h2><!-- /wp:heading --><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Heading H3</h3><!-- /wp:heading --><!-- wp:heading {"level":4} --><h4 class="wp-block-heading">Heading H4</h4><!-- /wp:heading --><!-- wp:heading {"level":5} --><h5 class="wp-block-heading">Heading H5</h5><!-- /wp:heading --><!-- wp:heading {"level":6} --><h6 class="wp-block-heading">Heading H6</h6><!-- /wp:heading -->',
+		'core/list'            => '<!-- wp:list {"type":"decimal"} --><ul class="wp-block-list"><!-- wp:list-item --><li>These words these are these these example are words example these example.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Example words are example are these are example are these.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Words these example are words are these words example are these example words.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Example are example are example these words these example words.</li><!-- /wp:list-item --></ul><!-- /wp:list -->',
 		'core/quote'           => '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph --><p>This is a quote block for highlighting important statements.</p><!-- /wp:paragraph --><cite>Citation</cite></blockquote><!-- /wp:quote -->',
 		'core/code'            => '<!-- wp:code --><pre class="wp-block-code"><code>function example() {
     return \'code\';
@@ -85,12 +85,13 @@ function get_block_showcase_content( $block_name, $block_type ) {
 		'core/verse'           => '<!-- wp:verse --><pre class="wp-block-verse">This is a verse block,
     perfect for poetry
         and special formatting.</pre><!-- /wp:verse -->',
-		'core/image'           => '<!-- wp:image {"sizeSlug":"medium"} --><figure class="wp-block-image size-medium"><img src="https://via.placeholder.com/400x300" alt="Placeholder"/></figure><!-- /wp:image -->',
-		'core/gallery'         => '<!-- wp:gallery {"linkTo":"none","columns":3,"sizeSlug":"thumbnail"} --><figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><figure class="wp-block-image size-thumbnail"><img src="https://via.placeholder.com/150" alt="Gallery 1"/></figure><figure class="wp-block-image size-thumbnail"><img src="https://via.placeholder.com/150" alt="Gallery 2"/></figure><figure class="wp-block-image size-thumbnail"><img src="https://via.placeholder.com/150" alt="Gallery 3"/></figure></figure><!-- /wp:gallery -->',
+		'core/image'           => '<!-- wp:image {"sizeSlug":"medium"} --><figure class="wp-block-image size-medium"><img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect width=\'400\' height=\'300\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'16\' fill=\'%23999\'%3E400x300%3C/text%3E%3C/svg%3E" alt="Placeholder"/></figure><!-- /wp:image -->',
+		'core/gallery'         => '<!-- wp:gallery {"linkTo":"none","columns":3,"sizeSlug":"thumbnail"} --><figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><figure class="wp-block-image size-thumbnail"><img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'%3E%3Crect width=\'150\' height=\'150\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'12\' fill=\'%23999\'%3E150x150%3C/text%3E%3C/svg%3E" alt="Gallery 1"/></figure><figure class="wp-block-image size-thumbnail"><img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'%3E%3Crect width=\'150\' height=\'150\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'12\' fill=\'%23999\'%3E150x150%3C/text%3E%3C/svg%3E" alt="Gallery 2"/></figure><figure class="wp-block-image size-thumbnail"><img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\'%3E%3Crect width=\'150\' height=\'150\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'12\' fill=\'%23999\'%3E150x150%3C/text%3E%3C/svg%3E" alt="Gallery 3"/></figure></figure><!-- /wp:gallery -->',
 		'core/audio'           => '<!-- wp:audio --><figure class="wp-block-audio"><audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio></figure><!-- /wp:audio -->',
-		'core/cover'           => '<!-- wp:cover {"url":"https://via.placeholder.com/400x300","dimRatio":50,"overlayColor":"black-alpha-50"} --><div class="wp-block-cover has-black-alpha-50-background-color has-background-dim" style="background-image:url(https://via.placeholder.com/400x300)"><span aria-hidden="true" class="wp-block-cover__background has-black-alpha-50-background-color has-background-dim__100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"align":"center","fontSize":"small"} --><p class="has-text-align-center has-small-font-size">Cover Block</p><!-- /wp:paragraph --></div></div><!-- /wp:cover -->',
+		'core/accordion'       => '<!-- wp:accordion --><div role="group" class="wp-block-accordion"><!-- wp:accordion-item --><div class="wp-block-accordion-item"><!-- wp:accordion-heading --><h3 class="wp-block-accordion-heading"><button class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">Accordion Title 1</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3><!-- /wp:accordion-heading --><!-- wp:accordion-panel --><div role="region" class="wp-block-accordion-panel"><!-- wp:paragraph --><p>Words these example words these example are example these example are words. These example these example words example words are words are these example these words these. Example words example are example these example are example. Example words these are these words example these words are these words. Words these are example these example these are.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>Are these example are example these are words example are words are. Example are these example words example are these are example. Example are words these are words are words these are. These are example these example these words are words are. Are example these example words example are example words are these words these.</p><!-- /wp:paragraph --></div><!-- /wp:accordion-panel --></div><!-- /wp:accordion-item --><!-- wp:accordion-item --><div class="wp-block-accordion-item"><!-- wp:accordion-heading --><h3 class="wp-block-accordion-heading"><button class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">Accordion Title 2</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3><!-- /wp:accordion-heading --><!-- wp:accordion-panel --><div role="region" class="wp-block-accordion-panel"><!-- wp:list --><ul class="wp-block-list"><!-- wp:list-item --><li>Are words these words example words are these are these words.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Are these example are these words these words example these example are these are these.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Example are these example words these example are these words.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Are words example are words example these example these example words example.</li><!-- /wp:list-item --></ul><!-- /wp:list --></div><!-- /wp:accordion-panel --></div><!-- /wp:accordion-item --></div><!-- /wp:accordion -->',
+		'core/cover'           => '<!-- wp:cover {"dimRatio":50,"overlayColor":"black-alpha-50"} --><div class="wp-block-cover has-black-alpha-50-background-color has-background-dim" style="background-image:url(data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect width=\'400\' height=\'300\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'16\' fill=\'%23999\'%3E400x300%3C/text%3E%3C/svg%3E)"><span aria-hidden="true" class="wp-block-cover__background has-black-alpha-50-background-color has-background-dim__100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"align":"center","fontSize":"small"} --><p class="has-text-align-center has-small-font-size">Cover Block</p><!-- /wp:paragraph --></div></div><!-- /wp:cover -->',
 		'core/file'            => '<!-- wp:file {"href":"https://example.com/sample.pdf","showDownloadButton":true} --><div class="wp-block-file"><a href="https://example.com/sample.pdf" class="wp-block-file__button" download>Download</a> <a href="https://example.com/sample.pdf">sample.pdf</a></div><!-- /wp:file -->',
-		'core/media-text'      => '<!-- wp:media-text {"mediaType":"image","mediaWidth":50} --><div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:50% auto"><figure class="wp-block-media-text__media"><img src="https://via.placeholder.com/300x200" alt="Media & Text"/></figure><div class="wp-block-media-text__content"><!-- wp:paragraph --><p>Media &amp; Text Block</p><!-- /wp:paragraph --></div></div><!-- /wp:media-text -->',
+		'core/media-text'      => '<!-- wp:media-text {"mediaType":"image","mediaWidth":50} --><div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:50% auto"><figure class="wp-block-media-text__media"><img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'200\'%3E%3Crect width=\'300\' height=\'200\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'14\' fill=\'%23999\'%3E300x200%3C/text%3E%3C/svg%3E" alt="Media & Text"/></figure><div class="wp-block-media-text__content"><!-- wp:paragraph --><p>Media &amp; Text Block</p><!-- /wp:paragraph --></div></div><!-- /wp:media-text -->',
 		'core/video'           => '<!-- wp:video --><figure class="wp-block-video"><video controls src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"></video></figure><!-- /wp:video -->',
 		'core/buttons'         => '<!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Button</a></div><!-- /wp:button --></div><!-- /wp:buttons -->',
 		'core/columns'         => '<!-- wp:columns --><div class="wp-block-columns"><!-- wp:column --><div class="wp-block-column"><!-- wp:paragraph {"fontSize":"small"} --><p class="has-small-font-size">Column 1</p><!-- /wp:paragraph --></div><!-- /wp:column --><!-- wp:column --><div class="wp-block-column"><!-- wp:paragraph {"fontSize":"small"} --><p class="has-small-font-size">Column 2</p><!-- /wp:paragraph --></div><!-- /wp:column --></div><!-- /wp:columns -->',
@@ -111,7 +112,7 @@ function get_block_showcase_content( $block_name, $block_type ) {
 		'core/site-logo'       => '<!-- wp:site-logo {"width":100} /-->',
 		'core/site-title'      => '<!-- wp:site-title /-->',
 		'core/site-tagline'    => '<!-- wp:site-tagline /-->',
-		'core/embed'           => '<!-- wp:embed {"url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ","type":"video","providerNameSlug":"youtube","responsive":true} --><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">https://www.youtube.com/watch?v=dQw4w9WgXcQ</div></figure><!-- /wp:embed -->',
+		'core/embed'           => '<!-- wp:embed {"url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->\n<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\n</div></figure>\n<!-- /wp:embed -->',
 	);
 
 	if ( isset( $core_defaults[ $block_name ] ) ) {
@@ -162,46 +163,29 @@ function render_block_for_showcase( $block_name, $block_type ) {
 		return '<p><em>This block type cannot be previewed in the showcase.</em></p>';
 	}
 
-	// Use WP_Block_Processor to parse and render if available.
-	if ( class_exists( 'WP_Block_Processor' ) ) {
-		try {
-			$processor = new \WP_Block_Processor( $block_content );
-			if ( $processor->next_block() ) {
-				// Extract the full block HTML.
-				$block_html = $processor->extract_full_block_and_advance();
-				// Ensure we return a string.
-				if ( is_string( $block_html ) ) {
-					return $block_html;
-				}
-			}
-		} catch ( Exception $e ) {
-			// If processor fails, fall through to fallback method.
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'WP_Block_Processor error for ' . $block_name . ': ' . $e->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+	// Use do_blocks() to properly render block content.
+	// This ensures all block attributes and content are properly processed,
+	// including image sources with data URIs.
+	// For embed blocks, do_blocks() will process them through WordPress's oEmbed system.
+	$rendered = do_blocks( $block_content );
+
+	// For embed blocks, if the result is empty or just shows the URL,
+	// the embed might need additional processing or might not be available.
+	// In that case, show a helpful message.
+	if ( 'core/embed' === $block_name ) {
+		// Check if the rendered output is just the URL or empty.
+		$blocks = parse_blocks( $block_content );
+		if ( ! empty( $blocks ) && ! empty( $blocks[0]['attrs']['url'] ) ) {
+			$url = $blocks[0]['attrs']['url'];
+			// If the rendered output doesn't contain iframe or embed-like content,
+			// it might not have been processed correctly.
+			if ( empty( $rendered ) || ( false === strpos( $rendered, '<iframe' ) && false === strpos( $rendered, 'wp-block-embed' ) ) ) {
+				return '<div class="wp-block-embed"><p><em>Embed preview not available. URL: <a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $url ) . '</a></em></p></div>';
 			}
 		}
 	}
 
-	// Fallback: use parse_blocks and render_block.
-	$blocks = parse_blocks( $block_content );
-	if ( empty( $blocks ) ) {
-		return '';
-	}
-
-	$output = '';
-	foreach ( $blocks as $block ) {
-		$rendered = render_block( $block );
-		// Ensure render_block returns a string.
-		if ( is_string( $rendered ) ) {
-			$output .= $rendered;
-		} elseif ( is_array( $rendered ) ) {
-			// If render_block returns an array, it might be an error or special case.
-			// Skip it or convert to string representation.
-			continue;
-		}
-	}
-
-	return $output;
+	return $rendered;
 }
 
 /**
@@ -218,6 +202,39 @@ function get_block_display_name( $block_name ) {
 }
 
 /**
+ * Get formatted block attributes for display.
+ *
+ * @param object $block_type The block type object.
+ * @return array Array of formatted attribute information.
+ */
+function get_block_attributes_info( $block_type ) {
+	if ( ! isset( $block_type->attributes ) || ! is_array( $block_type->attributes ) || empty( $block_type->attributes ) ) {
+		return array();
+	}
+
+	$attributes_info = array();
+	foreach ( $block_type->attributes as $attr_name => $attr_config ) {
+		$info = array(
+			'name'    => $attr_name,
+			'type'    => isset( $attr_config['type'] ) ? $attr_config['type'] : 'unknown',
+			'default' => isset( $attr_config['default'] ) ? $attr_config['default'] : null,
+		);
+
+		// Add additional info based on type.
+		if ( isset( $attr_config['enum'] ) ) {
+			$info['enum'] = $attr_config['enum'];
+		}
+		if ( isset( $attr_config['source'] ) ) {
+			$info['source'] = $attr_config['source'];
+		}
+
+		$attributes_info[ $attr_name ] = $info;
+	}
+
+	return $attributes_info;
+}
+
+/**
  * Get block category for organization.
  *
  * @param string $block_name The fully qualified block name.
@@ -228,7 +245,7 @@ function get_block_category( $block_name ) {
 	$core_categories = array(
 		'text'    => array( 'paragraph', 'heading', 'list', 'quote', 'code', 'preformatted', 'pullquote', 'table', 'verse' ),
 		'media'   => array( 'image', 'gallery', 'audio', 'cover', 'file', 'media-text', 'video' ),
-		'design'  => array( 'buttons', 'columns', 'group', 'separator', 'spacer' ),
+		'design'  => array( 'accordion', 'buttons', 'columns', 'group', 'separator', 'spacer' ),
 		'widgets' => array( 'shortcode', 'archives', 'calendar', 'categories', 'html', 'latest-comments', 'latest-posts', 'page-list', 'search', 'social-links', 'tag-cloud' ),
 		'theme'   => array( 'site-logo', 'site-title', 'site-tagline', 'query', 'post-title', 'post-content', 'post-excerpt', 'post-featured-image', 'post-date', 'post-author', 'post-categories', 'post-tags', 'loginout', 'comments' ),
 		'embeds'  => array( 'embed' ),

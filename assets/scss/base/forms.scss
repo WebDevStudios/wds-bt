@@ -3,12 +3,12 @@
 input,
 select,
 textarea {
-	border-radius: 6px;
-	border: 2px solid var(--wp--preset--color--grey-300) !important; /* stylelint-disable-line declaration-no-important */
-	color: var(--wp--preset--color--black);
-	font-size: var(--wp-wp--preset--font-size--xs);
-	margin-top: 0.5rem;
-	padding: 0.625rem 1rem;
+	border-radius: var(--wp--preset--border-radius--sm);
+	border: 1px solid var(--wp--preset--color--contrast, rgba(0, 0, 0, 0.1));
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--small);
+	margin-top: var(--wp--preset--spacing--20);
+	padding: var(--wp--preset--spacing--20);
 	width: 100%;
 }
 
@@ -28,8 +28,8 @@ select {
 	}
 
 	option {
-		background-color: var(--wp--preset--color--white);
-		color: inherit;
+		background-color: var(--wp--preset--color--base);
+		color: var(--wp--preset--color--contrast);
 	}
 }
 
@@ -50,7 +50,6 @@ textarea {
 }
 
 input[type='submit'] {
-	border: none !important; /* stylelint-disable-line declaration-no-important */
 	border-radius: 4px;
 	padding: 0.625rem 1.125rem;
 }
@@ -65,7 +64,7 @@ textarea:focus {
 }
 
 label {
-	color: var(--wp--preset--color--black);
+	color: var(--wp--preset--color--contrast);
 	display: inline-block;
 	font-weight: 700;
 	letter-spacing: 0.032px;

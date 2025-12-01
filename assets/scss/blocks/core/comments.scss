@@ -6,31 +6,19 @@
 	margin-bottom: var(--wp--preset--spacing--60);
 	margin-top: var(--wp--preset--spacing--60);
 
-	> * {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: calc(
-			var(--wp--style--global--content-size) - 30%
-		) !important; /* stylelint-disable-line declaration-no-important */
-	}
-
 	.wp-block-comment-author-name {
-
 		a {
 			color: var(--wp--preset--color--black);
 			font-family: var(--wp--preset--font-family--headline);
-			font-size: var(--wp--preset--font-size--xs);
 			font-weight: 700;
 			text-decoration: none;
 		}
 	}
 
 	.wp-block-comment-date {
-
 		a {
 			color: var(--wp--preset--color--black);
 			font-family: var(--wp--preset--font-family--headline);
-			font-size: var(--wp--preset--font-size--xs);
 			font-weight: 500;
 			text-decoration: none;
 		}
@@ -38,22 +26,19 @@
 
 	.wp-block-comment-edit-link,
 	.wp-block-comment-reply-link {
-
 		a {
-			color: var(--wp--preset--color--primary-500);
+			color: var(--wp--preset--color--contrast);
 			font-family: var(--wp--preset--font-family--headline);
-			font-size: var(--wp--preset--font-size--xs);
 			text-decoration: none;
 
 			&:hover,
 			&:active {
-				color: var(--wp--preset--color--primary-700);
+				color: var(--wp--preset--color--accent-1);
 			}
 		}
 	}
 
 	.wp-block-comment-template {
-
 		ol {
 			padding-left: 4rem;
 
@@ -68,7 +53,7 @@
 		margin-top: var(--wp--preset--spacing--30);
 
 		.comment-reply-title {
-			font-size: var(--wp--preset--font-size--m);
+			font-size: var(--wp--preset--font-size--medium);
 		}
 	}
 

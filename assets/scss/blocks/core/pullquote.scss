@@ -1,36 +1,22 @@
 /* -- pullquote -- */
 
+/* stylelint-disable declaration-no-important, declaration-property-unit-allowed-list */
 .wp-block-pullquote {
-
-	&.alignwide {
-		max-width: calc(
-			var(--wp--style--global--content-size) - 30%
-		) !important; /* stylelint-disable-line declaration-no-important */
-	}
-
-	blockquote {
-		margin: 0;
-	}
-
-	&.has-text-align-left,
 	&.has-text-align-right {
+		cite {
+			text-align: right;
+		}
+	}
 
-		blockquote {
-			max-width: 20.938rem;
+	&.has-text-align-center {
+		cite {
 			text-align: center;
 		}
 	}
 
-	p {
-		font-size: var(--wp--preset--font-size--m);
-		font-style: inherit;
-		margin: 0;
-	}
-
 	cite {
-		display: inline-block;
-		margin-top: 0.75rem;
-		text-align: center;
+		font-size: 80%;
+		font-variant: small-caps;
 
 		&::before {
 			content: '—';
@@ -38,3 +24,4 @@
 		}
 	}
 }
+/* stylelint-enable declaration-no-important, declaration-property-unit-allowed-list */

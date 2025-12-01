@@ -5,7 +5,7 @@
 .wp-block-post-author {
 	.wp-block-post-author__byline {
 		font-family: var(--wp--preset--font-family--body);
-		font-size: var(--wp--preset--font-size--xxs);
+		font-size: var(--wp--preset--font-size--small);
 		margin-bottom: var(--wp--preset--spacing--20);
 		margin-top: var(--wp--preset--spacing--20);
 	}
@@ -13,14 +13,14 @@
 	.wp-block-post-author__name {
 		a {
 			font-family: var(--wp--preset--font-family--headline);
-			font-size: var(--wp--preset--font-size--m);
+			font-size: var(--wp--preset--font-size--medium);
 			text-decoration: none;
 		}
 	}
 
 	.wp-block-post-author__bio {
 		font-family: var(--wp--preset--font-family--body);
-		font-size: var(--wp--preset--font-size--xs);
+		font-size: var(--wp--preset--font-size--small);
 		margin-top: 0.5rem;
 	}
 }

@@ -1,11 +1,8 @@
 /* -- gallery -- */
 
 .wp-block-gallery {
-
 	&.has-nested-images {
-
 		figure.wp-block-image {
-
 			figcaption {
 				background: var(
 					--wp--preset--color--white
@@ -14,7 +11,7 @@
 					--wp--preset--color--black
 				) !important; /* stylelint-disable-line declaration-no-important */
 				font-size: var(
-					--wp--preset--font-size--xxs
+					--wp--preset--font-size--small
 				) !important; /* stylelint-disable-line declaration-no-important */
 				padding: 0.625rem;
 			}
