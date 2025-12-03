@@ -52,7 +52,7 @@ function add_back_to_top_button() {
 	</script>
 	<style>
 		.back-to-top {
-			background: var(--wp--preset--color--primary-500);
+			background: var(--wp--preset--color--accent-1);
 			border-radius: 5px;
 			bottom: 1.25rem;
 			color: var(--wp--preset--color--white);
@@ -65,7 +65,8 @@ function add_back_to_top_button() {
 		}
 
 		.back-to-top:hover {
-			background: var(--wp--preset--color--primary-700);
+			background: var(--wp--preset--color--contrast);
+			color: var(--wp--preset--color--accent-1);
 		}
 
 		.back-to-top.show {
