@@ -2,10 +2,9 @@
 
 /* Search */
 .wp-block-search {
-
 	.wp-block-search__inside-wrapper {
 		border-radius: 4px;
-		border: 2px solid transparent;
+		border: px solid transparent;
 		margin-top: 0;
 	}
 
@@ -34,7 +33,6 @@
 	}
 
 	&.wp-block-search__button-inside {
-
 		.wp-block-search__inside-wrapper {
 			border-color: var(--wp--preset--color--grey-300);
 			padding: 0.625rem 0.875rem 0.625rem 0;
@@ -48,7 +46,6 @@
 	}
 
 	&.wp-block-search__button-only {
-
 		.wp-block-search__inside-wrapper {
 			align-items: center;
 			border-color: var(--wp--preset--color--grey-300);
@@ -64,7 +61,6 @@
 		}
 
 		&.wp-block-search__searchfield-hidden {
-
 			.wp-block-search__inside-wrapper {
 				border-color: transparent;
 			}
@@ -72,9 +68,7 @@
 	}
 
 	&.wp-block-search__button-outside {
-
 		.wp-block-search__inside-wrapper {
-
 			.wp-block-search__input {
 				padding: 0.625rem 1rem;
 			}

@@ -8,14 +8,82 @@
 
 // Block showcase styles
 .wdsbt-block-showcase {
+	.wdsbt-showcase-section-heading {
+		color: var(--wp--preset--color--contrast, #000);
+		margin-top: var(--wp--preset--spacing--60, 3rem);
+		margin-bottom: var(--wp--preset--spacing--40, 2rem);
+		padding-bottom: var(--wp--preset--spacing--20, 1rem);
+		border-bottom: 2px solid
+			var(--wp--preset--color--contrast-2, rgba(0, 0, 0, 0.1));
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
 	.wdsbt-showcase-category {
 		margin-bottom: var(--wp--preset--spacing--gap);
+		margin-top: var(--wp--preset--spacing--gap);
 
-		.wdsbt-showcase-category-title {
-			margin-bottom: var(--wp--preset--spacing--40);
-			border-bottom: 2px solid
-				var(--wp--preset--color--contrast, rgba(0, 0, 0, 0.1));
-			padding-bottom: var(--wp--preset--spacing--40);
+		.wp-block-accordion {
+			background: var(--wp--preset--color--base, #fff);
+			overflow: hidden;
+		}
+
+		.wp-block-accordion-item {
+			.wdsbt-showcase-category-title {
+				color: var(--wp--preset--color--contrast);
+				margin: 0;
+				border-bottom: none;
+				padding: 0;
+
+				.wp-block-accordion-heading__toggle {
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					padding: var(--wp--preset--spacing--40);
+					background: transparent;
+					border: none;
+					cursor: pointer;
+					text-align: left;
+					font-size: inherit;
+					font-weight: 600;
+					color: inherit;
+					transition: background-color 0.2s ease;
+
+					&:hover {
+						background: var(--wp--preset--color--base-2, #f5f5f5);
+					}
+
+					.wp-block-accordion-heading__toggle-title {
+						flex: 1;
+					}
+
+					.wp-block-accordion-heading__toggle-icon {
+						font-size: 1.5rem;
+						line-height: 1;
+						transition: transform 0.2s ease;
+						margin-left: var(--wp--preset--spacing--20);
+					}
+
+					&[aria-expanded='true'] {
+						.wp-block-accordion-heading__toggle-icon {
+							transform: rotate(45deg);
+						}
+					}
+				}
+			}
+
+			.wp-block-accordion-panel {
+				display: none;
+				padding: var(--wp--preset--spacing--40);
+
+				// Show panel when aria-hidden is explicitly set to false.
+				&[aria-hidden='false'] {
+					display: block;
+				}
+			}
 		}
 
 		.wdsbt-showcase-blocks {
@@ -51,8 +119,8 @@
 						--wp--preset--color--contrast,
 						rgba(0, 0, 0, 0.6)
 					);
-					background: var(--wp--preset--color--base-2, #f5f5f5);
 					font-size: var(--wp--preset--font-size--small);
+					background: var(--wp--preset--color--base-2, #f5f5f5);
 					padding: var(--wp--preset--spacing--30);
 					border-radius: var(--wp--preset--border-radius--sm);
 				}
@@ -67,7 +135,7 @@
 				.wdsbt-attributes-details {
 					.wdsbt-attributes-summary {
 						cursor: pointer;
-						font-size: 0.875rem;
+						font-size: var(--wp--preset--font-size--small);
 						color: var(
 							--wp--preset--color--contrast,
 							rgba(0, 0, 0, 0.7)
