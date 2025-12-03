@@ -38,7 +38,6 @@ function allow_data_uris_in_showcase( $protocols ) {
  * @return string Rendered HTML.
  */
 function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
-	// Unused parameters - required for shortcode callback signature.
 	unset( $atts, $content );
 	// Only allow admins to see the showcase.
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -62,7 +61,6 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 
 	<div class="wdsbt-block-showcase">
 		<?php
-		// Process core blocks by category.
 		$core_blocks_by_category = array();
 		foreach ( $organized_blocks['core'] as $block_name => $block_type ) {
 			$category = get_block_category( $block_name );
@@ -72,10 +70,14 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 			$core_blocks_by_category[ $category ][ $block_name ] = $block_type;
 		}
 
-		// Define the order for core block categories.
 		$core_category_order = array( 'text', 'media', 'design', 'widgets', 'theme', 'embeds' );
 
-		// Display core blocks by category in the specified order.
+		if ( ! empty( $organized_blocks['core'] ) ) :
+			?>
+			<h2 class="wdsbt-showcase-section-heading">Core Blocks</h2>
+			<?php
+		endif;
+
 		foreach ( $core_category_order as $category ) :
 			if ( ! isset( $core_blocks_by_category[ $category ] ) || empty( $core_blocks_by_category[ $category ] ) ) {
 				continue;
@@ -87,9 +89,16 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 			?>
 
 			<div class="wdsbt-showcase-category">
-				<h2 class="wdsbt-showcase-category-title"><?php echo esc_html( $category_labels[ $category ] ?? ucfirst( $category ) ); ?></h2>
-
-				<div class="wdsbt-showcase-blocks">
+				<div role="group" class="wp-block-accordion">
+					<div class="wp-block-accordion-item">
+						<div class="wp-block-accordion-heading wdsbt-showcase-category-title">
+							<button class="wp-block-accordion-heading__toggle" type="button" aria-expanded="false">
+								<span class="wp-block-accordion-heading__toggle-title"><?php echo esc_html( $category_labels[ $category ] ?? ucfirst( $category ) ); ?> (<?php echo esc_html( count( $blocks ) ); ?>)</span>
+								<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
+							</button>
+						</div>
+						<div role="region" class="wp-block-accordion-panel" aria-hidden="true">
+							<div class="wdsbt-showcase-blocks">
 					<?php foreach ( $blocks as $block_name => $block_type ) : ?>
 						<?php
 						$block_html = render_block_for_showcase( $block_name, $block_type );
@@ -156,25 +165,64 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
 								<?php
-								// Temporarily allow data URIs for showcase images.
 								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-								echo wp_kses_post( $block_html );
+								$allowed_html           = wp_kses_allowed_html( 'post' );
+								$allowed_html['input']  = array(
+									'type'             => true,
+									'name'             => true,
+									'value'            => true,
+									'placeholder'      => true,
+									'required'         => true,
+									'id'               => true,
+									'class'            => true,
+									'aria-label'       => true,
+									'aria-labelledby'  => true,
+									'aria-describedby' => true,
+								);
+								$allowed_html['button'] = array(
+									'type'            => true,
+									'class'           => true,
+									'aria-label'      => true,
+									'aria-labelledby' => true,
+								);
+								$allowed_html['form']   = array(
+									'action' => true,
+									'method' => true,
+									'class'  => true,
+									'role'   => true,
+								);
+								$allowed_html['label']  = array(
+									'for'   => true,
+									'class' => true,
+								);
+								echo wp_kses( $block_html, $allowed_html );
 								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
 								?>
 							</div>
 						</div>
 
 					<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
 		<?php endforeach; ?>
 
 		<?php if ( ! empty( $organized_blocks['wdsbt'] ) ) : ?>
+			<h2 class="wdsbt-showcase-section-heading">WDSBT Blocks</h2>
 			<div class="wdsbt-showcase-category">
-				<h2 class="wdsbt-showcase-category-title"><?php echo esc_html( $category_labels['wdsbt'] ); ?></h2>
-
-				<div class="wdsbt-showcase-blocks">
+				<div role="group" class="wp-block-accordion">
+					<div class="wp-block-accordion-item">
+						<h2 class="wp-block-accordion-heading wdsbt-showcase-category-title">
+							<button class="wp-block-accordion-heading__toggle" type="button" aria-expanded="false">
+								<span class="wp-block-accordion-heading__toggle-title"><?php echo esc_html( $category_labels['wdsbt'] ); ?> (<?php echo esc_html( count( $organized_blocks['wdsbt'] ) ); ?>)</span>
+								<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
+							</button>
+						</h2>
+						<div role="region" class="wp-block-accordion-panel" aria-hidden="true">
+							<div class="wdsbt-showcase-blocks">
 					<?php foreach ( $organized_blocks['wdsbt'] as $block_name => $block_type ) : ?>
 						<?php
 						$block_html = render_block_for_showcase( $block_name, $block_type );
@@ -241,30 +289,66 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
 								<?php
-								// Temporarily allow data URIs for showcase images.
 								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-								echo wp_kses_post( $block_html );
+								$allowed_html           = wp_kses_allowed_html( 'post' );
+								$allowed_html['input']  = array(
+									'type'             => true,
+									'name'             => true,
+									'value'            => true,
+									'placeholder'      => true,
+									'required'         => true,
+									'id'               => true,
+									'class'            => true,
+									'aria-label'       => true,
+									'aria-labelledby'  => true,
+									'aria-describedby' => true,
+								);
+								$allowed_html['button'] = array(
+									'type'            => true,
+									'class'           => true,
+									'aria-label'      => true,
+									'aria-labelledby' => true,
+								);
+								$allowed_html['form']   = array(
+									'action' => true,
+									'method' => true,
+									'class'  => true,
+									'role'   => true,
+								);
+								$allowed_html['label']  = array(
+									'for'   => true,
+									'class' => true,
+								);
+								echo wp_kses( $block_html, $allowed_html );
 								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
 								?>
 							</div>
 						</div>
 
 					<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $organized_blocks['other'] ) ) : ?>
+			<h2 class="wdsbt-showcase-section-heading">Third-Party Blocks</h2>
 			<div class="wdsbt-showcase-category">
-				<h2 class="wdsbt-showcase-category-title"><?php echo esc_html( $category_labels['other'] ); ?></h2>
-
-				<div class="wdsbt-showcase-blocks">
+				<div role="group" class="wp-block-accordion">
+					<div class="wp-block-accordion-item">
+						<h2 class="wp-block-accordion-heading wdsbt-showcase-category-title">
+							<button class="wp-block-accordion-heading__toggle" type="button" aria-expanded="false">
+								<span class="wp-block-accordion-heading__toggle-title"><?php echo esc_html( $category_labels['other'] ); ?> (<?php echo esc_html( count( $organized_blocks['other'] ) ); ?>)</span>
+								<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
+							</button>
+						</h2>
+						<div role="region" class="wp-block-accordion-panel" aria-hidden="true">
+							<div class="wdsbt-showcase-blocks">
 					<?php foreach ( $organized_blocks['other'] as $block_name => $block_type ) : ?>
 						<?php
 						$block_html = render_block_for_showcase( $block_name, $block_type );
-						if ( empty( $block_html ) ) {
-							continue;
-						}
 						?>
 
 						<div class="wdsbt-showcase-block-card">
@@ -324,20 +408,82 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 								</div>
 							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
-								<?php
-								// Temporarily allow data URIs for showcase images.
-								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-								echo wp_kses_post( $block_html );
-								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-								?>
+								<?php if ( ! empty( $block_html ) ) : ?>
+									<?php
+									add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+									$allowed_html           = wp_kses_allowed_html( 'post' );
+									$allowed_html['input']  = array(
+										'type'             => true,
+										'name'             => true,
+										'value'            => true,
+										'placeholder'      => true,
+										'required'         => true,
+										'id'               => true,
+										'class'            => true,
+										'aria-label'       => true,
+										'aria-labelledby'  => true,
+										'aria-describedby' => true,
+									);
+									$allowed_html['button'] = array(
+										'type'            => true,
+										'class'           => true,
+										'aria-label'      => true,
+										'aria-labelledby' => true,
+									);
+									$allowed_html['form']   = array(
+										'action' => true,
+										'method' => true,
+										'class'  => true,
+										'role'   => true,
+									);
+									$allowed_html['label']  = array(
+										'for'   => true,
+										'class' => true,
+									);
+									echo wp_kses( $block_html, $allowed_html );
+									remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+									?>
+								<?php else : ?>
+									<p><em>This block type cannot be previewed in the showcase. It may require specific context or configuration to render.</em></p>
+								<?php endif; ?>
 							</div>
 						</div>
 
 					<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		<?php endif; ?>
 	</div>
+
+	</div>
+
+	<script>
+		(function() {
+			document.addEventListener('DOMContentLoaded', function() {
+				const accordionToggles = document.querySelectorAll('.wdsbt-block-showcase .wp-block-accordion-heading__toggle');
+
+				accordionToggles.forEach(function(toggle) {
+					toggle.addEventListener('click', function() {
+						const panel = this.closest('.wp-block-accordion-item').querySelector('.wp-block-accordion-panel');
+						const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+						this.setAttribute('aria-expanded', !isExpanded);
+
+						if (isExpanded) {
+							panel.setAttribute('aria-hidden', 'true');
+							panel.style.display = 'none';
+						} else {
+							panel.setAttribute('aria-hidden', 'false');
+							panel.style.display = 'block';
+						}
+					});
+				});
+			});
+		})();
+	</script>
 
 	<?php
 	return ob_get_clean();
