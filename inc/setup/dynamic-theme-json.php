@@ -43,7 +43,7 @@ function scan_font_directory( $directory ) {
 			$filename = $file->getBasename( '.' . $file->getExtension() );
 
 			// Parse font metadata from filename.
-			$font_metadata = parse_font_filename( $filename );
+			$font_metadata = wdsbt_parse_font_meta_from_filename( $filename );
 
 			// Create a unique key for this font variant.
 			$variant_key = $font_metadata['family'] . '-' . $font_metadata['weight'] . '-' . $font_metadata['style'];
@@ -72,105 +72,105 @@ function scan_font_directory( $directory ) {
  * @param string $filename Font filename.
  * @return array Font metadata.
  */
-function parse_font_filename( $filename ) {
-	// Default values.
-	$metadata = array(
-		'family' => 'Unknown',
-		'weight' => '400',
-		'style'  => 'normal',
-	);
+// function parse_font_filename( $filename ) {
+// 	// Default values.
+// 	$metadata = array(
+// 		'family' => 'Unknown',
+// 		'weight' => '400',
+// 		'style'  => 'normal',
+// 	);
 
-	// Common font family patterns.
-	$family_patterns = array(
-		'inter'        => 'Inter',
-		'oxygen'       => 'Oxygen',
-		'roboto-mono'  => 'Roboto Mono',
-		'roboto'       => 'Roboto',
-		'open-sans'    => 'Open Sans',
-		'lato'         => 'Lato',
-		'poppins'      => 'Poppins',
-		'montserrat'   => 'Montserrat',
-		'raleway'      => 'Raleway',
-		'playfair'     => 'Playfair Display',
-		'source-sans'  => 'Source Sans Pro',
-		'noto-sans'    => 'Noto Sans',
-		'nunito'       => 'Nunito',
-		'merriweather' => 'Merriweather',
-		'ubuntu'       => 'Ubuntu',
-		'oswald'       => 'Oswald',
-	);
+// 	// Common font family patterns.
+// 	$family_patterns = array(
+// 		'inter'        => 'Inter',
+// 		'oxygen'       => 'Oxygen',
+// 		'roboto-mono'  => 'Roboto Mono',
+// 		'roboto'       => 'Roboto',
+// 		'open-sans'    => 'Open Sans',
+// 		'lato'         => 'Lato',
+// 		'poppins'      => 'Poppins',
+// 		'montserrat'   => 'Montserrat',
+// 		'raleway'      => 'Raleway',
+// 		'playfair'     => 'Playfair Display',
+// 		'source-sans'  => 'Source Sans Pro',
+// 		'noto-sans'    => 'Noto Sans',
+// 		'nunito'       => 'Nunito',
+// 		'merriweather' => 'Merriweather',
+// 		'ubuntu'       => 'Ubuntu',
+// 		'oswald'       => 'Oswald',
+// 	);
 
-	// Common weight patterns with exact matches.
-	$weight_patterns = array(
-		'-100'       => '100',
-		'-200'       => '200',
-		'-300'       => '300',
-		'-regular'   => '400',
-		'-normal'    => '400',
-		'-400'       => '400',
-		'-500'       => '500',
-		'-600'       => '600',
-		'-700'       => '700',
-		'-800'       => '800',
-		'-900'       => '900',
-		'thin'       => '100',
-		'extralight' => '200',
-		'light'      => '300',
-		'regular'    => '400',
-		'medium'     => '500',
-		'semibold'   => '600',
-		'bold'       => '700',
-		'extrabold'  => '800',
-		'black'      => '900',
-	);
+// 	// Common weight patterns with exact matches.
+// 	$weight_patterns = array(
+// 		'-100'       => '100',
+// 		'-200'       => '200',
+// 		'-300'       => '300',
+// 		'-regular'   => '400',
+// 		'-normal'    => '400',
+// 		'-400'       => '400',
+// 		'-500'       => '500',
+// 		'-600'       => '600',
+// 		'-700'       => '700',
+// 		'-800'       => '800',
+// 		'-900'       => '900',
+// 		'thin'       => '100',
+// 		'extralight' => '200',
+// 		'light'      => '300',
+// 		'regular'    => '400',
+// 		'medium'     => '500',
+// 		'semibold'   => '600',
+// 		'bold'       => '700',
+// 		'extrabold'  => '800',
+// 		'black'      => '900',
+// 	);
 
-	// Common style patterns.
-	$style_patterns = array(
-		'italic'  => 'italic',
-		'oblique' => 'oblique',
-	);
+// 	// Common style patterns.
+// 	$style_patterns = array(
+// 		'italic'  => 'italic',
+// 		'oblique' => 'oblique',
+// 	);
 
-	$lowercase_filename = strtolower( $filename );
+// 	$lowercase_filename = strtolower( $filename );
 
-	// Detect font family - use the longest matching pattern.
-	$matched_family = '';
-	$longest_match  = 0;
-	foreach ( $family_patterns as $pattern => $family ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false && strlen( $pattern ) > $longest_match ) {
-			$matched_family = $family;
-			$longest_match  = strlen( $pattern );
-		}
-	}
-	if ( $matched_family ) {
-		$metadata['family'] = $matched_family;
-	}
+// 	// Detect font family - use the longest matching pattern.
+// 	$matched_family = '';
+// 	$longest_match  = 0;
+// 	foreach ( $family_patterns as $pattern => $family ) {
+// 		if ( strpos( $lowercase_filename, $pattern ) !== false && strlen( $pattern ) > $longest_match ) {
+// 			$matched_family = $family;
+// 			$longest_match  = strlen( $pattern );
+// 		}
+// 	}
+// 	if ( $matched_family ) {
+// 		$metadata['family'] = $matched_family;
+// 	}
 
-	// If no family detected, try to extract from filename.
-	if ( 'Unknown' === $metadata['family'] ) {
-		$parts = preg_split( '/[-_\s]+/', $filename );
-		if ( ! empty( $parts[0] ) ) {
-			$metadata['family'] = ucwords( str_replace( '-', ' ', $parts[0] ) );
-		}
-	}
+// 	// If no family detected, try to extract from filename.
+// 	if ( 'Unknown' === $metadata['family'] ) {
+// 		$parts = preg_split( '/[-_\s]+/', $filename );
+// 		if ( ! empty( $parts[0] ) ) {
+// 			$metadata['family'] = ucwords( str_replace( '-', ' ', $parts[0] ) );
+// 		}
+// 	}
 
-	// Detect font weight - use exact matches.
-	foreach ( $weight_patterns as $pattern => $weight ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['weight'] = $weight;
-			break;
-		}
-	}
+// 	// Detect font weight - use exact matches.
+// 	foreach ( $weight_patterns as $pattern => $weight ) {
+// 		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
+// 			$metadata['weight'] = $weight;
+// 			break;
+// 		}
+// 	}
 
-	// Detect font style.
-	foreach ( $style_patterns as $pattern => $style ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['style'] = $style;
-			break;
-		}
-	}
+// 	// Detect font style.
+// 	foreach ( $style_patterns as $pattern => $style ) {
+// 		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
+// 			$metadata['style'] = $style;
+// 			break;
+// 		}
+// 	}
 
-	return $metadata;
-}
+// 	return $metadata;
+// }
 
 /**
  * Group fonts by family.

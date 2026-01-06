@@ -109,7 +109,7 @@ function scan_font_files( $input_dir ) {
 
 			// Detect font family from folder name (headline, body, mono).
 			$folder_name   = basename( dirname( $file->getPathname() ) );
-			$font_metadata = parse_font_filename( $filename );
+			$font_metadata = wdsbt_parse_font_meta_from_filename( $filename );
 
             // Smart fallback for Unknown family
             if ( 'Unknown' === $font_metadata['family'] ) {
@@ -159,7 +159,7 @@ function copy_fonts_to_output( $fonts, $output_dir ) {
 
 	foreach ( $fonts as $font ) {
 		//$standardized_slug = get_font_slug( $font['family'] );
-		$standardized_slug = wdsbt_get_font_slug( $font['path'] );
+		$standardized_slug = wdsbt_get_font_role_slug( $font['path'] );
 		$family_dir        = $full_output_dir . '/' . $standardized_slug;
 
 		if ( ! is_dir( $family_dir ) ) {
@@ -230,7 +230,7 @@ function generate_font_preload( $fonts, $output_file ) {
 
 	foreach ( $preloaded as $font ) {
 		$format            = 'woff2' === $font['extension'] ? 'font/woff2' : 'font/woff';
-		$standardized_slug = wdsbt_get_font_slug( $font['family'] );
+		$standardized_slug = wdsbt_get_font_role_slug( $font['family'] );
 		$php              .= "    'fonts/{$standardized_slug}/{$font['filename']}' => '{$format}',\n";
 	}
 

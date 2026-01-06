@@ -17,6 +17,7 @@ require_once __DIR__ . '/helpers.php';
  * @return array Array of font files.
  */
 function wdsbt_scan_font_directory( $directory ) {
+
 	$fonts     = array();
 	$theme_dir = dirname( __DIR__, 1 );
 	$full_path = $theme_dir . '/' . $directory;
@@ -63,6 +64,7 @@ function wdsbt_print_fonts( $fonts, $label = 'Fonts' ) {
 		printf(
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output, escaping not required.
 			"  - %s.%s | %s | Weight: %s | Style: %s\n",
+			$font['relative_path'],
 			$font['filename'], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
 			$font['extension'], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
 			$font['family'],    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
@@ -72,8 +74,11 @@ function wdsbt_print_fonts( $fonts, $label = 'Fonts' ) {
 	}
 }
 
+
 // Example usage for CLI debugging.
-$wdsbt_build_fonts  = wdsbt_scan_font_directory( 'build/fonts' );
-$wdsbt_assets_fonts = wdsbt_scan_font_directory( 'assets/fonts' );
-wdsbt_print_fonts( $wdsbt_build_fonts, 'Build Fonts' );
-wdsbt_print_fonts( $wdsbt_assets_fonts, 'Assets Fonts' );
+$theme_dir = dirname( __DIR__, 1 );
+$wdsbt_build_fonts  = wdsbt_scan_font_directory_raw( 'build/fonts', $theme_dir );
+$wdsbt_assets_fonts = wdsbt_scan_font_directory_raw( 'assets/fonts', $theme_dir );
+
+wdsbt_print_font_summary( $wdsbt_build_fonts, false, 'All Detected Build Fonts' );
+wdsbt_print_font_summary( $wdsbt_assets_fonts, false, 'All Detected Assets Fonts' );
