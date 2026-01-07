@@ -17,7 +17,7 @@ add_action(
 			return;
 		}
 
-		// Scan for block directories
+		// Scan for block directories.
 		$items = scandir( $blocks_dir );
 
 		foreach ( $items as $item ) {

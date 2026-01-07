@@ -181,7 +181,11 @@ function get_block_showcase_content( $block_name, $block_type ) {
 		'core/site-logo'       => '<!-- wp:site-logo {"width":100} /-->',
 		'core/site-title'      => '<!-- wp:site-title /-->',
 		'core/site-tagline'    => '<!-- wp:site-tagline /-->',
-		'core/embed'           => '<!-- wp:embed {"url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->\n<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\n</div></figure>\n<!-- /wp:embed -->',
+		'core/embed'           => '<!-- wp:embed {"url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</div></figure>
+<!-- /wp:embed -->',
 	);
 
 	if ( isset( $core_defaults[ $block_name ] ) ) {
@@ -298,11 +302,11 @@ function get_block_attributes_info( $block_type ) {
 function get_block_category( $block_name ) {
 	// Core block categories.
 	$core_categories = array(
-		'text'    => array( 'paragraph', 'heading', 'list', 'quote', 'code', 'preformatted', 'pullquote', 'table', 'verse' ),
+		'text'    => array( 'paragraph', 'heading', 'list', 'quote', 'code', 'details', 'math', 'preformatted', 'pullquote', 'table', 'verse' ),
 		'media'   => array( 'image', 'gallery', 'audio', 'cover', 'file', 'media-text', 'video' ),
 		'design'  => array( 'accordion', 'buttons', 'columns', 'group', 'separator', 'spacer' ),
-		'widgets' => array( 'shortcode', 'archives', 'calendar', 'categories', 'html', 'latest-comments', 'latest-posts', 'page-list', 'search', 'social-links', 'tag-cloud' ),
-		'theme'   => array( 'site-logo', 'site-title', 'site-tagline', 'query', 'post-title', 'post-content', 'post-excerpt', 'post-featured-image', 'post-date', 'post-author', 'post-categories', 'post-tags', 'loginout', 'comments' ),
+		'widgets' => array( 'shortcode', 'archives', 'calendar', 'categories', 'html', 'latest-comments', 'latest-posts', 'page-list', 'search', 'social-links', 'tag-cloud', 'terms-list', 'categories-list' ),
+		'theme'   => array( 'site-logo', 'site-title', 'site-tagline', 'navigation', 'query', 'post-title', 'post-content', 'post-excerpt', 'post-featured-image', 'post-date', 'post-author', 'post-categories', 'post-tags', 'loginout', 'comments', 'term-count' ),
 		'embeds'  => array( 'embed' ),
 	);
 

@@ -167,6 +167,18 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 								<?php
 								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
 								$allowed_html           = wp_kses_allowed_html( 'post' );
+								$allowed_html['figure'] = array(
+									'class' => true,
+								);
+								$allowed_html['img']    = array(
+									'src'    => true,
+									'alt'    => true,
+									'width'  => true,
+									'height' => true,
+								);
+								$allowed_html['div']    = array(
+									'class' => true,
+								);
 								$allowed_html['input']  = array(
 									'type'             => true,
 									'name'             => true,
