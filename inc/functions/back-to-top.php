@@ -40,7 +40,6 @@ function add_back_to_top_button() {
 				}
 			});
 
-			// Smooth scrolling when clicking the button.
 			backToTopButton.addEventListener('click', function(e) {
 				e.preventDefault();
 				window.scrollTo({

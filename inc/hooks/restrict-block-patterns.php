@@ -16,6 +16,4 @@ function restrict_block_editor_patterns() {
 	return 'disable-dotcom-patterns-source';
 }
 add_filter( 'a8c_override_patterns_source_site', __NAMESPACE__ . '\restrict_block_editor_patterns' );
-
-// Disable the loading of remote patterns from the Dotorg pattern directory.
 add_filter( 'should_load_remote_block_patterns', '__return_false' );

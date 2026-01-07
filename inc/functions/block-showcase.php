@@ -21,11 +21,10 @@ function get_all_registered_blocks() {
 	$block_registry = \WP_Block_Type_Registry::get_instance();
 	$all_blocks     = $block_registry->get_all_registered();
 
-	// Blocks that cannot be safely rendered in showcase.
 	$skip_blocks = array(
 		'core/legacy-widget',
 		'core/freeform',
-		'core/html', // Can contain arbitrary HTML that might break rendering.
+		'core/html',
 	);
 
 	$organized = array(
@@ -35,7 +34,6 @@ function get_all_registered_blocks() {
 	);
 
 	foreach ( $all_blocks as $block_name => $block_type ) {
-		// Skip problematic blocks.
 		if ( in_array( $block_name, $skip_blocks, true ) ) {
 			continue;
 		}
@@ -137,7 +135,6 @@ function get_block_showcase_content( $block_name, $block_type ) {
 		}
 	}
 
-	// Core blocks with examples will skip this and use their examples instead.
 	$core_defaults = array(
 		'core/paragraph'       => '<!-- wp:paragraph --><p>This is a paragraph block with <strong>formatted text</strong> and <em>emphasis</em>.</p><!-- /wp:paragraph -->',
 		'core/heading'         => '<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Heading H1</h1><!-- /wp:heading --><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Heading H2</h2><!-- /wp:heading --><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Heading H3</h3><!-- /wp:heading --><!-- wp:heading {"level":4} --><h4 class="wp-block-heading">Heading H4</h4><!-- /wp:heading --><!-- wp:heading {"level":5} --><h5 class="wp-block-heading">Heading H5</h5><!-- /wp:heading --><!-- wp:heading {"level":6} --><h6 class="wp-block-heading">Heading H6</h6><!-- /wp:heading -->',
@@ -279,7 +276,6 @@ function get_block_attributes_info( $block_type ) {
 			'default' => isset( $attr_config['default'] ) ? $attr_config['default'] : null,
 		);
 
-		// Add additional info based on type.
 		if ( isset( $attr_config['enum'] ) ) {
 			$info['enum'] = $attr_config['enum'];
 		}
@@ -300,7 +296,6 @@ function get_block_attributes_info( $block_type ) {
  * @return string Category name.
  */
 function get_block_category( $block_name ) {
-	// Core block categories.
 	$core_categories = array(
 		'text'    => array( 'paragraph', 'heading', 'list', 'quote', 'code', 'details', 'math', 'preformatted', 'pullquote', 'table', 'verse' ),
 		'media'   => array( 'image', 'gallery', 'audio', 'cover', 'file', 'media-text', 'video' ),
@@ -319,7 +314,6 @@ function get_block_category( $block_name ) {
 		}
 	}
 
-	// Custom blocks go in their namespace category.
 	if ( strpos( $block_name, 'wdsbt/' ) === 0 ) {
 		return 'wdsbt';
 	}

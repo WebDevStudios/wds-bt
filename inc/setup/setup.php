@@ -26,16 +26,11 @@ function setup() {
 	 */
 	load_theme_textdomain( 'wdsbt', get_template_directory() . '/build/languages' );
 
-	// Gutenberg support for full-width/wide alignment of supported blocks.
 	add_theme_support( 'align-wide' );
-
-	// Gutenberg editor styles support.
 	add_theme_support( 'editor-styles' );
 	add_editor_style( 'build/css/editor.css' );
 
 	remove_action( 'wp_footer', 'the_block_template_skip_link' );
-
-	// Add WooCommerce support.
 	add_theme_support( 'woocommerce' );
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );

@@ -39,7 +39,6 @@ function allow_data_uris_in_showcase( $protocols ) {
  */
 function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 	unset( $atts, $content );
-	// Only allow admins to see the showcase.
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return '';
 	}
