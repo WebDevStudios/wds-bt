@@ -168,6 +168,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 								$allowed_html           = wp_kses_allowed_html( 'post' );
 								$allowed_html['figure'] = array(
 									'class' => true,
+									'style' => true,
 								);
 								$allowed_html['img']    = array(
 									'src'    => true,
@@ -177,6 +178,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 								);
 								$allowed_html['div']    = array(
 									'class' => true,
+									'style' => true,
 								);
 								$allowed_html['input']  = array(
 									'type'             => true,
@@ -205,6 +207,19 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 								$allowed_html['label']  = array(
 									'for'   => true,
 									'class' => true,
+								);
+								$allowed_html['iframe'] = array(
+									'src'             => true,
+									'width'           => true,
+									'height'          => true,
+									'frameborder'     => true,
+									'allowfullscreen' => true,
+									'title'           => true,
+									'class'           => true,
+									'style'           => true,
+									'loading'         => true,
+									'sandbox'         => true,
+									'allow'           => true,
 								);
 								echo wp_kses( $block_html, $allowed_html );
 								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
@@ -330,6 +345,19 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 									'for'   => true,
 									'class' => true,
 								);
+								$allowed_html['iframe'] = array(
+									'src'             => true,
+									'width'           => true,
+									'height'          => true,
+									'frameborder'     => true,
+									'allowfullscreen' => true,
+									'title'           => true,
+									'class'           => true,
+									'style'           => true,
+									'loading'         => true,
+									'sandbox'         => true,
+									'allow'           => true,
+								);
 								echo wp_kses( $block_html, $allowed_html );
 								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
 								?>
@@ -450,6 +478,19 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 									$allowed_html['label']  = array(
 										'for'   => true,
 										'class' => true,
+									);
+									$allowed_html['iframe'] = array(
+										'src'             => true,
+										'width'           => true,
+										'height'          => true,
+										'frameborder'     => true,
+										'allowfullscreen' => true,
+										'title'           => true,
+										'class'           => true,
+										'style'           => true,
+										'loading'         => true,
+										'sandbox'         => true,
+										'allow'           => true,
 									);
 									echo wp_kses( $block_html, $allowed_html );
 									remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );

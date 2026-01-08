@@ -178,11 +178,7 @@ function get_block_showcase_content( $block_name, $block_type ) {
 		'core/site-logo'       => '<!-- wp:site-logo {"width":100} /-->',
 		'core/site-title'      => '<!-- wp:site-title /-->',
 		'core/site-tagline'    => '<!-- wp:site-tagline /-->',
-		'core/embed'           => '<!-- wp:embed {"url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
-https://www.youtube.com/watch?v=dQw4w9WgXcQ
-</div></figure>
-<!-- /wp:embed -->',
+		'core/embed'           => '<!-- wp:embed {"url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /-->',
 	);
 
 	if ( isset( $core_defaults[ $block_name ] ) ) {
@@ -229,17 +225,98 @@ function render_block_for_showcase( $block_name, $block_type ) {
 		return '<p><em>This block type cannot be previewed in the showcase.</em></p>';
 	}
 
-	$rendered = do_blocks( $block_content );
-
 	if ( 'core/embed' === $block_name ) {
 		$blocks = parse_blocks( $block_content );
-		if ( ! empty( $blocks ) && ! empty( $blocks[0]['attrs']['url'] ) ) {
-			$url = $blocks[0]['attrs']['url'];
-			if ( empty( $rendered ) || ( false === strpos( $rendered, '<iframe' ) && false === strpos( $rendered, 'wp-block-embed' ) ) ) {
+		if ( ! empty( $blocks ) && ! empty( $blocks[0] ) && ! empty( $blocks[0]['attrs']['url'] ) ) {
+			$url           = $blocks[0]['attrs']['url'];
+			$video_id      = null;
+			$provider_slug = '';
+			$type          = 'video';
+
+			if ( preg_match( '/youtube\.com\/watch\?v=([^&]+)/', $url, $matches ) ) {
+				$video_id      = $matches[1];
+				$provider_slug = 'youtube';
+			} elseif ( preg_match( '/youtu\.be\/([^?]+)/', $url, $matches ) ) {
+				$video_id      = $matches[1];
+				$provider_slug = 'youtube';
+			}
+
+			if ( 'youtube' === $provider_slug && $video_id ) {
+				$embed_url   = 'https://www.youtube.com/embed/' . esc_attr( $video_id );
+				$oembed_html = sprintf(
+					'<iframe loading="lazy" title="%s" width="600" height="338" src="%s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+					esc_attr__( 'Embedded content from YouTube', 'wdsbt' ),
+					esc_url( $embed_url )
+				);
+
+				$classes = array(
+					'wp-block-embed',
+					'is-type-' . $type,
+					'is-provider-' . $provider_slug,
+					'wp-block-embed-' . $provider_slug,
+					'wp-embed-aspect-16-9',
+					'wp-has-aspect-ratio',
+				);
+
+				$rendered = sprintf(
+					'<figure class="%s"><div class="wp-block-embed__wrapper">%s</div></figure>',
+					esc_attr( implode( ' ', $classes ) ),
+					$oembed_html
+				);
+
+				return $rendered;
+			}
+
+			$oembed_html = false;
+			$provider    = wp_oembed_get_provider( $url );
+
+			if ( $provider ) {
+				$oembed_html = wp_oembed_get(
+					$url,
+					array(
+						'width'  => 600,
+						'height' => 400,
+					)
+				);
+			}
+
+			if ( $oembed_html ) {
+				if ( false !== strpos( $url, 'vimeo.com' ) ) {
+					$provider_slug = 'vimeo';
+				} elseif ( false !== strpos( $url, 'twitter.com' ) || false !== strpos( $url, 'x.com' ) ) {
+					$provider_slug = 'twitter';
+					$type          = 'rich';
+				} elseif ( false !== strpos( $url, 'instagram.com' ) ) {
+					$provider_slug = 'instagram';
+					$type          = 'rich';
+				}
+
+				$classes = array(
+					'wp-block-embed',
+					'is-type-' . $type,
+				);
+				if ( $provider_slug ) {
+					$classes[] = 'is-provider-' . $provider_slug;
+					$classes[] = 'wp-block-embed-' . $provider_slug;
+				}
+				$classes[] = 'wp-embed-aspect-16-9';
+				$classes[] = 'wp-has-aspect-ratio';
+
+				$rendered = sprintf(
+					'<figure class="%s"><div class="wp-block-embed__wrapper">%s</div></figure>',
+					esc_attr( implode( ' ', $classes ) ),
+					$oembed_html
+				);
+
+				return $rendered;
+			} else {
+				// Fallback if oEmbed fetch fails - show URL.
 				return '<div class="wp-block-embed"><p><em>Embed preview not available. URL: <a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $url ) . '</a></em></p></div>';
 			}
 		}
 	}
+
+	$rendered = do_blocks( $block_content );
 
 	return $rendered;
 }

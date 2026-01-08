@@ -12,8 +12,7 @@ filters.keys().forEach((key) => {
 	}
 	try {
 		filters(key);
-		console.log(`✅ Loaded filter: ${key}`);
 	} catch (e) {
-		console.error(`❌ Failed to load filter: ${key}`, e);
+		// Filter failed to load.
 	}
 });
