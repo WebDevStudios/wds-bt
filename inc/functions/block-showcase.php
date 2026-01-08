@@ -29,7 +29,6 @@ function get_all_registered_blocks() {
 	$organized = array(
 		'core'  => array(),
 		'wdsbt' => array(),
-		'other' => array(),
 	);
 
 	foreach ( $all_blocks as $block_name => $block_type ) {
@@ -50,7 +49,10 @@ function get_all_registered_blocks() {
 		} elseif ( 'wdsbt' === $namespace ) {
 			$organized['wdsbt'][ $block_name ] = $block_type;
 		} else {
-			$organized['other'][ $block_name ] = $block_type;
+			if ( ! isset( $organized[ $namespace ] ) ) {
+				$organized[ $namespace ] = array();
+			}
+			$organized[ $namespace ][ $block_name ] = $block_type;
 		}
 	}
 

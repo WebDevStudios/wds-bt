@@ -373,23 +373,33 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 			</div>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $organized_blocks['other'] ) ) : ?>
-			<h2 class="wdsbt-showcase-section-heading">Third-Party Blocks</h2>
-			<div class="wdsbt-showcase-category">
-				<div role="group" class="wp-block-accordion">
-					<div class="wp-block-accordion-item">
-						<h2 class="wp-block-accordion-heading wdsbt-showcase-category-title">
-							<button class="wp-block-accordion-heading__toggle" type="button" aria-expanded="false">
-								<span class="wp-block-accordion-heading__toggle-title"><?php echo esc_html( $category_labels['other'] ); ?> (<?php echo esc_html( count( $organized_blocks['other'] ) ); ?>)</span>
-								<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
-							</button>
-						</h2>
-						<div role="region" class="wp-block-accordion-panel" aria-hidden="true">
-							<div class="wdsbt-showcase-blocks">
-					<?php foreach ( $organized_blocks['other'] as $block_name => $block_type ) : ?>
-						<?php
-						$block_html = render_block_for_showcase( $block_name, $block_type );
-						?>
+		<?php
+		$third_party_namespaces = array_diff( array_keys( $organized_blocks ), array( 'core', 'wdsbt' ) );
+		if ( ! empty( $third_party_namespaces ) ) :
+			?>
+			<h2 class="wdsbt-showcase-section-heading">Third Party Blocks</h2>
+			<?php
+			foreach ( $third_party_namespaces as $namespace ) :
+				if ( empty( $organized_blocks[ $namespace ] ) ) {
+					continue;
+				}
+				$plugin_name = ucwords( str_replace( array( '-', '_' ), ' ', $namespace ) );
+				?>
+				<div class="wdsbt-showcase-category">
+					<div role="group" class="wp-block-accordion">
+						<div class="wp-block-accordion-item">
+							<h2 class="wp-block-accordion-heading wdsbt-showcase-category-title">
+								<button class="wp-block-accordion-heading__toggle" type="button" aria-expanded="false">
+									<span class="wp-block-accordion-heading__toggle-title"><?php echo esc_html( $plugin_name ); ?> Blocks (<?php echo esc_html( count( $organized_blocks[ $namespace ] ) ); ?>)</span>
+									<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
+								</button>
+							</h2>
+							<div role="region" class="wp-block-accordion-panel" aria-hidden="true">
+								<div class="wdsbt-showcase-blocks">
+						<?php foreach ( $organized_blocks[ $namespace ] as $block_name => $block_type ) : ?>
+							<?php
+							$block_html = render_block_for_showcase( $block_name, $block_type );
+							?>
 
 						<div class="wdsbt-showcase-block-card">
 							<h4 class="wdsbt-showcase-block-title"><?php echo esc_html( get_block_display_name( $block_name ) ); ?></h4>
@@ -502,12 +512,13 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							</div>
 						</div>
 
-					<?php endforeach; ?>
+						<?php endforeach; ?>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			<?php endforeach; ?>
 		<?php endif; ?>
 	</div>
 
