@@ -44,16 +44,15 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 	}
 
 	$organized_blocks = get_all_registered_blocks();
-	$category_labels  = array(
-		'text'    => 'Text Blocks',
-		'media'   => 'Media Blocks',
-		'design'  => 'Design Blocks',
-		'widgets' => 'Widget Blocks',
-		'theme'   => 'Theme Blocks',
-		'embeds'  => 'Embed Blocks',
-		'wdsbt'   => 'WDS BT Custom Blocks',
-		'other'   => 'Other Blocks',
-	);
+
+	$wp_categories   = get_block_categories( get_post() );
+	$category_labels = array();
+	foreach ( $wp_categories as $category ) {
+		$category_labels[ $category['slug'] ] = $category['title'];
+	}
+
+	$category_labels['other'] = 'Other Core Blocks';
+	$category_labels['wdsbt'] = 'WDS BT Custom Blocks';
 
 	ob_start();
 	?>
@@ -62,14 +61,16 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 		<?php
 		$core_blocks_by_category = array();
 		foreach ( $organized_blocks['core'] as $block_name => $block_type ) {
-			$category = get_block_category( $block_name );
+			$category = get_block_category( $block_name, $block_type );
 			if ( ! isset( $core_blocks_by_category[ $category ] ) ) {
 				$core_blocks_by_category[ $category ] = array();
 			}
 			$core_blocks_by_category[ $category ][ $block_name ] = $block_type;
 		}
 
-		$core_category_order = array( 'text', 'media', 'design', 'widgets', 'theme', 'embeds' );
+		$all_categories      = array_keys( $core_blocks_by_category );
+		$default_order       = array( 'text', 'media', 'design', 'widgets', 'theme', 'embeds' );
+		$core_category_order = array_merge( $default_order, array_diff( $all_categories, $default_order ) );
 
 		if ( ! empty( $organized_blocks['core'] ) ) :
 			?>

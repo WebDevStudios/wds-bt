@@ -24,7 +24,6 @@ function get_all_registered_blocks() {
 	$skip_blocks = array(
 		'core/legacy-widget',
 		'core/freeform',
-		'core/html',
 	);
 
 	$organized = array(
@@ -367,28 +366,20 @@ function get_block_attributes_info( $block_type ) {
 }
 
 /**
- * Get block category for organization.
+ * Get block category for organization using WordPress's native categorization.
  *
  * @param string $block_name The fully qualified block name.
- * @return string Category name.
+ * @param object $block_type The block type object.
+ * @return string Category slug.
  */
-function get_block_category( $block_name ) {
-	$core_categories = array(
-		'text'    => array( 'paragraph', 'heading', 'list', 'quote', 'code', 'details', 'math', 'preformatted', 'pullquote', 'table', 'verse' ),
-		'media'   => array( 'image', 'gallery', 'audio', 'cover', 'file', 'media-text', 'video' ),
-		'design'  => array( 'accordion', 'buttons', 'columns', 'group', 'separator', 'spacer' ),
-		'widgets' => array( 'shortcode', 'archives', 'calendar', 'categories', 'html', 'latest-comments', 'latest-posts', 'page-list', 'search', 'social-links', 'tag-cloud', 'terms-list', 'categories-list' ),
-		'theme'   => array( 'site-logo', 'site-title', 'site-tagline', 'navigation', 'query', 'post-title', 'post-content', 'post-excerpt', 'post-featured-image', 'post-date', 'post-author', 'post-categories', 'post-tags', 'loginout', 'comments', 'term-count' ),
-		'embeds'  => array( 'embed' ),
-	);
+function get_block_category( $block_name, $block_type = null ) {
+	if ( null === $block_type ) {
+		$block_registry = \WP_Block_Type_Registry::get_instance();
+		$block_type     = $block_registry->get_registered( $block_name );
+	}
 
-	$parts = explode( '/', $block_name );
-	$name  = end( $parts );
-
-	foreach ( $core_categories as $category => $block_names ) {
-		if ( in_array( $name, $block_names, true ) ) {
-			return $category;
-		}
+	if ( $block_type && isset( $block_type->category ) && ! empty( $block_type->category ) ) {
+		return $block_type->category;
 	}
 
 	if ( strpos( $block_name, 'wdsbt/' ) === 0 ) {
