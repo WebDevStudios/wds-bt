@@ -60,12 +60,18 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 	<div class="wdsbt-block-showcase">
 		<?php
 		$core_blocks_by_category = array();
+		$rendered_blocks_cache   = array();
 		foreach ( $organized_blocks['core'] as $block_name => $block_type ) {
+			$block_html = render_block_for_showcase( $block_name, $block_type );
+			if ( empty( $block_html ) ) {
+				continue;
+			}
 			$category = get_block_category( $block_name, $block_type );
 			if ( ! isset( $core_blocks_by_category[ $category ] ) ) {
 				$core_blocks_by_category[ $category ] = array();
 			}
 			$core_blocks_by_category[ $category ][ $block_name ] = $block_type;
+			$rendered_blocks_cache[ $block_name ]                = $block_html;
 		}
 
 		$all_categories      = array_keys( $core_blocks_by_category );
@@ -101,10 +107,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<div class="wdsbt-showcase-blocks">
 					<?php foreach ( $blocks as $block_name => $block_type ) : ?>
 						<?php
-						$block_html = render_block_for_showcase( $block_name, $block_type );
-						if ( empty( $block_html ) ) {
-							continue;
-						}
+						$block_html = isset( $rendered_blocks_cache[ $block_name ] ) ? $rendered_blocks_cache[ $block_name ] : render_block_for_showcase( $block_name, $block_type );
 						?>
 
 						<div class="wdsbt-showcase-block-card">
