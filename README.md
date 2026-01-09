@@ -13,6 +13,7 @@
 - **Dependency Cleanup**: Removed unused npm packages for cleaner dependency tree
 - **RSS Block Fix**: Improved handling of RSS blocks with missing or invalid feed URLs
 - **Dominant Color Images**: Automatic calculation and storage of dominant colors for uploaded images, used as placeholders while images load
+- **Image Prioritizer**: Automatically prioritizes above-the-fold images with fetchpriority="high" for improved page load performance
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
@@ -37,6 +38,7 @@
   - [Creating Blocks](#creating-blocks)
   - [Block Showcase](#block-showcase)
   - [Dominant Color Images](#dominant-color-images)
+  - [Image Prioritizer](#image-prioritizer)
   - [Customizations](#customizations)
     - [Registering Block Styles](#registering-block-styles)
     - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
@@ -80,6 +82,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Block Creation Script Enhancements               | Options for static, dynamic, or interactive blocks; automatically includes `view.js` for rendering. |
 | Block Showcase                                   | Development tool to discover, preview, and inspect all registered blocks with their attributes.  |
 | Dominant Color Images                            | Automatic dominant color calculation for images, used as background placeholders during image loading. |
+| Image Prioritizer                                | Automatically prioritizes above-the-fold images with fetchpriority="high" for faster page loads. |
 | LeftHook Integration                             | Required for pre-commit hooks and automated code quality checks.                                           |
 
 ## Requirements
@@ -1225,6 +1228,49 @@ The dominant color is automatically applied to images. To customize the placehol
 - WordPress 6.4+ (for block editor support)
 
 **Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/dominant-color-images).
+
+## Image Prioritizer
+
+[🔝 Back to Top](#wds-bt)
+
+WDS BT automatically prioritizes above-the-fold images by adding `fetchpriority="high"` to the first few images on a page. This signals browsers to load these critical images sooner, improving perceived performance and Largest Contentful Paint (LCP) metrics.
+
+### How It Works
+
+1. **Image Detection**: On singular pages, the theme identifies the first few images (featured image plus up to 3 images from content).
+2. **Priority Assignment**: Adds `fetchpriority="high"` attribute to these above-the-fold images.
+3. **Lazy Loading Removal**: Automatically removes `loading="lazy"` from prioritized images since they should load immediately.
+4. **Compatibility**: Works alongside the existing LCP image optimization without conflicts.
+
+### Supported Image Types
+
+- Featured images (post thumbnails)
+- Images in content blocks (`core/image` and `core/cover`)
+- Works with both attachment images and block editor image blocks
+
+### Technical Details
+
+- **File Location**: `inc/performance/image-prioritizer.php`
+- **Priority Limit**: Prioritizes up to 3 images per page (featured image + 2 content images)
+- **Page Types**: Only active on singular pages (posts, pages, custom post types)
+- **Integration**: Works with `wp_get_attachment_image()` and block editor image rendering
+- **Compatibility**: Checks for existing `fetchpriority` to avoid conflicts with LCP optimization
+
+### How It Differs from LCP Optimization
+
+- **LCP Optimization**: Focuses on the single Largest Contentful Paint image
+- **Image Prioritizer**: Prioritizes multiple above-the-fold images for broader performance improvement
+- **Both work together**: The LCP image will be prioritized by both systems, ensuring optimal loading
+
+### Customization
+
+The prioritization happens automatically. To customize:
+
+- **Change Priority Limit**: Modify the `$limit` parameter in `get_above_fold_image_ids()` function
+- **Exclude Specific Images**: Filter `wp_get_attachment_image_attributes` to exclude images
+- **Disable for Specific Pages**: Use conditional checks in the filter functions
+
+**Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/image-prioritizer).
 
 ## Dynamic Block Pattern Categories
 
