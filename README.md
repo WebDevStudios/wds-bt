@@ -1167,6 +1167,23 @@ This project uses [rimraf](https://www.npmjs.com/package/rimraf) in npm scripts 
 
 If you add new scripts that need to remove files or directories, please use `rimraf` instead of `rm -rf`.
 
+### PHP Path Auto-Detection
+
+The project automatically detects the PHP binary path for cross-platform compatibility (Mac, Linux, CI/CD). The detection scripts (`scripts/get-php.sh` and `scripts/get-php.js`) check common paths:
+
+- `/opt/homebrew/bin/php` (Homebrew on Apple Silicon Mac)
+- `/usr/local/bin/php` (Homebrew on Intel Mac / Linux)
+- `/usr/bin/php` (Standard Linux path)
+- `php` (Fallback to PATH)
+
+**For CI/CD environments (like Buddy):** You can set the `PHP_BIN` environment variable to override auto-detection:
+
+```bash
+export PHP_BIN=/usr/bin/php
+```
+
+This ensures builds work correctly across different environments without hardcoded paths.
+
 ## Contributing and Support
 
 Your contributions and [support tickets](https://github.com/WebDevStudios/wds-bt/issues) are welcome. Please see our [contributing guidelines](https://github.com/WebDevStudios/wds-bt/blob/main/CONTRIBUTING.md) before submitting a pull request.
