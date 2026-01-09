@@ -14,6 +14,7 @@
 - **RSS Block Fix**: Improved handling of RSS blocks with missing or invalid feed URLs
 - **Dominant Color Images**: Automatic calculation and storage of dominant colors for uploaded images, used as placeholders while images load
 - **Image Prioritizer**: Automatically prioritizes above-the-fold images with fetchpriority="high" for improved page load performance
+- **WebP Uploads**: Automatically generates WebP versions of uploaded JPEG and PNG images for better compression and faster loading
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
@@ -39,6 +40,7 @@
   - [Block Showcase](#block-showcase)
   - [Dominant Color Images](#dominant-color-images)
   - [Image Prioritizer](#image-prioritizer)
+  - [WebP Uploads](#webp-uploads)
   - [Customizations](#customizations)
     - [Registering Block Styles](#registering-block-styles)
     - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
@@ -83,6 +85,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Block Showcase                                   | Development tool to discover, preview, and inspect all registered blocks with their attributes.  |
 | Dominant Color Images                            | Automatic dominant color calculation for images, used as background placeholders during image loading. |
 | Image Prioritizer                                | Automatically prioritizes above-the-fold images with fetchpriority="high" for faster page loads. |
+| WebP Uploads                                     | Automatically generates WebP versions of uploaded images for better compression and performance. |
 | LeftHook Integration                             | Required for pre-commit hooks and automated code quality checks.                                           |
 
 ## Requirements
@@ -1271,6 +1274,76 @@ The prioritization happens automatically. To customize:
 - **Disable for Specific Pages**: Use conditional checks in the filter functions
 
 **Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/image-prioritizer).
+
+## WebP Uploads
+
+[🔝 Back to Top](#wds-bt)
+
+WDS BT automatically generates WebP versions of uploaded JPEG and PNG images. WebP format provides superior compression compared to JPEG and PNG, resulting in smaller file sizes and faster page loads while maintaining image quality.
+
+### How It Works
+
+1. **Automatic Conversion**: When JPEG or PNG images are uploaded, the theme automatically generates WebP versions.
+2. **Multiple Sizes**: WebP versions are created for all registered image sizes (thumbnail, medium, large, etc.).
+3. **Storage**: WebP files are stored alongside original images with `.webp` extension.
+4. **Metadata**: WebP file paths and URLs are stored in attachment metadata for easy access.
+
+### Supported Formats
+
+- **Input**: JPEG and PNG images
+- **Output**: WebP format (85% quality by default)
+- **Image Sizes**: All WordPress registered image sizes (thumbnail, medium, large, full, and custom sizes)
+
+### Technical Details
+
+- **File Location**: `inc/performance/webp-uploads.php`
+- **Conversion Method**: Uses Imagick (preferred) or GD library fallback
+- **Quality Setting**: 85% compression quality (balance between file size and quality)
+- **Storage**: WebP files stored in same directory as originals with `.webp` extension
+- **Metadata Keys**: `_webp_file` (file path) and `_webp_url` (URL)
+
+### Requirements
+
+- **PHP Extensions**: Imagick with WebP support OR GD library with `imagewebp()` function
+- **Server Support**: WebP format must be supported by your PHP installation
+- **WordPress**: WordPress 6.4+ recommended
+
+### Helper Functions
+
+The theme provides helper functions to access WebP versions:
+
+```php
+// Get WebP URL for an attachment.
+$webp_url = \WebDevStudios\wdsbt\get_webp_url( $attachment_id );
+
+// Get WebP file path for an attachment.
+$webp_file = \WebDevStudios\wdsbt\get_webp_file( $attachment_id );
+
+// Check if browser supports WebP.
+$supports_webp = \WebDevStudios\wdsbt\browser_supports_webp();
+```
+
+### Browser Compatibility
+
+- Modern browsers (Chrome, Firefox, Edge, Safari 14+) support WebP natively
+- The theme adds `data-webp` attribute to images for JavaScript-based fallback handling
+- Original images are always preserved for compatibility
+
+### Customization
+
+- **Quality Setting**: Modify the quality parameter (85) in `generate_webp()` function
+- **File Naming**: WebP files use the same name as originals with `.webp` extension
+- **Size Generation**: WebP versions are automatically generated for all image sizes
+
+### Regenerating WebP Versions
+
+To regenerate WebP versions for existing images:
+
+1. Re-upload the images, or
+2. Use WordPress's built-in image regeneration tools, or
+3. Manually trigger the `generate_webp_on_upload` action for specific attachments
+
+**Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/webp-uploads).
 
 ## Dynamic Block Pattern Categories
 
