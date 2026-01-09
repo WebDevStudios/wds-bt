@@ -1,6 +1,6 @@
 # WDS BT
 
-## Version: 1.3.5
+## Version: 1.4.0
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 

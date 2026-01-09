@@ -180,6 +180,7 @@ function get_block_showcase_content( $block_name, $block_type ) {
 		'core/site-title'      => '<!-- wp:site-title /-->',
 		'core/site-tagline'    => '<!-- wp:site-tagline /-->',
 		'core/embed'           => '<!-- wp:embed {"url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /-->',
+		'core/rss'             => '<!-- wp:rss {"feedURL":"https://wordpress.org/news/feed/","itemsToShow":5} /-->',
 	);
 
 	if ( isset( $core_defaults[ $block_name ] ) ) {
@@ -313,6 +314,17 @@ function render_block_for_showcase( $block_name, $block_type ) {
 			} else {
 				// Fallback if oEmbed fetch fails - show URL.
 				return '<div class="wp-block-embed"><p><em>Embed preview not available. URL: <a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $url ) . '</a></em></p></div>';
+			}
+		}
+	}
+
+	if ( 'core/rss' === $block_name ) {
+		$blocks = parse_blocks( $block_content );
+		if ( ! empty( $blocks ) && ! empty( $blocks[0] ) ) {
+			$feed_url = isset( $blocks[0]['attrs']['feedURL'] ) ? $blocks[0]['attrs']['feedURL'] : '';
+
+			if ( empty( $feed_url ) || ! filter_var( $feed_url, FILTER_VALIDATE_URL ) ) {
+				$block_content = '<!-- wp:rss {"feedURL":"https://wordpress.org/news/feed/","itemsToShow":5} /-->';
 			}
 		}
 	}

@@ -34,10 +34,10 @@
   },
   "scripts": {
     "phpcs": [
-      "@php vendor/bin/phpcs --report=full,source"
+      "/opt/homebrew/bin/php -n vendor/bin/phpcs --report=full,source"
     ],
     "phpcs-fix": [
-      "@php vendor/bin/phpcbf --report=summary,source"
+      "/opt/homebrew/bin/php -n vendor/bin/phpcbf --report=summary,source"
     ],
     "post-install-cmd": [
       "./scripts/update-cursorrules.sh"

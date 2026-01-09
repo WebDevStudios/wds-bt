@@ -1,6 +1,0 @@
-blocks
-build
-node_modules
-vendor
-*.min.js
-!/.*.js

@@ -73,14 +73,22 @@
 	<!-- Theme-specific prefix validation. -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="WebDevStudios\wdsbt,wds,wdsbt"/>
+			<property name="prefixes" type="array">
+				<element value="WebDevStudios\wdsbt"/>
+				<element value="wds"/>
+				<element value="wdsbt"/>
+			</property>
 		</properties>
 	</rule>
 
 	<!-- Text domain validation. -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array" value="WebDevStudios\wdsbt,wds,wdsbt"/>
+			<property name="text_domain" type="array">
+				<element value="WebDevStudios\wdsbt"/>
+				<element value="wds"/>
+				<element value="wdsbt"/>
+			</property>
 		</properties>
 	</rule>
 
