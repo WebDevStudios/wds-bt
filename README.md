@@ -12,6 +12,7 @@
 - **Package Updates**: Updated npm and dependencies to latest compatible versions
 - **Dependency Cleanup**: Removed unused npm packages for cleaner dependency tree
 - **RSS Block Fix**: Improved handling of RSS blocks with missing or invalid feed URLs
+- **Dominant Color Images**: Automatic calculation and storage of dominant colors for uploaded images, used as placeholders while images load
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
@@ -35,6 +36,7 @@
     - [Font Workflow](#font-workflow)
   - [Creating Blocks](#creating-blocks)
   - [Block Showcase](#block-showcase)
+  - [Dominant Color Images](#dominant-color-images)
   - [Customizations](#customizations)
     - [Registering Block Styles](#registering-block-styles)
     - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
@@ -77,6 +79,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Enhanced Webpack Configuration                   | Refined Webpack setup for improved dependency resolution and optimized asset management.            |
 | Block Creation Script Enhancements               | Options for static, dynamic, or interactive blocks; automatically includes `view.js` for rendering. |
 | Block Showcase                                   | Development tool to discover, preview, and inspect all registered blocks with their attributes.  |
+| Dominant Color Images                            | Automatic dominant color calculation for images, used as background placeholders during image loading. |
 | LeftHook Integration                             | Required for pre-commit hooks and automated code quality checks.                                           |
 
 ## Requirements
@@ -1180,6 +1183,48 @@ The showcase styling can be customized via the theme's SCSS files:
 **Shortcode not rendering:**
 - Verify you have administrator privileges
 - Check that the shortcode is placed in an HTML block: `[wdsbt_block_showcase]`
+
+## Dominant Color Images
+
+[🔝 Back to Top](#wds-bt)
+
+WDS BT automatically calculates and stores the dominant color for uploaded images, then uses it as a background placeholder while images load. This improves perceived performance by showing a color-coordinated placeholder instead of a blank space.
+
+### How It Works
+
+1. **Automatic Color Calculation**: When an image is uploaded to the media library, the theme calculates its dominant color using Imagick (if available) or the GD library.
+2. **Color Storage**: The dominant color is stored as post meta (`_dominant_color`) for each image attachment.
+3. **Placeholder Display**: When images are displayed, the dominant color is used as a background color, visible until the image fully loads.
+4. **Smooth Transitions**: CSS and JavaScript handle smooth fade-in effects when images finish loading.
+
+### Supported Image Types
+
+- Works with all standard WordPress image formats (JPEG, PNG, GIF, WebP)
+- Automatically processes images uploaded through the media library
+- Compatible with both attachment images and block editor image blocks (`core/image` and `core/cover`)
+
+### Technical Details
+
+- **File Location**: `inc/performance/dominant-color-images.php`
+- **Color Calculation**: Uses Imagick (preferred) or GD library fallback
+- **Storage**: Post meta key `_dominant_color` (hex color format, e.g., `#ff0000`)
+- **Integration**: Works with `wp_get_attachment_image()` and block editor image rendering
+- **Performance**: Color calculation happens asynchronously during image upload
+
+### Customization
+
+The dominant color is automatically applied to images. To customize the placeholder behavior, you can:
+
+- **Modify CSS**: The feature adds a `has-dominant-color` class to images, which you can style in your theme's SCSS files
+- **JavaScript Events**: Images with dominant colors have a `data-dominant-color` attribute for custom JavaScript interactions
+- **Disable for Specific Images**: Filter `wp_get_attachment_image_attributes` to exclude specific images
+
+### Requirements
+
+- PHP GD extension or Imagick extension (for color calculation)
+- WordPress 6.4+ (for block editor support)
+
+**Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/dominant-color-images).
 
 ## Dynamic Block Pattern Categories
 
