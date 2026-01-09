@@ -34,10 +34,10 @@
 	},
 	"scripts": {
 		"phpcs": [
-			"bash -c \"$(./scripts/get-php.sh) -n vendor/bin/phpcs --report=full,source\""
+			"bash -c \"$(./scripts/get-php.sh) $(./scripts/get-php-flags.sh) vendor/bin/phpcs --report=full,source\""
 		],
 		"phpcs-fix": [
-			"bash -c \"$(./scripts/get-php.sh) -n vendor/bin/phpcbf --report=summary,source\""
+			"bash -c \"$(./scripts/get-php.sh) $(./scripts/get-php-flags.sh) vendor/bin/phpcbf --report=summary,source\""
 		],
 		"post-install-cmd": [
 			"./scripts/update-cursorrules.sh"

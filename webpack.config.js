@@ -26,13 +26,15 @@ class ThemeJsonGeneratorPlugin {
 		compiler.hooks.afterEmit.tapAsync(
 			'ThemeJsonGeneratorPlugin',
 			(compilation, callback) => {
-				// Always run the generator, regardless of environment
-				// Use auto-detected PHP path with -n flag to suppress extension warnings
+				// Always run the generator, regardless of environment.
+				// Use auto-detected PHP path with appropriate flags.
 				const phpPath = execSync('node scripts/get-php.js', {
 					encoding: 'utf8',
 				}).trim();
+				const phpFlags =
+					process.env.CI || process.env.GITHUB_ACTIONS ? '' : '-n';
 				exec(
-					`${phpPath} -n tools/generate-theme-json.php 2>&1`,
+					`${phpPath} ${phpFlags} tools/generate-theme-json.php 2>&1`,
 					(error, stdout) => {
 						const logger = compilation.getLogger(
 							'ThemeJsonGeneratorPlugin'
