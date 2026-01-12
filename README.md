@@ -6,15 +6,16 @@
 
 ### What's New in 1.4.0
 
-- **ESLint 9 Migration**: Upgraded to ESLint 9 with flat config format for modern JavaScript linting
-- **PHP Path Auto-Detection**: Automatic PHP binary detection for cross-platform compatibility (Mac, Linux, CI/CD)
-- **CI/CD Extension Support**: Automatic PHP extension handling for local development and CI environments
-- **Package Updates**: Updated npm and dependencies to latest compatible versions
-- **Dependency Cleanup**: Removed unused npm packages for cleaner dependency tree
-- **RSS Block Fix**: Improved handling of RSS blocks with missing or invalid feed URLs
-- **Dominant Color Images**: Automatic calculation and storage of dominant colors for uploaded images, used as placeholders while images load
-- **Image Prioritizer**: Automatically prioritizes above-the-fold images with fetchpriority="high" for improved page load performance
-- **WebP Uploads**: Automatically generates WebP versions of uploaded JPEG and PNG images for better compression and faster loading
+- **Block Showcase**: Powerful development tool (admin-only) to discover, preview, and inspect all registered blocks with their attributes in an organized, interactive format.
+- **Dominant Color Images**: Automatic calculation and storage of dominant colors for uploaded images, used as placeholders while images load.
+- **Image Prioritizer**: Automatically prioritizes above-the-fold images with fetchpriority="high" for improved page load performance.
+- **WebP Uploads**: Automatically generates WebP versions of uploaded JPEG and PNG images for better compression and faster loading.
+- **ESLint 9 Migration**: Upgraded to ESLint 9 with flat config format for modern JavaScript linting.
+- **PHP Path Auto-Detection**: Automatic PHP binary detection for cross-platform compatibility (Mac, Linux, CI/CD).
+- **CI/CD Extension Support**: Automatic PHP extension handling for local development and CI environments.
+- **Package Updates**: Updated npm and dependencies to latest compatible versions.
+- **Dependency Cleanup**: Removed unused npm packages for cleaner dependency tree.
+- **RSS Block Fix**: Improved handling of RSS blocks with missing or invalid feed URLs.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
