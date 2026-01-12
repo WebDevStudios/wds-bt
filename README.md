@@ -1337,11 +1337,47 @@ $supports_webp = \WebDevStudios\wdsbt\browser_supports_webp();
 
 ### Regenerating WebP Versions
 
-To regenerate WebP versions for existing images:
+The theme automatically generates WebP versions for existing images in the following scenarios:
 
-1. Re-upload the images, or
-2. Use WordPress's built-in image regeneration tools, or
-3. Manually trigger the `generate_webp_on_upload` action for specific attachments
+1. **Automatic Regeneration**: When image thumbnails are regenerated (e.g., using the "Regenerate Thumbnails" plugin), WebP versions are automatically created
+
+#### Manual Regeneration Methods
+
+**Method 1: WordPress Admin (Easiest)**
+
+1. Go to **Tools > WDSBT Settings** in your WordPress admin
+2. Click the **"Regenerate WebP for All Images"** button
+3. Confirm the action
+4. Wait for the process to complete (may take several minutes for large media libraries)
+
+**Method 2: WP-CLI (Recommended for Large Sites)**
+
+```bash
+# Regenerate WebP for all images
+wp webp regenerate --all
+
+# Regenerate WebP for a specific attachment
+wp webp regenerate --attachment-id=123
+```
+
+**Method 3: PHP Function (For Developers)**
+
+```php
+// Regenerate WebP for a specific attachment
+\WebDevStudios\wdsbt\regenerate_webp_for_attachment( $attachment_id );
+
+// Bulk regeneration for all images
+$attachments = get_posts( array(
+    'post_type'      => 'attachment',
+    'post_mime_type' => array( 'image/jpeg', 'image/png' ),
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+) );
+
+foreach ( $attachments as $attachment_id ) {
+    \WebDevStudios\wdsbt\regenerate_webp_for_attachment( $attachment_id );
+}
+```
 
 **Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/webp-uploads).
 
