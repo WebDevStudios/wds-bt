@@ -31,68 +31,46 @@ function get_above_fold_image_ids( $limit = 3 ) {
 
 	$content = $post->post_content;
 
-	// Use WP_Block_Processor for efficient parsing (WordPress 6.9+).
-	if ( class_exists( 'WP_Block_Processor' ) ) {
-		$processor = new \WP_Block_Processor( $content );
-		$count     = 0;
-
-		while ( $processor->next_block() && $count < $limit ) {
-			if ( $processor->is_block_type( 'image' ) || $processor->is_block_type( 'cover' ) ) {
-				$block_html = $processor->extract_full_block_and_advance();
-				if ( $block_html ) {
-					if ( preg_match( '/<!--\s*wp:core\/(?:image|cover)\s+(\{.*?\})\s*-->/s', $block_html, $matches ) ) {
-						$attrs_json = $matches[1];
-						$attrs      = json_decode( $attrs_json, true );
-						if ( is_array( $attrs ) && ! empty( $attrs['id'] ) ) {
-							$image_id = (int) $attrs['id'];
-							if ( ! in_array( $image_id, $image_ids, true ) ) {
-								$image_ids[] = $image_id;
-								++$count;
-							}
-						}
-					} else {
-						$blocks = parse_blocks( $block_html );
-						if ( ! empty( $blocks[0]['attrs']['id'] ) ) {
-							$image_id = (int) $blocks[0]['attrs']['id'];
-							if ( ! in_array( $image_id, $image_ids, true ) ) {
-								$image_ids[] = $image_id;
-								++$count;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return array_slice( $image_ids, 0, $limit );
-	}
-
-	// Fallback for WordPress < 6.9.
+	// Parse blocks to find image blocks.
 	$blocks = parse_blocks( $content );
+	$count  = 0;
 
-	$find_images_in_blocks = function ( $blocks ) use ( &$find_images_in_blocks, &$image_ids, $limit ) {
-		foreach ( $blocks as $block ) {
-			if ( count( $image_ids ) >= $limit ) {
-				break;
+	foreach ( $blocks as $block ) {
+		if ( $count >= $limit ) {
+			break;
+		}
+
+		// Check if this is an image or cover block.
+		if ( in_array( $block['blockName'] ?? '', array( 'core/image', 'core/cover' ), true ) ) {
+			// Get image ID from block attributes.
+			if ( ! empty( $block['attrs']['id'] ) ) {
+				$image_id = (int) $block['attrs']['id'];
+				if ( ! in_array( $image_id, $image_ids, true ) ) {
+					$image_ids[] = $image_id;
+					++$count;
+				}
 			}
+		}
 
-			if ( in_array( $block['blockName'] ?? '', array( 'core/image', 'core/cover' ), true ) ) {
-				$attrs = $block['attrs'] ?? array();
-				if ( ! empty( $attrs['id'] ) ) {
-					$image_id = (int) $attrs['id'];
-					if ( ! in_array( $image_id, $image_ids, true ) ) {
-						$image_ids[] = $image_id;
+		// Also check nested blocks (for cover blocks with background images).
+		if ( ! empty( $block['innerBlocks'] ) ) {
+			foreach ( $block['innerBlocks'] as $inner_block ) {
+				if ( $count >= $limit ) {
+					break 2;
+				}
+
+				if ( in_array( $inner_block['blockName'] ?? '', array( 'core/image', 'core/cover' ), true ) ) {
+					if ( ! empty( $inner_block['attrs']['id'] ) ) {
+						$image_id = (int) $inner_block['attrs']['id'];
+						if ( ! in_array( $image_id, $image_ids, true ) ) {
+							$image_ids[] = $image_id;
+							++$count;
+						}
 					}
 				}
 			}
-
-			if ( ! empty( $block['innerBlocks'] ) ) {
-				$find_images_in_blocks( $block['innerBlocks'] );
-			}
 		}
-	};
-
-	$find_images_in_blocks( $blocks );
+	}
 
 	return array_slice( $image_ids, 0, $limit );
 }

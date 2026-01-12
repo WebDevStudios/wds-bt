@@ -30,31 +30,7 @@ function get_lcp_image_id() {
 
 	$content = $post->post_content;
 
-	if ( class_exists( 'WP_Block_Processor' ) ) {
-		$processor = new \WP_Block_Processor( $content );
-		while ( $processor->next_block() ) {
-			if ( $processor->is_block_type( 'image' ) || $processor->is_block_type( 'cover' ) ) {
-				$block_html = $processor->extract_full_block_and_advance();
-				if ( $block_html ) {
-					if ( preg_match( '/<!--\s*wp:core\/(?:image|cover)\s+(\{.*?\})\s*-->/s', $block_html, $matches ) ) {
-						$attrs_json = $matches[1];
-						$attrs      = json_decode( $attrs_json, true );
-						if ( is_array( $attrs ) && ! empty( $attrs['id'] ) ) {
-							return (int) $attrs['id'];
-						}
-					}
-
-					$blocks = parse_blocks( $block_html );
-					if ( ! empty( $blocks[0]['attrs']['id'] ) ) {
-						return (int) $blocks[0]['attrs']['id'];
-					}
-				}
-			}
-		}
-		return null;
-	}
-
-	// Fallback for WordPress < 6.9 - less efficient, parses everything.
+	// Parse blocks to find image blocks.
 	$blocks = parse_blocks( $content );
 
 	$find_image_in_blocks = function ( $blocks ) use ( &$find_image_in_blocks ) {
