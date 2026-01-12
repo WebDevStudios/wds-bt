@@ -70,6 +70,18 @@ function get_lcp_image_url() {
 	if ( $image_id ) {
 		$image_url = wp_get_attachment_image_url( $image_id, 'full' );
 		if ( $image_url ) {
+			if ( function_exists( __NAMESPACE__ . '\\get_webp_url' ) && function_exists( __NAMESPACE__ . '\\browser_supports_webp' ) && function_exists( __NAMESPACE__ . '\\webp_supported' ) ) {
+				if ( browser_supports_webp() && webp_supported() ) {
+					$webp_url = get_webp_url( $image_id );
+					if ( $webp_url ) {
+						return $webp_url;
+					}
+					$webp_url = preg_replace( '/\.(jpg|jpeg|png)$/i', '.webp', $image_url );
+					if ( $webp_url !== $image_url ) {
+						return $webp_url;
+					}
+				}
+			}
 			return $image_url;
 		}
 	}

@@ -33,7 +33,7 @@ function include_inc_files() {
 
 		// Allows inclusion of individual files or all .php files in a directory.
 		if ( is_dir( $include ) ) {
-			foreach ( glob( $include . '*.php' ) as $file ) {
+			foreach ( glob( $include . '/*.php' ) as $file ) {
 				require $file;
 			}
 		} else {

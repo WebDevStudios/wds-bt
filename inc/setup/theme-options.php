@@ -104,8 +104,8 @@ function render_settings_page() {
 				printf(
 					// translators: %1$d: number of processed images, %2$d: total images.
 					esc_html__( 'Regenerated WebP for %1$d of %2$d images.', 'wdsbt' ),
-					$processed,
-					$count
+					esc_html( $processed ),
+					esc_html( $count )
 				);
 				echo '</p></div>';
 			}
@@ -248,7 +248,7 @@ function render_settings_page() {
 		<?php
 		// Font Detection Debug at the bottom.
 		if ( function_exists( __NAMESPACE__ . '\\get_font_detection_debug_html' ) ) {
-			echo get_font_detection_debug_html();
+			echo wp_kses_post( get_font_detection_debug_html() );
 		}
 		?>
 	</div>

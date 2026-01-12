@@ -280,42 +280,28 @@ function init_dynamic_theme_json() {
 	// Hook into theme.json data filter.
 	add_filter( 'wp_theme_json_data_theme', __NAMESPACE__ . '\filter_theme_json_data' );
 
-	// Add debug logging if WP_DEBUG is enabled and we're on the WDSBT Settings page.
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG && is_admin() ) {
-		// Use 'in_admin_footer' instead of 'admin_notices' to show at bottom.
-		add_action(
-			'in_admin_footer',
-			function () {
-				$screen = get_current_screen();
-				if ( $screen && 'tools_page_wdsbt-settings' === $screen->id ) {
-					debug_font_detection();
-				}
-			}
-		);
-	}
+	// Font detection debug is now shown at the bottom of the settings page via get_font_detection_debug_html().
 }
 add_action( 'init', __NAMESPACE__ . '\init_dynamic_theme_json' );
 
 /**
- * Debug function to log detected fonts in development.
+ * Get font detection debug HTML.
+ *
+ * @return string Font detection debug HTML.
  */
-function debug_font_detection() {
-	if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG || ! is_admin() ) {
-		return;
-	}
-
-	$screen = get_current_screen();
-	if ( ! $screen || 'tools_page_wdsbt-settings' !== $screen->id ) {
-		return;
+function get_font_detection_debug_html() {
+	if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
+		return '';
 	}
 
 	$build_fonts   = scan_font_directory( 'build/fonts' );
 	$assets_fonts  = scan_font_directory( 'assets/fonts' );
 	$font_families = group_fonts_by_family( array_merge( $build_fonts, $assets_fonts ) );
 
+	ob_start();
 	?>
-	<div class="notice notice-info is-dismissible" style="margin: 2em 0 1em;">
-		<h3 style="margin-top: 1em;"><?php esc_html_e( 'Font Detection Debug', 'wdsbt' ); ?></h3>
+	<div style="margin: 2em 0 1em; padding: 1em; background: #f0f6fc; border-left: 4px solid #2271b1;">
+		<h3 style="margin-top: 0;"><?php esc_html_e( 'Font Detection Debug', 'wdsbt' ); ?></h3>
 		<p>
 			<strong><?php esc_html_e( 'Build fonts found:', 'wdsbt' ); ?></strong> <?php echo count( $build_fonts ); ?><br>
 			<strong><?php esc_html_e( 'Assets fonts found:', 'wdsbt' ); ?></strong> <?php echo count( $assets_fonts ); ?>
@@ -339,4 +325,21 @@ function debug_font_detection() {
 		<?php endif; ?>
 	</div>
 	<?php
+	return ob_get_clean();
+}
+
+/**
+ * Debug function to log detected fonts in development (legacy - outputs as admin notice).
+ */
+function debug_font_detection() {
+	if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG || ! is_admin() ) {
+		return;
+	}
+
+	$screen = get_current_screen();
+	if ( ! $screen || 'tools_page_wdsbt-settings' !== $screen->id ) {
+		return;
+	}
+
+	// Don't output here - it will be shown at the bottom of the settings page.
 }

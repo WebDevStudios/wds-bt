@@ -24,7 +24,11 @@ function webp_supported() {
 				return true;
 			}
 		} catch ( \Exception $e ) {
+			// Imagick not available, continue to GD check.
+			unset( $e );
 		} catch ( \Error $e ) {
+			// Imagick not available, continue to GD check.
+			unset( $e );
 		}
 	}
 
@@ -74,6 +78,8 @@ function generate_webp( $file_path, $webp_path ) {
 
 				return file_exists( $webp_path );
 			} catch ( \Exception $e ) {
+				// Imagick failed, continue to GD fallback.
+				unset( $e );
 			}
 		}
 	}
@@ -430,10 +436,11 @@ function replace_attachment_image_src_with_webp( $image, $attachment_id, $size, 
 
 	$webp_url = preg_replace( '/\.(jpg|jpeg|png)$/i', '.webp', $src_url );
 
-	$parsed_url = parse_url( $webp_url );
+	$parsed_url = wp_parse_url( $webp_url );
 	if ( isset( $parsed_url['path'] ) ) {
-		$uploads_path = parse_url( $upload_dir['baseurl'], PHP_URL_PATH );
-		if ( strpos( $parsed_url['path'], $uploads_path ) === 0 ) {
+		$uploads_parsed = wp_parse_url( $upload_dir['baseurl'] );
+		$uploads_path   = isset( $uploads_parsed['path'] ) ? $uploads_parsed['path'] : '';
+		if ( $uploads_path && strpos( $parsed_url['path'], $uploads_path ) === 0 ) {
 			$relative_path = substr( $parsed_url['path'], strlen( $uploads_path ) );
 			$webp_path     = $upload_dir['basedir'] . $relative_path;
 
@@ -836,8 +843,9 @@ function replace_images_in_content_with_webp( $content ) {
 				$src_path = $upload_dir['basedir'] . '/' . $src_url;
 			}
 
-			$src_path = str_replace( array( '/', '\\' ), DIRECTORY_SEPARATOR, $src_path );
-			$src_path = realpath( $src_path ) ?: $src_path;
+			$src_path  = str_replace( array( '/', '\\' ), DIRECTORY_SEPARATOR, $src_path );
+			$real_path = realpath( $src_path );
+			$src_path  = $real_path ? $real_path : $src_path;
 
 			if ( file_exists( $src_path ) && is_file( $src_path ) ) {
 				$file_info = pathinfo( $src_path );
@@ -891,8 +899,9 @@ function replace_images_in_content_with_webp( $content ) {
 						$src_path = $upload_dir['basedir'] . '/' . $url;
 					}
 
-					$src_path = str_replace( array( '/', '\\' ), DIRECTORY_SEPARATOR, $src_path );
-					$src_path = realpath( $src_path ) ?: $src_path;
+					$src_path  = str_replace( array( '/', '\\' ), DIRECTORY_SEPARATOR, $src_path );
+					$real_path = realpath( $src_path );
+					$src_path  = $real_path ? $real_path : $src_path;
 
 					if ( file_exists( $src_path ) && is_file( $src_path ) ) {
 						$file_info = pathinfo( $src_path );
@@ -975,16 +984,17 @@ if ( ! is_admin() && ! wp_is_json_request() ) {
 		1
 	);
 
-	add_action(
-		'shutdown',
-		function () {
-			$buffer = ob_get_clean();
-			if ( $buffer ) {
-				echo replace_images_in_output_buffer( $buffer );
-			}
-		},
-		0
-	);
+		add_action(
+			'shutdown',
+			function () {
+				$buffer = ob_get_clean();
+				if ( $buffer ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Buffer contains HTML that is already escaped.
+					echo replace_images_in_output_buffer( $buffer );
+				}
+			},
+			0
+		);
 }
 
 /**
