@@ -261,7 +261,7 @@
             },
             "core/link": {
                 "typography": {
-                    "textDecoration": "none"
+                    "textDecoration": "underline"
                 },
                 "color": {
                     "text": "var:preset|color|accent-1"

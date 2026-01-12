@@ -23,9 +23,7 @@
 
 			&:hover,
 			&:active {
-				.wp-block-navigation-item__label {
-					color: var(--wp--custom--navigation-link-hover--color);
-				}
+				color: var(--wp--custom--navigation-link-hover--color);
 			}
 
 			&[aria-current='page'] {
@@ -69,6 +67,9 @@
 						&:active {
 							background: var(
 								--wp--custom--navigation-sublink-background--background
+							);
+							color: var(
+								--wp--custom--navigation-sublink-hover--color
 							);
 
 							.wp-block-navigation-item__label {
