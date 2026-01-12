@@ -1095,27 +1095,44 @@ function add_webp_replacement_script() {
 	<script>
 	(function() {
 		var siteUrl = <?php echo wp_json_encode( site_url() ); ?>;
-		var siteHost = new URL(siteUrl).hostname;
+		var homeUrl = <?php echo wp_json_encode( home_url() ); ?>;
+		var siteHost = '';
+		var homeHost = '';
+
+		try {
+			siteHost = new URL(siteUrl).hostname;
+		} catch(e) {}
+
+		try {
+			homeHost = new URL(homeUrl).hostname;
+		} catch(e) {}
 
 		function isLocalUrl(url) {
+			if (!url || typeof url !== 'string') {
+				return false;
+			}
+
 			try {
 				var urlObj = new URL(url, window.location.href);
-				return urlObj.hostname === siteHost || urlObj.hostname === window.location.hostname;
+				var hostname = urlObj.hostname;
+				return hostname === siteHost || hostname === homeHost || hostname === window.location.hostname || hostname === '';
 			} catch(e) {
-				return url.indexOf('/') === 0 || url.indexOf(siteUrl) === 0;
+				return url.indexOf('/') === 0 || url.indexOf(siteUrl) === 0 || url.indexOf(homeUrl) === 0;
 			}
 		}
 
 		function replaceImagesWithWebP() {
 			var images = document.querySelectorAll('img');
 			images.forEach(function(img) {
-				if (img.src && img.src.match(/\.(jpg|jpeg|png)$/i) && isLocalUrl(img.src)) {
-					img.src = img.src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+				if (img.src && img.src.match(/\.(jpg|jpeg|png)(\?|$)/i)) {
+					if (isLocalUrl(img.src)) {
+						img.src = img.src.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2');
+					}
 				}
 				if (img.srcset) {
-					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\s+\d+w)?/gi, function(match, url, ext, width) {
+					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\?[^\s,]*)?(\s+\d+w)?/gi, function(match, url, ext, query, width) {
 						if (isLocalUrl(url)) {
-							return url.replace(/\.(jpg|jpeg|png)$/i, '.webp') + (width || '');
+							return url.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2') + (query || '') + (width || '');
 						}
 						return match;
 					});
@@ -1147,15 +1164,47 @@ add_action(
 		?>
 	<script>
 	(function() {
+		var siteUrl = <?php echo wp_json_encode( site_url() ); ?>;
+		var homeUrl = <?php echo wp_json_encode( home_url() ); ?>;
+		var siteHost = '';
+		var homeHost = '';
+
+		try {
+			siteHost = new URL(siteUrl).hostname;
+		} catch(e) {}
+
+		try {
+			homeHost = new URL(homeUrl).hostname;
+		} catch(e) {}
+
+		function isLocalUrl(url) {
+			if (!url || typeof url !== 'string') {
+				return false;
+			}
+
+			try {
+				var urlObj = new URL(url, window.location.href);
+				var hostname = urlObj.hostname;
+				return hostname === siteHost || hostname === homeHost || hostname === window.location.hostname || hostname === '';
+			} catch(e) {
+				return url.indexOf('/') === 0 || url.indexOf(siteUrl) === 0 || url.indexOf(homeUrl) === 0;
+			}
+		}
+
 		function replaceImagesWithWebP() {
 			var images = document.querySelectorAll('img');
 			images.forEach(function(img) {
-				if (img.src && img.src.match(/\.(jpg|jpeg|png)$/i)) {
-					img.src = img.src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+				if (img.src && img.src.match(/\.(jpg|jpeg|png)(\?|$)/i)) {
+					if (isLocalUrl(img.src)) {
+						img.src = img.src.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2');
+					}
 				}
 				if (img.srcset) {
-					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\s+\d+w)?/gi, function(match, url, ext, width) {
-						return url.replace(/\.(jpg|jpeg|png)$/i, '.webp') + (width || '');
+					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\?[^\s,]*)?(\s+\d+w)?/gi, function(match, url, ext, query, width) {
+						if (isLocalUrl(url)) {
+							return url.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2') + (query || '') + (width || '');
+						}
+						return match;
 					});
 				}
 			});
