@@ -93,17 +93,31 @@ function get_lcp_image_url() {
 
 	$content = $post->post_content;
 
-	$image_block = get_first_block( $content, 'core/image' );
-	if ( $image_block ) {
-		if ( preg_match( '/src=["\']([^"\']+)["\']/', $image_block, $matches ) ) {
-			return $matches[1];
-		}
-		if ( preg_match( '/srcset=["\']([^"\']+)["\']/', $image_block, $matches ) ) {
-			$srcset = $matches[1];
-			if ( preg_match( '/^([^\s,]+)/', $srcset, $url_matches ) ) {
-				return $url_matches[1];
+	$blocks                   = parse_blocks( $content );
+	$find_image_url_in_blocks = function ( $blocks ) use ( &$find_image_url_in_blocks ) {
+		foreach ( $blocks as $block ) {
+			if ( 'core/image' === ( $block['blockName'] ?? '' ) ) {
+				$attrs = $block['attrs'] ?? array();
+				if ( ! empty( $attrs['id'] ) ) {
+					$image_url = wp_get_attachment_image_url( (int) $attrs['id'], 'full' );
+					if ( $image_url ) {
+						return $image_url;
+					}
+				}
+			}
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$result = $find_image_url_in_blocks( $block['innerBlocks'] );
+				if ( $result ) {
+					return $result;
+				}
 			}
 		}
+		return null;
+	};
+
+	$image_url = $find_image_url_in_blocks( $blocks );
+	if ( $image_url ) {
+		return $image_url;
 	}
 
 	if ( preg_match( '/<img[^>]+src=["\']([^"\']+)["\']/', $content, $matches ) ) {
