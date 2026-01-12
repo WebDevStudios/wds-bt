@@ -11,6 +11,34 @@
 namespace WebDevStudios\wdsbt;
 
 /**
+ * Check if a URL belongs to the local WordPress site.
+ *
+ * @param string $url The URL to check.
+ * @return bool True if the URL is from the local site.
+ */
+function is_local_url( $url ) {
+	if ( empty( $url ) ) {
+		return false;
+	}
+
+	$site_url = site_url();
+	$home_url = home_url();
+
+	$parsed_url = wp_parse_url( $url );
+	if ( ! $parsed_url || empty( $parsed_url['host'] ) ) {
+		return true;
+	}
+
+	$parsed_site = wp_parse_url( $site_url );
+	$parsed_home = wp_parse_url( $home_url );
+
+	$site_host = $parsed_site['host'] ?? '';
+	$home_host = $parsed_home['host'] ?? '';
+
+	return ( $parsed_url['host'] === $site_host || $parsed_url['host'] === $home_host );
+}
+
+/**
  * Check if WebP generation is supported.
  *
  * @return bool True if WebP can be generated, false otherwise.
@@ -779,9 +807,15 @@ function replace_block_image_with_webp( $block_content, $block ) {
 		return $block_content;
 	}
 
-	$block_content = preg_replace(
+	$block_content = preg_replace_callback(
 		'/(<img[^>]+src=["\'])([^"\']+\.)(jpg|jpeg|png)(["\'][^>]*>)/i',
-		'$1$2webp$4',
+		function ( $matches ) {
+			$url = $matches[2] . $matches[3];
+			if ( ! is_local_url( $url ) ) {
+				return $matches[0];
+			}
+			return $matches[1] . $matches[2] . 'webp' . $matches[4];
+		},
 		$block_content
 	);
 
@@ -792,10 +826,29 @@ function replace_block_image_with_webp( $block_content, $block ) {
 			$srcset = $matches[2];
 			$after  = $matches[3];
 
-			$new_srcset = preg_replace( '/\.(jpg|jpeg|png)(\s+\d+w)/i', '.webp$2', $srcset );
-			$new_srcset = preg_replace( '/\.(jpg|jpeg|png)(,|$)/i', '.webp$2', $new_srcset );
+			$srcset_parts = explode( ',', $srcset );
+			$new_parts    = array();
 
-			return $before . $new_srcset . $after;
+			foreach ( $srcset_parts as $part ) {
+				$part = trim( $part );
+				if ( empty( $part ) ) {
+					continue;
+				}
+
+				if ( preg_match( '/^(.+?\.(?:jpg|jpeg|png))(?:\s+(\d+)w)?$/i', $part, $url_matches ) ) {
+					$url = trim( $url_matches[1] );
+					if ( is_local_url( $url ) ) {
+						$width       = isset( $url_matches[2] ) ? ' ' . $url_matches[2] . 'w' : '';
+						$new_parts[] = preg_replace( '/\.(jpg|jpeg|png)$/i', '.webp', $url ) . $width;
+					} else {
+						$new_parts[] = $part;
+					}
+				} else {
+					$new_parts[] = $part;
+				}
+			}
+
+			return $before . implode( ', ', $new_parts ) . $after;
 		},
 		$block_content
 	);
@@ -825,6 +878,10 @@ function replace_images_in_content_with_webp( $content ) {
 			$before_src = $matches[1];
 			$src_url    = $matches[2];
 			$after_src  = $matches[3];
+
+			if ( ! is_local_url( $src_url ) ) {
+				return $matches[0];
+			}
 
 			$src_path = $src_url;
 
@@ -886,6 +943,11 @@ function replace_images_in_content_with_webp( $content ) {
 				if ( preg_match( '/^(.+?\.(?:jpg|jpeg|png))(?:\s+(\d+)w)?$/i', $part, $url_matches ) ) {
 					$url   = trim( $url_matches[1] );
 					$width = isset( $url_matches[2] ) ? $url_matches[2] : '';
+
+					if ( ! is_local_url( $url ) ) {
+						$new_srcset[] = $part;
+						continue;
+					}
 
 					$src_path = $url;
 					if ( strpos( $url, 'http' ) === 0 ) {
@@ -951,9 +1013,15 @@ function replace_images_in_output_buffer( $buffer ) {
 		return $buffer;
 	}
 
-	$buffer = preg_replace(
+	$buffer = preg_replace_callback(
 		'/(<img[^>]+src=["\'])([^"\']+\.)(jpg|jpeg|png)(["\'][^>]*>)/i',
-		'$1$2webp$4',
+		function ( $matches ) {
+			$url = $matches[2] . $matches[3];
+			if ( ! is_local_url( $url ) ) {
+				return $matches[0];
+			}
+			return $matches[1] . $matches[2] . 'webp' . $matches[4];
+		},
 		$buffer
 	);
 
@@ -964,10 +1032,29 @@ function replace_images_in_output_buffer( $buffer ) {
 			$srcset = $matches[2];
 			$after  = $matches[3];
 
-			$new_srcset = preg_replace( '/\.(jpg|jpeg|png)(\s+\d+w)/i', '.webp$2', $srcset );
-			$new_srcset = preg_replace( '/\.(jpg|jpeg|png)(,|$)/i', '.webp$2', $new_srcset );
+			$srcset_parts = explode( ',', $srcset );
+			$new_parts    = array();
 
-			return $before . $new_srcset . $after;
+			foreach ( $srcset_parts as $part ) {
+				$part = trim( $part );
+				if ( empty( $part ) ) {
+					continue;
+				}
+
+				if ( preg_match( '/^(.+?\.(?:jpg|jpeg|png))(?:\s+(\d+)w)?$/i', $part, $url_matches ) ) {
+					$url = trim( $url_matches[1] );
+					if ( is_local_url( $url ) ) {
+						$width       = isset( $url_matches[2] ) ? ' ' . $url_matches[2] . 'w' : '';
+						$new_parts[] = preg_replace( '/\.(jpg|jpeg|png)$/i', '.webp', $url ) . $width;
+					} else {
+						$new_parts[] = $part;
+					}
+				} else {
+					$new_parts[] = $part;
+				}
+			}
+
+			return $before . implode( ', ', $new_parts ) . $after;
 		},
 		$buffer
 	);
@@ -1007,15 +1094,30 @@ function add_webp_replacement_script() {
 	?>
 	<script>
 	(function() {
+		var siteUrl = <?php echo wp_json_encode( site_url() ); ?>;
+		var siteHost = new URL(siteUrl).hostname;
+
+		function isLocalUrl(url) {
+			try {
+				var urlObj = new URL(url, window.location.href);
+				return urlObj.hostname === siteHost || urlObj.hostname === window.location.hostname;
+			} catch(e) {
+				return url.indexOf('/') === 0 || url.indexOf(siteUrl) === 0;
+			}
+		}
+
 		function replaceImagesWithWebP() {
 			var images = document.querySelectorAll('img');
 			images.forEach(function(img) {
-				if (img.src && img.src.match(/\.(jpg|jpeg|png)$/i)) {
+				if (img.src && img.src.match(/\.(jpg|jpeg|png)$/i) && isLocalUrl(img.src)) {
 					img.src = img.src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
 				}
 				if (img.srcset) {
 					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\s+\d+w)?/gi, function(match, url, ext, width) {
-						return url.replace(/\.(jpg|jpeg|png)$/i, '.webp') + (width || '');
+						if (isLocalUrl(url)) {
+							return url.replace(/\.(jpg|jpeg|png)$/i, '.webp') + (width || '');
+						}
+						return match;
 					});
 				}
 			});
