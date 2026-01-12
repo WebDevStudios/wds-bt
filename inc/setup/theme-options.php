@@ -65,6 +65,53 @@ function render_settings_page() {
 		echo "<script>if (window.localStorage) { localStorage.setItem('wdsbt_patterns_flushed', Date.now()); }</script>";
 	}
 
+	// Handle WebP regeneration request.
+	if ( isset( $_POST['wdsbt_regenerate_webp'] ) && check_admin_referer( 'wdsbt_regenerate_webp_action' ) ) {
+		// Ensure webp-uploads.php is loaded before checking.
+		$webp_file = get_template_directory() . '/inc/performance/webp-uploads.php';
+		if ( file_exists( $webp_file ) && ! function_exists( __NAMESPACE__ . '\\webp_supported' ) ) {
+			require_once $webp_file;
+		}
+
+		if ( ! function_exists( __NAMESPACE__ . '\\webp_supported' ) || ! webp_supported() ) {
+			echo '<div class="notice notice-error is-dismissible"><p>WebP generation is not supported on this server. Please install Imagick with WebP support or GD library with imagewebp() function.</p></div>';
+		} else {
+			$attachments = get_posts(
+				array(
+					'post_type'      => 'attachment',
+					'post_mime_type' => array( 'image/jpeg', 'image/png' ),
+					'posts_per_page' => -1,
+					'fields'         => 'ids',
+				)
+			);
+
+			if ( empty( $attachments ) ) {
+				echo '<div class="notice notice-warning is-dismissible"><p>No JPEG or PNG images found.</p></div>';
+			} else {
+				$count     = 0;
+				$processed = 0;
+
+				foreach ( $attachments as $attachment_id ) {
+					if ( function_exists( __NAMESPACE__ . '\\regenerate_webp_for_attachment' ) ) {
+						if ( regenerate_webp_for_attachment( $attachment_id ) ) {
+							++$processed;
+						}
+					}
+					++$count;
+				}
+
+				echo '<div class="notice notice-success is-dismissible"><p>';
+				printf(
+					// translators: %1$d: number of processed images, %2$d: total images.
+					esc_html__( 'Regenerated WebP for %1$d of %2$d images.', 'wdsbt' ),
+					$processed,
+					$count
+				);
+				echo '</p></div>';
+			}
+		}
+	}
+
 	// Determine current status summary.
 	$loading_status = $global_value
 		? __( 'Speculative Loading is currently <strong>disabled globally</strong>.', 'wdsbt' )
@@ -127,8 +174,83 @@ function render_settings_page() {
 						<input type="submit" name="wdsbt_flush_patterns" class="button button-primary" value="<?php esc_attr_e( 'Flush object cache and transients', 'wdsbt' ); ?>">
 					</p>
 				</form>
+
+				<?php
+				// Ensure webp-uploads.php is loaded.
+				$webp_file = get_template_directory() . '/inc/performance/webp-uploads.php';
+				if ( file_exists( $webp_file ) && ! function_exists( __NAMESPACE__ . '\\webp_supported' ) ) {
+					require_once $webp_file;
+				}
+
+				// Diagnostic information.
+				$gd_loaded        = extension_loaded( 'gd' );
+				$gd_info          = function_exists( 'gd_info' ) ? gd_info() : array();
+				$imagewebp_exists = function_exists( 'imagewebp' );
+				$imagick_loaded   = extension_loaded( 'imagick' );
+				$imagick_class    = class_exists( 'Imagick' );
+				// Check what webp_supported() actually returns.
+				$webp_supported_func_exists = function_exists( __NAMESPACE__ . '\\webp_supported' );
+				$webp_supported_result      = false;
+				if ( $webp_supported_func_exists ) {
+					$webp_supported_result = webp_supported();
+				}
+				$webp_supported = $webp_supported_result;
+				?>
+
+				<div style="margin-top: 20px; padding: 15px; background: #f0f0f1; border-left: 4px solid #2271b1;">
+					<h3 style="margin-top: 0;"><?php esc_html_e( 'WebP Support Diagnostics', 'wdsbt' ); ?></h3>
+					<ul style="list-style: disc; margin-left: 20px;">
+						<li><strong>GD Extension:</strong> <span style="color: <?php echo $gd_loaded ? '#00a32a' : '#d63638'; ?>;"><?php echo $gd_loaded ? 'Loaded' : 'Not loaded'; ?></span></li>
+						<?php if ( $gd_loaded && ! empty( $gd_info ) ) : ?>
+							<li><strong>GD WebP Support:</strong> <span style="color: <?php echo isset( $gd_info['WebP Support'] ) && $gd_info['WebP Support'] ? '#00a32a' : '#d63638'; ?>;"><?php echo isset( $gd_info['WebP Support'] ) && $gd_info['WebP Support'] ? 'Yes' : 'No'; ?></span></li>
+							<li><strong>GD Version:</strong> <?php echo isset( $gd_info['GD Version'] ) ? esc_html( $gd_info['GD Version'] ) : 'Unknown'; ?></li>
+						<?php endif; ?>
+						<li><strong>imagewebp() function:</strong> <span style="color: <?php echo $imagewebp_exists ? '#00a32a' : '#d63638'; ?>;"><?php echo $imagewebp_exists ? 'Available' : 'Not available'; ?></span></li>
+						<li><strong>Imagick Extension:</strong> <span style="color: <?php echo $imagick_loaded ? '#00a32a' : '#d63638'; ?>;"><?php echo $imagick_loaded ? 'Loaded' : 'Not loaded'; ?></span></li>
+						<li><strong>Imagick Class:</strong> <span style="color: <?php echo $imagick_class ? '#00a32a' : '#d63638'; ?>;"><?php echo $imagick_class ? 'Available' : 'Not available'; ?></span></li>
+						<?php if ( $imagick_loaded && $imagick_class ) : ?>
+							<?php
+							try {
+								$imagick         = new \Imagick();
+								$formats         = $imagick->queryFormats();
+								$webp_in_formats = in_array( 'WEBP', $formats, true );
+								?>
+								<li><strong>Imagick WebP Support:</strong> <span style="color: <?php echo $webp_in_formats ? '#00a32a' : '#d63638'; ?>;"><?php echo $webp_in_formats ? 'Yes' : 'No'; ?></span></li>
+							<?php } catch ( \Exception $e ) { ?>
+								<li><strong>Imagick WebP Support:</strong> <span style="color: #d63638;">Error checking formats</span></li>
+							<?php } ?>
+						<?php endif; ?>
+						<li><strong>webp_supported() function exists:</strong> <span style="color: <?php echo $webp_supported_func_exists ? '#00a32a' : '#d63638'; ?>;"><?php echo $webp_supported_func_exists ? 'Yes' : 'No'; ?></span></li>
+						<li><strong>webp_supported() result:</strong> <span style="color: <?php echo $webp_supported_result ? '#00a32a' : '#d63638'; ?>;"><?php echo $webp_supported_result ? 'true' : 'false'; ?></span></li>
+						<li><strong>Overall WebP Support:</strong> <span style="color: <?php echo $webp_supported ? '#00a32a' : '#d63638'; ?>;"><strong><?php echo $webp_supported ? 'Available' : 'Not available'; ?></strong></span></li>
+					</ul>
+				</div>
+
+				<?php if ( $webp_supported ) : ?>
+					<form method="post" style="margin-top: 20px;">
+						<?php wp_nonce_field( 'wdsbt_regenerate_webp_action' ); ?>
+						<p>
+							<input type="submit" name="wdsbt_regenerate_webp" class="button button-secondary" value="<?php esc_attr_e( 'Regenerate WebP for All Images', 'wdsbt' ); ?>" onclick="return confirm('<?php esc_attr_e( 'This will regenerate WebP versions for all existing JPEG and PNG images. This may take a while. Continue?', 'wdsbt' ); ?>');">
+						</p>
+						<p class="description">
+							<?php esc_html_e( 'Generate WebP versions for all existing images. This may take several minutes depending on the number of images.', 'wdsbt' ); ?>
+						</p>
+					</form>
+				<?php else : ?>
+					<p style="margin-top: 20px; color: #d63638;">
+						<strong><?php esc_html_e( 'WebP generation not available:', 'wdsbt' ); ?></strong><br>
+						<?php esc_html_e( 'Your server does not support WebP generation. Please install Imagick with WebP support or GD library with imagewebp() function.', 'wdsbt' ); ?>
+					</p>
+				<?php endif; ?>
 			</div>
 		</div>
+
+		<?php
+		// Font Detection Debug at the bottom.
+		if ( function_exists( __NAMESPACE__ . '\\get_font_detection_debug_html' ) ) {
+			echo get_font_detection_debug_html();
+		}
+		?>
 	</div>
 	<?php
 }
