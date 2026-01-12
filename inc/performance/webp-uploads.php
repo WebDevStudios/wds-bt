@@ -333,7 +333,7 @@ function add_webp_source( $attr, $attachment_id ) {
 		return $attr;
 	}
 
-	$src_url = $attr['src'];
+	$src_url  = $attr['src'];
 	$webp_url = null;
 
 	// Get attachment metadata.
@@ -345,10 +345,10 @@ function add_webp_source( $attr, $attachment_id ) {
 	$upload_dir = wp_upload_dir();
 	$file_dir   = dirname( get_attached_file( $attachment_id ) );
 
-	$src_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $src_url );
+	$src_path     = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $src_url );
 	$src_filename = basename( $src_path );
 
-	$file_path = get_attached_file( $attachment_id );
+	$file_path     = get_attached_file( $attachment_id );
 	$full_filename = basename( $file_path );
 	if ( $src_filename === $full_filename ) {
 		$webp_url = get_webp_url( $attachment_id );
@@ -389,18 +389,16 @@ function add_webp_source( $attr, $attachment_id ) {
 					}
 				}
 			}
-		} else {
-			if ( file_exists( $src_path ) ) {
+		} elseif ( file_exists( $src_path ) ) {
 				$file_info = pathinfo( $src_path );
 				$webp_path = $file_info['dirname'] . '/' . $file_info['filename'] . '.webp';
 
-				if ( ! file_exists( $webp_path ) ) {
-					generate_webp( $src_path, $webp_path );
-				}
+			if ( ! file_exists( $webp_path ) ) {
+				generate_webp( $src_path, $webp_path );
+			}
 
-				if ( file_exists( $webp_path ) ) {
-					$webp_url = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
-				}
+			if ( file_exists( $webp_path ) ) {
+				$webp_url = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
 			}
 		}
 	}
@@ -437,7 +435,7 @@ function replace_attachment_image_src_with_webp( $image, $attachment_id, $size, 
 		$uploads_path = parse_url( $upload_dir['baseurl'], PHP_URL_PATH );
 		if ( strpos( $parsed_url['path'], $uploads_path ) === 0 ) {
 			$relative_path = substr( $parsed_url['path'], strlen( $uploads_path ) );
-			$webp_path = $upload_dir['basedir'] . $relative_path;
+			$webp_path     = $upload_dir['basedir'] . $relative_path;
 
 			if ( file_exists( $webp_path ) ) {
 				$image[0] = $webp_url;
@@ -480,7 +478,7 @@ function replace_srcset_with_webp( $sources, $size_array, $image_src, $image_met
 			continue;
 		}
 
-		$webp_url = null;
+		$webp_url   = null;
 		$source_url = $source['url'];
 
 		if ( isset( $image_meta['width'] ) && (int) $image_meta['width'] === (int) $width ) {
@@ -505,7 +503,7 @@ function replace_srcset_with_webp( $sources, $size_array, $image_src, $image_met
 			}
 
 			if ( ! $matching_size ) {
-				$source_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $source_url );
+				$source_path     = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $source_url );
 				$source_filename = basename( $source_path );
 				foreach ( $metadata['sizes'] as $size_name => $size_data ) {
 					if ( ! empty( $size_data['file'] ) && $size_data['file'] === $source_filename ) {
@@ -592,11 +590,11 @@ function replace_content_image_with_webp( $filtered_image, $context, $attachment
 			$src_url    = $matches[2];
 			$after_src  = $matches[3];
 
-			$webp_url = null;
-			$src_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $src_url );
+			$webp_url     = null;
+			$src_path     = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $src_url );
 			$src_filename = basename( $src_path );
 
-			$file_path    = get_attached_file( $attachment_id );
+			$file_path     = get_attached_file( $attachment_id );
 			$full_filename = basename( $file_path );
 			if ( $src_filename === $full_filename ) {
 				$webp_url = get_webp_url( $attachment_id );
@@ -637,18 +635,16 @@ function replace_content_image_with_webp( $filtered_image, $context, $attachment
 							}
 						}
 					}
-				} else {
-					if ( file_exists( $src_path ) ) {
+				} elseif ( file_exists( $src_path ) ) {
 						$file_info = pathinfo( $src_path );
 						$webp_path = $file_info['dirname'] . '/' . $file_info['filename'] . '.webp';
 
-						if ( ! file_exists( $webp_path ) ) {
-							generate_webp( $src_path, $webp_path );
-						}
+					if ( ! file_exists( $webp_path ) ) {
+						generate_webp( $src_path, $webp_path );
+					}
 
-						if ( file_exists( $webp_path ) ) {
-							$webp_url = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
-						}
+					if ( file_exists( $webp_path ) ) {
+						$webp_url = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
 					}
 				}
 			}
@@ -682,8 +678,8 @@ function replace_content_image_with_webp( $filtered_image, $context, $attachment
 					$url   = trim( $url_matches[1] );
 					$width = (int) $url_matches[2];
 
-					$webp_url = null;
-					$src_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $url );
+					$webp_url     = null;
+					$src_path     = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $url );
 					$src_filename = basename( $src_path );
 
 					$matching_size = null;
@@ -721,18 +717,16 @@ function replace_content_image_with_webp( $filtered_image, $context, $attachment
 								}
 							}
 						}
-					} else {
-						if ( file_exists( $src_path ) ) {
+					} elseif ( file_exists( $src_path ) ) {
 							$file_info = pathinfo( $src_path );
 							$webp_path = $file_info['dirname'] . '/' . $file_info['filename'] . '.webp';
 
-							if ( ! file_exists( $webp_path ) ) {
-								generate_webp( $src_path, $webp_path );
-							}
+						if ( ! file_exists( $webp_path ) ) {
+							generate_webp( $src_path, $webp_path );
+						}
 
-							if ( file_exists( $webp_path ) ) {
-								$webp_url = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
-							}
+						if ( file_exists( $webp_path ) ) {
+							$webp_url = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
 						}
 					}
 
@@ -834,7 +828,7 @@ function replace_images_in_content_with_webp( $content ) {
 				}
 				if ( ! file_exists( $src_path ) ) {
 					$protocol_relative = str_replace( array( 'http:', 'https:' ), '', $upload_dir['baseurl'] );
-					$src_path = str_replace( $protocol_relative, $upload_dir['basedir'], $src_url );
+					$src_path          = str_replace( $protocol_relative, $upload_dir['basedir'], $src_url );
 				}
 			} elseif ( strpos( $src_url, '/' ) === 0 ) {
 				$src_path = ABSPATH . ltrim( $src_url, '/' );
@@ -909,8 +903,8 @@ function replace_images_in_content_with_webp( $content ) {
 						}
 
 						if ( file_exists( $webp_path ) ) {
-							$webp_url = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
-							$webp_url = str_replace( DIRECTORY_SEPARATOR, '/', $webp_url );
+							$webp_url     = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
+							$webp_url     = str_replace( DIRECTORY_SEPARATOR, '/', $webp_url );
 							$new_srcset[] = esc_url( $webp_url ) . ( $width ? ' ' . $width . 'w' : '' );
 						} else {
 							$new_srcset[] = $part;
@@ -973,16 +967,24 @@ function replace_images_in_output_buffer( $buffer ) {
 }
 
 if ( ! is_admin() && ! wp_is_json_request() ) {
-	add_action( 'template_redirect', function() {
-		ob_start();
-	}, 1 );
+	add_action(
+		'template_redirect',
+		function () {
+			ob_start();
+		},
+		1
+	);
 
-	add_action( 'shutdown', function() {
-		$buffer = ob_get_clean();
-		if ( $buffer ) {
-			echo replace_images_in_output_buffer( $buffer );
-		}
-	}, 0 );
+	add_action(
+		'shutdown',
+		function () {
+			$buffer = ob_get_clean();
+			if ( $buffer ) {
+				echo replace_images_in_output_buffer( $buffer );
+			}
+		},
+		0
+	);
 }
 
 /**
@@ -1024,11 +1026,13 @@ function add_webp_replacement_script() {
 add_action( 'wp_footer', __NAMESPACE__ . '\\add_webp_replacement_script', 999 );
 add_action( 'wp_head', __NAMESPACE__ . '\\add_webp_replacement_script', 999 );
 
-add_action( 'wp_print_scripts', function() {
-	if ( is_admin() || ! webp_supported() ) {
-		return;
-	}
-	?>
+add_action(
+	'wp_print_scripts',
+	function () {
+		if ( is_admin() || ! webp_supported() ) {
+			return;
+		}
+		?>
 	<script>
 	(function() {
 		function replaceImagesWithWebP() {
@@ -1053,8 +1057,10 @@ add_action( 'wp_print_scripts', function() {
 		setTimeout(replaceImagesWithWebP, 1000);
 	})();
 	</script>
-	<?php
-}, 1 );
+		<?php
+	},
+	1
+);
 
 /**
  * Register WP-CLI command for WebP regeneration.
@@ -1090,7 +1096,7 @@ function register_webp_cli_command() {
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Associative arguments.
 	 */
-	$regenerate_webp = function( $args, $assoc_args ) {
+	$regenerate_webp = function ( $args, $assoc_args ) {
 		if ( ! webp_supported() ) {
 			\WP_CLI::error( 'WebP generation is not supported on this server. Please install Imagick with WebP support or GD library with imagewebp() function.' );
 		}
