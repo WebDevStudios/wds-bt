@@ -8,6 +8,8 @@
 
 // Prefix: wdsbt_.
 
+namespace WebDevStudios\wdsbt;
+
 require_once __DIR__ . '/helpers.php';
 
 /**

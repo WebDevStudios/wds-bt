@@ -19,62 +19,92 @@ if ( php_sapi_name() !== 'cli' && ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/font-pipeline-config.php';
 
 
-
+/**
+ * Determine a font role slug based on folder structure or family name.
+ *
+ * Folder-based roles are detected from 'assets/fonts' or 'build/fonts'.
+ * Falls back to sanitized font family/filename if folder detection fails.
+ *
+ * @param array|string $family_or_path Font array with 'relative_path'/'family' or a family string.
+ * @param bool         $debug Optional. If true, outputs debug info (default false).
+ * @return string Font role slug (e.g., 'body', 'headline', 'mono', or sanitized name).
+ */
 if ( ! function_exists( __NAMESPACE__ . '\\wdsbt_get_font_role_slug' ) ) {
-	function wdsbt_get_font_role_slug( $family_or_path ) {
+    function wdsbt_get_font_role_slug( $family_or_path, $debug = false ) {
 
-		// Slug mapping is intentionally opinionated
-		// Unsure the purpose of this - Potentially remove in future versions!
-		static $slug_mapping = array(
-			'Oxygen'      => 'body',
-			'Inter'       => 'headline',
-			'Roboto Mono' => 'mono',
-		);
+        // Determine candidate string
+        if ( is_array( $family_or_path ) ) {
+            $candidate = $family_or_path['relative_path'] ?? $family_or_path['path'] ?? $family_or_path['family'] ?? '';
+			echo "[DEBUG] candidate path: $candidate\n";
+        } else {
+            $candidate = (string) $family_or_path;
+        }
 
-		if ( is_array( $family_or_path ) ) {
-			if ( ! empty( $family_or_path['path'] ) ) {
-				$candidate = $family_or_path['path'];
-			} elseif ( ! empty( $family_or_path['family'] ) ) {
-				$candidate = $family_or_path['family'];
-			} else {
-				$candidate = '';
-			}
-		} else {
-			$candidate = (string) $family_or_path;
-		}
+        // Normalize path separators (Windows → Unix style)
+        $normalized = str_replace('\\', '/', $candidate);
 
-		// Normalize separators
-		$normalized = str_replace( '\\', '/', $candidate );
 
-		// Folder-based slug
-		if ( false !== strpos( $normalized, '/fonts/' ) ) {
-			$after = explode( '/fonts/', $normalized, 2 )[1];
-			$segments = explode( '/', trim( $after, '/' ) );
-			if ( ! empty( $segments[0] ) ) {
-				return wdsbt_sanitize_title( $segments[0] );
+		if ( strpos($normalized, '/fonts/') !== false ) {
+			$after = explode('/fonts/', $normalized, 2)[1];
+			$segments = explode('/', trim($after, '/'));
+			if ( ! empty($segments[0]) ) {
+				return wdsbt_sanitize_title($segments[0]);
 			}
 		}
 
-		// Family name mapping
-		foreach ( $slug_mapping as $key => $value ) {
-			if ( 0 === strcasecmp( $candidate, $key ) ) {
-				// printf( "Default mapping found and used for " . $candidate . "\n" );
-				return $value;
-			}
-		}
+        // Fallback: strip extension and sanitize
+        $base = basename($normalized);
+        $base = preg_replace('/\.[^.]+$/', '', $base);
 
-		// Fallback: strip extension from filename and sanitize
-		$base = $normalized;
-		if ( false !== strpos( $base, '/' ) ) {
-			$base = basename( $base );
-		}
-		$base = preg_replace( '/\.[^.]+$/', '', $base );
+        $slug = $base ? wdsbt_sanitize_title($base) : 'unknown';
+        if ( $debug ) echo "[DEBUG] returning fallback slug: $slug\n";
 
-		return ! empty( $base ) ? wdsbt_sanitize_title( $base ) : 'unknown';
-	}
+        return $slug;
+    }
 }
 
 
+/**
+ * Group fonts by family.
+ *
+ * @param array $fonts List of resolved font variants.
+ * @return array Fonts grouped into theme.json family entries.
+ */
+if ( ! function_exists( __NAMESPACE__ . '\\wdsbt_group_fonts_by_family' ) ) {
+	function wdsbt_group_fonts_by_family( array $fonts ) {
+
+		$grouped = array();
+
+		foreach ( $fonts as $font ) {
+
+			$family = $font['family'];
+
+			// Use family/path for role_slug inference
+			$slug = wdsbt_get_font_role_slug( $font, true ); // function will pick relative_path first
+			$relative_path = str_replace('\\', '/', $font['relative_path']);
+
+			if ( ! isset( $grouped[ $family ] ) ) {
+				$grouped[ $family ] = array(
+					'name'       => $family,
+					'slug'       => $slug,
+					'fontFamily' => "{$family}, sans-serif",
+					'fontFace'   => array(),
+				);
+			}
+
+			$theme_slug = basename(dirname(__DIR__));
+
+			$grouped[ $family ]['fontFace'][] = array(
+				'fontFamily' => $family,
+				'fontStyle'  => $font['style'],
+				'fontWeight' => $font['weight'],
+				'src' => [ "file:./{$font['relative_path']}" ],
+			);
+		}
+
+		return $grouped;
+	}
+}
 
 
 /**
@@ -123,7 +153,9 @@ if ( ! function_exists( __NAMESPACE__ . '\\wdsbt_scan_font_directory_raw' ) ) {
 			)
 			{
 				$filename = $file->getBasename( '.' . $file->getExtension() );
-				$relative_path = str_replace( rtrim( $theme_dir, '/' ) . '/', '', $file->getPathname() );
+
+				 // Normalize relative path to forward slashes
+                $relative_path = str_replace('\\', '/', str_replace( rtrim( $theme_dir, '/' ) . '/', '', $file->getPathname() ));
 
 				$font_metadata = wdsbt_parse_font_meta_from_filename( $filename );
 
@@ -242,23 +274,31 @@ if ( ! function_exists( __NAMESPACE__ . '\\wdsbt_parse_font_meta_from_filename' 
 
 	function wdsbt_parse_font_meta_from_filename( $filename ) {
 
+		// Default values.
 		$metadata = array(
 			'family' => 'Unknown',
 			'weight' => '400',
 			'style'  => 'normal',
 		);
 
+		// Common font family patterns.
 		$family_patterns = array(
-			'inter'       => 'Inter',
-			'oxygen'      => 'Oxygen',
-			'roboto-mono' => 'Roboto Mono',
-			'roboto'      => 'Roboto',
-			'open-sans'   => 'Open Sans',
-			'lato'        => 'Lato',
-			'poppins'     => 'Poppins',
-			'montserrat'  => 'Montserrat',
-			'raleway'     => 'Raleway',
-			'playfair'    => 'Playfair Display',
+			'inter'        => 'Inter',
+			'oxygen'       => 'Oxygen',
+			'roboto-mono'  => 'Roboto Mono',
+			'roboto'       => 'Roboto',
+			'open-sans'    => 'Open Sans',
+			'lato'         => 'Lato',
+			'poppins'      => 'Poppins',
+			'montserrat'   => 'Montserrat',
+			'raleway'      => 'Raleway',
+			'playfair'     => 'Playfair Display',
+			'source-sans'  => 'Source Sans Pro',
+			'noto-sans'    => 'Noto Sans',
+			'nunito'       => 'Nunito',
+			'merriweather' => 'Merriweather',
+			'ubuntu'       => 'Ubuntu',
+			'oswald'       => 'Oswald',
 		);
 
 		$weight_patterns = array(
@@ -344,6 +384,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\wdsbt_parse_font_meta_from_filename' 
 			}
 		}
 
+		// Detect font weight - use exact matches.
 		foreach ( $weight_patterns as $pattern => $weight ) {
 			if ( strpos( $lowercase_filename, $pattern ) !== false ) {
 				$metadata['weight'] = $weight;
@@ -351,6 +392,7 @@ if ( ! function_exists( __NAMESPACE__ . '\\wdsbt_parse_font_meta_from_filename' 
 			}
 		}
 
+		// Detect font style.
 		foreach ( $style_patterns as $pattern => $style ) {
 			if ( strpos( $lowercase_filename, $pattern ) !== false ) {
 				$metadata['style'] = $style;
