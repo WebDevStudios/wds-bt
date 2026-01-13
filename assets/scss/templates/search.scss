@@ -1,15 +1,13 @@
 /* -- Search Page -- */
 
 .search {
-
 	.wp-block-query-title {
-		font-size: var(--wp--preset--font-size--m);
+		font-size: var(--wp--preset--font-size--medium);
 		margin-bottom: var(--wp--preset--spacing--30);
 		margin-top: var(--wp--preset--spacing--30);
 	}
 
 	.wp-block-post {
-
 		.wp-block-post-title {
 			font-size: 1.375rem;
 			margin-bottom: 0;
@@ -43,7 +41,6 @@
 		}
 
 		&:last-of-type {
-
 			.wp-block-separator {
 				display: none;
 			}

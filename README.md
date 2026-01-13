@@ -1,8 +1,21 @@
 # WDS BT
 
-## Version: 1.3.5
+## Version: 1.4.0-beta
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
+
+### What's New in 1.4.0
+
+- **Block Showcase**: Powerful development tool (admin-only) to discover, preview, and inspect all registered blocks with their attributes in an organized, interactive format.
+- **Dominant Color Images**: Automatic calculation and storage of dominant colors for uploaded images, used as placeholders while images load.
+- **Image Prioritizer**: Automatically prioritizes above-the-fold images with fetchpriority="high" for improved page load performance.
+- **WebP Uploads**: Automatically generates WebP versions of uploaded JPEG and PNG images for better compression and faster loading.
+- **ESLint 9 Migration**: Upgraded to ESLint 9 with flat config format for modern JavaScript linting.
+- **PHP Path Auto-Detection**: Automatic PHP binary detection for cross-platform compatibility (Mac, Linux, CI/CD).
+- **CI/CD Extension Support**: Automatic PHP extension handling for local development and CI environments.
+- **Package Updates**: Updated npm and dependencies to latest compatible versions.
+- **Dependency Cleanup**: Removed unused npm packages for cleaner dependency tree.
+- **RSS Block Fix**: Improved handling of RSS blocks with missing or invalid feed URLs.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
@@ -25,6 +38,10 @@
     - [Font Tools](#font-tools)
     - [Font Workflow](#font-workflow)
   - [Creating Blocks](#creating-blocks)
+  - [Block Showcase](#block-showcase)
+  - [Dominant Color Images](#dominant-color-images)
+  - [Image Prioritizer](#image-prioritizer)
+  - [WebP Uploads](#webp-uploads)
   - [Customizations](#customizations)
     - [Registering Block Styles](#registering-block-styles)
     - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
@@ -60,11 +77,16 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Native Block Support                             | Built for native WordPress blocks and site editor integration.                                      |
 | Responsive Design                                | Ensures optimal display and functionality across devices.                                           |
 | Foundation Theme                                 | Flexible base theme optimized for extensive customization.                                          |
-| Automated Code Quality                           | Modern linting configurations with PHP 8.3 compatibility, WordPress coding standards, and automated quality checks. |
+| Automated Code Quality                           | Modern linting configurations with PHP 8.3 compatibility, ESLint 9 flat config, WordPress coding standards, and automated quality checks. |
+| Cross-Platform PHP Support                       | Automatic PHP binary detection and extension handling for Mac, Linux, and CI/CD environments.       |
 | Third-party Block Style Overrides                | Conditionally enqueue and override third-party block styles for efficient asset delivery.           |
 | Accessibility Compliance                         | Built-in WCAG 2.2 compliance with automated Pa11y checks.                                           |
 | Enhanced Webpack Configuration                   | Refined Webpack setup for improved dependency resolution and optimized asset management.            |
 | Block Creation Script Enhancements               | Options for static, dynamic, or interactive blocks; automatically includes `view.js` for rendering. |
+| Block Showcase                                   | Development tool to discover, preview, and inspect all registered blocks with their attributes.  |
+| Dominant Color Images                            | Automatic dominant color calculation for images, used as background placeholders during image loading. |
+| Image Prioritizer                                | Automatically prioritizes above-the-fold images with fetchpriority="high" for faster page loads. |
+| WebP Uploads                                     | Automatically generates WebP versions of uploaded images for better compression and performance. |
 | LeftHook Integration                             | Required for pre-commit hooks and automated code quality checks.                                           |
 
 ## Requirements
@@ -197,8 +219,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
   └── single.html
  └── .editorconfig
  └── .env
- └── .eslintignore
- └── .eslintrc.js
+ └── eslint.config.cjs
  └── .gitignore
  └── .markdownlintignore
  └── .nvmrc
@@ -240,7 +261,7 @@ cd /wp-content/themes/your-theme
 
 The command below will remove `node_modules`, `vendor`, `build`, `package-lock.json`, and `composer.lock` files. Install theme dependencies and trigger an initial build.
 
->Note: You will need to have Composer 2 and NPM 10 installed first.
+>Note: You will need to have Composer 2 and NPM 10+ installed first. The setup script automatically detects PHP paths and handles extension flags for your environment.
 
 ```bash
 npm run setup
@@ -261,6 +282,7 @@ npm run setup
 | 🔨  | `npm run create-block`      | Scaffold a new block with various configurations.       |
 | 📝  | `npm run format`            | Format all code files (JS, SCSS, PHP).                  |
 | 🎨  | `npm run format:css`        | Format SCSS files.                                      |
+| 📜  | `npm run format:js`         | Format JavaScript files.                               |
 | 🐘  | `npm run format:php`        | Format PHP files.                                       |
 | 🔤  | `npm run fonts`             | Process fonts and update theme.json.                    |
 | 🔍  | `npm run fonts:detect`      | Detect and list all available fonts.                    |
@@ -1004,12 +1026,17 @@ To check your PHP files for coding standard violations, run:
 npm run lint:php
 ```
 
+**Note**: PHP path and extension flags are automatically detected based on your environment. The linting scripts use the `scripts/get-php.sh` and `scripts/get-php-flags.sh` helpers to ensure compatibility across different development environments (Local by Flywheel, Homebrew, CI/CD).
+
 <details closed>
 <summary><b>PHP Configuration</b></summary>
 
 - **Configuration File**: `phpcs.xml.dist`
 - **Test Version**: PHP 8.2-8.3 compatibility
 - **Standards**: WordPress-Extra, WordPress-Docs
+- **Auto-Detection**: PHP binary path and extension flags are automatically detected
+  - Local development: Uses `-n` flag to suppress extension warnings
+  - CI/CD environments: Automatically enables required extensions (`tokenizer`, `xmlwriter`, `simplexml`)
 - **Custom Rules**:
   - Allows array short syntax
   - Allows short prefixes for theme-specific functions
@@ -1027,9 +1054,9 @@ This theme uses ESLint with WordPress coding standards for JavaScript files.
 
 ### ESLint Setup
 
-- **Configuration**: Uses `.eslintrc.json` format for WordPress compatibility
-- **Standards**: WordPress ESLint plugin with recommended rules
-- **Version**: ESLint 8.x for full WordPress tooling compatibility
+- **Configuration**: Uses ESLint 9 flat config format (`eslint.config.cjs`)
+- **Standards**: WordPress ESLint plugin with recommended rules (via compatibility layer)
+- **Version**: ESLint 9.x with `@eslint/eslintrc` for WordPress config compatibility
 
 ### Running JavaScript Linting
 
@@ -1039,15 +1066,321 @@ To check your JavaScript files for coding standard violations, run:
 npm run lint:js
 ```
 
+**Note**: This theme uses ESLint 9 with flat config format (`eslint.config.cjs`). The WordPress ESLint plugin configuration is loaded via the `@eslint/eslintrc` compatibility layer. Some WordPress rules incompatible with ESLint 9 are automatically disabled.
+
 <details closed>
 <summary><b>JavaScript Configuration</b></summary>
 
-- **Configuration File**: `.eslintrc.json`
-- **Standards**: WordPress ESLint plugin recommended rules
+- **Configuration File**: `eslint.config.cjs` (ESLint 9 flat config)
+- **Standards**: WordPress ESLint plugin recommended rules (via `@eslint/eslintrc` compatibility layer)
 - **Special Handling**: Webpack configuration files use Node.js environment
 - **Compatibility**: Optimized for WordPress block editor development
+- **Note**: Some WordPress ESLint rules incompatible with ESLint 9 are automatically disabled
 
 </details>
+
+## Block Showcase
+
+[🔝 Back to Top](#wds-bt)
+
+The Block Showcase is a powerful development tool that automatically discovers and displays all registered blocks (core WordPress blocks, custom theme blocks, and third-party plugin blocks) in an organized, interactive format. This feature is perfect for developers who want to see all available blocks, their attributes, and preview how they render.
+
+### Features
+
+- **Automatic Block Discovery**: Uses WordPress's `WP_Block_Type_Registry` to find all registered blocks
+- **Organized by Category**: Blocks are grouped by their WordPress block categories (Text, Media, Design, Widgets, Theme, Embeds, etc.)
+- **Block Previews**: Each block is rendered with example content so you can see how it looks
+- **Attribute Information**: View all block attributes, their types, default values, and available options
+- **Interactive Accordions**: Collapsible sections for easy navigation through block categories
+- **Security**: Only accessible to administrators (`manage_options` capability)
+
+### How to Create a Block Showcase Page
+
+1. **Create a New Page**:
+   - Go to **Pages > Add New** in your WordPress admin
+   - Give it a title (e.g., "Block Showcase")
+
+2. **Select the Block Showcase Template**:
+   - In the page editor, look for the **Page Attributes** panel (or **Template** in the sidebar)
+   - Select **"Block Showcase"** from the template dropdown
+   - Note: This template option is only visible to administrators
+
+3. **Publish the Page**:
+   - Click **Publish** to make the page live
+   - The page will automatically display all registered blocks using the `[wdsbt_block_showcase]` shortcode
+
+### What Gets Displayed
+
+The showcase automatically organizes blocks into sections:
+
+- **Core Blocks**: All WordPress core blocks, organized by category:
+  - Text (Paragraph, Heading, List, Quote, Code, etc.)
+  - Media (Image, Gallery, Audio, Video, etc.)
+  - Design (Columns, Group, Cover, Separator, Spacer, etc.)
+  - Widgets (Archives, Calendar, Categories, Latest Posts, etc.)
+  - Theme (Site Logo, Site Title, Site Tagline, etc.)
+  - Embeds (YouTube, Twitter, etc.)
+  - Other Core Blocks (any blocks that don't fit the above categories)
+
+- **WDS BT Custom Blocks**: All blocks registered with the `wdsbt` namespace
+
+- **Third Party Blocks**: Blocks from other plugins, organized by their namespace
+
+### Block Information Displayed
+
+For each block, the showcase displays:
+
+- **Block Name**: The human-readable display name
+- **Block Identifier**: The fully qualified block name (e.g., `core/paragraph`)
+- **Attributes**: Expandable details showing:
+  - Attribute name
+  - Data type (string, number, boolean, array, object, etc.)
+  - Default value (if applicable)
+  - Available options (if the attribute uses an enum)
+- **Live Preview**: The block rendered with example content
+
+### How Block Content is Generated
+
+The showcase uses intelligent content generation:
+
+1. **Block Examples**: If a block has an `example` property defined, it uses that
+2. **Default Content**: For core blocks, predefined example content is used
+3. **Default Attributes**: For blocks with default attribute values, those are used to generate the preview
+4. **Fallback**: If no example or defaults exist, a minimal block markup is generated
+
+### Security and Access Control
+
+- **Template Restriction**: The Block Showcase template is only available to users with `manage_options` capability (administrators)
+- **Shortcode Protection**: The `[wdsbt_block_showcase]` shortcode returns empty content for non-administrators
+- **404 for Non-Admins**: If a non-administrator tries to access a page using the Block Showcase template, they'll see a 404 error
+
+### Customization
+
+The showcase styling can be customized via the theme's SCSS files:
+
+- **Main Stylesheet**: `assets/scss/templates/block-showcase.scss`
+- **CSS Classes**:
+  - `.wdsbt-block-showcase` - Main container
+  - `.wdsbt-showcase-section-heading` - Section headings (Core Blocks, WDS BT Blocks, etc.)
+  - `.wdsbt-showcase-category` - Category containers
+  - `.wdsbt-showcase-block-card` - Individual block cards
+  - `.wdsbt-showcase-block-title` - Block name heading
+  - `.wdsbt-showcase-block-name` - Block identifier code
+  - `.wdsbt-showcase-block-attributes` - Attributes container
+  - `.wdsbt-showcase-block-preview` - Block preview area
+
+### Technical Details
+
+- **Streaming Block Parser**: Uses WordPress 6.9+ streaming block parser for efficient block processing
+- **WP_Block_Processor**: Leverages the efficient `WP_Block_Processor` class for block rendering
+- **KSES Filtering**: All block output is properly sanitized using WordPress's KSES system
+- **Data URI Support**: Allows data URIs for images in block previews (temporarily enabled during rendering)
+
+### Troubleshooting
+
+**Block not showing in showcase:**
+- Some blocks (like `core/legacy-widget` and `core/freeform`) are intentionally skipped
+- Blocks that require specific context or configuration may not render properly
+- Check that the block is properly registered in WordPress
+
+**Template not appearing in dropdown:**
+- Ensure you're logged in as an administrator
+- The template is hidden from non-admin users for security
+
+**Shortcode not rendering:**
+- Verify you have administrator privileges
+- Check that the shortcode is placed in an HTML block: `[wdsbt_block_showcase]`
+
+## Dominant Color Images
+
+[🔝 Back to Top](#wds-bt)
+
+WDS BT automatically calculates and stores the dominant color for uploaded images, then uses it as a background placeholder while images load. This improves perceived performance by showing a color-coordinated placeholder instead of a blank space.
+
+### How It Works
+
+1. **Automatic Color Calculation**: When an image is uploaded to the media library, the theme calculates its dominant color using Imagick (if available) or the GD library.
+2. **Color Storage**: The dominant color is stored as post meta (`_dominant_color`) for each image attachment.
+3. **Placeholder Display**: When images are displayed, the dominant color is used as a background color, visible until the image fully loads.
+4. **Smooth Transitions**: CSS and JavaScript handle smooth fade-in effects when images finish loading.
+
+### Supported Image Types
+
+- Works with all standard WordPress image formats (JPEG, PNG, GIF, WebP)
+- Automatically processes images uploaded through the media library
+- Compatible with both attachment images and block editor image blocks (`core/image` and `core/cover`)
+
+### Technical Details
+
+- **File Location**: `inc/performance/dominant-color-images.php`
+- **Color Calculation**: Uses Imagick (preferred) or GD library fallback
+- **Storage**: Post meta key `_dominant_color` (hex color format, e.g., `#ff0000`)
+- **Integration**: Works with `wp_get_attachment_image()` and block editor image rendering
+- **Performance**: Color calculation happens asynchronously during image upload
+
+### Customization
+
+The dominant color is automatically applied to images. To customize the placeholder behavior, you can:
+
+- **Modify CSS**: The feature adds a `has-dominant-color` class to images, which you can style in your theme's SCSS files
+- **JavaScript Events**: Images with dominant colors have a `data-dominant-color` attribute for custom JavaScript interactions
+- **Disable for Specific Images**: Filter `wp_get_attachment_image_attributes` to exclude specific images
+
+### Requirements
+
+- PHP GD extension or Imagick extension (for color calculation)
+- WordPress 6.4+ (for block editor support)
+
+**Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/dominant-color-images).
+
+## Image Prioritizer
+
+[🔝 Back to Top](#wds-bt)
+
+WDS BT automatically prioritizes above-the-fold images by adding `fetchpriority="high"` to the first few images on a page. This signals browsers to load these critical images sooner, improving perceived performance and Largest Contentful Paint (LCP) metrics.
+
+### How It Works
+
+1. **Image Detection**: On singular pages, the theme identifies the first few images (featured image plus up to 3 images from content).
+2. **Priority Assignment**: Adds `fetchpriority="high"` attribute to these above-the-fold images.
+3. **Lazy Loading Removal**: Automatically removes `loading="lazy"` from prioritized images since they should load immediately.
+4. **Compatibility**: Works alongside the existing LCP image optimization without conflicts.
+
+### Supported Image Types
+
+- Featured images (post thumbnails)
+- Images in content blocks (`core/image` and `core/cover`)
+- Works with both attachment images and block editor image blocks
+
+### Technical Details
+
+- **File Location**: `inc/performance/image-prioritizer.php`
+- **Priority Limit**: Prioritizes up to 3 images per page (featured image + 2 content images)
+- **Page Types**: Only active on singular pages (posts, pages, custom post types)
+- **Integration**: Works with `wp_get_attachment_image()` and block editor image rendering
+- **Compatibility**: Checks for existing `fetchpriority` to avoid conflicts with LCP optimization
+
+### How It Differs from LCP Optimization
+
+- **LCP Optimization**: Focuses on the single Largest Contentful Paint image
+- **Image Prioritizer**: Prioritizes multiple above-the-fold images for broader performance improvement
+- **Both work together**: The LCP image will be prioritized by both systems, ensuring optimal loading
+
+### Customization
+
+The prioritization happens automatically. To customize:
+
+- **Change Priority Limit**: Modify the `$limit` parameter in `get_above_fold_image_ids()` function
+- **Exclude Specific Images**: Filter `wp_get_attachment_image_attributes` to exclude images
+- **Disable for Specific Pages**: Use conditional checks in the filter functions
+
+**Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/image-prioritizer).
+
+## WebP Uploads
+
+[🔝 Back to Top](#wds-bt)
+
+WDS BT automatically generates WebP versions of uploaded JPEG and PNG images. WebP format provides superior compression compared to JPEG and PNG, resulting in smaller file sizes and faster page loads while maintaining image quality.
+
+### How It Works
+
+1. **Automatic Conversion**: When JPEG or PNG images are uploaded, the theme automatically generates WebP versions.
+2. **Multiple Sizes**: WebP versions are created for all registered image sizes (thumbnail, medium, large, etc.).
+3. **Storage**: WebP files are stored alongside original images with `.webp` extension.
+4. **Metadata**: WebP file paths and URLs are stored in attachment metadata for easy access.
+
+### Supported Formats
+
+- **Input**: JPEG and PNG images
+- **Output**: WebP format (85% quality by default)
+- **Image Sizes**: All WordPress registered image sizes (thumbnail, medium, large, full, and custom sizes)
+
+### Technical Details
+
+- **File Location**: `inc/performance/webp-uploads.php`
+- **Conversion Method**: Uses Imagick (preferred) or GD library fallback
+- **Quality Setting**: 85% compression quality (balance between file size and quality)
+- **Storage**: WebP files stored in same directory as originals with `.webp` extension
+- **Metadata Keys**: `_webp_file` (file path) and `_webp_url` (URL)
+
+### Requirements
+
+- **PHP Extensions**: Imagick with WebP support OR GD library with `imagewebp()` function
+- **Server Support**: WebP format must be supported by your PHP installation
+- **WordPress**: WordPress 6.4+ recommended
+
+### Helper Functions
+
+The theme provides helper functions to access WebP versions:
+
+```php
+// Get WebP URL for an attachment.
+$webp_url = \WebDevStudios\wdsbt\get_webp_url( $attachment_id );
+
+// Get WebP file path for an attachment.
+$webp_file = \WebDevStudios\wdsbt\get_webp_file( $attachment_id );
+
+// Check if browser supports WebP.
+$supports_webp = \WebDevStudios\wdsbt\browser_supports_webp();
+```
+
+### Browser Compatibility
+
+- Modern browsers (Chrome, Firefox, Edge, Safari 14+) support WebP natively
+- The theme adds `data-webp` attribute to images for JavaScript-based fallback handling
+- Original images are always preserved for compatibility
+
+### Customization
+
+- **Quality Setting**: Modify the quality parameter (85) in `generate_webp()` function
+- **File Naming**: WebP files use the same name as originals with `.webp` extension
+- **Size Generation**: WebP versions are automatically generated for all image sizes
+
+### Regenerating WebP Versions
+
+The theme automatically generates WebP versions for existing images in the following scenarios:
+
+1. **Automatic Regeneration**: When image thumbnails are regenerated (e.g., using the "Regenerate Thumbnails" plugin), WebP versions are automatically created
+
+#### Manual Regeneration Methods
+
+**Method 1: WordPress Admin (Easiest)**
+
+1. Go to **Tools > WDSBT Settings** in your WordPress admin
+2. Click the **"Regenerate WebP for All Images"** button
+3. Confirm the action
+4. Wait for the process to complete (may take several minutes for large media libraries)
+
+**Method 2: WP-CLI (Recommended for Large Sites)**
+
+```bash
+# Regenerate WebP for all images
+wp webp regenerate --all
+
+# Regenerate WebP for a specific attachment
+wp webp regenerate --attachment-id=123
+```
+
+**Method 3: PHP Function (For Developers)**
+
+```php
+// Regenerate WebP for a specific attachment
+\WebDevStudios\wdsbt\regenerate_webp_for_attachment( $attachment_id );
+
+// Bulk regeneration for all images
+$attachments = get_posts( array(
+    'post_type'      => 'attachment',
+    'post_mime_type' => array( 'image/jpeg', 'image/png' ),
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+) );
+
+foreach ( $attachments as $attachment_id ) {
+    \WebDevStudios\wdsbt\regenerate_webp_for_attachment( $attachment_id );
+}
+```
+
+**Note**: Inspired by the [WordPress Performance plugin](https://github.com/WordPress/performance/tree/trunk/plugins/webp-uploads).
 
 ## Dynamic Block Pattern Categories
 
@@ -1166,6 +1499,30 @@ Bypassing Lefthook (`--no-verify`) is strictly prohibited, ensuring that all enf
 This project uses [rimraf](https://www.npmjs.com/package/rimraf) in npm scripts instead of `rm -rf` to ensure compatibility across Windows, macOS, and Linux. All contributors can use the provided npm scripts without needing Git Bash or WSL on Windows.
 
 If you add new scripts that need to remove files or directories, please use `rimraf` instead of `rm -rf`.
+
+### PHP Path Auto-Detection
+
+The project automatically detects the PHP binary path for cross-platform compatibility (Mac, Linux, CI/CD). The detection scripts (`scripts/get-php.sh` and `scripts/get-php.js`) check common paths:
+
+- `/opt/homebrew/bin/php` (Homebrew on Apple Silicon Mac)
+- `/usr/local/bin/php` (Homebrew on Intel Mac / Linux)
+- `/usr/bin/php` (Standard Linux path)
+- `php` (Fallback to PATH)
+
+**For CI/CD environments (like Buddy or GitHub Actions):** You can set the `PHP_BIN` environment variable to override auto-detection:
+
+```bash
+export PHP_BIN=/usr/bin/php
+```
+
+### PHP Extension Support
+
+The project automatically handles PHP extensions based on the environment:
+
+- **Local Development**: Uses `-n` flag to suppress extension warnings (useful for Local by Flywheel environments with mismatched extensions)
+- **CI/CD Environments**: Automatically enables required extensions (`tokenizer`, `xmlwriter`, `simplexml`) for PHPCS and other tools
+
+The `scripts/get-php-flags.sh` script detects the environment and applies the appropriate flags. This ensures builds work correctly across different environments without manual configuration.
 
 ## Contributing and Support
 

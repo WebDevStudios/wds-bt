@@ -36,9 +36,8 @@
 
 				&:hover,
 				&:focus {
-
 					&::before {
-						background-color: var(--wp--preset--color--primary-500);
+						background-color: var(--wp--preset--color--contrast);
 					}
 				}
 			}
@@ -77,9 +76,8 @@
 
 				&:hover,
 				&:focus {
-
 					&::before {
-						background-color: var(--wp--preset--color--primary-500);
+						background-color: var(--wp--preset--color--contrast);
 					}
 				}
 			}

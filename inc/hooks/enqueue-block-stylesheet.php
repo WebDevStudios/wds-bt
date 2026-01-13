@@ -22,7 +22,6 @@ function enqueue_block_stylesheet() {
 	 * See https://make.wordpress.org/core/2021/12/15/using-multiple-stylesheets-per-block/ for more info.
 	 */
 
-	// Enqueue styles from the core block folder.
 	foreach ( glob( get_parent_theme_file_path( '/build/css/blocks/*.css' ) ) as $stylesheet ) {
 		$block_name = basename( $stylesheet, '.css' );
 		$handle     = 'wdsbt-' . $block_name . '-style';

@@ -2,12 +2,15 @@
 
 /* -- Button -- */
 .wp-block-button {
+	padding: var(--wp--preset--spacing--20);
 
 	.wp-block-button__link {
 		align-items: center;
+		border: 1px solid currentcolor;
 		display: inline-flex;
 		justify-content: center;
 		position: relative;
+		transition: all 0.2s ease-in-out;
 		z-index: 1;
 
 		&:disabled,
@@ -16,74 +19,65 @@
 			opacity: 0.15;
 			pointer-events: none;
 		}
+
+		&:hover,
+		&:focus {
+			background-color: var(--wp--preset--color--accent-1);
+			border: 1px solid var(--wp--preset--color--accent-1);
+			color: var(--wp--preset--color--contrast);
+		}
 	}
 
 	&.is-style-minimal,
 	&.is-style-text {
-
 		.wp-block-button__link {
 			background-color: transparent;
 			border: 1px solid transparent;
-			color: var(--wp--preset--color--primary-500);
-		}
-	}
+			color: var(--wp--preset--color--contrast);
 
-	&.is-style-outline,
-	&.is-style-minimal {
-
-		.wp-block-button__link {
-
-			&:hover {
-				background-color: var(--wp--preset--color--primary-50);
-				border: 1px solid var(--wp--preset--color--primary-500);
+			&:hover,
+			&:focus {
+				color: var(--wp--preset--color--accent-1);
 			}
 		}
 	}
 
 	&.is-style-text {
-
 		.wp-block-button__link {
-
 			&:hover {
-				color: var(--wp--preset--color--primary-700);
+				color: var(--wp--preset--color--accent-1);
 			}
 		}
 	}
 
 	&.has-size-m {
-
 		.wp-block-button__link {
-			font-size: var(--wp--preset--font-size--s);
+			font-size: var(--wp--preset--font-size--small);
 			padding: 0.625rem 1.25rem;
 		}
 	}
 
 	&.has-size-l {
-
 		.wp-block-button__link {
-			font-size: var(--wp--preset--font-size--m);
+			font-size: var(--wp--preset--font-size--medium);
 			padding: 0.9375rem 1.25rem;
 		}
 	}
 
 	&.has-size-xl {
-
 		.wp-block-button__link {
-			font-size: var(--wp--preset--font-size--l);
+			font-size: var(--wp--preset--font-size--large);
 			padding: 0.9375rem 1.25rem;
 		}
 	}
 
 	&.has-arrow:not(.is-style-minimal):not(.is-style-text) {
-
 		.wp-block-button__link {
-
 			&::after {
 				mask: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIgMTIuOTU0Nkw0LjU5NjE1IDguMDA3NDRMMiAzLjA0NTlMMTQgOC4wMDc0NEwyIDEyLjk1NDZaIiBmaWxsPSIjMTMxMzEzIi8+Cjwvc3ZnPgo=);
 			}
 
 			&:hover {
-
 				&::after {
 					filter: opacity(0.8);
 				}
@@ -92,9 +86,7 @@
 	}
 
 	&.has-arrow {
-
 		.wp-block-button__link {
-
 			&::after {
 				background-color: currentcolor;
 				background-repeat: no-repeat;
@@ -113,7 +105,6 @@
 }
 
 @include responsive-mixins.responsive-max(600px) {
-
 	.wp-block-buttons {
 		flex-direction: column;
 		gap: 0.75rem !important; /* stylelint-disable-line declaration-no-important */

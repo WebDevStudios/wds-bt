@@ -49,7 +49,9 @@ async function run() {
 			message:
 				'Enter the site URL (leave blank to auto-detect via WordPress REST API):',
 			validate(value) {
-				if (!value) return true;
+				if (!value) {
+					return true;
+				}
 				const pass = value.match(/^https?:\/\/[^\s$.?#].[^\s]*$/);
 				return pass ? true : 'Please enter a valid URL';
 			},

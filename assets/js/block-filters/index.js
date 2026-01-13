@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * Block Filters
  * Automatically imports all JS files in this directory (non-recursive).
@@ -12,8 +11,7 @@ filters.keys().forEach((key) => {
 	}
 	try {
 		filters(key);
-		console.log(`✅ Loaded filter: ${key}`);
-	} catch (e) {
-		console.error(`❌ Failed to load filter: ${key}`, e);
+	} catch {
+		// Filter failed to load.
 	}
 });

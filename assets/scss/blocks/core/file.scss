@@ -4,69 +4,40 @@
 /* -- file -- */
 
 .wp-block-file {
-	max-width: calc(
-		var(--wp--style--global--content-size) - 30%
-	) !important; /* stylelint-disable-line declaration-no-important */
-
-	a:not(.wp-element-button) {
-		box-shadow: inset 0 -2px 0 0 var(--wp--preset--color--grey-400);
-		padding-bottom: 0.125rem;
-		text-decoration: none;
-
-		&:hover,
-		&:focus {
-			box-shadow: inset 0 -2px 0 0 var(--wp--preset--color--primary-500);
-			color: var(--wp--preset--color--primary-500);
-		}
-	}
+	padding: var(--wp--preset--spacing--30);
 
 	.wp-block-file__button {
 		align-items: center;
+		border: 1px solid var(--wp--preset--color--contrast, rgba(0, 0, 0, 0.1));
+		border-radius: var(--wp--preset--border-radius--md);
+		color: var(--wp--preset--color--contrast);
 		display: inline-flex;
 		justify-content: center;
-		margin-left: 1.5rem;
-		position: relative;
-		z-index: 1;
+		padding: var(--wp--preset--spacing--20);
+		text-decoration: none;
 
-		&::after {
-			background-color: currentcolor;
-			content: '';
-			display: inline-block;
-			height: 1rem;
-			left: unset;
-			margin-left: 0.5rem;
-			margin-right: unset;
-			mask-image: url(../../../images/icons/icon-download.svg);
-			mask-size: contain;
-			position: absolute;
-			right: 0.75rem;
-			vertical-align: middle;
-			width: 1rem;
-			z-index: 0;
+		&:disabled,
+		&[disabled] {
+			cursor: not-allowed;
+			opacity: 0.15;
+			pointer-events: none;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: var(--wp--preset--color--accent-1);
+			border: 1px solid var(--wp--preset--color--accent-1);
+			color: var(--wp--preset--color--contrast);
 		}
 	}
 
-	@include responsive-mixins.responsive-max(600px) {
-		display: flex;
-		flex-direction: column;
+	a:not(.wp-block-file__button) {
+		color: var(--wp--preset--color--contrast);
+		text-decoration: underline;
 
-		a:not(.wp-element-button) {
-			width: fit-content;
-		}
-
-		.wp-block-file__button {
-			border-radius: 6px;
-			border-width: 2px;
-			font-size: var(--wp--preset--font-size--s);
-			margin-left: 0;
-			margin-top: 0.75rem;
-			padding: 0.75rem 1rem;
-			text-align: center;
-
-			&::after {
-				height: 1.5rem;
-				width: 1.5rem;
-			}
+		&:hover,
+		&:focus {
+			color: var(--wp--preset--color--accent-1);
 		}
 	}
 }

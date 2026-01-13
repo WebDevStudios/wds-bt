@@ -9,10 +9,10 @@
  */
 
 // Determine whether to display site logo or site title.
-$wds_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":200} /-->' : '<!-- wp:site-title /--><!-- wp:site-tagline /-->';
+$wdsbt_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":200} /-->' : '<!-- wp:site-title /--><!-- wp:site-tagline /-->';
 
 // Generate the copyright information.
-$wds_copyright_info = esc_html__( 'Copyright &copy; ', 'wdsbt' ) . esc_attr( gmdate( 'Y' ) );
+$wdsbt_copyright_info = esc_html__( 'Copyright &copy; ', 'wdsbt' ) . esc_attr( gmdate( 'Y' ) );
 ?>
 
 <!-- wp:group {"tagName":"footer","metadata":{"name":"Footer"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"className":"alignfull","layout":{"type":"constrained"}} -->
@@ -24,7 +24,7 @@ $wds_copyright_info = esc_html__( 'Copyright &copy; ', 'wdsbt' ) . esc_attr( gmd
 		<!-- wp:column {"width":"66.66%"} -->
 		<div class="wp-block-column" style="flex-basis:66.66%">
 
-			<?php echo wp_kses_post( $wds_site_info ); ?>
+			<?php echo wp_kses_post( $wdsbt_site_info ); ?>
 
 			<!-- wp:social-links {"iconColor":"black","iconColorValue":"#000","iconBackgroundColor":"white","iconBackgroundColorValue":"#fff","className":"is-style-default"} -->
 			<ul class="wp-block-social-links has-icon-color has-icon-background-color is-style-default">
@@ -46,7 +46,7 @@ $wds_copyright_info = esc_html__( 'Copyright &copy; ', 'wdsbt' ) . esc_attr( gmd
 			<p class="has-white-color has-text-color has-link-color">WDS-BT stands for: <em>WebDevStudios Block Theme</em>. It can be found in the <a href="https://github.com/WebDevStudios/wds-bt">wds-bt github repo.</a>&nbsp; The theme is stood up on WDSLab: <a href="https://wdsbt.wdslab.com">https://wdsbt.wdslab.com</a>&nbsp;</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"#f78766"}}}},"textColor":"white"} -->
-			<p class="has-white-color has-text-color has-link-color"><?php echo wp_kses_post( $wds_copyright_info ); ?></p>
+			<p class="has-white-color has-text-color has-link-color"><?php echo wp_kses_post( $wdsbt_copyright_info ); ?></p>
 			<!-- /wp:paragraph -->
 
 		</div>

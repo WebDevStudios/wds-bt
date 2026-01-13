@@ -2,7 +2,7 @@ const path = require('path');
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const RemovePlugin = require('remove-files-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin').default;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
@@ -11,7 +11,7 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 const WebpackBar = require('webpackbar');
-const { exec } = require('child_process');
+const { exec, execSync } = require('child_process');
 
 /**
  * Custom plugin to generate theme.json after build
@@ -26,9 +26,15 @@ class ThemeJsonGeneratorPlugin {
 		compiler.hooks.afterEmit.tapAsync(
 			'ThemeJsonGeneratorPlugin',
 			(compilation, callback) => {
-				// Always run the generator, regardless of environment
+				// Always run the generator, regardless of environment.
+				// Use auto-detected PHP path with appropriate flags.
+				const phpPath = execSync('node scripts/get-php.js', {
+					encoding: 'utf8',
+				}).trim();
+				const phpFlags =
+					process.env.CI || process.env.GITHUB_ACTIONS ? '' : '-n';
 				exec(
-					'php tools/generate-theme-json.php 2>&1',
+					`${phpPath} ${phpFlags} tools/generate-theme-json.php 2>&1`,
 					(error, stdout) => {
 						const logger = compilation.getLogger(
 							'ThemeJsonGeneratorPlugin'

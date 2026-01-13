@@ -5,9 +5,11 @@
 	box-sizing: border-box;
 }
 
-html {
-	scroll-behavior: smooth;
+html,
+body {
+	padding: 0;
 	overflow-x: hidden;
+	scroll-behavior: smooth;
 }
 
 a,
@@ -19,18 +21,49 @@ textarea,
 }
 
 sup {
-	color: var(--wp--preset--color--primary-500);
+	color: var(--wp--preset--color--contrast);
 	font-size: 0.75rem;
 
 	a {
-		color: var(--wp--preset--color--primary-500);
+		color: var(--wp--preset--color--contrast);
+		text-decoration: none;
+	}
+}
+
+a {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.15em;
+	color: var(--wp--preset--color--accent-1);
+
+	&:hover {
+		color: var(--wp--preset--color--accent-3);
+		text-decoration-thickness: 2px;
+	}
+
+	&:focus {
+		color: var(--wp--preset--color--accent-3);
+		outline: 2px solid var(--wp--preset--color--accent-3);
+		outline-offset: 2px;
+	}
+
+	&:visited {
+		color: var(--wp--preset--color--accent-1);
+
+		&:hover {
+			color: var(--wp--preset--color--accent-3);
+		}
+	}
+
+	.wp-block-button &,
+	.wp-block-navigation &,
+	button & {
 		text-decoration: none;
 	}
 }
 
 /** Fix for image lightbox with caption trigger overflow from core **/
 .wp-block-gallery {
-
 	.lightbox-trigger {
 		top: 1rem !important; /* stylelint-disable-line declaration-no-important */
 	}

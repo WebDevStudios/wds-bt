@@ -21,7 +21,6 @@ function maybe_log_speculative_debug() {
 		return;
 	}
 
-	// Inject JavaScript logging logic.
 	add_action(
 		'wp_head',
 		function () {
@@ -40,7 +39,6 @@ function maybe_log_speculative_debug() {
 		100
 	);
 
-	// Prevent speculative loading on this page.
 	add_filter( 'wp_speculation_rules_configuration', '__return_empty_array' );
 }
 add_action( 'wp', __NAMESPACE__ . '\\maybe_log_speculative_debug' );

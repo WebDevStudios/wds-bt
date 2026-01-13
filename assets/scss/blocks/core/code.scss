@@ -1,5 +1,10 @@
 /* -- code -- */
 
 .wp-block-code {
-	letter-spacing: -0.023rem;
+	font-family: var(--wp--preset--font-family--code);
+	font-size: var(--wp--preset--font-size--small);
+	padding: var(--wp--preset--spacing--30);
+	border-radius: var(--wp--preset--border-radius--md);
+	border: 1px solid var(--wp--preset--color--contrast, rgba(0, 0, 0, 0.1));
+	background: var(--wp--preset--color--base, #fff);
 }
