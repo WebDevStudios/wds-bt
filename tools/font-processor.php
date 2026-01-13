@@ -22,6 +22,8 @@
 
 namespace WebDevStudios\wdsbt;
 
+require_once __DIR__ . '/helpers.php';
+
 // Configuration.
 $wdsbt_config = array(
 	'input_dir'      => 'assets/fonts',
@@ -93,6 +95,13 @@ function scan_font_files( $input_dir ) {
 		new \RecursiveDirectoryIterator( $full_path, \RecursiveDirectoryIterator::SKIP_DOTS )
 	);
 
+	// Keywords to ignore when detecting family name from filename.
+	$ignore_keywords = [
+		'100','200','300','400','500','600','700','800','900',
+		'thin','extralight','light','regular','medium','semibold',
+		'bold','extrabold','black','italic','oblique','normal'
+	];
+
 	foreach ( $iterator as $file ) {
 		if ( $file->isFile() && in_array( strtolower( $file->getExtension() ), array( 'woff2', 'woff', 'ttf', 'otf' ), true ) ) {
 			$relative_path = str_replace( $theme_dir . '/', '', $file->getPathname() );
@@ -100,9 +109,20 @@ function scan_font_files( $input_dir ) {
 
 			// Detect font family from folder name (headline, body, mono).
 			$folder_name   = basename( dirname( $file->getPathname() ) );
-			$font_metadata = parse_font_filename( $filename );
+			$font_metadata = wdsbt_parse_font_meta_from_filename( $filename );
 
-			// Always use the detected family from the filename. The folder name is only used for purpose.
+            // Smart fallback for Unknown family
+            if ( 'Unknown' === $font_metadata['family'] ) {
+                // Remove extension
+                $base = preg_replace('/\.[^.]+$/','', $filename);
+                // Split by - or _
+                $parts = preg_split('/[-_]/', $base);
+                // Keep parts that are not in ignore_keywords
+                $clean_parts = array_filter($parts, function($part) use ($ignore_keywords) {
+                    return ! in_array(strtolower($part), $ignore_keywords, true);
+                });
+                $font_metadata['family'] = ucwords( implode(' ', $clean_parts) );
+            }
 
 			$fonts[] = array(
 				'path'          => $file->getPathname(),
@@ -119,85 +139,7 @@ function scan_font_files( $input_dir ) {
 	return $fonts;
 }
 
-/**
- * Parse font filename.
- *
- * @param string $filename Font filename to parse.
- * @return array Font metadata.
- */
-function parse_font_filename( $filename ) {
-	$metadata = array(
-		'family' => 'Unknown',
-		'weight' => '400',
-		'style'  => 'normal',
-	);
 
-	$family_patterns = array(
-		'inter'       => 'Inter',
-		'oxygen'      => 'Oxygen',
-		'roboto-mono' => 'Roboto Mono',
-		'roboto'      => 'Roboto',
-		'open-sans'   => 'Open Sans',
-		'lato'        => 'Lato',
-		'poppins'     => 'Poppins',
-		'montserrat'  => 'Montserrat',
-		'raleway'     => 'Raleway',
-		'playfair'    => 'Playfair Display',
-	);
-
-	$weight_patterns = array(
-		'-100'       => '100',
-		'-200'       => '200',
-		'-300'       => '300',
-		'-regular'   => '400',
-		'-normal'    => '400',
-		'-400'       => '400',
-		'-500'       => '500',
-		'-600'       => '600',
-		'-700'       => '700',
-		'-800'       => '800',
-		'-900'       => '900',
-		'thin'       => '100',
-		'extralight' => '200',
-		'light'      => '300',
-		'regular'    => '400',
-		'medium'     => '500',
-		'semibold'   => '600',
-		'bold'       => '700',
-		'extrabold'  => '800',
-		'black'      => '900',
-	);
-
-	$style_patterns = array(
-		'italic'  => 'italic',
-		'oblique' => 'oblique',
-	);
-
-	$lowercase_filename = strtolower( $filename );
-
-	foreach ( $family_patterns as $pattern => $family ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['family'] = $family;
-			break;
-		}
-	}
-
-	foreach ( $weight_patterns as $pattern => $weight ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['weight'] = $weight;
-			break;
-		}
-	}
-
-	foreach ( $style_patterns as $pattern => $style ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['style'] = $style;
-			break;
-		}
-	}
-
-	return $metadata;
-}
 
 /**
  * Copy fonts to output directory.
@@ -216,7 +158,8 @@ function copy_fonts_to_output( $fonts, $output_dir ) {
 	}
 
 	foreach ( $fonts as $font ) {
-		$standardized_slug = get_font_slug( $font['family'] );
+		//$standardized_slug = get_font_slug( $font['family'] );
+		$standardized_slug = wdsbt_get_font_role_slug( $font['path'] );
 		$family_dir        = $full_output_dir . '/' . $standardized_slug;
 
 		if ( ! is_dir( $family_dir ) ) {
@@ -287,7 +230,7 @@ function generate_font_preload( $fonts, $output_file ) {
 
 	foreach ( $preloaded as $font ) {
 		$format            = 'woff2' === $font['extension'] ? 'font/woff2' : 'font/woff';
-		$standardized_slug = get_font_slug( $font['family'] );
+		$standardized_slug = wdsbt_get_font_role_slug( $font['family'] );
 		$php              .= "    'fonts/{$standardized_slug}/{$font['filename']}' => '{$format}',\n";
 	}
 
@@ -313,27 +256,15 @@ function generate_font_preload( $fonts, $output_file ) {
 	}
 }
 
-/**
- * Map font family to standardized slug.
- *
- * @param string $family Font family name.
- * @return string Standardized slug.
- */
-function get_font_slug( $family ) {
-	$slug_mapping = array(
-		'Oxygen'      => 'body',
-		'Inter'       => 'headline',
-		'Roboto Mono' => 'mono',
-	);
-
-	return $slug_mapping[ $family ] ?? sanitize_title( $family );
-}
 
 /**
  * Main function.
  */
 function main() {
 	global $wdsbt_config;
+
+	// Include the theme.json generator at the start of this function to ensure it's available.
+	include_once __DIR__ . '/generate-theme-json.php';
 
 	printf( "Font Processor Tool\n" );
 
@@ -388,7 +319,6 @@ function main() {
 	// Update theme.json.
 
 	printf( "\nUpdating theme.json...\n" );
-	include_once __DIR__ . '/generate-theme-json.php';
 	generate_theme_json();
 
 	printf( "\nFont processing complete!\n" );
