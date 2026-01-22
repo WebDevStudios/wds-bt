@@ -98,11 +98,8 @@ function scan_font_files( $input_dir ) {
 			$relative_path = str_replace( $theme_dir . '/', '', $file->getPathname() );
 			$filename      = $file->getBasename();
 
-			// Detect font family from folder name (headline, body, mono).
 			$folder_name   = basename( dirname( $file->getPathname() ) );
 			$font_metadata = parse_font_filename( $filename );
-
-			// Always use the detected family from the filename. The folder name is only used for purpose.
 
 			$fonts[] = array(
 				'path'          => $file->getPathname(),
@@ -112,6 +109,7 @@ function scan_font_files( $input_dir ) {
 				'family'        => $font_metadata['family'],
 				'weight'        => $font_metadata['weight'],
 				'style'         => $font_metadata['style'],
+				'slug'          => $folder_name,
 			);
 		}
 	}
@@ -130,19 +128,6 @@ function parse_font_filename( $filename ) {
 		'family' => 'Unknown',
 		'weight' => '400',
 		'style'  => 'normal',
-	);
-
-	$family_patterns = array(
-		'inter'       => 'Inter',
-		'oxygen'      => 'Oxygen',
-		'roboto-mono' => 'Roboto Mono',
-		'roboto'      => 'Roboto',
-		'open-sans'   => 'Open Sans',
-		'lato'        => 'Lato',
-		'poppins'     => 'Poppins',
-		'montserrat'  => 'Montserrat',
-		'raleway'     => 'Raleway',
-		'playfair'    => 'Playfair Display',
 	);
 
 	$weight_patterns = array(
@@ -173,14 +158,8 @@ function parse_font_filename( $filename ) {
 		'oblique' => 'oblique',
 	);
 
-	$lowercase_filename = strtolower( $filename );
-
-	foreach ( $family_patterns as $pattern => $family ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['family'] = $family;
-			break;
-		}
-	}
+	$filename_without_ext = preg_replace( '/\.(woff2?|ttf|otf)$/i', '', $filename );
+	$lowercase_filename   = strtolower( $filename_without_ext );
 
 	foreach ( $weight_patterns as $pattern => $weight ) {
 		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
@@ -194,6 +173,31 @@ function parse_font_filename( $filename ) {
 			$metadata['style'] = $style;
 			break;
 		}
+	}
+
+	$parts           = preg_split( '/[-_\s]+/', $filename_without_ext );
+	$family_parts    = array();
+	$weight_keywords = array( 'thin', 'extralight', 'light', 'regular', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black', '100', '200', '300', '400', '500', '600', '700', '800', '900' );
+	$style_keywords  = array( 'italic', 'oblique' );
+
+	foreach ( $parts as $part ) {
+		$lower_part = strtolower( $part );
+
+		if ( in_array( $lower_part, $weight_keywords, true ) || in_array( $lower_part, $style_keywords, true ) ) {
+			continue;
+		}
+
+		if ( preg_match( '/^v\d+|^latin|^\d+$/', $lower_part ) ) {
+			continue;
+		}
+
+		$family_parts[] = $part;
+	}
+
+	if ( ! empty( $family_parts ) ) {
+		$metadata['family'] = ucwords( implode( ' ', $family_parts ) );
+	} elseif ( ! empty( $parts[0] ) ) {
+		$metadata['family'] = ucwords( str_replace( array( '-', '_' ), ' ', $parts[0] ) );
 	}
 
 	return $metadata;
@@ -216,7 +220,7 @@ function copy_fonts_to_output( $fonts, $output_dir ) {
 	}
 
 	foreach ( $fonts as $font ) {
-		$standardized_slug = get_font_slug( $font['family'] );
+		$standardized_slug = $font['slug'];
 		$family_dir        = $full_output_dir . '/' . $standardized_slug;
 
 		if ( ! is_dir( $family_dir ) ) {
@@ -232,6 +236,7 @@ function copy_fonts_to_output( $fonts, $output_dir ) {
 				'style'     => $font['style'],
 				'filename'  => $font['filename'],
 				'extension' => $font['extension'],
+				'slug'      => $font['slug'],
 				'path'      => str_replace( $theme_dir . '/', '', $output_file ),
 			);
 
@@ -263,7 +268,6 @@ function generate_font_preload( $fonts, $output_file ) {
 	$theme_dir = dirname( __DIR__, 1 );
 	$php_path  = $theme_dir . '/' . $output_file;
 
-	// Create directory if it doesn't exist.
 	$php_dir = dirname( $php_path );
 	if ( ! is_dir( $php_dir ) ) {
 		mkdir( $php_dir, 0755, true );
@@ -276,7 +280,6 @@ function generate_font_preload( $fonts, $output_file ) {
 	$php .= "function wdsbt_font_preload_links() {\n";
 	$php .= "  \$preload_links = [\n";
 
-	// Get the first variant of each font family for preloading.
 	$preloaded = array();
 	foreach ( $fonts as $font ) {
 		$family = $font['family'];
@@ -287,7 +290,7 @@ function generate_font_preload( $fonts, $output_file ) {
 
 	foreach ( $preloaded as $font ) {
 		$format            = 'woff2' === $font['extension'] ? 'font/woff2' : 'font/woff';
-		$standardized_slug = get_font_slug( $font['family'] );
+		$standardized_slug = $font['slug'];
 		$php              .= "    'fonts/{$standardized_slug}/{$font['filename']}' => '{$format}',\n";
 	}
 
@@ -313,21 +316,6 @@ function generate_font_preload( $fonts, $output_file ) {
 	}
 }
 
-/**
- * Map font family to standardized slug.
- *
- * @param string $family Font family name.
- * @return string Standardized slug.
- */
-function get_font_slug( $family ) {
-	$slug_mapping = array(
-		'Oxygen'      => 'body',
-		'Inter'       => 'headline',
-		'Roboto Mono' => 'mono',
-	);
-
-	return $slug_mapping[ $family ] ?? sanitize_title( $family );
-}
 
 /**
  * Main function.
@@ -339,15 +327,12 @@ function main() {
 
 	printf( "=====================\n\n" );
 
-	// Parse arguments.
 	parse_args();
 
-	// Scan for existing fonts.
 	printf( "\nScanning for existing fonts...\n" );
 	$fonts = scan_font_files( $wdsbt_config['input_dir'] );
 
 	if ( empty( $fonts ) ) {
-
 		printf(
 			"No fonts found in %s\n",
 			$wdsbt_config['input_dir']
@@ -360,7 +345,6 @@ function main() {
 		count( $fonts )
 	);
 	foreach ( $fonts as $font ) {
-
 		printf(
 			"  - %s %s %s (%s)\n",
 			$font['family'],
@@ -370,22 +354,16 @@ function main() {
 		);
 	}
 
-	// Copy fonts to output directory.
-
 	printf( "\nCopying fonts to output directory...\n" );
 	$copied_fonts = copy_fonts_to_output( $fonts, $wdsbt_config['output_dir'] );
 
 	if ( empty( $copied_fonts ) ) {
-
 		printf( "No fonts were copied\n" );
 		exit( 1 );
 	}
 
-	// Generate preload links.
 	printf( "\nGenerating preload links...\n" );
 	generate_font_preload( $copied_fonts, $wdsbt_config['preload_output'] );
-
-	// Update theme.json.
 
 	printf( "\nUpdating theme.json...\n" );
 	include_once __DIR__ . '/generate-theme-json.php';
