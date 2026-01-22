@@ -21,19 +21,6 @@ function wdsbt_parse_font_filename( $filename ) {
 		'style'  => 'normal',
 	);
 
-	$family_patterns = array(
-		'inter'       => 'Inter',
-		'oxygen'      => 'Oxygen',
-		'roboto-mono' => 'Roboto Mono',
-		'roboto'      => 'Roboto',
-		'open-sans'   => 'Open Sans',
-		'lato'        => 'Lato',
-		'poppins'     => 'Poppins',
-		'montserrat'  => 'Montserrat',
-		'raleway'     => 'Raleway',
-		'playfair'    => 'Playfair Display',
-	);
-
 	$weight_patterns = array(
 		'-100'       => '100',
 		'-200'       => '200',
@@ -62,21 +49,8 @@ function wdsbt_parse_font_filename( $filename ) {
 		'oblique' => 'oblique',
 	);
 
-	$lowercase_filename = strtolower( $filename );
-
-	foreach ( $family_patterns as $pattern => $family ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['family'] = $family;
-			break;
-		}
-	}
-
-	if ( 'Unknown' === $metadata['family'] ) {
-		$parts = preg_split( '/[-_\s]+/', $filename );
-		if ( ! empty( $parts[0] ) ) {
-			$metadata['family'] = ucwords( str_replace( '-', ' ', $parts[0] ) );
-		}
-	}
+	$filename_without_ext = preg_replace( '/\.(woff2?|ttf|otf)$/i', '', $filename );
+	$lowercase_filename   = strtolower( $filename_without_ext );
 
 	foreach ( $weight_patterns as $pattern => $weight ) {
 		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
@@ -90,6 +64,31 @@ function wdsbt_parse_font_filename( $filename ) {
 			$metadata['style'] = $style;
 			break;
 		}
+	}
+
+	$parts           = preg_split( '/[-_\s]+/', $filename_without_ext );
+	$family_parts    = array();
+	$weight_keywords = array( 'thin', 'extralight', 'light', 'regular', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black', '100', '200', '300', '400', '500', '600', '700', '800', '900' );
+	$style_keywords  = array( 'italic', 'oblique' );
+
+	foreach ( $parts as $part ) {
+		$lower_part = strtolower( $part );
+
+		if ( in_array( $lower_part, $weight_keywords, true ) || in_array( $lower_part, $style_keywords, true ) ) {
+			continue;
+		}
+
+		if ( preg_match( '/^v\d+|^latin|^\d+$/', $lower_part ) ) {
+			continue;
+		}
+
+		$family_parts[] = $part;
+	}
+
+	if ( ! empty( $family_parts ) ) {
+		$metadata['family'] = ucwords( implode( ' ', $family_parts ) );
+	} elseif ( ! empty( $parts[0] ) ) {
+		$metadata['family'] = ucwords( str_replace( array( '-', '_' ), ' ', $parts[0] ) );
 	}
 
 	return $metadata;
