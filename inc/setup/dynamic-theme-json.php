@@ -113,7 +113,7 @@ function parse_font_filename( $filename ) {
 	);
 
 	$filename_without_ext = preg_replace( '/\.(woff2?|ttf|otf)$/i', '', $filename );
-	$lowercase_filename = strtolower( $filename_without_ext );
+	$lowercase_filename   = strtolower( $filename_without_ext );
 
 	foreach ( $weight_patterns as $pattern => $weight ) {
 		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
@@ -129,25 +129,25 @@ function parse_font_filename( $filename ) {
 		}
 	}
 
-	$parts = preg_split( '/[-_\s]+/', $filename_without_ext );
-	$family_parts = array();
+	$parts           = preg_split( '/[-_\s]+/', $filename_without_ext );
+	$family_parts    = array();
 	$weight_keywords = array( 'thin', 'extralight', 'light', 'regular', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black', '100', '200', '300', '400', '500', '600', '700', '800', '900' );
-	$style_keywords = array( 'italic', 'oblique' );
-	
+	$style_keywords  = array( 'italic', 'oblique' );
+
 	foreach ( $parts as $part ) {
 		$lower_part = strtolower( $part );
-		
+
 		if ( in_array( $lower_part, $weight_keywords, true ) || in_array( $lower_part, $style_keywords, true ) ) {
 			continue;
 		}
-		
+
 		if ( preg_match( '/^v\d+|^latin|^\d+$/', $lower_part ) ) {
 			continue;
 		}
-		
+
 		$family_parts[] = $part;
 	}
-	
+
 	if ( ! empty( $family_parts ) ) {
 		$metadata['family'] = ucwords( implode( ' ', $family_parts ) );
 	} elseif ( ! empty( $parts[0] ) ) {
@@ -226,7 +226,7 @@ function filter_theme_json_data( $theme_json_data ) {
 
 	$build_fonts  = scan_font_directory( 'build/fonts' );
 	$assets_fonts = scan_font_directory( 'assets/fonts' );
-	$all_fonts = array_merge( $build_fonts, $assets_fonts );
+	$all_fonts    = array_merge( $build_fonts, $assets_fonts );
 	$unique_fonts = array();
 	$seen_paths   = array();
 
