@@ -34,10 +34,7 @@ function scan_font_directory( $directory ) {
 			$filename      = $file->getBasename();
 			$font_metadata = parse_font_filename( $filename );
 
-			// Detect font family from folder name (headline, body, mono).
 			$folder_name = basename( dirname( $file->getPathname() ) );
-
-			// Always use the detected family from the filename. The folder name is only used for purpose.
 
 			$variant_key = $font_metadata['family'] . '-' . $font_metadata['weight'] . '-' . $font_metadata['style'];
 
@@ -50,6 +47,7 @@ function scan_font_directory( $directory ) {
 					'family'    => $font_metadata['family'],
 					'weight'    => $font_metadata['weight'],
 					'style'     => $font_metadata['style'],
+					'slug'      => $folder_name,
 				);
 			}
 		}
@@ -66,34 +64,12 @@ if ( ! function_exists( __NAMESPACE__ . '\\parse_font_filename' ) ) {
 	 * @return array Font metadata.
 	 */
 	function parse_font_filename( $filename ) {
-		// Default values.
 		$metadata = array(
 			'family' => 'Unknown',
 			'weight' => '400',
 			'style'  => 'normal',
 		);
 
-		// Common font family patterns.
-		$family_patterns = array(
-			'inter'        => 'Inter',
-			'oxygen'       => 'Oxygen',
-			'roboto-mono'  => 'Roboto Mono',
-			'roboto'       => 'Roboto',
-			'open-sans'    => 'Open Sans',
-			'lato'         => 'Lato',
-			'poppins'      => 'Poppins',
-			'montserrat'   => 'Montserrat',
-			'raleway'      => 'Raleway',
-			'playfair'     => 'Playfair Display',
-			'source-sans'  => 'Source Sans Pro',
-			'noto-sans'    => 'Noto Sans',
-			'nunito'       => 'Nunito',
-			'merriweather' => 'Merriweather',
-			'ubuntu'       => 'Ubuntu',
-			'oswald'       => 'Oswald',
-		);
-
-		// Common weight patterns with exact matches.
 		$weight_patterns = array(
 			'-100'       => '100',
 			'-200'       => '200',
@@ -117,36 +93,14 @@ if ( ! function_exists( __NAMESPACE__ . '\\parse_font_filename' ) ) {
 			'black'      => '900',
 		);
 
-		// Common style patterns.
 		$style_patterns = array(
 			'italic'  => 'italic',
 			'oblique' => 'oblique',
 		);
 
-		$lowercase_filename = strtolower( $filename );
+		$filename_without_ext = preg_replace( '/\.(woff2?|ttf|otf)$/i', '', $filename );
+		$lowercase_filename   = strtolower( $filename_without_ext );
 
-		// Detect font family - use the longest matching pattern.
-		$matched_family = '';
-		$longest_match  = 0;
-		foreach ( $family_patterns as $pattern => $family ) {
-			if ( strpos( $lowercase_filename, $pattern ) !== false && strlen( $pattern ) > $longest_match ) {
-				$matched_family = $family;
-				$longest_match  = strlen( $pattern );
-			}
-		}
-		if ( $matched_family ) {
-			$metadata['family'] = $matched_family;
-		}
-
-		// If no family detected, try to extract from filename.
-		if ( 'Unknown' === $metadata['family'] ) {
-			$parts = preg_split( '/[-_\s]+/', $filename );
-			if ( ! empty( $parts[0] ) ) {
-				$metadata['family'] = ucwords( str_replace( '-', ' ', $parts[0] ) );
-			}
-		}
-
-		// Detect font weight - use exact matches.
 		foreach ( $weight_patterns as $pattern => $weight ) {
 			if ( strpos( $lowercase_filename, $pattern ) !== false ) {
 				$metadata['weight'] = $weight;
@@ -154,12 +108,36 @@ if ( ! function_exists( __NAMESPACE__ . '\\parse_font_filename' ) ) {
 			}
 		}
 
-		// Detect font style.
 		foreach ( $style_patterns as $pattern => $style ) {
 			if ( strpos( $lowercase_filename, $pattern ) !== false ) {
 				$metadata['style'] = $style;
 				break;
 			}
+		}
+
+		$parts           = preg_split( '/[-_\s]+/', $filename_without_ext );
+		$family_parts    = array();
+		$weight_keywords = array( 'thin', 'extralight', 'light', 'regular', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black', '100', '200', '300', '400', '500', '600', '700', '800', '900' );
+		$style_keywords  = array( 'italic', 'oblique' );
+
+		foreach ( $parts as $part ) {
+			$lower_part = strtolower( $part );
+
+			if ( in_array( $lower_part, $weight_keywords, true ) || in_array( $lower_part, $style_keywords, true ) ) {
+				continue;
+			}
+
+			if ( preg_match( '/^v\d+|^latin|^\d+$/', $lower_part ) ) {
+				continue;
+			}
+
+			$family_parts[] = $part;
+		}
+
+		if ( ! empty( $family_parts ) ) {
+			$metadata['family'] = ucwords( implode( ' ', $family_parts ) );
+		} elseif ( ! empty( $parts[0] ) ) {
+			$metadata['family'] = ucwords( str_replace( array( '-', '_' ), ' ', $parts[0] ) );
 		}
 
 		return $metadata;
@@ -177,11 +155,12 @@ function group_fonts_by_family( $fonts ) {
 
 	foreach ( $fonts as $font ) {
 		$family = $font['family'];
+		$slug   = $font['slug'] ?? get_font_slug( $family );
 
 		if ( ! isset( $grouped[ $family ] ) ) {
 			$grouped[ $family ] = array(
 				'name'       => $family,
-				'slug'       => get_font_slug( $family ),
+				'slug'       => $slug,
 				'fontFamily' => $family . ', sans-serif',
 				'fontFace'   => array(),
 			);
@@ -213,19 +192,14 @@ function sanitize_title( $title ) {
 
 if ( ! function_exists( __NAMESPACE__ . '\\get_font_slug' ) ) {
 	/**
-	 * Map font family to standardized slug.
+	 * Fallback function to generate slug from family name.
+	 * This should only be used if slug is not provided in font array.
 	 *
 	 * @param string $family Font family name.
 	 * @return string Standardized slug.
 	 */
 	function get_font_slug( $family ) {
-		$slug_mapping = array(
-			'Oxygen'      => 'body',
-			'Inter'       => 'headline',
-			'Roboto Mono' => 'mono',
-		);
-
-		return $slug_mapping[ $family ] ?? sanitize_title( $family );
+		return sanitize_title( $family );
 	}
 }
 
@@ -236,7 +210,6 @@ function generate_theme_json() {
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	printf( "\nScanning for fonts...\n" );
 
-	// Get base theme.json content.
 	$base_theme_json_path = dirname( __DIR__, 1 ) . '/theme.json';
 	$base_theme_json      = array();
 
@@ -250,14 +223,9 @@ function generate_theme_json() {
 		printf( "No base theme.json found, creating new one\n" );
 	}
 
-	// Scan for fonts in both build and assets directories.
 	$build_fonts  = scan_font_directory( 'build/fonts' );
 	$assets_fonts = scan_font_directory( 'assets/fonts' );
-
-	// Merge fonts, preferring build fonts over assets fonts.
-	$all_fonts = array_merge( $build_fonts, $assets_fonts );
-
-	// Remove duplicates (build fonts take precedence).
+	$all_fonts    = array_merge( $build_fonts, $assets_fonts );
 	$unique_fonts = array();
 	$seen_paths   = array();
 
@@ -269,20 +237,15 @@ function generate_theme_json() {
 		}
 	}
 
-	// Group fonts by family.
 	$font_families = group_fonts_by_family( $unique_fonts );
 
-	// Ensure typography settings exist.
 	if ( ! isset( $base_theme_json['settings']['typography'] ) ) {
 		$base_theme_json['settings']['typography'] = array();
 	}
 
-	// Update or add font families.
 	if ( ! empty( $font_families ) ) {
 		$base_theme_json['settings']['typography']['fontFamilies'] = array_values( $font_families );
 	}
-
-	// Count detected fonts.
 	$font_count   = 0;
 	$family_count = 0;
 	if ( isset( $base_theme_json['settings']['typography']['fontFamilies'] ) ) {
@@ -308,7 +271,6 @@ function generate_theme_json() {
 		}
 	}
 
-	// Save the updated theme.json.
 	$output_path = dirname( __DIR__, 1 ) . '/theme.json';
 
 	// phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode -- CLI tool
