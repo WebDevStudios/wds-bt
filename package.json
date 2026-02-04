@@ -114,6 +114,7 @@
     "lint:md:docs": "wp-scripts lint-md-docs",
     "lint:php": "composer run-script phpcs",
     "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "lighthouse": "node scripts/run-lighthouse.cjs",
     "packages-update": "npx npm-check-updates -u && npm install && npm dedupe && npm audit fix",
     "postinstall": "npx lefthook install --reset-hooks-path && ./scripts/update-cursorrules.sh",
     "preinstall": "npx cross-env npm_config_legacy_peer_deps=true",

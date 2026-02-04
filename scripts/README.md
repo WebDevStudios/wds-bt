@@ -118,6 +118,29 @@ This script is integrated into the project's build process:
 - **WordPress Standards**: Includes WordPress-specific coding guidelines
 - **Comprehensive Coverage**: Covers all aspects of theme development
 
+## run-lighthouse.cjs
+
+Runs [Lighthouse](https://developer.chrome.com/docs/lighthouse) against the theme site and writes an HTML report for performance, accessibility, best practices, and SEO. Behavior matches the a11y script: use the current local site (with optional auto-detect) or pass a URL in the terminal.
+
+### Usage
+
+```bash
+# Prompt for URL, or leave blank to auto-detect via WordPress REST API (wds-bt.local)
+npm run lighthouse
+
+# Pass URL directly (no prompt)
+npm run lighthouse -- https://mysite.local
+```
+
+### Output
+
+Runs Lighthouse twice (mobile and desktop). The four category scores (Performance, Accessibility, Best Practices, SEO) are printed for each. No report files are written.
+
+### Prerequisites
+
+- Site must be reachable (local or deployed)
+- Chrome/Chromium (Lighthouse uses it headless via `npx lighthouse`)
+
 ## test-update-cursorrules.sh
 
 This script is used to test the extraction and update logic for the Cursor rules automation.
