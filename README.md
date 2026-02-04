@@ -7,15 +7,13 @@
 ### What's New in 1.4.0
 
 - **Block Showcase**: Powerful development tool (admin-only) to discover, preview, and inspect all registered blocks with their attributes in an organized, interactive format.
+- **Template-specific style loading**: Template and CPT CSS are built separately and enqueued only when the current request matches (404, search, archive, page templates, custom post types). Styles in `build/css/templates/` are discovered automatically—no PHP config needed. Reduces unused CSS for better Lighthouse scores.
+- **Automatic cache versioning**: All theme-built CSS and JS use file modification time as the version query string so caches update after each build without manual version bumps.
+- **Lighthouse script**: Run `npm run lighthouse` to audit Performance, Accessibility, Best Practices, and SEO for mobile and desktop; scores printed in the terminal only. URL via prompt or CLI argument.
 - **Dominant Color Images**: Automatic calculation and storage of dominant colors for uploaded images, used as placeholders while images load.
 - **Image Prioritizer**: Automatically prioritizes above-the-fold images with fetchpriority="high" for improved page load performance.
 - **WebP Uploads**: Automatically generates WebP versions of uploaded JPEG and PNG images for better compression and faster loading.
 - **ESLint 9 Migration**: Upgraded to ESLint 9 with flat config format for modern JavaScript linting.
-- **PHP Path Auto-Detection**: Automatic PHP binary detection for cross-platform compatibility (Mac, Linux, CI/CD).
-- **CI/CD Extension Support**: Automatic PHP extension handling for local development and CI environments.
-- **Package Updates**: Updated npm and dependencies to latest compatible versions.
-- **Dependency Cleanup**: Removed unused npm packages for cleaner dependency tree.
-- **RSS Block Fix**: Improved handling of RSS blocks with missing or invalid feed URLs.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Code Quality](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml/badge.svg)](https://github.com/WebDevStudios/wds-bt/actions/workflows/assertions.yml)
@@ -42,6 +40,7 @@
   - [Dominant Color Images](#dominant-color-images)
   - [Image Prioritizer](#image-prioritizer)
   - [WebP Uploads](#webp-uploads)
+  - [Performance & Asset Loading](#performance--asset-loading)
   - [Customizations](#customizations)
     - [Registering Block Styles](#registering-block-styles)
     - [Overriding/Customizing Core Block Styles](#overridingcustomizing-core-block-styles)
@@ -87,6 +86,9 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Dominant Color Images                            | Automatic dominant color calculation for images, used as background placeholders during image loading. |
 | Image Prioritizer                                | Automatically prioritizes above-the-fold images with fetchpriority="high" for faster page loads. |
 | WebP Uploads                                     | Automatically generates WebP versions of uploaded images for better compression and performance. |
+| Template-specific style loading                  | Template and CPT styles are loaded only when needed (404, search, archive, page templates, custom post types); improves Lighthouse by reducing unused CSS. |
+| Automatic cache versioning                       | Built CSS/JS use file modification time as the version query string so caches update automatically after each build. |
+| Lighthouse                                       | Run Performance, Accessibility, Best Practices, and SEO audits (mobile + desktop) from the terminal; scores only, no report files. |
 | LeftHook Integration                             | Required for pre-commit hooks and automated code quality checks.                                           |
 
 ## Requirements
@@ -278,7 +280,7 @@ npm run setup
 |     | Command                     | Description                                             |
 |-----|-----------------------------|-------------------------------------------------------- |
 | 🌐   | `npm run a11y`              | Run accessibility tests (Pa11y-CI).                     |
-| 🛠️  | `npm run build`             | Build the theme assets.                                 |
+| 🛠️  | `npm run build`             | Build the theme assets (prints cache version after theme.json). |
 | 🔨  | `npm run create-block`      | Scaffold a new block with various configurations.       |
 | 📝  | `npm run format`            | Format all code files (JS, SCSS, PHP).                  |
 | 🎨  | `npm run format:css`        | Format SCSS files.                                      |
@@ -287,6 +289,7 @@ npm run setup
 | 🔤  | `npm run fonts`             | Process fonts and update theme.json.                    |
 | 🔍  | `npm run fonts:detect`      | Detect and list all available fonts.                    |
 | 🔧  | `npm run fonts:generate`    | Generate theme.json with detected fonts.                |
+| 📊  | `npm run lighthouse`        | Run Lighthouse (mobile + desktop); print scores in terminal. |
 | 🔍  | `npm run lint`              | Run all linting scripts.                                |
 | 🎨  | `npm run lint:css`          | Lint CSS files.                                         |
 | 🚀  | `npm run lint:js`           | Lint JavaScript files.                                  |
@@ -751,6 +754,46 @@ The version update script (`updateVersion.js`) reads the `VERSION` environment v
 - `package.json` - NPM package metadata
 - `composer.json` - Composer package metadata
 - `README.md` - Documentation version references
+
+</details>
+
+## Performance & Asset Loading
+
+[🔝 Back to Top](#wds-bt)
+
+The theme loads styles and scripts in a way that supports good Lighthouse scores and minimal unused CSS.
+
+<details closed>
+<summary><b>Template-specific styles</b></summary>
+
+Template CSS is built into `build/css/templates/` and enqueued only when the current request matches:
+
+- **Reserved:** `404.css` (404 pages), `search.css` (search), `archive.css` (any archive).
+- **Custom post types:** A file named after the post type (e.g. `portfolio.css`) loads on single and archive views for that CPT.
+- **Page templates:** Any other CSS file (e.g. `block-showcase.css`) loads when the page uses a template whose slug matches the filename.
+
+Styles are discovered automatically from `build/css/templates/*.css`. Add a new template SCSS under `assets/scss/templates/`, run `npm run build`, and the corresponding CSS is used when that template or CPT is active. No PHP changes are required.
+
+</details>
+
+<details closed>
+<summary><b>Block styles</b></summary>
+
+Core block overrides in `assets/scss/blocks/core/` are registered with `wp_enqueue_block_style()` so each block’s CSS loads only when that block is rendered. Third-party block overrides in `assets/scss/blocks/third-party/` are enqueued only on singular content that uses those blocks. The theme also sets `should_load_separate_core_block_assets` so core block assets stay separate and on-demand.
+
+</details>
+
+<details closed>
+<summary><b>Automatic cache versioning</b></summary>
+
+All theme-built assets (main style and script, core and third-party block overrides, template styles) use the built file’s modification time as the `ver` query string. After each `npm run build`, browsers receive updated URLs and no longer use stale cached files. No manual version bump is needed for cache busting.
+
+</details>
+
+<details closed>
+<summary><b>Build output</b></summary>
+
+After a successful build, the theme.json step prints **Cache version:** followed by the modification time of `build/css/style.css`. You can use this value to confirm which build is deployed or to correlate with the version query strings used in the front end.
 
 </details>
 
@@ -1439,6 +1482,23 @@ WDS BT integrates automated workflow actions to maintain high standards of code 
   ```
 
 - **Reporting**: Any accessibility violations are displayed in the console for immediate review.
+
+</details>
+
+<details closed>
+<summary><b>Lighthouse (npm run lighthouse)</b></summary>
+
+- **Purpose**: Run Lighthouse audits for Performance, Accessibility, Best Practices, and SEO (mobile and desktop) and see only the four category scores in the terminal.
+- **Usage**:
+  - Prompt for URL (or leave blank to auto-detect via WordPress REST API at the default local URL):
+    ```bash
+    npm run lighthouse
+    ```
+  - Pass URL directly:
+    ```bash
+    npm run lighthouse -- https://yoursite.local
+    ```
+- **Output**: Two score blocks (Mobile and Desktop), each with Performance, Accessibility, Best Practices, and SEO. No report files are written. Requires Chrome/Chromium for headless runs. See `scripts/README.md` for more detail.
 
 </details>
 
