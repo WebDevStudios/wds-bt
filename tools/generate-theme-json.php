@@ -280,6 +280,12 @@ function generate_theme_json() {
 	if ( file_put_contents( $output_path, $json_content ) ) {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		printf( "\nSuccessfully generated theme.json with detected fonts\n" );
+		$theme_dir  = dirname( __DIR__, 1 );
+		$style_path = $theme_dir . '/build/css/style.css';
+		if ( file_exists( $style_path ) ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			printf( "Cache version: %s\n", (string) filemtime( $style_path ) );
+		}
 	} else {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		printf( "\nFailed to write theme.json\n" );
