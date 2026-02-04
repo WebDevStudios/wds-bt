@@ -148,6 +148,16 @@ const editorScssPaths = glob
 		return acc;
 	}, {});
 
+// Template-specific styles (enqueued per template for Lighthouse).
+const templateScssPaths = glob
+	.sync('./assets/scss/templates/*.scss', { dotRelative: true })
+	.filter((filePath) => !path.basename(filePath).startsWith('_'))
+	.reduce((acc, filePath) => {
+		const entryKey = path.basename(filePath, '.scss');
+		acc[`css/templates/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
 // CopyPlugin patterns to include PHP, JSON and image files.
 const copyPluginPatterns = [];
 
@@ -186,6 +196,7 @@ module.exports = {
 		filters: './assets/js/block-filters/index.js',
 		...styleScssPaths,
 		...editorScssPaths,
+		...templateScssPaths,
 		...allBlockJsPaths,
 		...blockScssPaths,
 		...coreBlockEntryPaths,
