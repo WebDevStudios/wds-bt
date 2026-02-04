@@ -74,16 +74,12 @@ function calculate_dominant_color( $file_path ) {
 		// Resize to 1x1 to get average color.
 		$thumb = imagecreatetruecolor( 1, 1 );
 		if ( false === $thumb ) {
-			imagedestroy( $image );
 			return false;
 		}
 
 		imagecopyresampled( $thumb, $image, 0, 0, 0, 0, 1, 1, imagesx( $image ), imagesy( $image ) );
 		$main_color = imagecolorat( $thumb, 0, 0 );
 		$rgb        = imagecolorsforindex( $thumb, $main_color );
-
-		imagedestroy( $image );
-		imagedestroy( $thumb );
 
 		return sprintf( '#%02x%02x%02x', $rgb['red'], $rgb['green'], $rgb['blue'] );
 	}

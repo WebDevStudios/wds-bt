@@ -130,7 +130,6 @@ function generate_webp( $file_path, $webp_path ) {
 		}
 
 		$result = imagewebp( $image, $webp_path, 85 );
-		imagedestroy( $image );
 
 		return $result && file_exists( $webp_path );
 	}
