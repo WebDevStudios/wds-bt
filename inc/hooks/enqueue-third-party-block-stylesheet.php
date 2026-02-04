@@ -63,7 +63,7 @@ function enqueue_third_party_block_overrides() {
 				$handle,
 				get_theme_file_uri( '/build/css/blocks/' . $file_name . '.css' ),
 				array(),
-				filemtime( $style_file )
+				(string) filemtime( $style_file )
 			);
 		}
 	}

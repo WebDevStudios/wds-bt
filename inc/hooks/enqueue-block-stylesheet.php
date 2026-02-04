@@ -25,13 +25,14 @@ function enqueue_block_stylesheet() {
 	foreach ( glob( get_parent_theme_file_path( '/build/css/blocks/*.css' ) ) as $stylesheet ) {
 		$block_name = basename( $stylesheet, '.css' );
 		$handle     = 'wdsbt-' . $block_name . '-style';
+		$ver        = file_exists( $stylesheet ) ? (string) filemtime( $stylesheet ) : wp_get_theme( get_template() )->get( 'Version' );
 
 		wp_enqueue_block_style(
 			'core/' . $block_name,
 			array(
 				'handle' => $handle,
 				'src'    => get_parent_theme_file_uri( '/build/css/blocks/' . $block_name . '.css' ),
-				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
+				'ver'    => $ver,
 				'path'   => $stylesheet,
 			)
 		);

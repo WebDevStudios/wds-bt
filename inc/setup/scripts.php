@@ -14,7 +14,7 @@ namespace WebDevStudios\wdsbt;
  */
 function scripts() {
 	$asset_file_path = get_template_directory() . '/build/js/index.asset.php';
-	$asset_version   = wp_get_theme()->get( 'Version' );
+	$theme_version   = wp_get_theme()->get( 'Version' );
 
 	if ( is_readable( $asset_file_path ) ) {
 		$asset_file = include $asset_file_path;
@@ -25,8 +25,13 @@ function scripts() {
 		);
 	}
 
-	wp_enqueue_style( 'wdsbt-styles', get_stylesheet_directory_uri() . '/build/css/style.css', array(), $asset_version );
-	wp_enqueue_script( 'wdsbt-scripts', get_stylesheet_directory_uri() . '/build/js/index.js', $asset_file['dependencies'], $asset_version, true );
+	$style_path  = get_template_directory() . '/build/css/style.css';
+	$script_path = get_template_directory() . '/build/js/index.js';
+	$style_ver   = file_exists( $style_path ) ? (string) filemtime( $style_path ) : $theme_version;
+	$script_ver  = file_exists( $script_path ) ? (string) filemtime( $script_path ) : $theme_version;
+
+	wp_enqueue_style( 'wdsbt-styles', get_stylesheet_directory_uri() . '/build/css/style.css', array(), $style_ver );
+	wp_enqueue_script( 'wdsbt-scripts', get_stylesheet_directory_uri() . '/build/js/index.js', $asset_file['dependencies'], $script_ver, true );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );
 
