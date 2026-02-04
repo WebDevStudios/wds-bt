@@ -35,6 +35,7 @@
     - [Font Organization](#font-organization)
     - [Font Tools](#font-tools)
     - [Font Workflow](#font-workflow)
+  - [Version Management](#version-management)
   - [Creating Blocks](#creating-blocks)
   - [Block Showcase](#block-showcase)
   - [Dominant Color Images](#dominant-color-images)
@@ -47,6 +48,9 @@
     - [Overriding/Customizing Third Party Block Styles](#overridingcustomizing-third-party-block-styles)
     - [Creating Block Variations](#creating-block-variations)
     - [Unregister Blocks and Variations](#unregister-blocks-and-variations)
+  - [Mixins](#mixins)
+    - [Responsive Mixins](#responsive-mixins)
+    - [Mobile Only Mixins](#mobile-only-mixins)
   - [Stylelint Configuration](#stylelint-configuration)
     - [Extending WordPress Stylelint Rules](#extending-wordpress-stylelint-rules)
     - [Running Stylelint](#running-stylelint)
@@ -89,14 +93,14 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Template-specific style loading                  | Template and CPT styles are loaded only when needed (404, search, archive, page templates, custom post types); improves Lighthouse by reducing unused CSS. |
 | Automatic cache versioning                       | Built CSS/JS use file modification time as the version query string so caches update automatically after each build. |
 | Lighthouse                                       | Run Performance, Accessibility, Best Practices, and SEO audits (mobile + desktop) from the terminal; scores only, no report files. |
-| LeftHook Integration                             | Required for pre-commit hooks and automated code quality checks.                                           |
+| Lefthook Integration                             | Required for pre-commit hooks and automated code quality checks.                                           |
 
 ## Requirements
 
-- WordPress 6.4+
-- PHP 8.2+ (fully tested with PHP 8.3)
-- [NPM](https://npmjs.com) (v10+)
-- [Node](https://nodejs.org) (v20+)
+- WordPress 6.4+ (tested upto 6.9.1)
+- PHP 8.2+ (fully tested with PHP 8.4)
+- [NPM](https://npmjs.com) (v11+)
+- [Node](https://nodejs.org) (v25+)
 - [Composer 2+](https://getcomposer.org/)
 - License: [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -263,7 +267,7 @@ cd /wp-content/themes/your-theme
 
 The command below will remove `node_modules`, `vendor`, `build`, `package-lock.json`, and `composer.lock` files. Install theme dependencies and trigger an initial build.
 
->Note: You will need to have Composer 2 and NPM 10+ installed first. The setup script automatically detects PHP paths and handles extension flags for your environment.
+> **Note:** You will need to have Composer 2 and NPM 10+ installed first. The setup script automatically detects PHP paths and handles extension flags for your environment.
 
 ```bash
 npm run setup
@@ -901,7 +905,7 @@ This will process JavaScript, SCSS, optimize images, and generate necessary file
  **Original Block Name**: Provide the name of the original block for which you are creating the variation.
  **Variation Object**: Define the properties of your block variation, including the name, title, attributes, and any additional settings.
 
-> ***NOTE:*** To find the correct block name, open the block editor, launch the browser console and type `wp.blocks.getBlockTypes()`. You will see the complete list of block names (from core or third-party).
+> **Note:** To find the correct block name, open the block editor, launch the browser console and type `wp.blocks.getBlockTypes()`. You will see the complete list of block names (from core or third-party).
 
 </details>
 
@@ -1539,10 +1543,10 @@ WDS-BT enforces strict Lefthook integration with pre-commit, pre-receive, pre-pu
 Bypassing Lefthook (`--no-verify`) is strictly prohibited, ensuring that all enforced checks are properly executed.
 
 <details closed>
-<summary><b>Integration Process with LeftHook</b></summary>
+<summary><b>Integration Process with Lefthook</b></summary>
 
 1. **Commit Changes**: Modify code as needed.
-2. **Automated Checks on Commit**: LeftHook triggers accessibility and code quality checks automatically.
+2. **Automated Checks on Commit**: Lefthook triggers accessibility and code quality checks automatically.
 3. **Review Reports**: Examine any violations or issues reported.
 4. **Fix Issues**: Resolve identified problems before proceeding.
 5. **Recommit**: Once issues are fixed, recommit changes.
