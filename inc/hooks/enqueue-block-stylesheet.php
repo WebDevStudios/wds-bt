@@ -123,7 +123,7 @@ function register_blocks() {
 			continue;
 		}
 
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local block.json file is safe here.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local block.json file is safe here
 		$block_data = json_decode( file_get_contents( $block_json ), true );
 		$block_name = $block_data['name'] ?? '';
 

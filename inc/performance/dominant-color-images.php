@@ -60,7 +60,7 @@ function calculate_dominant_color( $file_path ) {
 
 	// Fallback to GD library.
 	if ( extension_loaded( 'gd' ) && function_exists( 'imagecreatefromstring' ) ) {
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local file path is safe.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local file path is safe
 		$image_data = file_get_contents( $file_path );
 		if ( false === $image_data ) {
 			return false;

@@ -364,7 +364,7 @@ The main font processing tool that:
 
 ```bash
 npm run fonts
-# or
+# Or.
 php tools/font-processor.php
 ```
 
@@ -376,7 +376,7 @@ Lists all available fonts in your theme for debugging and inspection.
 
 ```bash
 npm run fonts:detect
-# or
+# Or.
 php tools/font-detection.php
 ```
 
@@ -394,7 +394,7 @@ Advanced font processing with optimization and subsetting capabilities.
 
 ```bash
 npm run fonts:generate
-# or
+# Or.
 php tools/font-generator.php
 ```
 
@@ -554,20 +554,20 @@ The version update script automatically updates the version in:
 #### Complete Workflow Example
 
 ```bash
-# 1. Set the new version in .env file
+# 1. Set the new version in .env file.
 echo "VERSION=1.4.0" > .env
 
-# 2. Run the version update script
+# 2. Run the version update script.
 npm run version-update
 
-# 3. Verify the changes
+# 3. Verify the changes.
 git diff
 
-# 4. Commit the version bump
+# 4. Commit the version bump.
 git add .
 git commit -m "WDSBT-XXX - bump version to 1.4.0"
 
-# 5. Tag the release (optional)
+# 5. Tag the release (optional).
 git tag -a v1.4.0 -m "Release version 1.4.0"
 git push origin v1.4.0
 ```
@@ -581,29 +581,29 @@ git push origin v1.4.0
 For small bug fixes and minor updates (e.g., 1.4.0 → 1.4.1):
 
 ```bash
-# 1. Create a patch branch
+# 1. Create a patch branch.
 git checkout -b patch/1.4.1
 
-# 2. Make your bug fixes
+# 2. Make your bug fixes.
 # ... make changes ...
 
-# 3. Update version to patch
+# 3. Update version to patch.
 echo "VERSION=1.4.1" > .env
 npm run version-update
 
-# 4. Commit changes
+# 4. Commit changes.
 git add .
 git commit -m "WDSBT-XXX - fix [specific issue]"
 
-# 5. Commit version bump
+# 5. Commit version bump.
 git add .
 git commit -m "WDSBT-XXX - bump version to 1.4.1"
 
-# 6. Create pull request
+# 6. Create pull request.
 git push origin patch/1.4.1
 # ... create PR and merge ...
 
-# 7. Tag the release
+# 7. Tag the release.
 git checkout main
 git pull origin main
 git tag -a v1.4.1 -m "Patch release 1.4.1 - [brief description]"
@@ -614,28 +614,28 @@ git push origin v1.4.1
 For new features and enhancements (e.g., 1.4.0 → 1.5.0):
 
 ```bash
-# 1. Create a feature branch
+# 1. Create a feature branch.
 git checkout -b feature/1.5.0
 
-# 2. Add new features
+# 2. Add new features.
 # ... implement features ...
 
-# 3. Update version to minor
+# 3. Update version to minor.
 echo "VERSION=1.5.0" > .env
 npm run version-update
 
-# 4. Update CHANGELOG.md (if maintained)
+# 4. Update CHANGELOG.md (if maintained).
 # ... document new features ...
 
-# 5. Commit changes
+# 5. Commit changes.
 git add .
 git commit -m "WDSBT-XXX - add [new feature]"
 
-# 6. Commit version bump
+# 6. Commit version bump.
 git add .
 git commit -m "WDSBT-XXX - bump version to 1.5.0"
 
-# 7. Create pull request and tag release
+# 7. Create pull request and tag release.
 # ... same as patch workflow ...
 ```
 
@@ -643,33 +643,33 @@ git commit -m "WDSBT-XXX - bump version to 1.5.0"
 For major updates with breaking changes (e.g., 1.4.0 → 2.0.0):
 
 ```bash
-# 1. Create a major release branch
+# 1. Create a major release branch.
 git checkout -b release/2.0.0
 
-# 2. Implement breaking changes
+# 2. Implement breaking changes.
 # ... make breaking changes ...
 
-# 3. Update version to major
+# 3. Update version to major.
 echo "VERSION=2.0.0" > .env
 npm run version-update
 
-# 4. Update documentation for breaking changes
+# 4. Update documentation for breaking changes.
 # ... update README, CHANGELOG, etc. ...
 
-# 5. Test thoroughly
+# 5. Test thoroughly.
 npm run build
 npm run lint
 npm run a11y
 
-# 6. Commit changes
+# 6. Commit changes.
 git add .
 git commit -m "WDSBT-XXX - breaking: [description of breaking changes]"
 
-# 7. Commit version bump
+# 7. Commit version bump.
 git add .
 git commit -m "WDSBT-XXX - bump version to 2.0.0"
 
-# 8. Create pull request and tag release
+# 8. Create pull request and tag release.
 # ... same as patch workflow ...
 ```
 
@@ -681,7 +681,7 @@ git commit -m "WDSBT-XXX - bump version to 2.0.0"
 For quick patches, you can use a streamlined workflow:
 
 ```bash
-# Quick patch workflow
+# Quick patch workflow.
 git checkout -b hotfix/1.4.1
 # ... make quick fix ...
 echo "VERSION=1.4.1" > .env && npm run version-update
@@ -698,15 +698,15 @@ git push origin hotfix/1.4.1
 For beta, alpha, or release candidate versions:
 
 ```bash
-# Beta release
+# Beta release.
 echo "VERSION=1.4.0-beta.1" > .env
 npm run version-update
 
-# Alpha release
+# Alpha release.
 echo "VERSION=1.4.0-alpha.1" > .env
 npm run version-update
 
-# Release candidate
+# Release candidate.
 echo "VERSION=1.4.0-rc.1" > .env
 npm run version-update
 ```
@@ -893,12 +893,10 @@ This will process JavaScript, SCSS, optimize images, and generate necessary file
  Example:
 
  ```javascript
- // In your variations JavaScript file
  wp.blocks.registerBlockVariation('core/paragraph', {
   name: 'custom-variation',
   title: __('Custom Variation', 'wdsbt'),
-  attributes: { /* Define your custom attributes here */ },
-  // Add more variation settings as needed
+  attributes: { /* Define your custom attributes here. */ },
  });
  ```
 
@@ -921,29 +919,27 @@ The script in `assets/js/editor.js` loops through a list of unused blocks and va
 <b>Example</b>
 
 ```javascript
-// List of Gutenberg blocks to unregister
+// List of Gutenberg blocks to unregister.
 const unusedBlocks = [
  'core/file',
  'core/latest-comments',
  'core/rss',
- // Add more unused blocks as needed
 ];
 
-// List of Gutenberg block variations to unregister
+// List of Gutenberg block variations to unregister.
 const unregisterBlockVariations = [
- // Example:
+ // Example.
  // {
  //     blockName: 'core/group',
  //     blockVariationName: 'group-stack',
  // },
 ];
 
-// Keep only the necessary embed variations
+// Keep only the necessary embed variations.
 const keepEmbeds = [
  'twitter',
  'wordpress',
  'spotify',
- // Add more necessary embed variations as needed.
 ];
 ```
 
@@ -961,23 +957,23 @@ This SCSS file `assets/scss/abstracts/responsive-mixins.scss` provides mixins fo
 To use the responsive mixin, include it in your SCSS code and customize it according to your project's breakpoints. Here's an example:
 
 ```scss
-// Usage examples
+// Usage examples.
 .my-element {
   width: 100%;
 
-  // Apply styles when the screen width is 600px or more
+  // Apply styles when the screen width is 600px or more.
   @include responsive-mixins.responsive-min(600px) {
- /* Your responsive styles for min-width: 600px */
+ /* Your responsive styles for min-width: 600px. */
   }
 
-  // Apply styles when the screen width is up to 600px
+  // Apply styles when the screen width is up to 600px.
   @include responsive-mixins.responsive-max(600px) {
- /* Your responsive styles for max-width: 600px */
+ /* Your responsive styles for max-width: 600px. */
   }
 
-  // Apply styles when the screen width is between 600px and 1200px
+  // Apply styles when the screen width is between 600px and 1200px.
   @include responsive-mixins.responsive-range(600px, 1200px) {
- /* Your responsive styles for a range of widths */
+ /* Your responsive styles for a range of widths. */
   }
 }
 ```
@@ -992,7 +988,7 @@ This SCSS file `assets/scss/abstracts/_mobile-only-mixins.scss` contains a mixin
 Include the `mobile-only` mixin in your SCSS file where you want to hide elements on desktop but make them visible on mobile:
 
 ```scss
-// Example usage:
+// Example usage.
 .my-element {
   @include mobile-only-mixins.mobile-only;
 }
@@ -1401,20 +1397,20 @@ The theme automatically generates WebP versions for existing images in the follo
 **Method 2: WP-CLI (Recommended for Large Sites)**
 
 ```bash
-# Regenerate WebP for all images
+# Regenerate WebP for all images.
 wp webp regenerate --all
 
-# Regenerate WebP for a specific attachment
+# Regenerate WebP for a specific attachment.
 wp webp regenerate --attachment-id=123
 ```
 
 **Method 3: PHP Function (For Developers)**
 
 ```php
-// Regenerate WebP for a specific attachment
+// Regenerate WebP for a specific attachment.
 \WebDevStudios\wdsbt\regenerate_webp_for_attachment( $attachment_id );
 
-// Bulk regeneration for all images
+// Bulk regeneration for all images.
 $attachments = get_posts( array(
     'post_type'      => 'attachment',
     'post_mime_type' => array( 'image/jpeg', 'image/png' ),

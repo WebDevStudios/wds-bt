@@ -12,7 +12,7 @@
  */
 
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-// phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file.
+// phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file
 // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_mkdir -- CLI tool
 // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_copy -- CLI tool
 // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_is_dir -- CLI tool
@@ -390,7 +390,7 @@ function main() {
 main();
 
 // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
-// phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file.
+// phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file
 // phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_mkdir -- CLI tool
 // phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_copy -- CLI tool
 // phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_is_dir -- CLI tool

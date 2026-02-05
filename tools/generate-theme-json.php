@@ -214,7 +214,7 @@ function generate_theme_json() {
 	$base_theme_json      = array();
 
 	if ( file_exists( $base_theme_json_path ) ) {
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- CLI tool reading local file.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- CLI tool reading local file
 		$base_theme_json = json_decode( file_get_contents( $base_theme_json_path ), true );
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		printf( "Loaded base theme.json\n" );
@@ -276,7 +276,7 @@ function generate_theme_json() {
 	// phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode -- CLI tool
 	$json_content = json_encode( $base_theme_json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
 
-	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file.
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file
 	if ( file_put_contents( $output_path, $json_content ) ) {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		printf( "\nSuccessfully generated theme.json with detected fonts\n" );

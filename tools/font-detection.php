@@ -141,11 +141,11 @@ function wdsbt_scan_font_directory( $directory ) {
  * @param string $label Label for output.
  */
 function wdsbt_print_fonts( $fonts, $label = 'Fonts' ) {
-	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output, escaping not required.
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output, escaping not required
 	printf( "%s\n", $label );
 	foreach ( $fonts as $font ) {
 		printf(
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output, escaping not required.
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output, escaping not required
 			"  - %s.%s | %s %s %s\n",
 			$font['filename'], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
 			$font['extension'], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI output
