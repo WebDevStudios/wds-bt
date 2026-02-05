@@ -1531,12 +1531,13 @@ WDS BT integrates automated workflow actions to maintain high standards of code 
 
 WDS-BT enforces strict Lefthook integration with pre-commit, pre-receive, pre-push, and push hooks. These ensure that all automated quality checks (linting, formatting, security, accessibility) are executed before commits and pushes.
 
+- **Strict linting**: PHP (PHPCS), JavaScript (ESLint), and CSS/SCSS (Stylelint) use the latest WordPress coding standards. Warnings are treated as failures (e.g. PHPCS `ignore_warnings_on_exit` off, ESLint/Stylelint `--max-warnings 0`).
 - **Pre-Commit Hook**: Runs quality checks before allowing a commit.
 - **Pre-Receive Hook**: Ensures compliance before WDS-BT accepts the push.
 - **Pre-Push Hook**: Runs additional validations before pushing changes to remote.
 - **Push Hook**: Enforces project-wide integrity checks before finalizing a push.
 
-Bypassing Lefthook (`--no-verify`) is strictly prohibited, ensuring that all enforced checks are properly executed.
+**Do not use `--no-verify`.** Bypassing Lefthook (`git commit --no-verify` or `git push --no-verify`) is not allowed. CI runs the same strict checks on every pull request; commits that skip hooks will still be rejected when the PR is checked.
 
 <details closed>
 <summary><b>Integration Process with Lefthook</b></summary>
