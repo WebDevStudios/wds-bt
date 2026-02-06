@@ -113,10 +113,14 @@ function get_block_stylesheets() {
 /**
  * Registers all block folders found in the `blocks` directory.
  *
+ * Uses the template (parent) theme path so that built block assets are found.
+ * Any block that declares viewScript in its block.json will have that script
+ * enqueued by WordPress when the block is rendered on the front end.
+ *
  * @return void
  */
 function register_blocks() {
-	$block_folders = glob( get_stylesheet_directory() . '/blocks/*', GLOB_ONLYDIR );
+	$block_folders = glob( get_template_directory() . '/blocks/*', GLOB_ONLYDIR );
 	foreach ( $block_folders as $block_folder ) {
 		$block_json = $block_folder . '/block.json';
 		if ( ! file_exists( $block_json ) ) {
