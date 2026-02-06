@@ -113,7 +113,7 @@ function generate_webp( $file_path, $webp_path ) {
 	}
 
 	if ( function_exists( 'imagewebp' ) ) {
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local file path is safe.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local file path is safe
 		$image_data = file_get_contents( $file_path );
 		if ( false === $image_data ) {
 			return false;
@@ -130,7 +130,6 @@ function generate_webp( $file_path, $webp_path ) {
 		}
 
 		$result = imagewebp( $image, $webp_path, 85 );
-		imagedestroy( $image );
 
 		return $result && file_exists( $webp_path );
 	}
@@ -1076,7 +1075,7 @@ if ( ! is_admin() && ! wp_is_json_request() ) {
 			function () {
 				$buffer = ob_get_clean();
 				if ( $buffer ) {
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Buffer contains HTML that is already escaped.
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Buffer contains HTML that is already escaped
 					echo replace_images_in_output_buffer( $buffer );
 				}
 			},

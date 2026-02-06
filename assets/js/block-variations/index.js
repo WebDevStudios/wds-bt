@@ -4,5 +4,4 @@
  * Learn more: https://developer.wordpress.org/news/2023/08/29/an-introduction-to-block-variations/
  */
 
-// Import the block variation file.
-// import './block-variation';
+// Import the block variation file, e.g. import './block-variation'.

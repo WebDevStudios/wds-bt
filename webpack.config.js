@@ -40,7 +40,7 @@ class ThemeJsonGeneratorPlugin {
 							'ThemeJsonGeneratorPlugin'
 						);
 
-						// Filter out OPcache warning
+						// Filter out OPcache warning.
 						const filteredOutput = stdout
 							.split('\n')
 							.filter(
@@ -50,7 +50,7 @@ class ThemeJsonGeneratorPlugin {
 							.join('\n');
 
 						if (error) {
-							// Check if the only error was the OPcache warning
+							// Check if the only error was the OPcache warning.
 							if (
 								error.message.includes(
 									'Cannot load Zend OPcache'
@@ -58,12 +58,12 @@ class ThemeJsonGeneratorPlugin {
 								!error.message.includes('PHP Parse error') &&
 								!error.message.includes('PHP Fatal error')
 							) {
-								// Just log the filtered output and continue
+								// Just log the filtered output and continue.
 								if (filteredOutput.trim()) {
 									logger.info(filteredOutput);
 								}
 							} else {
-								// Real error occurred
+								// Real error occurred.
 								compilation.errors.push(
 									new Error(
 										`Theme.json generation failed:\n${error.message}`
@@ -108,7 +108,7 @@ const thirdPartyBlockEntryPaths = glob
 		return acc;
 	}, {});
 
-// Grab all JS files (edit.js, view.js, index.js, view.jsx, etc.)
+// Grab all JS files (edit.js, view.js, index.js, view.jsx, etc.).
 const allBlockJsPaths = glob
 	.sync('./assets/blocks/**/*.js', { dotRelative: true })
 	.reduce((acc, filePath) => {
@@ -145,6 +145,16 @@ const editorScssPaths = glob
 	.reduce((acc, filePath) => {
 		const entryKey = 'editor';
 		acc[`css/${entryKey}`] = filePath;
+		return acc;
+	}, {});
+
+// Template-specific styles (enqueued per template for Lighthouse).
+const templateScssPaths = glob
+	.sync('./assets/scss/templates/*.scss', { dotRelative: true })
+	.filter((filePath) => !path.basename(filePath).startsWith('_'))
+	.reduce((acc, filePath) => {
+		const entryKey = path.basename(filePath, '.scss');
+		acc[`css/templates/${entryKey}`] = filePath;
 		return acc;
 	}, {});
 
@@ -186,6 +196,7 @@ module.exports = {
 		filters: './assets/js/block-filters/index.js',
 		...styleScssPaths,
 		...editorScssPaths,
+		...templateScssPaths,
 		...allBlockJsPaths,
 		...blockScssPaths,
 		...coreBlockEntryPaths,
@@ -259,8 +270,7 @@ module.exports = {
 				generator: {
 					filename: 'fonts/[name][ext]',
 				},
-				// Exclude fonts from assets/fonts from being processed by this rule,
-				// as they will be handled by the CopyPlugin.
+				// Exclude fonts from assets/fonts from being processed by this rule, as they will be handled by the CopyPlugin.
 				exclude: path.resolve(__dirname, 'assets/fonts'),
 			},
 			{

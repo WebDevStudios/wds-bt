@@ -5,4 +5,4 @@
  * See https://developer.wordpress.org/themes/basics/template-files/.
  */
 
-// import './template-name';
+// Import template file, e.g. import './template-name'.

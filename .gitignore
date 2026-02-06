@@ -30,6 +30,7 @@ inc/setup/font-preload.php
 #tests
 pa11y-ci-report/
 phpcs-report.txt
+lighthouse-report.html
 
 # cursor
 .cursor/

@@ -15,7 +15,7 @@ pre-commit:
             stage_fixed: true
         lintstyles:
             glob: '*.{css,scss}'
-            run: npx stylelint --fix {staged_files}
+            run: npx stylelint --fix --max-warnings 0 {staged_files}
             stage_fixed: true
 
         formatjavascript:
@@ -24,7 +24,7 @@ pre-commit:
             stage_fixed: true
         lintjavascript:
             glob: '*.{js,ts,tsx}'
-            run: npx eslint --fix {staged_files}
+            run: npx eslint --fix --max-warnings 0 {staged_files}
             stage_fixed: true
 
         other:

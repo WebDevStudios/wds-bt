@@ -25,13 +25,14 @@ function enqueue_block_stylesheet() {
 	foreach ( glob( get_parent_theme_file_path( '/build/css/blocks/*.css' ) ) as $stylesheet ) {
 		$block_name = basename( $stylesheet, '.css' );
 		$handle     = 'wdsbt-' . $block_name . '-style';
+		$ver        = file_exists( $stylesheet ) ? (string) filemtime( $stylesheet ) : wp_get_theme( get_template() )->get( 'Version' );
 
 		wp_enqueue_block_style(
 			'core/' . $block_name,
 			array(
 				'handle' => $handle,
 				'src'    => get_parent_theme_file_uri( '/build/css/blocks/' . $block_name . '.css' ),
-				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
+				'ver'    => $ver,
 				'path'   => $stylesheet,
 			)
 		);
@@ -112,17 +113,21 @@ function get_block_stylesheets() {
 /**
  * Registers all block folders found in the `blocks` directory.
  *
+ * Uses the template (parent) theme path so that built block assets are found.
+ * Any block that declares viewScript in its block.json will have that script
+ * enqueued by WordPress when the block is rendered on the front end.
+ *
  * @return void
  */
 function register_blocks() {
-	$block_folders = glob( get_stylesheet_directory() . '/blocks/*', GLOB_ONLYDIR );
+	$block_folders = glob( get_template_directory() . '/blocks/*', GLOB_ONLYDIR );
 	foreach ( $block_folders as $block_folder ) {
 		$block_json = $block_folder . '/block.json';
 		if ( ! file_exists( $block_json ) ) {
 			continue;
 		}
 
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local block.json file is safe here.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local block.json file is safe here
 		$block_data = json_decode( file_get_contents( $block_json ), true );
 		$block_name = $block_data['name'] ?? '';
 

@@ -3,7 +3,6 @@
 /* -- 404 -- */
 
 .error404 {
-
 	.not-found {
 		align-items: center;
 		display: flex;
@@ -18,7 +17,7 @@
 
 			&::before {
 				animation: glitch 1s linear infinite;
-				background-image: url(../images/icons/icon-dino.svg);
+				background-image: url(../../images/icons/icon-dino.svg);
 				background-repeat: no-repeat;
 				background-size: contain;
 				content: '';
@@ -65,7 +64,6 @@
 	}
 
 	@keyframes glitch {
-
 		2%,
 		64% {
 			transform: translate(2px, 0) skew(0deg);
@@ -82,7 +80,6 @@
 	}
 
 	@keyframes glitchTop {
-
 		2%,
 		64% {
 			transform: translate(2px, -2px);
@@ -99,7 +96,6 @@
 	}
 
 	@keyframes glitchBotom {
-
 		2%,
 		64% {
 			transform: translate(-2px, 0);
@@ -116,11 +112,8 @@
 	}
 
 	@include responsive-mixins.responsive-max(600px) {
-
 		.not-found {
-
 			.error-title {
-
 				&::before {
 					height: 7.1875rem;
 					width: 9.0625rem;

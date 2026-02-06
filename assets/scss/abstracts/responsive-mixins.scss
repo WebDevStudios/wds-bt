@@ -1,4 +1,4 @@
-// Example usage:
+// Example usage.
 
 /*
 .my-element {
@@ -9,7 +9,7 @@
 		// Your responsive styles for min-width: 600px.
 	}
 
-	// Apply styles when the screen width is up to 600px
+	// Apply styles when the screen width is up to 600px.
 	@include responsive-mixins.responsive-max(600px) {
 		// Your responsive styles for max-width: 600px.
 	}
@@ -21,7 +21,7 @@
 }
 */
 
-// Define mixin for media queries with min width
+// Define mixin for media queries with min width.
 @mixin responsive-min($min-width) {
 
 	@media only screen and (min-width: $min-width) {
@@ -29,7 +29,7 @@
 	}
 }
 
-// Define mixin for media queries with max width
+// Define mixin for media queries with max width.
 @mixin responsive-max($max-width) {
 
 	@media only screen and (max-width: $max-width) {
@@ -37,7 +37,7 @@
 	}
 }
 
-// Define mixin for media queries with min and max width (range)
+// Define mixin for media queries with min and max width (range).
 @mixin responsive-range($min-width, $max-width) {
 
 	@media only screen and (min-width: $min-width) and (max-width: $max-width) {

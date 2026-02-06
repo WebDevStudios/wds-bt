@@ -56,7 +56,7 @@ const updateTextFile = (filePath, regex, replacement, label = filePath) => {
 	}
 };
 
-// Update all relevant files
+// Update all relevant files.
 updateTextFile(
 	'./style.css',
 	/(Version:\s*)([^\n]+)/,

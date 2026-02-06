@@ -9,6 +9,7 @@ WebDevStudios welcomes contributions and bug fixes from third-parties. Here are 
 - Continue to merge master into your feature/hotifx branch so it stays current
 - Test across all major browsers
 - Accessibility testing (both WCAG 2.2AA and Section 508)
-- Must pass PHPCS, ESLint, and Stylelint assertions
+- Must pass PHPCS, ESLint, and Stylelint assertions (strict mode: latest WordPress standards, warnings count as failures)
+- Do not use `git commit --no-verify` or `git push --no-verify`; CI will run the same checks and reject PRs that do not pass
 - Submit a [Pull Request](https://github.com/WebDevStudios/wds-bt/pulls) and reference your Issue #
 - If everything tests well on our end, we may merge in your Pull Request
