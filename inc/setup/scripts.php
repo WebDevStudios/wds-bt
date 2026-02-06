@@ -14,8 +14,8 @@ namespace WebDevStudios\wdsbt;
  */
 function scripts() {
 	$asset_file_path = get_template_directory() . '/build/js/index.asset.php';
-	$theme          = wp_get_theme( get_template() );
-	$theme_version  = $theme->get( 'Version' );
+	$theme           = wp_get_theme( get_template() );
+	$theme_version   = $theme->get( 'Version' );
 	if ( empty( $theme_version ) ) {
 		$theme_version = '1.4.0';
 	}
