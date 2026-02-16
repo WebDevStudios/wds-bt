@@ -2,4 +2,4 @@
 @use 'base';
 @use 'patterns';
 @use 'template-parts';
-@use 'templates';
+// Template-specific styles are built separately and enqueued per template (see inc/setup/template-styles.php).

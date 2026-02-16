@@ -1,12 +1,12 @@
 /**
- * Block Showcase Template Styles
+ * Block Showcase Template Styles.
  * Styles for the block showcase page that displays all registered blocks
  * using WP_Block_Processor for efficient discovery and rendering.
  */
 
 @use '../abstracts/responsive-mixins';
 
-// Block showcase styles
+// Block showcase styles.
 .wdsbt-block-showcase {
 	.wdsbt-showcase-section-heading {
 		color: var(--wp--preset--color--contrast, #000);

@@ -2,7 +2,7 @@
  * Unregister the Gutenberg blocks, style and variations that are not going to be used on the website
  */
 wp.domReady(() => {
-	// List of the Gutenberg blocks that would be unregistered
+	// List of the Gutenberg blocks that would be unregistered.
 	const unusedBlocks = ['core/latest-comments', 'core/missing'];
 
 	const embedBlockVariations = wp.blocks.getBlockVariations('core/embed');

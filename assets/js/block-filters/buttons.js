@@ -90,7 +90,7 @@ function Edit({
 	);
 }
 
-// Add filters
+// Add filters.
 addFilter(
 	'blocks.registerBlockType',
 	'wdsbt/button-sizes',

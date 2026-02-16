@@ -60,7 +60,7 @@ function calculate_dominant_color( $file_path ) {
 
 	// Fallback to GD library.
 	if ( extension_loaded( 'gd' ) && function_exists( 'imagecreatefromstring' ) ) {
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local file path is safe.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local file path is safe
 		$image_data = file_get_contents( $file_path );
 		if ( false === $image_data ) {
 			return false;
@@ -74,16 +74,12 @@ function calculate_dominant_color( $file_path ) {
 		// Resize to 1x1 to get average color.
 		$thumb = imagecreatetruecolor( 1, 1 );
 		if ( false === $thumb ) {
-			imagedestroy( $image );
 			return false;
 		}
 
 		imagecopyresampled( $thumb, $image, 0, 0, 0, 0, 1, 1, imagesx( $image ), imagesy( $image ) );
 		$main_color = imagecolorat( $thumb, 0, 0 );
 		$rgb        = imagecolorsforindex( $thumb, $main_color );
-
-		imagedestroy( $image );
-		imagedestroy( $thumb );
 
 		return sprintf( '#%02x%02x%02x', $rgb['red'], $rgb['green'], $rgb['blue'] );
 	}

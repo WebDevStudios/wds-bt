@@ -12,7 +12,7 @@
  */
 
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-// phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file.
+// phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file
 // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_mkdir -- CLI tool
 // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_copy -- CLI tool
 // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_is_dir -- CLI tool
@@ -180,19 +180,6 @@ function parse_font_filename( $filename ) {
 		'style'  => 'normal',
 	);
 
-	$family_patterns = array(
-		'inter'       => 'Inter',
-		'oxygen'      => 'Oxygen',
-		'roboto-mono' => 'Roboto Mono',
-		'roboto'      => 'Roboto',
-		'open-sans'   => 'Open Sans',
-		'lato'        => 'Lato',
-		'poppins'     => 'Poppins',
-		'montserrat'  => 'Montserrat',
-		'raleway'     => 'Raleway',
-		'playfair'    => 'Playfair Display',
-	);
-
 	$weight_patterns = array(
 		'-100'       => '100',
 		'-200'       => '200',
@@ -221,15 +208,11 @@ function parse_font_filename( $filename ) {
 		'oblique' => 'oblique',
 	);
 
-	$lowercase_filename = strtolower( $filename );
+	// Remove file extension before parsing.
+	$filename_without_ext = preg_replace( '/\.(woff2?|ttf|otf)$/i', '', $filename );
+	$lowercase_filename   = strtolower( $filename_without_ext );
 
-	foreach ( $family_patterns as $pattern => $family ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['family'] = $family;
-			break;
-		}
-	}
-
+	// Detect font weight first - use exact matches.
 	foreach ( $weight_patterns as $pattern => $weight ) {
 		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
 			$metadata['weight'] = $weight;
@@ -237,11 +220,43 @@ function parse_font_filename( $filename ) {
 		}
 	}
 
+	// Detect font style.
 	foreach ( $style_patterns as $pattern => $style ) {
 		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
 			$metadata['style'] = $style;
 			break;
 		}
+	}
+
+	// Extract font family from filename by removing weight/style patterns and metadata.
+	$parts = preg_split( '/[-_\s]+/', $filename_without_ext );
+
+	// Remove weight/style keywords and metadata from parts.
+	$family_parts    = array();
+	$weight_keywords = array( 'thin', 'extralight', 'light', 'regular', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black', '100', '200', '300', '400', '500', '600', '700', '800', '900' );
+	$style_keywords  = array( 'italic', 'oblique' );
+
+	foreach ( $parts as $part ) {
+		$lower_part = strtolower( $part );
+
+		// Skip weight/style keywords.
+		if ( in_array( $lower_part, $weight_keywords, true ) || in_array( $lower_part, $style_keywords, true ) ) {
+			continue;
+		}
+
+		// Skip version numbers and metadata (v15, latin, etc.).
+		if ( preg_match( '/^v\d+|^latin|^\d+$/', $lower_part ) ) {
+			continue;
+		}
+
+		$family_parts[] = $part;
+	}
+
+	// Reconstruct family name from remaining parts.
+	if ( ! empty( $family_parts ) ) {
+		$metadata['family'] = ucwords( implode( ' ', $family_parts ) );
+	} elseif ( ! empty( $parts[0] ) ) {
+		$metadata['family'] = ucwords( str_replace( array( '-', '_' ), ' ', $parts[0] ) );
 	}
 
 	return $metadata;
@@ -604,7 +619,7 @@ function main() {
 main();
 
 // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
-// phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file.
+// phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI tool writing local file
 // phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_mkdir -- CLI tool
 // phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_copy -- CLI tool
 // phpcs:enable WordPress.WP.AlternativeFunctions.file_system_operations_is_dir -- CLI tool
