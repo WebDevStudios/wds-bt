@@ -26,7 +26,6 @@
 		margin-top: var(--wp--preset--spacing--gap);
 
 		.wp-block-accordion {
-			background: var(--wp--preset--color--base, #fff);
 			overflow: hidden;
 		}
 
@@ -97,7 +96,6 @@
 				var(--wp--preset--color--contrast, rgba(0, 0, 0, 0.1));
 			border-radius: var(--wp--preset--border-radius--md);
 			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-			background: var(--wp--preset--color--base, #fff);
 			padding: var(--wp--preset--spacing--50);
 			overflow: hidden;
 			display: flex;
@@ -120,7 +118,6 @@
 						rgba(0, 0, 0, 0.6)
 					);
 					font-size: var(--wp--preset--font-size--small);
-					background: var(--wp--preset--color--base-2, #f5f5f5);
 					padding: var(--wp--preset--spacing--30);
 					border-radius: var(--wp--preset--border-radius--sm);
 				}

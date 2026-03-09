@@ -11,7 +11,7 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 const WebpackBar = require('webpackbar');
-const { exec, execSync } = require('child_process');
+const { exec } = require('child_process');
 
 /**
  * Custom plugin to generate theme.json after build
@@ -27,14 +27,13 @@ class ThemeJsonGeneratorPlugin {
 			'ThemeJsonGeneratorPlugin',
 			(compilation, callback) => {
 				// Always run the generator, regardless of environment.
-				// Use auto-detected PHP path with appropriate flags.
-				const phpPath = execSync('node scripts/get-php.js', {
-					encoding: 'utf8',
-				}).trim();
-				const phpFlags =
-					process.env.CI || process.env.GITHUB_ACTIONS ? '' : '-n';
+				// PHP is provided by DevContainer or host (native).
+				const phpCmd =
+					process.env.CI || process.env.GITHUB_ACTIONS
+						? 'php'
+						: 'php -n';
 				exec(
-					`${phpPath} ${phpFlags} tools/generate-theme-json.php 2>&1`,
+					`${phpCmd} tools/generate-theme-json.php 2>&1`,
 					(error, stdout) => {
 						const logger = compilation.getLogger(
 							'ThemeJsonGeneratorPlugin'

@@ -19,4 +19,4 @@ Runs PHPCS, ESLint, and Stylelint in CI. All violations must be fixed before mer
 ## Cross-Platform
 
 - **rimraf** is used instead of `rm -rf` in npm scripts for Windows/macOS/Linux.
-- **PHP:** Path and extension flags are auto-detected (`scripts/get-php.sh`, `scripts/get-php-flags.sh`). For CI you can set `PHP_BIN`. Local uses `-n` to suppress extension warnings; CI enables `tokenizer`, `xmlwriter`, `simplexml` as needed.
+- **PHP:** Use the theme’s [.devcontainer](../.devcontainer) for theme-only dev (PHP 8.2, Node 24; works for everyone) or your project’s devcontainer when developing the full site. Otherwise install PHP 8.2+ with extensions `tokenizer`, `xmlwriter`, `simplexml` on the host. CI uses `shivammathur/setup-php` with the same stack.

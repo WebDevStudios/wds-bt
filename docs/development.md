@@ -26,7 +26,7 @@ npm run setup
 
 This removes `node_modules`, `vendor`, `build`, `package-lock.json`, and `composer.lock`, then installs dependencies and runs an initial build.
 
-**Note:** Composer 2 and NPM 11+ are required. The setup script detects PHP and handles extension flags for your environment.
+**Note:** Composer 2 and NPM 11+ are required. Use the theme’s [.devcontainer](../.devcontainer) for a theme-only workflow (PHP 8.2, Node 24; no local install)—works for anyone. Or install PHP 8.2+ and Node 24+ natively.
 
 ## NPM Scripts
 
