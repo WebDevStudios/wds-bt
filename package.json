@@ -65,12 +65,7 @@
     "glob": "^13.0.0",
     "html_codesniffer": "2.5.1",
     "image-minimizer-webpack-plugin": "^4.1.4",
-    "imagemin": "^9.0.1",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegtran": "^8.0.0",
-    "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^11.0.1",
+    "sharp": "^0.34.2",
     "inquirer": "^13.2.2",
     "lint-staged": "16.2.7",
     "mini-css-extract-plugin": "^2.10.0",
@@ -115,7 +110,7 @@
     "lint:php": "composer run-script phpcs",
     "lint:pkg-json": "wp-scripts lint-pkg-json",
     "packages-update": "npx npm-check-updates -u && npm install && npm dedupe && npm audit fix",
-    "postinstall": "npx lefthook install --reset-hooks-path && ./scripts/update-cursorrules.sh",
+    "postinstall": "mkdir -p node_modules/ajv-keywords/node_modules && ln -sf ../../schema-utils/node_modules/ajv node_modules/ajv-keywords/node_modules/ajv 2>/dev/null || true && npx lefthook install --reset-hooks-path && ./scripts/update-cursorrules.sh",
     "preinstall": "npx cross-env npm_config_legacy_peer_deps=true",
     "reset": "rimraf node_modules vendor build blocks package-lock.json composer.lock",
     "setup": "npm run reset && npm install --no-fund --no-audit --loglevel=error && composer install --quiet --no-interaction && npm run build && npm run fonts:generate",
@@ -129,5 +124,13 @@
     "*.scss": "wp-scripts lint-style",
     "*.json": "wp-scripts lint-pkg-json",
     "*.md": "wp-scripts lint-md-docs"
+  },
+  "overrides": {
+    "ajv-keywords@5": {
+      "ajv": "^8.18.0"
+    },
+    "ajv-formats": {
+      "ajv": "^8.18.0"
+    }
   }
 }

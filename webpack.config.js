@@ -441,28 +441,31 @@ module.exports = {
 			}),
 			new ImageMinimizerPlugin({
 				minimizer: {
-					implementation: ImageMinimizerPlugin.imageminGenerate,
+					implementation: ImageMinimizerPlugin.sharpMinify,
 					options: {
-						plugins: [
-							['gifsicle', { interlaced: true }],
-							['jpegtran', { progressive: true }],
-							['optipng', { optimizationLevel: 5 }],
-							[
-								'svgo',
+						encodeOptions: {
+							jpeg: { quality: 80, progressive: true },
+							png: { compressionLevel: 9, effort: 10 },
+							gif: {},
+							webp: { quality: 80 },
+						},
+					},
+				},
+			}),
+			new ImageMinimizerPlugin({
+				minimizer: {
+					implementation: ImageMinimizerPlugin.svgoMinify,
+					options: {
+						encodeOptions: {
+							multipass: true,
+							plugins: [
+								'preset-default',
 								{
-									plugins: [
-										{
-											name: 'preset-default',
-											params: {
-												overrides: {
-													removeViewBox: false,
-												},
-											},
-										},
-									],
+									name: 'removeViewBox',
+									active: false,
 								},
 							],
-						],
+						},
 					},
 				},
 			}),
