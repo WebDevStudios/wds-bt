@@ -22,7 +22,7 @@ Do **not** use `git commit --no-verify` or `git push --no-verify`. CI runs the s
 ## PHP Linting Details
 
 - Config: `phpcs.xml.dist`. Theme prefixes: `WebDevStudios\wdsbt`, `wds`, `wdsbt`. Text domain: `wdsbt`.
-- PHP path and extension flags are auto-detected (`scripts/get-php.sh`, `scripts/get-php-flags.sh`).
+- PHP is provided by the DevContainer or host; run `npm run lint:php` (uses `vendor/bin/phpcs`).
 
 ## JavaScript Linting Details
 

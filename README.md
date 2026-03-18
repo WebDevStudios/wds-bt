@@ -1,6 +1,6 @@
 # WDS BT
 
-## Version: 1.4.0
+## Version: 1.4.5
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
@@ -53,7 +53,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Responsive Design                                | Ensures optimal display and functionality across devices.                                           |
 | Foundation Theme                                 | Flexible base theme optimized for extensive customization.                                          |
 | Automated Code Quality                           | Modern linting configurations with PHP 8.3 compatibility, ESLint 9 flat config, WordPress coding standards, and automated quality checks. |
-| Cross-Platform PHP Support                       | Automatic PHP binary detection and extension handling for Mac, Linux, and CI/CD environments.       |
+| DevContainer                                    | [.devcontainer](.devcontainer) for **theme-only** workflow: PHP 8.2, Node 24, Composer. Usable by anyone (not just WDS); matches [wds-devcontainer](https://github.com/WebDevStudios/wds-devcontainer) when using the project template. |
 | Third-party Block Style Overrides                | Conditionally enqueue and override third-party block styles for efficient asset delivery.           |
 | Accessibility Compliance                         | Built-in WCAG 2.2 compliance with automated Pa11y checks.                                           |
 | Enhanced Webpack Configuration                   | Refined Webpack setup for improved dependency resolution and optimized asset management.            |
@@ -81,6 +81,8 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 1. Clone this repository to your WordPress theme directory (`wp-content/themes/`).
 2. Activate WDS BT from your WordPress admin panel under Appearance > Themes.
 3. Run `npm run setup` to install dependencies and perform an initial build.
+
+**Theme-only dev (no local PHP/Node):** Open this repo in Cursor or VS Code and choose **Reopen in Container**. The [.devcontainer](.devcontainer) provides PHP 8.2 and Node 24 so you can run `npm run setup` and build without installing tooling locally—works for everyone, not only WDS projects.
 
 ## Documentation
 
