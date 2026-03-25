@@ -525,8 +525,6 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 		<?php endif; ?>
 	</div>
 
-	</div>
-
 	<script>
 		(function() {
 			document.addEventListener('DOMContentLoaded', function() {

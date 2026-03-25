@@ -13,6 +13,42 @@
 namespace WebDevStudios\wdsbt;
 
 /**
+ * Theme color palette from theme.json (not core defaults).
+ *
+ * @return array List of entries with slug, name, and color.
+ */
+function get_theme_json_color_palette() {
+	if ( ! class_exists( 'WP_Theme_JSON_Resolver' ) ) {
+		return array();
+	}
+	$theme_json = \WP_Theme_JSON_Resolver::get_theme_data();
+	if ( ! $theme_json ) {
+		return array();
+	}
+	$settings = $theme_json->get_settings();
+	if ( empty( $settings['color']['palette'] ) || ! is_array( $settings['color']['palette'] ) ) {
+		return array();
+	}
+	$raw = $settings['color']['palette'];
+
+	$list  = array();
+	$first = reset( $raw );
+	if ( is_array( $first ) && isset( $first['color'] ) ) {
+		$list = $raw;
+	} elseif ( isset( $raw['theme'] ) && is_array( $raw['theme'] ) ) {
+		$list = $raw['theme'];
+	} else {
+		foreach ( $raw as $origin_palette ) {
+			if ( is_array( $origin_palette ) ) {
+				$list = array_merge( $list, array_values( $origin_palette ) );
+			}
+		}
+	}
+
+	return is_array( $list ) ? array_values( $list ) : array();
+}
+
+/**
  * Get all registered blocks organized by namespace.
  *
  * @return array Array of blocks organized by namespace (core, wdsbt, etc.).
@@ -159,7 +195,7 @@ function get_block_showcase_content( $block_name, $block_type ) {
 		'core/cover'           => '<!-- wp:cover {"overlayColor":"accent-1","isUserOverlayColor":true,"isDark":false,"layout":{"type":"constrained"}} --><div class="wp-block-cover is-light"><span aria-hidden="true" class="wp-block-cover__background has-accent-1-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","fontSize":"large","fitText":true} --><h2 class="wp-block-heading has-text-align-center has-fit-text has-large-font-size">Cover Block</h2><!-- /wp:heading --></div></div><!-- /wp:cover -->',
 		'core/file'            => '<!-- wp:file {"href":"https://example.com/sample.pdf","showDownloadButton":true} --><div class="wp-block-file"><a href="https://example.com/sample.pdf" class="wp-block-file__button" download>Download</a> <a href="https://example.com/sample.pdf">sample.pdf</a></div><!-- /wp:file -->',
 		'core/media-text'      => '<!-- wp:media-text {"mediaType":"image","mediaWidth":50} --><div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:50% auto"><figure class="wp-block-media-text__media"><img src="https://placehold.co/600x400/000000/FFF" alt="Media & Text"/></figure><div class="wp-block-media-text__content"><!-- wp:paragraph --><p>Media &amp; Text Block. Example these example are words are words are example are example these. Are these example these words example are these words these example. Words are example words these are example words. These are words are words example are example words are words are words these. Are words example words are example words these example these are example.</p><!-- /wp:paragraph --></div></div><!-- /wp:media-text -->',
-		'core/video'           => '<!-- wp:video --><figure class="wp-block-video"><video controls src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video><figcaption class="wp-element-caption">Video Caption</figcaption></figure><!-- /wp:video -->',
+		'core/video'           => '<!-- wp:video --><figure class="wp-block-video"><video controls src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video><figcaption class="wp-element-caption">Video Caption</figcaption></figure><!-- /wp:video -->',
 		'core/buttons'         => '<!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Fill Button</a></div><!-- /wp:button --><!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button">Outline Button</a></div><!-- /wp:button --><!-- wp:button {"className":"is-style-minimal"} --><div class="wp-block-button is-style-minimal"><a class="wp-block-button__link wp-element-button">Minimal Button</a></div><!-- /wp:button --><!-- wp:button {"className":"is-style-text"} --><div class="wp-block-button is-style-text"><a class="wp-block-button__link wp-element-button">Text Only Button</a></div><!-- /wp:button --></div><!-- /wp:buttons -->',
 		'core/columns'         => '<!-- wp:columns --><div class="wp-block-columns"><!-- wp:column --><div class="wp-block-column"><!-- wp:paragraph {"fontSize":"small"} --><p class="has-small-font-size">Column 1</p><!-- /wp:paragraph --></div><!-- /wp:column --><!-- wp:column --><div class="wp-block-column"><!-- wp:paragraph {"fontSize":"small"} --><p class="has-small-font-size">Column 2</p><!-- /wp:paragraph --></div><!-- /wp:column --></div><!-- /wp:columns -->',
 		'core/group'           => '<!-- wp:group {"backgroundColor":"base","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}}} --><div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:paragraph --><p>Group Block</p><!-- /wp:paragraph --></div><!-- /wp:group -->',
@@ -312,7 +348,6 @@ function render_block_for_showcase( $block_name, $block_type ) {
 
 				return $rendered;
 			} else {
-				// Fallback if oEmbed fetch fails - show URL.
 				return '<div class="wp-block-embed"><p><em>Embed preview not available. URL: <a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $url ) . '</a></em></p></div>';
 			}
 		}
@@ -380,10 +415,10 @@ function get_block_attributes_info( $block_type ) {
 }
 
 /**
- * Get block category for organization using WordPress's native categorization.
+ * Category slug for showcase grouping (block category, wdsbt, or other).
  *
- * @param string $block_name The fully qualified block name.
- * @param object $block_type The block type object.
+ * @param string      $block_name  Qualified name.
+ * @param object|null $block_type  Optional; from registry when null.
  * @return string Category slug.
  */
 function get_block_category( $block_name, $block_type = null ) {
