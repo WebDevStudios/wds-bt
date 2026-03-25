@@ -1,0 +1,29 @@
+{
+	"name": "WDS BT",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+	"features": {
+		"ghcr.io/devcontainers/features/php:1": {
+			"version": "8.2",
+			"installComposer": true,
+			"installXdebug": false,
+			"extensions": "tokenizer,xmlwriter,simplexml,dom,mbstring"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "24",
+			"nodeGypDependencies": true,
+			"installYarnUsingApt": false
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bmewburn.vscode-intelephense-client",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"stylelint.vscode-stylelint"
+			]
+		}
+	},
+	"postCreateCommand": "npm ci && composer install --no-interaction",
+	"remoteUser": "vscode"
+}

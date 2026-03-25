@@ -11,76 +11,6 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 const WebpackBar = require('webpackbar');
-const { exec, execSync } = require('child_process');
-
-/**
- * Custom plugin to generate theme.json after build
- */
-class ThemeJsonGeneratorPlugin {
-	/**
-	 * Apply the plugin
-	 *
-	 * @param {Object} compiler Webpack compiler instance
-	 */
-	apply(compiler) {
-		compiler.hooks.afterEmit.tapAsync(
-			'ThemeJsonGeneratorPlugin',
-			(compilation, callback) => {
-				// Always run the generator, regardless of environment.
-				// Use auto-detected PHP path with appropriate flags.
-				const phpPath = execSync('node scripts/get-php.js', {
-					encoding: 'utf8',
-				}).trim();
-				const phpFlags =
-					process.env.CI || process.env.GITHUB_ACTIONS ? '' : '-n';
-				exec(
-					`${phpPath} ${phpFlags} tools/generate-theme-json.php 2>&1`,
-					(error, stdout) => {
-						const logger = compilation.getLogger(
-							'ThemeJsonGeneratorPlugin'
-						);
-
-						// Filter out OPcache warning.
-						const filteredOutput = stdout
-							.split('\n')
-							.filter(
-								(line) =>
-									!line.includes('Cannot load Zend OPcache')
-							)
-							.join('\n');
-
-						if (error) {
-							// Check if the only error was the OPcache warning.
-							if (
-								error.message.includes(
-									'Cannot load Zend OPcache'
-								) &&
-								!error.message.includes('PHP Parse error') &&
-								!error.message.includes('PHP Fatal error')
-							) {
-								// Just log the filtered output and continue.
-								if (filteredOutput.trim()) {
-									logger.info(filteredOutput);
-								}
-							} else {
-								// Real error occurred.
-								compilation.errors.push(
-									new Error(
-										`Theme.json generation failed:\n${error.message}`
-									)
-								);
-							}
-						} else if (filteredOutput.trim()) {
-							logger.info(filteredOutput);
-						}
-
-						callback();
-					}
-				);
-			}
-		);
-	}
-}
 
 // Function to check for the existence of files matching a pattern.
 function hasFiles(pattern) {
@@ -420,8 +350,6 @@ module.exports = {
 			name: 'Building WDSBT Theme',
 			color: 'green',
 		}),
-
-		new ThemeJsonGeneratorPlugin(),
 	].filter(Boolean),
 	optimization: {
 		minimize: true,
@@ -442,28 +370,31 @@ module.exports = {
 			}),
 			new ImageMinimizerPlugin({
 				minimizer: {
-					implementation: ImageMinimizerPlugin.imageminGenerate,
+					implementation: ImageMinimizerPlugin.sharpMinify,
 					options: {
-						plugins: [
-							['gifsicle', { interlaced: true }],
-							['jpegtran', { progressive: true }],
-							['optipng', { optimizationLevel: 5 }],
-							[
-								'svgo',
+						encodeOptions: {
+							jpeg: { quality: 80, progressive: true },
+							png: { compressionLevel: 9, effort: 10 },
+							gif: {},
+							webp: { quality: 80 },
+						},
+					},
+				},
+			}),
+			new ImageMinimizerPlugin({
+				minimizer: {
+					implementation: ImageMinimizerPlugin.svgoMinify,
+					options: {
+						encodeOptions: {
+							multipass: true,
+							plugins: [
+								'preset-default',
 								{
-									plugins: [
-										{
-											name: 'preset-default',
-											params: {
-												overrides: {
-													removeViewBox: false,
-												},
-											},
-										},
-									],
+									name: 'removeViewBox',
+									active: false,
 								},
 							],
-						],
+						},
 					},
 				},
 			}),

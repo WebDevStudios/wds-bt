@@ -3,7 +3,7 @@ Contributors: webdevstudios, khleomix, bgardner
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 1.4.0
+Stable tag: 1.4.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 

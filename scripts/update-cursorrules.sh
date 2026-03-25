@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Script to extract PHP version from composer.json and update Cursor rules files
-# This script is designed to be run as a post-install hook
-# Script: update-cursorrules.sh
+# Script to extract PHP version from composer.json and update Cursor rules files.
+# Dev only: skipped in CI and Buddy (not available there).
 
 set -e
+
+if [ -n "$CI" ] || [ -n "$BUDDY" ]; then
+	exit 0
+fi
 
 # Colors for output
 RED='\033[0;31m'
