@@ -10,7 +10,6 @@ main,
 	ol {
 		&:not([class]),
 		&.wp-block-list {
-			list-style-position: inside;
 			padding-left: var(--wp--preset--spacing--30);
 
 			li {
