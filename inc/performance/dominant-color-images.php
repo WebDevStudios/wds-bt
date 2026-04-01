@@ -164,6 +164,11 @@ function add_dominant_color_to_image_blocks( $block_content, $block ) {
 		return $block_content;
 	}
 
+	// Placeholder already on cover img via wp_get_attachment_image_attributes; avoid nested imgs / inner container.
+	if ( 'core/cover' === ( $block['blockName'] ?? '' ) ) {
+		return $block_content;
+	}
+
 	$attachment_id = isset( $block['attrs']['id'] ) ? (int) $block['attrs']['id'] : 0;
 	if ( ! $attachment_id ) {
 		return $block_content;
@@ -209,31 +214,6 @@ function add_dominant_color_to_image_blocks( $block_content, $block ) {
 		},
 		$block_content
 	);
-
-	// For cover blocks, also add to the wrapper.
-	if ( 'core/cover' === ( $block['blockName'] ?? '' ) ) {
-		$block_content = preg_replace_callback(
-			'/<div([^>]*class=["\'][^"\']*wp-block-cover[^"\']*["\'][^>]*)>/i',
-			function ( $matches ) use ( $dominant_color ) {
-				$div_attrs = $matches[1];
-
-				// Add or update style attribute.
-				if ( preg_match( '/style=["\']([^"\']*)["\']/', $div_attrs, $style_matches ) ) {
-					$existing_style = $style_matches[1];
-					// Only add if there's no background image or color already set.
-					if ( ! preg_match( '/background-(?:image|color)/', $existing_style ) ) {
-						$new_style = rtrim( $existing_style, ';' ) . '; background-color: ' . esc_attr( $dominant_color ) . ';';
-						$div_attrs = preg_replace( '/style=["\'][^"\']*["\']/', 'style="' . esc_attr( $new_style ) . '"', $div_attrs );
-					}
-				} else {
-					$div_attrs .= ' style="background-color: ' . esc_attr( $dominant_color ) . ';"';
-				}
-
-				return '<div' . $div_attrs . '>';
-			},
-			$block_content
-		);
-	}
 
 	return $block_content;
 }
