@@ -252,6 +252,10 @@ function get_block_showcase_content( $block_name, $block_type ) {
  * @return string Rendered block HTML.
  */
 function render_block_for_showcase( $block_name, $block_type ) {
+	if ( is_string( $block_name ) && str_starts_with( $block_name, 'wpml/' ) ) {
+		return '';
+	}
+
 	$block_content = get_block_showcase_content( $block_name, $block_type );
 
 	if ( empty( $block_content ) ) {
@@ -364,7 +368,11 @@ function render_block_for_showcase( $block_name, $block_type ) {
 		}
 	}
 
-	$rendered = do_blocks( $block_content );
+	try {
+		$rendered = do_blocks( $block_content );
+	} catch ( \Throwable $e ) {
+		return '<p><em>' . esc_html__( 'Preview could not be rendered.', 'wdsbt' ) . '</em></p>';
+	}
 
 	return $rendered;
 }
