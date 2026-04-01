@@ -54,10 +54,71 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 	$category_labels['other'] = 'Other Core Blocks';
 	$category_labels['wdsbt'] = 'WDS BT Custom Blocks';
 
+	$theme_color_palette = get_theme_json_color_palette();
+
 	ob_start();
 	?>
 
 	<div class="wdsbt-block-showcase">
+		<?php if ( ! empty( $theme_color_palette ) ) : ?>
+			<div class="wdsbt-showcase-category">
+				<div role="group" class="wp-block-accordion">
+					<div class="wp-block-accordion-item">
+						<div class="wp-block-accordion-heading wdsbt-showcase-category-title">
+							<button class="wp-block-accordion-heading__toggle" type="button" aria-expanded="false">
+								<span class="wp-block-accordion-heading__toggle-title">
+									<?php
+									echo esc_html(
+										sprintf(
+											/* translators: %d: number of theme colors in palette */
+											__( 'Theme colors (%d)', 'wdsbt' ),
+											count( $theme_color_palette )
+										)
+									);
+									?>
+								</span>
+								<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
+							</button>
+						</div>
+						<div role="region" class="wp-block-accordion-panel" aria-hidden="true">
+							<div class="wdsbt-showcase-colors">
+								<?php foreach ( $theme_color_palette as $color_entry ) : ?>
+									<?php
+									if ( empty( $color_entry['slug'] ) || ! isset( $color_entry['color'] ) ) {
+										continue;
+									}
+									$color_value = is_string( $color_entry['color'] ) ? $color_entry['color'] : '';
+									if ( '' === $color_value ) {
+										continue;
+									}
+									$color_name   = isset( $color_entry['name'] ) && is_string( $color_entry['name'] ) ? $color_entry['name'] : $color_entry['slug'];
+									$display_val  = showcase_color_display_value( $color_value );
+									$preview_fg   = showcase_color_contrast_foreground( $color_value );
+									$aria_preview = $color_name . ' — ' . $display_val;
+									?>
+									<div
+										class="wdsbt-showcase-color-swatch"
+										style="<?php echo esc_attr( '--wdsbt-swatch-color:' . $color_value . ';' ); ?>"
+									>
+										<span class="wdsbt-showcase-color-header"><?php echo esc_html( $color_entry['slug'] ); ?></span>
+										<span
+											class="wdsbt-showcase-color-preview"
+											role="img"
+											aria-label="<?php echo esc_attr( $aria_preview ); ?>"
+										>
+											<code
+												class="wdsbt-showcase-color-hex"
+												style="<?php echo esc_attr( 'color:' . $preview_fg . ';' ); ?>"
+											><?php echo esc_html( $display_val ); ?></code>
+										</span>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
 		<?php
 		$core_blocks_by_category = array();
 		$rendered_blocks_cache   = array();
