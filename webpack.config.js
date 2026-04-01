@@ -242,19 +242,20 @@ module.exports = {
 				{
 					from: '**/*.{jpg,jpeg,png,gif,svg}',
 					to: 'images/[path][name][ext]',
-					context: path.resolve(process.cwd(), 'assets/images'),
+					context: path.resolve(__dirname, 'assets/images'),
 					noErrorOnMissing: true,
 				},
 				{
 					from: '*.svg',
 					to: 'images/icons/[name][ext]',
-					context: path.resolve(process.cwd(), 'assets/images/icons'),
+					context: path.resolve(__dirname, 'assets/images/icons'),
 					noErrorOnMissing: true,
 				},
 				{
 					from: '**/*.{woff,woff2,eot,ttf,otf}',
-					to: 'fonts/[path]/[name][ext]',
-					context: path.resolve(process.cwd(), 'assets/fonts'),
+					// [path] from copy-webpack-plugin includes a trailing slash when nested
+					to: 'fonts/[path][name][ext]',
+					context: path.resolve(__dirname, 'assets/fonts'),
 					noErrorOnMissing: true,
 				},
 				...copyPluginPatterns,
