@@ -178,6 +178,7 @@
                         {
                             "fontFamily": "Inter",
                             "fontStyle": "normal",
+                            "fontWeight": "100 900",
                             "src": [
                                 "file:./build/fonts/headline/Inter.woff2"
                             ]
@@ -192,6 +193,7 @@
                         {
                             "fontFamily": "Roboto Mono",
                             "fontStyle": "normal",
+                            "fontWeight": "400",
                             "src": [
                                 "file:./build/fonts/mono/roboto-mono.woff2"
                             ]
@@ -333,7 +335,13 @@
                 "typography": {
                     "fontSize": "var:preset|font-size|small"
                 }
-            }
+            },
+			"core/post-title": {
+				"typography": {
+                    "fontFamily": "var:preset|font-family|headline",
+                    "fontWeight": "800"
+				}
+			}
         },
         "color": {
             "background": "var:preset|color|base",
@@ -351,7 +359,8 @@
         "typography": {
             "fontFamily": "var:preset|font-family|body",
             "fontSize": "var:preset|font-size|medium",
-            "fontWeight": "400"
+            "fontWeight": "400",
+			"lineHeight": "1.5"
         }
     },
     "templateParts": [
