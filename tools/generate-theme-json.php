@@ -1,6 +1,11 @@
 <?php
 /**
- * Generate theme.json with detected fonts
+ * Merge detected fonts into theme.json typography.fontFamilies.
+ *
+ * Scans assets/fonts and build/fonts. When theme.json already defines a family
+ * by slug, merges scanned fontFace src paths while preserving manual settings
+ * (e.g. variable font fontWeight "100 900"). New folder slugs are appended.
+ * If no fontFamilies exist yet, writes the scanned set only.
  *
  * Usage: php tools/generate-theme-json.php
  *
@@ -178,6 +183,49 @@ function group_fonts_by_family( $fonts ) {
 }
 
 /**
+ * Merge one theme.json font family with scanned data.
+ *
+ * Preserves name, slug, fontFamily, and variable-font fontWeight ranges; updates src from disk.
+ *
+ * @param array $existing Family from theme.json.
+ * @param array $scanned  Family from scan/group_fonts_by_family.
+ * @return array Merged family.
+ */
+function merge_font_family_with_scan( array $existing, array $scanned ) {
+	$out = $existing;
+
+	if ( empty( $scanned['fontFace'] ) || ! is_array( $scanned['fontFace'] ) ) {
+		return $out;
+	}
+
+	$ex_faces = isset( $existing['fontFace'] ) && is_array( $existing['fontFace'] ) ? $existing['fontFace'] : array();
+	$sc_faces = $scanned['fontFace'];
+
+	// Single variable face: keep fontWeight range (e.g. "100 900"), refresh src from scan.
+	if ( 1 === count( $ex_faces ) && 1 === count( $sc_faces ) ) {
+		$ew = isset( $ex_faces[0]['fontWeight'] ) ? trim( (string) $ex_faces[0]['fontWeight'] ) : '';
+		if ( '' !== $ew && preg_match( '/^\d+\s+\d+$/', $ew ) ) {
+			$face = $ex_faces[0];
+			if ( isset( $sc_faces[0]['src'] ) ) {
+				$face['src'] = $sc_faces[0]['src'];
+			}
+			if ( isset( $sc_faces[0]['fontFamily'] ) ) {
+				$face['fontFamily'] = $sc_faces[0]['fontFamily'];
+			}
+			if ( isset( $sc_faces[0]['fontStyle'] ) ) {
+				$face['fontStyle'] = $sc_faces[0]['fontStyle'];
+			}
+			$out['fontFace'] = array( $face );
+			return $out;
+		}
+	}
+
+	$out['fontFace'] = $sc_faces;
+
+	return $out;
+}
+
+/**
  * Sanitize title (simple version without WordPress dependency).
  *
  * @param string $title Title to sanitize.
@@ -243,8 +291,46 @@ function generate_theme_json() {
 		$base_theme_json['settings']['typography'] = array();
 	}
 
-	if ( ! empty( $font_families ) ) {
-		$base_theme_json['settings']['typography']['fontFamilies'] = array_values( $font_families );
+	$scanned_list    = array_values( $font_families );
+	$scanned_by_slug = array();
+	foreach ( $scanned_list as $fam ) {
+		if ( ! empty( $fam['slug'] ) && is_string( $fam['slug'] ) ) {
+			$scanned_by_slug[ $fam['slug'] ] = $fam;
+		}
+	}
+
+	$existing_families = $base_theme_json['settings']['typography']['fontFamilies'] ?? array();
+	if ( ! is_array( $existing_families ) ) {
+		$existing_families = array();
+	}
+
+	if ( ! empty( $scanned_list ) ) {
+		if ( empty( $existing_families ) ) {
+			$base_theme_json['settings']['typography']['fontFamilies'] = $scanned_list;
+		} else {
+			$merged       = array();
+			$used_scanned = array();
+			foreach ( $existing_families as $fam ) {
+				if ( ! is_array( $fam ) ) {
+					continue;
+				}
+				$slug = isset( $fam['slug'] ) && is_string( $fam['slug'] ) ? $fam['slug'] : '';
+				if ( '' !== $slug && isset( $scanned_by_slug[ $slug ] ) ) {
+					$merged[]              = merge_font_family_with_scan( $fam, $scanned_by_slug[ $slug ] );
+					$used_scanned[ $slug ] = true;
+				} else {
+					$merged[] = $fam;
+				}
+			}
+			foreach ( $scanned_list as $fam ) {
+				$slug = isset( $fam['slug'] ) && is_string( $fam['slug'] ) ? $fam['slug'] : '';
+				if ( '' !== $slug && empty( $used_scanned[ $slug ] ) ) {
+					$merged[]              = $fam;
+					$used_scanned[ $slug ] = true;
+				}
+			}
+			$base_theme_json['settings']['typography']['fontFamilies'] = $merged;
+		}
 	}
 	$font_count   = 0;
 	$family_count = 0;

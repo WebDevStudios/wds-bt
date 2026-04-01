@@ -62,6 +62,9 @@ function parse_args() {
  */
 function show_help() {
 	echo "Font Processor Tool\n\n";
+	echo "Copies fonts from assets to build, regenerates font preload PHP, and merges\n";
+	echo "theme.json fontFamilies (preserving existing presets where possible).\n";
+	echo "npm run build also copies assets/fonts into build via webpack.\n\n";
 	echo "Usage: php tools/font-processor.php [options]\n\n";
 	echo "Options:\n";
 	echo "  --input-dir DIR      Input directory (default: assets/fonts).\n";
@@ -85,7 +88,7 @@ function scan_font_files( $input_dir ) {
 	$full_path = $theme_dir . '/' . $input_dir;
 
 	if ( ! is_dir( $full_path ) ) {
-		echo 'Input directory not found: $full_path\n';
+		printf( "Input directory not found: %s\n", $full_path );
 		return $fonts;
 	}
 
