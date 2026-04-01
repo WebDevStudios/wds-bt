@@ -1,11 +1,7 @@
 /* -- page list -- */
 
 .wp-block-page-list {
-	padding-left: 0.75rem;
-
 	li {
-		padding-bottom: 0.75rem;
-
 		&::marker {
 			color: var(--wp--preset--color--contrast);
 			font-size: var(--wp--preset--font-size--s);
@@ -22,11 +18,6 @@
 			&:active {
 				color: var(--wp--preset--color--accent-1);
 			}
-		}
-
-		ul {
-			padding-left: 1.5rem;
-			padding-top: 0.75rem;
 		}
 	}
 }
