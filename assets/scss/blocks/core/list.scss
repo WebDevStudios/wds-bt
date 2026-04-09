@@ -13,9 +13,14 @@ main,
 			li {
 				padding-bottom: var(--wp--preset--spacing--40);
 
+				&:last-of-type {
+					padding-bottom: 0;
+				}
+
 				/* Nested lists */
 				ul,
 				ol {
+					padding-top: var(--wp--preset--spacing--40);
 					padding-bottom: 0;
 				}
 			}
