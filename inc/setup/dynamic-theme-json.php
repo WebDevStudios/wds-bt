@@ -364,6 +364,4 @@ function debug_font_detection() {
 	if ( ! $screen || 'tools_page_wdsbt-settings' !== $screen->id ) {
 		return;
 	}
-
-	// Don't output here - it will be shown at the bottom of the settings page.
 }
