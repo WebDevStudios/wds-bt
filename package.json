@@ -109,7 +109,7 @@
     "lint:php": "composer run-script phpcs",
     "lint:pkg-json": "wp-scripts lint-pkg-json",
     "packages-update": "npx npm-check-updates -u && npm install && npm dedupe && npm audit fix",
-    "postinstall": "mkdir -p node_modules/ajv-keywords/node_modules && ln -sf ../../schema-utils/node_modules/ajv node_modules/ajv-keywords/node_modules/ajv 2>/dev/null || true && npx lefthook install --reset-hooks-path && ./scripts/update-cursorrules.sh",
+    "postinstall": "node scripts/npm-postinstall.cjs",
     "preinstall": "npx cross-env npm_config_legacy_peer_deps=true",
     "reset": "rimraf node_modules vendor build blocks package-lock.json composer.lock",
     "setup": "npm run reset && npm install --no-fund --no-audit --loglevel=error && composer install --quiet --no-interaction && npm run build && npm run fonts:generate",
