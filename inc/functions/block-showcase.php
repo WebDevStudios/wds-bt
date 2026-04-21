@@ -49,6 +49,69 @@ function get_theme_json_color_palette() {
 }
 
 /**
+ * Brightness 0–255 for #rgb / #rrggbb (for preview label contrast).
+ *
+ * @param string $hex Hex color with or without #.
+ * @return int|null Brightness or null if not parseable.
+ */
+function showcase_color_hex_brightness( $hex ) {
+	$hex = ltrim( (string) $hex, '#' );
+	if ( strlen( $hex ) === 3 && ctype_xdigit( $hex ) ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+	if ( strlen( $hex ) !== 6 || ! ctype_xdigit( $hex ) ) {
+		return null;
+	}
+	$r = hexdec( substr( $hex, 0, 2 ) );
+	$g = hexdec( substr( $hex, 2, 2 ) );
+	$b = hexdec( substr( $hex, 4, 2 ) );
+
+	return (int) round( ( $r * 299 + $g * 587 + $b * 114 ) / 1000 );
+}
+
+/**
+ * Foreground hex for text on a CSS color (hex only; else dark default).
+ *
+ * @param string $css_color theme.json color value.
+ * @return string #191919 or #ffffff.
+ */
+function showcase_color_contrast_foreground( $css_color ) {
+	if ( preg_match( '/#([0-9a-f]{3}|[0-9a-f]{6})\b/i', (string) $css_color, $m ) ) {
+		$bright = showcase_color_hex_brightness( '#' . $m[1] );
+		if ( null !== $bright ) {
+			return $bright > 140 ? '#191919' : '#ffffff';
+		}
+	}
+
+	return '#191919';
+}
+
+/**
+ * Human-readable color sample for the showcase (hex if possible).
+ *
+ * @param string $css_color theme.json color value.
+ * @return string Display string.
+ */
+function showcase_color_display_value( $css_color ) {
+	$s = trim( (string) $css_color );
+	if ( preg_match( '/^#([0-9a-f]{3}|[0-9a-f]{6})$/i', $s, $m ) ) {
+		if ( strlen( $m[1] ) === 3 ) {
+			return strtoupper(
+				'#' . $m[1][0] . $m[1][0] . $m[1][1] . $m[1][1] . $m[1][2] . $m[1][2]
+			);
+		}
+
+		return strtoupper( '#' . $m[1] );
+	}
+
+	if ( strlen( $s ) > 48 ) {
+		return substr( $s, 0, 45 ) . '…';
+	}
+
+	return $s;
+}
+
+/**
  * Get all registered blocks organized by namespace.
  *
  * @return array Array of blocks organized by namespace (core, wdsbt, etc.).
@@ -69,6 +132,12 @@ function get_all_registered_blocks() {
 
 	foreach ( $all_blocks as $block_name => $block_type ) {
 		if ( in_array( $block_name, $skip_blocks, true ) ) {
+			continue;
+		}
+
+		// Omit child-only blocks (block.json parent), e.g. FAQ inside FAQs, list-item inside list.
+		$parent_blocks = isset( $block_type->parent ) ? $block_type->parent : null;
+		if ( is_array( $parent_blocks ) && array() !== $parent_blocks ) {
 			continue;
 		}
 
@@ -173,7 +242,7 @@ function get_block_showcase_content( $block_name, $block_type ) {
 	}
 
 	$core_defaults = array(
-		'core/paragraph'       => '<!-- wp:paragraph --><p>This is a paragraph block with <strong>formatted text</strong> and <em>emphasis</em>.</p><!-- /wp:paragraph -->',
+		'core/paragraph'       => '<!-- wp:paragraph --><p>This is a paragraph block with <strong>formatted text</strong>, a <a href="https://wordpress.org/">link</a>, and <em>emphasis</em>.</p><!-- /wp:paragraph -->',
 		'core/heading'         => '<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Heading H1</h1><!-- /wp:heading --><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Heading H2</h2><!-- /wp:heading --><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Heading H3</h3><!-- /wp:heading --><!-- wp:heading {"level":4} --><h4 class="wp-block-heading">Heading H4</h4><!-- /wp:heading --><!-- wp:heading {"level":5} --><h5 class="wp-block-heading">Heading H5</h5><!-- /wp:heading --><!-- wp:heading {"level":6} --><h6 class="wp-block-heading">Heading H6</h6><!-- /wp:heading -->',
 		'core/list'            => '<!-- wp:list {"type":"decimal"} --><ul class="wp-block-list"><!-- wp:list-item --><li>These words these are these these example are words example these example.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Example words are example are these are example are these.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Words these example are words are these words example are these example words.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Example are example are example these words these example words.</li><!-- /wp:list-item --></ul><!-- /wp:list -->',
 		'core/quote'           => '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph --><p>This is a quote block for highlighting important statements.</p><!-- /wp:paragraph --><cite>Citation</cite></blockquote><!-- /wp:quote -->',
@@ -252,6 +321,10 @@ function get_block_showcase_content( $block_name, $block_type ) {
  * @return string Rendered block HTML.
  */
 function render_block_for_showcase( $block_name, $block_type ) {
+	if ( is_string( $block_name ) && str_starts_with( $block_name, 'wpml/' ) ) {
+		return '';
+	}
+
 	$block_content = get_block_showcase_content( $block_name, $block_type );
 
 	if ( empty( $block_content ) ) {
@@ -364,7 +437,11 @@ function render_block_for_showcase( $block_name, $block_type ) {
 		}
 	}
 
-	$rendered = do_blocks( $block_content );
+	try {
+		$rendered = do_blocks( $block_content );
+	} catch ( \Throwable $e ) {
+		return '<p><em>' . esc_html__( 'Preview could not be rendered.', 'wdsbt' ) . '</em></p>';
+	}
 
 	return $rendered;
 }

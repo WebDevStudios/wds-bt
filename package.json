@@ -113,7 +113,7 @@
     "preinstall": "npx cross-env npm_config_legacy_peer_deps=true",
     "reset": "rimraf node_modules vendor build blocks package-lock.json composer.lock",
     "setup": "npm run reset && npm install --no-fund --no-audit --loglevel=error && composer install --quiet --no-interaction && npm run build && npm run fonts:generate",
-    "start": "rimraf build blocks && npm run fonts && wp-scripts start",
+    "start": "rimraf build blocks && wp-scripts start",
     "update-cursorrules": "./scripts/update-cursorrules.sh",
     "version-update": "dotenv node updateVersion.js"
   },

@@ -74,7 +74,7 @@
         },
         "spacing": {
             "blockGap": true,
-            "defaultSpacingSizes": true,
+            "defaultSpacingSizes": false,
             "margin": true,
             "padding": true,
             "spacingScale": {
@@ -84,6 +84,43 @@
                 "mediumStep": 1.5,
                 "unit": "rem"
             },
+            "spacingSizes": [
+                {
+                    "name": "Tiny",
+                    "size": "10px",
+                    "slug": "20"
+                },
+                {
+                    "name": "X-Small",
+                    "size": "20px",
+                    "slug": "30"
+                },
+                {
+                    "name": "Small",
+                    "size": "30px",
+                    "slug": "40"
+                },
+                {
+                    "name": "Regular",
+                    "size": "clamp(30px, 5vw, 50px)",
+                    "slug": "50"
+                },
+                {
+                    "name": "Large",
+                    "size": "clamp(30px, 7vw, 70px)",
+                    "slug": "60"
+                },
+                {
+                    "name": "X-Large",
+                    "size": "clamp(50px, 7vw, 90px)",
+                    "slug": "70"
+                },
+                {
+                    "name": "XX-Large",
+                    "size": "clamp(70px, 10vw, 140px)",
+                    "slug": "80"
+                }
+            ],
             "units": [
                 "%",
                 "px",
@@ -141,7 +178,7 @@
                         {
                             "fontFamily": "Inter",
                             "fontStyle": "normal",
-                            "fontWeight": "400",
+                            "fontWeight": "100 900",
                             "src": [
                                 "file:./build/fonts/headline/Inter.woff2"
                             ]
@@ -167,14 +204,32 @@
             "fontSizes": [
                 {
                     "fluid": false,
+                    "name": "Base",
+                    "size": "1rem",
+                    "slug": "base"
+                },
+                {
+                    "fluid": false,
+                    "name": "Tiny",
+                    "size": "0.625rem",
+                    "slug": "tiny"
+                },
+                {
+                    "fluid": false,
+                    "name": "Extra Small",
+                    "size": "0.75rem",
+                    "slug": "x-small"
+                },
+                {
+                    "fluid": false,
                     "name": "Small",
                     "size": "0.875rem",
                     "slug": "small"
                 },
                 {
                     "fluid": {
-                        "max": "1rem",
-                        "min": "0.875rem"
+                        "max": "1.125rem",
+                        "min": "1rem"
                     },
                     "name": "Medium",
                     "size": "1rem",
@@ -182,20 +237,20 @@
                 },
                 {
                     "fluid": {
-                        "max": "1.75rem",
-                        "min": "1.25rem"
+                        "max": "1.375rem",
+                        "min": "1.125rem"
                     },
                     "name": "Large",
-                    "size": "1.25rem",
+                    "size": "1.38rem",
                     "slug": "large"
                 },
                 {
                     "fluid": {
-                        "max": "2.25rem",
-                        "min": "1.5rem"
+                        "max": "2rem",
+                        "min": "1.75rem"
                     },
                     "name": "Extra Large",
-                    "size": "1.5rem",
+                    "size": "1.75rem",
                     "slug": "x-large"
                 },
                 {
@@ -210,6 +265,7 @@
             ]
         },
         "border": {
+            "defaultRadiusSizes": false,
             "radius": true,
             "radiusSizes": [
                 {
@@ -256,7 +312,7 @@
             "core/heading": {
                 "typography": {
                     "fontFamily": "var:preset|font-family|headline",
-                    "fontWeight": "700"
+                    "fontWeight": "800"
                 }
             },
             "core/link": {
@@ -279,6 +335,12 @@
                 "typography": {
                     "fontSize": "var:preset|font-size|small"
                 }
+            },
+            "core/post-title": {
+                "typography": {
+                    "fontFamily": "var:preset|font-family|headline",
+                    "fontWeight": "800"
+                }
             }
         },
         "color": {
@@ -297,7 +359,8 @@
         "typography": {
             "fontFamily": "var:preset|font-family|body",
             "fontSize": "var:preset|font-size|medium",
-            "fontWeight": "400"
+            "fontWeight": "400",
+            "lineHeight": "1.5"
         }
     },
     "templateParts": [

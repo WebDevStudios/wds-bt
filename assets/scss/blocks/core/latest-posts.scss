@@ -8,15 +8,15 @@
 	padding-bottom: var(--wp--preset--spacing--30);
 
 	li {
+		background: var(--wp--preset--color--base, #fff);
 		border-radius: var(--wp--preset--border-radius--md);
 		border: 1px solid var(--wp--preset--color--contrast, rgba(0, 0, 0, 0.1));
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-		background: var(--wp--preset--color--base, #fff);
-		padding: var(--wp--preset--spacing--30);
 		display: inline-flex;
 		flex-direction: column;
 		gap: var(--wp--preset--spacing--20);
 		justify-content: flex-start;
+		padding: var(--wp--preset--spacing--30);
 		position: relative;
 		width: 100%;
 
@@ -61,7 +61,7 @@
 	&.is-grid {
 		li {
 			margin-bottom: 0;
-			padding: 0;
+			margin-right: 0;
 
 			.wp-block-latest-posts__featured-image {
 				height: unset;

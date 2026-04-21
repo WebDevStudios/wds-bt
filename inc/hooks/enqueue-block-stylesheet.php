@@ -39,7 +39,7 @@ function enqueue_block_stylesheet() {
 	}
 }
 
-add_filter( 'init', __NAMESPACE__ . '\enqueue_block_stylesheet', 10, 1 );
+add_action( 'init', __NAMESPACE__ . '\enqueue_block_stylesheet', 10 );
 
 /**
  * Forces separate loading of all block stylesheets.
@@ -72,7 +72,7 @@ function enqueue_block_styles() {
 		$args = array(
 			'handle' => $block_name,
 			'path'   => $stylesheet['path'],
-			'src'    => $stylesheet['assets'],
+			'src'    => $stylesheet['src'],
 			'ver'    => $theme_version . '.' . filemtime( $stylesheet['path'] ),
 		);
 		wp_enqueue_block_style( $block_name, $args );
@@ -94,20 +94,22 @@ function get_block_stylesheets() {
 		$exclude_stylesheets
 	);
 
-	return array_map(
-		function ( $css_file ) use ( $css_dir ) {
-			$pattern = '/(.+)--(.+)\.css/i';
-			preg_match( $pattern, basename( $css_file ), $matches );
+	$out = array();
 
-			$block_name = $matches[1] . '/' . $matches[2];
+	foreach ( $css_files as $css_file ) {
+		$pattern = '/(.+)--(.+)\.css/i';
+		if ( ! preg_match( $pattern, basename( $css_file ), $matches ) ) {
+			continue;
+		}
 
-			return array(
-				'path' => $css_file,
-				'src'  => str_replace( $css_dir, get_stylesheet_directory_uri() . '/assets/css', $css_file ),
-			);
-		},
-		$css_files
-	);
+		$block_name         = $matches[1] . '/' . $matches[2];
+		$out[ $block_name ] = array(
+			'path' => $css_file,
+			'src'  => str_replace( $css_dir, get_stylesheet_directory_uri() . '/assets/css', $css_file ),
+		);
+	}
+
+	return $out;
 }
 
 /**

@@ -1,6 +1,9 @@
 /* -- video -- */
 
 .wp-block-video {
+	video {
+		aspect-ratio: 16/9;
+	}
 
 	figcaption {
 		text-align: center;

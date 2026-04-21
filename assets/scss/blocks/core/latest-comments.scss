@@ -10,6 +10,18 @@
 			var(--wp--style--global--content-size) - 30%
 		) !important;
 	}
+
+	li {
+		display: inline-flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		gap: var(--wp--preset--spacing--20);
+		width: 100%;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
 }
 
 /* stylelint-enable selector-class-pattern, declaration-no-important */

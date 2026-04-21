@@ -327,21 +327,15 @@ function get_webp_file( $attachment_id ) {
 	return get_post_meta( $attachment_id, '_webp_file', true );
 }
 
-/**
- * Whether to use WebP for this request.
- *
- * @return bool
- */
+/** True when Accept lists image/webp. */
 function browser_supports_webp() {
-	if ( isset( $_SERVER['HTTP_ACCEPT'] ) ) {
-		$accept = sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT'] ) );
-		if ( strpos( $accept, 'image/webp' ) !== false ) {
-			return true;
-		}
-		return true;
+	if ( ! isset( $_SERVER['HTTP_ACCEPT'] ) ) {
+		return false;
 	}
 
-	return true;
+	$accept = sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT'] ) );
+
+	return ( strpos( $accept, 'image/webp' ) !== false );
 }
 
 /**
@@ -794,7 +788,7 @@ add_filter( 'wp_content_img_tag', __NAMESPACE__ . '\\replace_content_image_with_
 function replace_block_image_with_webp( $block_content, $block ) {
 	$block_name = $block['blockName'] ?? '';
 
-	if ( ! webp_supported() ) {
+	if ( ! webp_supported() || ! browser_supports_webp() ) {
 		return $block_content;
 	}
 
@@ -1077,144 +1071,85 @@ if ( ! is_admin() && ! wp_is_json_request() ) {
 		);
 }
 
-/**
- * Inline script: client-side .webp swap for local URLs.
- */
-function add_webp_replacement_script() {
-	if ( is_admin() || ! webp_supported() ) {
+/** Client-side .webp URL swap (local URLs), one script in footer. */
+function enqueue_webp_client_script() {
+	if ( is_admin() || ! webp_supported() || ! browser_supports_webp() ) {
 		return;
 	}
-	?>
-	<script>
-	(function() {
-		var siteUrl = <?php echo wp_json_encode( site_url() ); ?>;
-		var homeUrl = <?php echo wp_json_encode( home_url() ); ?>;
-		var siteHost = '';
-		var homeHost = '';
 
-		try {
-			siteHost = new URL(siteUrl).hostname;
-		} catch(e) {}
+	$handle  = 'wdsbt-webp-client';
+	$version = wp_get_theme( get_template() )->get( 'Version' );
+	if ( empty( $version ) ) {
+		$version = '1.0.0';
+	}
+	wp_register_script( $handle, false, array(), $version, true );
+	wp_enqueue_script( $handle );
 
-		try {
-			homeHost = new URL(homeUrl).hostname;
-		} catch(e) {}
+	$site_url = wp_json_encode( site_url() );
+	$home_url = wp_json_encode( home_url() );
 
-		function isLocalUrl(url) {
-			if (!url || typeof url !== 'string') {
-				return false;
-			}
+	$inline = <<<JS
+(function() {
+	var siteUrl = {$site_url};
+	var homeUrl = {$home_url};
+	var siteHost = '';
+	var homeHost = '';
 
-			try {
-				var urlObj = new URL(url, window.location.href);
-				var hostname = urlObj.hostname;
-				return hostname === siteHost || hostname === homeHost || hostname === window.location.hostname || hostname === '';
-			} catch(e) {
-				return url.indexOf('/') === 0 || url.indexOf(siteUrl) === 0 || url.indexOf(homeUrl) === 0;
-			}
+	try {
+		siteHost = new URL( siteUrl ).hostname;
+	} catch ( e ) {}
+
+	try {
+		homeHost = new URL( homeUrl ).hostname;
+	} catch ( e ) {}
+
+	function isLocalUrl( url ) {
+		if ( ! url || typeof url !== 'string' ) {
+			return false;
 		}
 
-		function replaceImagesWithWebP() {
-			var images = document.querySelectorAll('img');
-			images.forEach(function(img) {
-				if (img.src && img.src.match(/\.(jpg|jpeg|png)(\?|$)/i)) {
-					if (isLocalUrl(img.src)) {
-						img.src = img.src.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2');
+		try {
+			var urlObj = new URL( url, window.location.href );
+			var hostname = urlObj.hostname;
+			return hostname === siteHost || hostname === homeHost || hostname === window.location.hostname || hostname === '';
+		} catch ( e ) {
+			return url.indexOf( '/' ) === 0 || url.indexOf( siteUrl ) === 0 || url.indexOf( homeUrl ) === 0;
+		}
+	}
+
+	function replaceImagesWithWebP() {
+		var images = document.querySelectorAll( 'img' );
+		images.forEach( function( img ) {
+			if ( img.src && img.src.match( /\.(jpg|jpeg|png)(\?|$)/i ) ) {
+				if ( isLocalUrl( img.src ) ) {
+					img.src = img.src.replace( /\.(jpg|jpeg|png)(\?|$)/i, '.webp\$2' );
+				}
+			}
+			if ( img.srcset ) {
+				img.srcset = img.srcset.replace( /([^\\s,]+)\\.(jpg|jpeg|png)(\\?[^\\s,]*)?(\\s+\\d+w)?/gi, function( match, url, ext, query, width ) {
+					if ( isLocalUrl( url ) ) {
+						return url.replace( /\.(jpg|jpeg|png)(\?|$)/i, '.webp\$2' ) + ( query || '' ) + ( width || '' );
 					}
-				}
-				if (img.srcset) {
-					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\?[^\s,]*)?(\s+\d+w)?/gi, function(match, url, ext, query, width) {
-						if (isLocalUrl(url)) {
-							return url.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2') + (query || '') + (width || '');
-						}
-						return match;
-					});
-				}
-			});
-		}
+					return match;
+				} );
+			}
+		} );
+	}
 
-		replaceImagesWithWebP();
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', replaceImagesWithWebP);
-		}
+	replaceImagesWithWebP();
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', replaceImagesWithWebP );
+	}
 
-		setTimeout(replaceImagesWithWebP, 100);
-		setTimeout(replaceImagesWithWebP, 500);
-		setTimeout(replaceImagesWithWebP, 1000);
-	})();
-	</script>
-	<?php
+	setTimeout( replaceImagesWithWebP, 100 );
+	setTimeout( replaceImagesWithWebP, 500 );
+	setTimeout( replaceImagesWithWebP, 1000 );
+})();
+JS;
+
+	wp_add_inline_script( $handle, $inline, 'after' );
 }
-add_action( 'wp_footer', __NAMESPACE__ . '\\add_webp_replacement_script', 999 );
-add_action( 'wp_head', __NAMESPACE__ . '\\add_webp_replacement_script', 999 );
-
-add_action(
-	'wp_print_scripts',
-	function () {
-		if ( is_admin() || ! webp_supported() ) {
-			return;
-		}
-		?>
-	<script>
-	(function() {
-		var siteUrl = <?php echo wp_json_encode( site_url() ); ?>;
-		var homeUrl = <?php echo wp_json_encode( home_url() ); ?>;
-		var siteHost = '';
-		var homeHost = '';
-
-		try {
-			siteHost = new URL(siteUrl).hostname;
-		} catch(e) {}
-
-		try {
-			homeHost = new URL(homeUrl).hostname;
-		} catch(e) {}
-
-		function isLocalUrl(url) {
-			if (!url || typeof url !== 'string') {
-				return false;
-			}
-
-			try {
-				var urlObj = new URL(url, window.location.href);
-				var hostname = urlObj.hostname;
-				return hostname === siteHost || hostname === homeHost || hostname === window.location.hostname || hostname === '';
-			} catch(e) {
-				return url.indexOf('/') === 0 || url.indexOf(siteUrl) === 0 || url.indexOf(homeUrl) === 0;
-			}
-		}
-
-		function replaceImagesWithWebP() {
-			var images = document.querySelectorAll('img');
-			images.forEach(function(img) {
-				if (img.src && img.src.match(/\.(jpg|jpeg|png)(\?|$)/i)) {
-					if (isLocalUrl(img.src)) {
-						img.src = img.src.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2');
-					}
-				}
-				if (img.srcset) {
-					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\?[^\s,]*)?(\s+\d+w)?/gi, function(match, url, ext, query, width) {
-						if (isLocalUrl(url)) {
-							return url.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2') + (query || '') + (width || '');
-						}
-						return match;
-					});
-				}
-			});
-		}
-		replaceImagesWithWebP();
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', replaceImagesWithWebP);
-		}
-		setTimeout(replaceImagesWithWebP, 100);
-		setTimeout(replaceImagesWithWebP, 500);
-		setTimeout(replaceImagesWithWebP, 1000);
-	})();
-	</script>
-		<?php
-	},
-	1
-);
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_webp_client_script', 20 );
 
 /**
  * WP-CLI: webp regenerate.

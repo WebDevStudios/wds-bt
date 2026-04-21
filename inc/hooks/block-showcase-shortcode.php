@@ -1,8 +1,6 @@
 <?php
 /**
- * Block Showcase shortcode using WP_Block_Processor.
- *
- * Renders all registered blocks (core and custom) in a showcase format.
+ * Block Showcase shortcode.
  *
  * @package wdsbt
  */
@@ -10,7 +8,7 @@
 namespace WebDevStudios\wdsbt;
 
 /**
- * Register block showcase shortcode.
+ * Registers the block showcase shortcode.
  *
  * @return void
  */
@@ -20,7 +18,7 @@ function register_block_showcase_shortcode() {
 add_action( 'init', __NAMESPACE__ . '\register_block_showcase_shortcode' );
 
 /**
- * Allow data URIs in kses for block showcase images.
+ * Adds data: for showcase previews.
  *
  * @param array $protocols Allowed protocols.
  * @return array Modified protocols.
@@ -31,7 +29,85 @@ function allow_data_uris_in_showcase( $protocols ) {
 }
 
 /**
- * Render block showcase shortcode.
+ * Gets the allowed HTML for block showcase previews.
+ *
+ * @return array Allowed HTML.
+ */
+function get_block_showcase_preview_allowed_html() {
+	$allowed_html           = wp_kses_allowed_html( 'post' );
+	$allowed_html['figure'] = array(
+		'class' => true,
+		'style' => true,
+	);
+	$allowed_html['img']    = array(
+		'src'    => true,
+		'alt'    => true,
+		'width'  => true,
+		'height' => true,
+	);
+	$allowed_html['div']    = array(
+		'class' => true,
+		'style' => true,
+	);
+	$allowed_html['input']  = array(
+		'type'             => true,
+		'name'             => true,
+		'value'            => true,
+		'placeholder'      => true,
+		'required'         => true,
+		'id'               => true,
+		'class'            => true,
+		'aria-label'       => true,
+		'aria-labelledby'  => true,
+		'aria-describedby' => true,
+	);
+	$allowed_html['button'] = array(
+		'type'            => true,
+		'class'           => true,
+		'aria-label'      => true,
+		'aria-labelledby' => true,
+	);
+	$allowed_html['form']   = array(
+		'action' => true,
+		'method' => true,
+		'class'  => true,
+		'role'   => true,
+	);
+	$allowed_html['label']  = array(
+		'for'   => true,
+		'class' => true,
+	);
+	$allowed_html['iframe'] = array(
+		'src'             => true,
+		'width'           => true,
+		'height'          => true,
+		'frameborder'     => true,
+		'allowfullscreen' => true,
+		'title'           => true,
+		'class'           => true,
+		'style'           => true,
+		'loading'         => true,
+		'sandbox'         => true,
+		'allow'           => true,
+	);
+
+	return $allowed_html;
+}
+
+/**
+ * Echoes block HTML through wp_kses() with showcase rules.
+ *
+ * @param string $block_html Raw block HTML.
+ * @return void
+ */
+function echo_block_showcase_preview_html( $block_html ) {
+	add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+	echo wp_kses( $block_html, get_block_showcase_preview_allowed_html() );
+	remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
+}
+
+/**
+ * Renders the block showcase shortcode.
  *
  * @param array  $atts    Shortcode attributes. Unused but required for shortcode signature.
  * @param string $content Shortcode content. Unused but required for shortcode signature.
@@ -54,10 +130,71 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 	$category_labels['other'] = 'Other Core Blocks';
 	$category_labels['wdsbt'] = 'WDS BT Custom Blocks';
 
+	$theme_color_palette = get_theme_json_color_palette();
+
 	ob_start();
 	?>
 
 	<div class="wdsbt-block-showcase">
+		<?php if ( ! empty( $theme_color_palette ) ) : ?>
+			<div class="wdsbt-showcase-category">
+				<div role="group" class="wp-block-accordion">
+					<div class="wp-block-accordion-item">
+						<div class="wp-block-accordion-heading wdsbt-showcase-category-title">
+							<button class="wp-block-accordion-heading__toggle" type="button" aria-expanded="false">
+								<span class="wp-block-accordion-heading__toggle-title">
+									<?php
+									echo esc_html(
+										sprintf(
+											/* translators: %d: number of theme colors in palette */
+											__( 'Theme colors (%d)', 'wdsbt' ),
+											count( $theme_color_palette )
+										)
+									);
+									?>
+								</span>
+								<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
+							</button>
+						</div>
+						<div role="region" class="wp-block-accordion-panel" aria-hidden="true">
+							<div class="wdsbt-showcase-colors">
+								<?php foreach ( $theme_color_palette as $color_entry ) : ?>
+									<?php
+									if ( empty( $color_entry['slug'] ) || ! isset( $color_entry['color'] ) ) {
+										continue;
+									}
+									$color_value = is_string( $color_entry['color'] ) ? $color_entry['color'] : '';
+									if ( '' === $color_value ) {
+										continue;
+									}
+									$color_name   = isset( $color_entry['name'] ) && is_string( $color_entry['name'] ) ? $color_entry['name'] : $color_entry['slug'];
+									$display_val  = showcase_color_display_value( $color_value );
+									$preview_fg   = showcase_color_contrast_foreground( $color_value );
+									$aria_preview = $color_name . ' — ' . $display_val;
+									?>
+									<div
+										class="wdsbt-showcase-color-swatch"
+										style="<?php echo esc_attr( '--wdsbt-swatch-color:' . $color_value . ';' ); ?>"
+									>
+										<span class="wdsbt-showcase-color-header"><?php echo esc_html( $color_entry['slug'] ); ?></span>
+										<span
+											class="wdsbt-showcase-color-preview"
+											role="img"
+											aria-label="<?php echo esc_attr( $aria_preview ); ?>"
+										>
+											<code
+												class="wdsbt-showcase-color-hex"
+												style="<?php echo esc_attr( 'color:' . $preview_fg . ';' ); ?>"
+											><?php echo esc_html( $display_val ); ?></code>
+										</span>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
 		<?php
 		$core_blocks_by_category = array();
 		$rendered_blocks_cache   = array();
@@ -167,67 +304,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 								</div>
 							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
-								<?php
-								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-								$allowed_html           = wp_kses_allowed_html( 'post' );
-								$allowed_html['figure'] = array(
-									'class' => true,
-									'style' => true,
-								);
-								$allowed_html['img']    = array(
-									'src'    => true,
-									'alt'    => true,
-									'width'  => true,
-									'height' => true,
-								);
-								$allowed_html['div']    = array(
-									'class' => true,
-									'style' => true,
-								);
-								$allowed_html['input']  = array(
-									'type'             => true,
-									'name'             => true,
-									'value'            => true,
-									'placeholder'      => true,
-									'required'         => true,
-									'id'               => true,
-									'class'            => true,
-									'aria-label'       => true,
-									'aria-labelledby'  => true,
-									'aria-describedby' => true,
-								);
-								$allowed_html['button'] = array(
-									'type'            => true,
-									'class'           => true,
-									'aria-label'      => true,
-									'aria-labelledby' => true,
-								);
-								$allowed_html['form']   = array(
-									'action' => true,
-									'method' => true,
-									'class'  => true,
-									'role'   => true,
-								);
-								$allowed_html['label']  = array(
-									'for'   => true,
-									'class' => true,
-								);
-								$allowed_html['iframe'] = array(
-									'src'             => true,
-									'width'           => true,
-									'height'          => true,
-									'frameborder'     => true,
-									'allowfullscreen' => true,
-									'title'           => true,
-									'class'           => true,
-									'style'           => true,
-									'loading'         => true,
-									'sandbox'         => true,
-									'allow'           => true,
-								);
-								echo wp_kses( $block_html, $allowed_html );
-								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-								?>
+								<?php echo_block_showcase_preview_html( $block_html ); ?>
 							</div>
 						</div>
 
@@ -318,53 +395,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 								</div>
 							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
-								<?php
-								add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-								$allowed_html           = wp_kses_allowed_html( 'post' );
-								$allowed_html['input']  = array(
-									'type'             => true,
-									'name'             => true,
-									'value'            => true,
-									'placeholder'      => true,
-									'required'         => true,
-									'id'               => true,
-									'class'            => true,
-									'aria-label'       => true,
-									'aria-labelledby'  => true,
-									'aria-describedby' => true,
-								);
-								$allowed_html['button'] = array(
-									'type'            => true,
-									'class'           => true,
-									'aria-label'      => true,
-									'aria-labelledby' => true,
-								);
-								$allowed_html['form']   = array(
-									'action' => true,
-									'method' => true,
-									'class'  => true,
-									'role'   => true,
-								);
-								$allowed_html['label']  = array(
-									'for'   => true,
-									'class' => true,
-								);
-								$allowed_html['iframe'] = array(
-									'src'             => true,
-									'width'           => true,
-									'height'          => true,
-									'frameborder'     => true,
-									'allowfullscreen' => true,
-									'title'           => true,
-									'class'           => true,
-									'style'           => true,
-									'loading'         => true,
-									'sandbox'         => true,
-									'allow'           => true,
-								);
-								echo wp_kses( $block_html, $allowed_html );
-								remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-								?>
+								<?php echo_block_showcase_preview_html( $block_html ); ?>
 							</div>
 						</div>
 
@@ -462,53 +493,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<?php endif; ?>
 							<div class="wdsbt-showcase-block-preview">
 								<?php if ( ! empty( $block_html ) ) : ?>
-									<?php
-									add_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-									$allowed_html           = wp_kses_allowed_html( 'post' );
-									$allowed_html['input']  = array(
-										'type'             => true,
-										'name'             => true,
-										'value'            => true,
-										'placeholder'      => true,
-										'required'         => true,
-										'id'               => true,
-										'class'            => true,
-										'aria-label'       => true,
-										'aria-labelledby'  => true,
-										'aria-describedby' => true,
-									);
-									$allowed_html['button'] = array(
-										'type'            => true,
-										'class'           => true,
-										'aria-label'      => true,
-										'aria-labelledby' => true,
-									);
-									$allowed_html['form']   = array(
-										'action' => true,
-										'method' => true,
-										'class'  => true,
-										'role'   => true,
-									);
-									$allowed_html['label']  = array(
-										'for'   => true,
-										'class' => true,
-									);
-									$allowed_html['iframe'] = array(
-										'src'             => true,
-										'width'           => true,
-										'height'          => true,
-										'frameborder'     => true,
-										'allowfullscreen' => true,
-										'title'           => true,
-										'class'           => true,
-										'style'           => true,
-										'loading'         => true,
-										'sandbox'         => true,
-										'allow'           => true,
-									);
-									echo wp_kses( $block_html, $allowed_html );
-									remove_filter( 'kses_allowed_protocols', __NAMESPACE__ . '\allow_data_uris_in_showcase' );
-									?>
+									<?php echo_block_showcase_preview_html( $block_html ); ?>
 								<?php else : ?>
 									<p><em>This block type cannot be previewed in the showcase. It may require specific context or configuration to render.</em></p>
 								<?php endif; ?>
@@ -527,26 +512,29 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 
 	<script>
 		(function() {
-			document.addEventListener('DOMContentLoaded', function() {
-				const accordionToggles = document.querySelectorAll('.wdsbt-block-showcase .wp-block-accordion-heading__toggle');
-
-				accordionToggles.forEach(function(toggle) {
-					toggle.addEventListener('click', function() {
-						const panel = this.closest('.wp-block-accordion-item').querySelector('.wp-block-accordion-panel');
-						const isExpanded = this.getAttribute('aria-expanded') === 'true';
-
-						this.setAttribute('aria-expanded', !isExpanded);
-
-						if (isExpanded) {
-							panel.setAttribute('aria-hidden', 'true');
-							panel.style.display = 'none';
-						} else {
-							panel.setAttribute('aria-hidden', 'false');
-							panel.style.display = 'block';
-						}
-					});
-				});
-			});
+			document.addEventListener( 'click', function( event ) {
+				var toggle = event.target.closest && event.target.closest( '.wdsbt-block-showcase .wp-block-accordion-heading__toggle' );
+				if ( ! toggle || ! toggle.closest( '.wdsbt-block-showcase' ) ) {
+					return;
+				}
+				var item = toggle.closest( '.wp-block-accordion-item' );
+				if ( ! item ) {
+					return;
+				}
+				var panel = item.querySelector( '.wp-block-accordion-panel' );
+				if ( ! panel ) {
+					return;
+				}
+				var isExpanded = toggle.getAttribute( 'aria-expanded' ) === 'true';
+				toggle.setAttribute( 'aria-expanded', isExpanded ? 'false' : 'true' );
+				if ( isExpanded ) {
+					panel.setAttribute( 'aria-hidden', 'true' );
+					panel.style.display = 'none';
+				} else {
+					panel.setAttribute( 'aria-hidden', 'false' );
+					panel.style.display = 'block';
+				}
+			} );
 		})();
 	</script>
 
