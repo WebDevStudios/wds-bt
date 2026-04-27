@@ -4,28 +4,22 @@
 
 main,
 .wp-block-post-content {
-
 	/* -- Common List Styles -- */
 	ul,
 	ol {
 		&:not([class]),
 		&.wp-block-list {
-			list-style-position: inside;
-			padding-left: var(--wp--preset--spacing--30);
-
 			li {
-				padding-bottom: var(--wp--preset--spacing--20);
+				padding-bottom: var(--wp--preset--spacing--40);
 
-				&:last-child {
+				&:last-of-type {
 					padding-bottom: 0;
 				}
 
 				/* Nested lists */
 				ul,
 				ol {
-					padding-left: var(
-						--wp--preset--spacing--30
-					) !important; /* stylelint-disable-line declaration-no-important */
+					padding-top: var(--wp--preset--spacing--40);
 					padding-bottom: 0;
 				}
 			}
