@@ -13,13 +13,28 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 
 function ensureAjvKeywordsShim() {
-	const schemaAjv = path.join(root, 'node_modules', 'schema-utils', 'node_modules', 'ajv');
-	const linkDir = path.join(root, 'node_modules', 'ajv-keywords', 'node_modules');
+	const schemaAjv = path.join(
+		root,
+		'node_modules',
+		'schema-utils',
+		'node_modules',
+		'ajv'
+	);
+	const linkDir = path.join(
+		root,
+		'node_modules',
+		'ajv-keywords',
+		'node_modules'
+	);
 	const linkPath = path.join(linkDir, 'ajv');
 	try {
-		if (!fs.existsSync(schemaAjv)) return;
+		if (!fs.existsSync(schemaAjv)) {
+			return;
+		}
 		fs.mkdirSync(linkDir, { recursive: true });
-		if (fs.existsSync(linkPath)) return;
+		if (fs.existsSync(linkPath)) {
+			return;
+		}
 		const rel = path.relative(linkDir, schemaAjv);
 		fs.symlinkSync(rel, linkPath, 'dir');
 	} catch {
@@ -35,7 +50,9 @@ function runNpx(args) {
 		env: process.env,
 	});
 	const code = result.status ?? (result.signal ? 1 : 0);
-	if (code !== 0) process.exit(code);
+	if (code !== 0) {
+		process.exit(code);
+	}
 }
 
 function bashCandidates() {
@@ -71,8 +88,9 @@ function runUpdateCursorrules() {
 		const code = result.status ?? (result.signal ? 1 : 0);
 		process.exit(code);
 	}
+	// eslint-disable-next-line no-console
 	console.warn(
-		'[wds-bt] Skipping scripts/update-cursorrules.sh (bash not found). Install Git for Windows or run it manually if you use Cursor rules sync.',
+		'[wds-bt] Skipping scripts/update-cursorrules.sh (bash not found). Install Git for Windows or run it manually if you use Cursor rules sync.'
 	);
 	process.exit(0);
 }
