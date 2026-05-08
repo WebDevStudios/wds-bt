@@ -5,7 +5,7 @@
  * Automatically detects and preloads the LCP image to improve page performance.
  * Prioritizes featured images, then falls back to the first large image in content.
  *
- * @package wdsbt
+ * @package WDSBT
  */
 
 namespace WebDevStudios\wdsbt;
@@ -172,8 +172,11 @@ function optimize_lcp_image_attributes( $attr, $attachment_id ) {
 		return $attr;
 	}
 
+	// Normalize: filter can receive ID or WP_Post (e.g. in block context).
+	$attachment_id = $attachment_id instanceof \WP_Post ? $attachment_id->ID : (int) $attachment_id;
+
 	$lcp_image_id = get_lcp_image_id();
-	if ( ! $lcp_image_id || (int) $attachment_id !== (int) $lcp_image_id ) {
+	if ( ! $lcp_image_id || $attachment_id !== (int) $lcp_image_id ) {
 		return $attr;
 	}
 

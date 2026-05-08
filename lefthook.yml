@@ -30,20 +30,22 @@ pre-commit:
         other:
             glob: '*.{yml,json,html}'
             exclude: 'group_*.json' # Exclude specific files
+            # POSIX sh (no bash [[ ]]) so hooks behave the same on Windows sh and macOS/Linux.
             run: |
                 staged_files="$LEFTHOOK_STAGED_FILES"
                 for file in $staged_files
                 do
-                  if [[ ! "$file" =~ ^templates/ ]]; then
-                    npx prettier --write "$file"
-                  fi
+                  case "$file" in
+                    templates/*) ;;
+                    *) npx prettier --write "$file" ;;
+                  esac
                 done
             stage_fixed: true
 
         merge-conflict:
             run: |
                 CONFLICT_FILES=$(git diff --cached --name-only --diff-filter=U)
-                if [ ! -z "$CONFLICT_FILES" ]; then
+                if [ -n "$CONFLICT_FILES" ]; then
                     echo "🚨 Merge conflicts detected in the following files:"
                     echo "$CONFLICT_FILES"
                     exit 1

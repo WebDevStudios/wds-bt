@@ -1,10 +1,10 @@
 # WDS BT
 
-## Version: 1.4.5
+## Version: 1.4.6
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
-### What's New in 1.4.0
+### What's New in 1.4.6
 
 - **Block Showcase**: Powerful development tool (admin-only) to discover, preview, and inspect all registered blocks with their attributes in an organized, interactive format.
 - **Template-specific style loading**: Template and CPT CSS are built separately and enqueued only when the current request matches (404, search, archive, page templates, custom post types). Styles in `build/css/templates/` are discovered automatically—no PHP config needed. Reduces unused CSS for better Lighthouse scores.
@@ -53,7 +53,7 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 | Responsive Design                                | Ensures optimal display and functionality across devices.                                           |
 | Foundation Theme                                 | Flexible base theme optimized for extensive customization.                                          |
 | Automated Code Quality                           | Modern linting configurations with PHP 8.3 compatibility, ESLint 9 flat config, WordPress coding standards, and automated quality checks. |
-| DevContainer                                    | [.devcontainer](.devcontainer) for **theme-only** workflow: PHP 8.2, Node 24, Composer. Usable by anyone (not just WDS); matches [wds-devcontainer](https://github.com/WebDevStudios/wds-devcontainer) when using the project template. |
+| DevContainer                                    | **Recommended:** [.devcontainer](.devcontainer) for theme development (PHP 8.2, Node 24, Composer). This is the standard environment for active development on this repo. Matches [wds-devcontainer](https://github.com/WebDevStudios/wds-devcontainer) when using the project template. |
 | Third-party Block Style Overrides                | Conditionally enqueue and override third-party block styles for efficient asset delivery.           |
 | Accessibility Compliance                         | Built-in WCAG 2.2 compliance with automated Pa11y checks.                                           |
 | Enhanced Webpack Configuration                   | Refined Webpack setup for improved dependency resolution and optimized asset management.            |
@@ -70,19 +70,19 @@ WDS BT is a foundational WordPress block theme designed for maximum flexibility 
 ## Requirements
 
 - WordPress 6.4+ (tested upto 6.9.1)
-- PHP 8.2+ (fully tested with PHP 8.4)
-- [NPM](https://npmjs.com) (v11+)
-- [Node](https://nodejs.org) (v25+)
-- [Composer 2+](https://getcomposer.org/)
+- **Development:** use the **[dev container](.devcontainer)** (supported path for PHP, Node, Composer, and linting). It ships PHP 8.2 and Node 24 aligned with this theme.
+- PHP 8.2+ and [Composer 2+](https://getcomposer.org/) when running outside the container (CI, deployment, or contributor preference)
+- [NPM](https://npmjs.com) (v11+) and [Node](https://nodejs.org) (v24+ per `package.json` engines) for build scripts
 - License: [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ## Getting Started
 
-1. Clone this repository to your WordPress theme directory (`wp-content/themes/`).
-2. Activate WDS BT from your WordPress admin panel under Appearance > Themes.
-3. Run `npm run setup` to install dependencies and perform an initial build.
+1. Clone this repository into your WordPress theme directory (`wp-content/themes/`), or symlink it there.
+2. **Open in the dev container:** In Cursor or VS Code, choose **Reopen in Container** so PHP, Node, and Composer match the project (see [.devcontainer/README.md](.devcontainer/README.md)).
+3. From the theme root, run `npm run build` (after `postCreateCommand`’s `npm ci && composer install`). Use `npm run setup` when you need a full reset and install from scratch.
+4. Activate WDS BT from your WordPress admin under **Appearance → Themes**.
 
-**Theme-only dev (no local PHP/Node):** Open this repo in Cursor or VS Code and choose **Reopen in Container**. The [.devcontainer](.devcontainer) provides PHP 8.2 and Node 24 so you can run `npm run setup` and build without installing tooling locally—works for everyone, not only WDS projects.
+Contributors should use the dev container for day-to-day work so PHPCS, ESLint, and builds share one environment. PHP coding standards run through Composer (`composer run-script phpcs`) and invoke **`vendor/bin/phpcs`** directly.
 
 ## Documentation
 
@@ -129,7 +129,7 @@ Register block styles in `inc/hooks/register-block-styles.php`. Override core bl
 
 ## Linting & Lefthook
 
-PHP (PHPCS), JavaScript (ESLint), and CSS/SCSS (Stylelint) use the latest WordPress standards; warnings are treated as failures. On commit, Lefthook runs auto-fix, re-stages changed files, then runs strict lint. Do not use `--no-verify`; CI runs the same checks. Full config and policy: **[docs/linting-and-hooks.md](docs/linting-and-hooks.md)**.
+PHP (PHPCS), JavaScript (ESLint), and CSS/SCSS (Stylelint) use the latest WordPress standards; warnings are treated as failures. Composer scripts invoke **`vendor/bin/phpcs`** and **`vendor/bin/phpcbf`** (see `composer.json`). On commit, Lefthook runs auto-fix, re-stages changed files, then runs strict lint. Do not use `--no-verify`; CI runs the same checks. Full config and policy: **[docs/linting-and-hooks.md](docs/linting-and-hooks.md)**.
 
 ## Dynamic Block Pattern Categories
 
@@ -137,7 +137,7 @@ Block pattern categories are registered from subfolders of `patterns/`. Add a fo
 
 ## Accessibility & Quality
 
-Run `npm run a11y` for Pa11y-based accessibility checks and `npm run lighthouse` for performance and SEO scores. CI runs security and code-quality checks. Cross-platform notes (rimraf, PHP detection) are in **[docs/accessibility-and-quality.md](docs/accessibility-and-quality.md)**.
+Run `npm run a11y` for Pa11y-based accessibility checks and `npm run lighthouse` for performance and SEO scores. CI runs security and code-quality checks. Additional tooling notes are in **[docs/accessibility-and-quality.md](docs/accessibility-and-quality.md)**.
 
 ## Contributing and Support
 

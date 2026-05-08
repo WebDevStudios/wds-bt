@@ -7,7 +7,7 @@
  *
  * @see https://make.wordpress.org/core/2025/11/19/introducing-the-streaming-block-parser-in-wordpress-6-9/
  *
- * @package wdsbt
+ * @package WDSBT
  */
 
 namespace WebDevStudios\wdsbt;

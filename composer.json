@@ -33,14 +33,10 @@
 		"wp-coding-standards/wpcs": "^3.3"
 	},
 	"scripts": {
-		"phpcs": [
-			"./scripts/run-phpcs.sh --report=full,source"
-		],
-		"phpcs-fix": [
-			"./scripts/run-phpcbf.sh --report=summary,source"
-		],
+		"phpcs": "vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 0 --report=full,source",
+		"phpcs-fix": "vendor/bin/phpcbf --report=summary,source",
 		"post-install-cmd": [
-			"./scripts/update-cursorrules.sh"
+			"node scripts/theme-tools.cjs cursorrules"
 		]
 	}
 }

@@ -12,6 +12,10 @@ Admin-only development tool to discover, preview, and inspect all registered blo
 
 Blocks grouped by category; for each block: name, identifier, attributes (with types/defaults/options), and a live preview. Content comes from block `example`, defaults, or generated markup. Some blocks (e.g. `core/legacy-widget`, `core/freeform`) are skipped.
 
+**Block styles** from `block.json` (`styles`, e.g. Separator “Wide Line” / “Dots”) are listed first with a **Style** label; each non-default style gets a preview by merging `is-style-{name}` into the block’s saved markup (`attrs.className` plus the root element in `innerHTML` / `innerContent` when needed) so static blocks like `core/social-links` actually render the correct layout classes.
+
+**Variations** from `WP_Block_Type::get_variations()` (PHP / `block.json` `variations`) appear with a **Variation** label. Variations registered only in JavaScript (`registerBlockVariation`) are not visible to PHP and do not appear here.
+
 ## Security
 
 Template and shortcode are restricted to `manage_options`. Non-admins visiting a Block Showcase template get a 404.
