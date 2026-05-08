@@ -6,16 +6,19 @@
  * then uses it as a placeholder background while images load.
  * Inspired by WordPress Performance plugin: https://github.com/WordPress/performance/tree/trunk/plugins/dominant-color-images.
  *
- * @package wdsbt
+ * @package WDSBT
  */
 
 namespace WebDevStudios\wdsbt;
 
 /**
- * Dominant color hex from file.
+ * Calculate the dominant color of an image.
  *
- * @param string $file_path Absolute path to image.
- * @return string|false Hex or false.
+ * Uses GD library or Imagick to analyze the image and determine its dominant color.
+ * Falls back to a simple average color calculation if advanced methods aren't available.
+ *
+ * @param string $file_path Path to the image file.
+ * @return string|false Hex color code (e.g., '#ff0000') or false on failure.
  */
 function calculate_dominant_color( $file_path ) {
 	if ( ! file_exists( $file_path ) || ! is_readable( $file_path ) ) {
@@ -29,6 +32,7 @@ function calculate_dominant_color( $file_path ) {
 
 	$mime_type = $image_info['mime'] ?? '';
 
+	// Try Imagick first (more accurate).
 	if ( extension_loaded( 'imagick' ) && class_exists( 'Imagick' ) ) {
 		try {
 			$imagick = new \Imagick( $file_path );
@@ -48,11 +52,13 @@ function calculate_dominant_color( $file_path ) {
 
 			return $hex;
 		} catch ( \Exception $e ) {
+			// Fall through to GD method.
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			error_log( 'Imagick failed to process image: ' . $e->getMessage() );
 		}
 	}
 
+	// Fallback to GD library.
 	if ( extension_loaded( 'gd' ) && function_exists( 'imagecreatefromstring' ) ) {
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading local file path is safe
 		$image_data = file_get_contents( $file_path );
@@ -65,6 +71,7 @@ function calculate_dominant_color( $file_path ) {
 			return false;
 		}
 
+		// Resize to 1x1 to get average color.
 		$thumb = imagecreatetruecolor( 1, 1 );
 		if ( false === $thumb ) {
 			return false;
@@ -81,12 +88,12 @@ function calculate_dominant_color( $file_path ) {
 }
 
 /**
- * Store dominant color meta on upload.
+ * Calculate and store dominant color when an image is uploaded.
  *
  * @param int $attachment_id Attachment ID.
- * @return void
  */
 function save_dominant_color( $attachment_id ) {
+	// Only process images.
 	$mime_type = get_post_mime_type( $attachment_id );
 	if ( ! $mime_type || strpos( $mime_type, 'image/' ) !== 0 ) {
 		return;
@@ -106,34 +113,42 @@ add_action( 'add_attachment', __NAMESPACE__ . '\\save_dominant_color' );
 add_action( 'edit_attachment', __NAMESPACE__ . '\\save_dominant_color' );
 
 /**
- * Read stored dominant color.
+ * Get the dominant color for an attachment.
  *
  * @param int $attachment_id Attachment ID.
- * @return string|false
+ * @return string|false Hex color code or false if not available.
  */
 function get_dominant_color( $attachment_id ) {
 	return get_post_meta( $attachment_id, '_dominant_color', true );
 }
 
 /**
- * Image attributes: background placeholder.
+ * Expose dominant color on image attributes (data + class hooks; inline background removed).
  *
- * @param array $attr            Image attributes.
+ * @param array $attr       Array of image attributes.
  * @param int   $attachment_id Attachment ID.
- * @return array
+ * @return array Modified attributes.
  */
 function add_dominant_color_placeholder( $attr, $attachment_id ) {
+	// Normalize: core and bindings may pass WP_Post.
+	$attachment_id = $attachment_id instanceof \WP_Post ? (int) $attachment_id->ID : (int) $attachment_id;
+	// Skip site logo / custom logo: dominant color (often white) creates a visible box on dark headers.
+	$class = isset( $attr['class'] ) ? $attr['class'] : '';
+	if ( strpos( $class, 'custom-logo' ) !== false ) {
+		return $attr;
+	}
 	$dominant_color = get_dominant_color( $attachment_id );
 	if ( ! $dominant_color ) {
 		return $attr;
 	}
 
-	$style         = isset( $attr['style'] ) ? $attr['style'] : '';
-	$style         = rtrim( $style, ';' ) . '; background-color: ' . esc_attr( $dominant_color ) . ';';
-	$attr['style'] = $style;
+	// Do not apply background-color on <img>; it paints the replaced element's entire box,
+	// often visible as muddy bars when aspect ratio / sizing leaves gaps (hero, object-fit).
 
+	// Add data attribute for JavaScript access.
 	$attr['data-dominant-color'] = esc_attr( $dominant_color );
 
+	// Add class for CSS targeting.
 	$class         = isset( $attr['class'] ) ? $attr['class'] : '';
 	$attr['class'] = trim( $class . ' has-dominant-color' );
 
@@ -142,17 +157,19 @@ function add_dominant_color_placeholder( $attr, $attachment_id ) {
 add_filter( 'wp_get_attachment_image_attributes', __NAMESPACE__ . '\\add_dominant_color_placeholder', 10, 2 );
 
 /**
- * Block render: add placeholder to core/image imgs.
+ * Add dominant color placeholder to image blocks.
  *
- * @param string $block_content Rendered block HTML.
- * @param array  $block         Parsed block.
- * @return string
+ * @param string $block_content The block content about to be appended.
+ * @param array  $block         The full block, including name and attributes.
+ * @return string Modified block content.
  */
 function add_dominant_color_to_image_blocks( $block_content, $block ) {
+	// Only process image and cover blocks.
 	if ( ! in_array( $block['blockName'] ?? '', array( 'core/image', 'core/cover' ), true ) ) {
 		return $block_content;
 	}
 
+	// Placeholder already on cover img via wp_get_attachment_image_attributes; avoid nested imgs / inner container.
 	if ( 'core/cover' === ( $block['blockName'] ?? '' ) ) {
 		return $block_content;
 	}
@@ -167,23 +184,20 @@ function add_dominant_color_to_image_blocks( $block_content, $block ) {
 		return $block_content;
 	}
 
+	// Add dominant color metadata to img tags (no inline background; see add_dominant_color_placeholder).
 	$block_content = preg_replace_callback(
 		'/<img([^>]*)>/i',
 		function ( $matches ) use ( $dominant_color ) {
 			$img_attrs = $matches[1];
 
-			if ( preg_match( '/style=["\']([^"\']*)["\']/', $img_attrs, $style_matches ) ) {
-				$existing_style = $style_matches[1];
-				$new_style      = rtrim( $existing_style, ';' ) . '; background-color: ' . esc_attr( $dominant_color ) . ';';
-				$img_attrs      = preg_replace( '/style=["\'][^"\']*["\']/', 'style="' . esc_attr( $new_style ) . '"', $img_attrs );
-			} else {
-				$img_attrs .= ' style="background-color: ' . esc_attr( $dominant_color ) . ';"';
-			}
+			// Do not inject background-color on img (same box-issue as wp_get_attachment_image_attributes).
 
+			// Add data attribute.
 			if ( ! preg_match( '/data-dominant-color=["\'][^"\']*["\']/', $img_attrs ) ) {
 				$img_attrs .= ' data-dominant-color="' . esc_attr( $dominant_color ) . '"';
 			}
 
+			// Add class.
 			if ( ! preg_match( '/class=["\'][^"\']*has-dominant-color[^"\']*["\']/', $img_attrs ) ) {
 				if ( preg_match( '/class=["\']([^"\']*)["\']/', $img_attrs, $class_matches ) ) {
 					$existing_class = $class_matches[1];
@@ -204,9 +218,7 @@ function add_dominant_color_to_image_blocks( $block_content, $block ) {
 add_filter( 'render_block', __NAMESPACE__ . '\\add_dominant_color_to_image_blocks', 10, 2 );
 
 /**
- * Front: inline placeholder CSS.
- *
- * @return void
+ * Enqueue CSS for dominant color placeholders.
  */
 function enqueue_dominant_color_styles() {
 	$css = '
@@ -224,19 +236,12 @@ function enqueue_dominant_color_styles() {
 		}
 	';
 
-	$handle  = 'wdsbt-dominant-color';
-	$version = wp_get_theme( get_template() )->get( 'Version' );
-	$version = $version ? (string) $version : '1.0.0';
-	wp_register_style( $handle, false, array(), $version );
-	wp_enqueue_style( $handle );
-	wp_add_inline_style( $handle, $css );
+	wp_add_inline_style( 'wp-block-library', $css );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_dominant_color_styles', 20 );
 
 /**
- * Front: load handler inline script.
- *
- * @return void
+ * Add JavaScript to handle image load events and fade in.
  */
 function enqueue_dominant_color_script() {
 	$script = "
@@ -256,11 +261,6 @@ function enqueue_dominant_color_script() {
 		})();
 	";
 
-	$handle  = 'wdsbt-dominant-color';
-	$version = wp_get_theme( get_template() )->get( 'Version' );
-	$version = $version ? (string) $version : '1.0.0';
-	wp_register_script( $handle, false, array(), $version, true );
-	wp_enqueue_script( $handle );
-	wp_add_inline_script( $handle, $script, 'after' );
+	wp_add_inline_script( 'wp-block-library', $script );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_dominant_color_script', 20 );

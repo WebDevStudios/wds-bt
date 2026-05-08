@@ -5,10 +5,33 @@
  * Prioritizes above-the-fold images by adding fetchpriority="high" attribute.
  * Inspired by WordPress Performance plugin: https://github.com/WordPress/performance/tree/trunk/plugins/image-prioritizer.
  *
- * @package wdsbt
+ * @package WDSBT
  */
 
 namespace WebDevStudios\wdsbt;
+
+/**
+ * Normalize block attachment id to integer (core and bindings may pass WP_Post).
+ *
+ * @param array    $block         Parsed block.
+ * @param array    $source_block  Unmodified block (unused; required by filter signature).
+ * @param WP_Block $parent_block  Parent block (unused; required by filter signature).
+ * @return array Block with normalized attrs.id when applicable.
+ */
+function normalize_block_attachment_id( $block, $source_block, $parent_block ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- Filter signature.
+	if ( ! in_array( $block['blockName'] ?? '', array( 'core/image', 'core/cover' ), true ) ) {
+		return $block;
+	}
+	if ( empty( $block['attrs']['id'] ) ) {
+		return $block;
+	}
+	$id = $block['attrs']['id'];
+	if ( $id instanceof \WP_Post ) {
+		$block['attrs']['id'] = (int) $id->ID;
+	}
+	return $block;
+}
+add_filter( 'render_block_data', __NAMESPACE__ . '\\normalize_block_attachment_id', 1, 3 );
 
 /**
  * Get above-the-fold image IDs from the current post/page.
@@ -42,10 +65,11 @@ function get_above_fold_image_ids( $limit = 3 ) {
 
 		// Check if this is an image or cover block.
 		if ( in_array( $block['blockName'] ?? '', array( 'core/image', 'core/cover' ), true ) ) {
-			// Get image ID from block attributes.
+			// Get image ID from block attributes (may be int or WP_Post from bindings).
 			if ( ! empty( $block['attrs']['id'] ) ) {
-				$image_id = (int) $block['attrs']['id'];
-				if ( ! in_array( $image_id, $image_ids, true ) ) {
+				$raw_id   = $block['attrs']['id'];
+				$image_id = $raw_id instanceof \WP_Post ? (int) $raw_id->ID : (int) $raw_id;
+				if ( $image_id && ! in_array( $image_id, $image_ids, true ) ) {
 					$image_ids[] = $image_id;
 					++$count;
 				}
@@ -61,8 +85,9 @@ function get_above_fold_image_ids( $limit = 3 ) {
 
 				if ( in_array( $inner_block['blockName'] ?? '', array( 'core/image', 'core/cover' ), true ) ) {
 					if ( ! empty( $inner_block['attrs']['id'] ) ) {
-						$image_id = (int) $inner_block['attrs']['id'];
-						if ( ! in_array( $image_id, $image_ids, true ) ) {
+						$raw_id   = $inner_block['attrs']['id'];
+						$image_id = $raw_id instanceof \WP_Post ? (int) $raw_id->ID : (int) $raw_id;
+						if ( $image_id && ! in_array( $image_id, $image_ids, true ) ) {
 							$image_ids[] = $image_id;
 							++$count;
 						}
@@ -93,10 +118,13 @@ function prioritize_above_fold_images( $attr, $attachment_id ) {
 		return $attr;
 	}
 
+	// Normalize: filter can receive ID or WP_Post (e.g. in block context).
+	$attachment_id = $attachment_id instanceof \WP_Post ? $attachment_id->ID : (int) $attachment_id;
+
 	// Get above-the-fold image IDs.
 	$above_fold_ids = get_above_fold_image_ids( 3 );
 
-	if ( ! empty( $above_fold_ids ) && in_array( (int) $attachment_id, $above_fold_ids, true ) ) {
+	if ( ! empty( $above_fold_ids ) && in_array( $attachment_id, $above_fold_ids, true ) ) {
 		$attr['fetchpriority'] = 'high';
 
 		// Remove lazy loading for above-the-fold images.

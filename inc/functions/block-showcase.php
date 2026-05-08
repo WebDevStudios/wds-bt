@@ -7,15 +7,18 @@
  *
  * @see https://make.wordpress.org/core/2025/11/19/introducing-the-streaming-block-parser-in-wordpress-6-9/
  *
- * @package wdsbt
+ * @package WDSBT
  */
 
 namespace WebDevStudios\wdsbt;
 
 /**
- * Theme color palette from theme.json (not core defaults).
+ * Get the color palette from theme.json (theme-defined colors only, no core defaults).
  *
- * @return array List of entries with slug, name, and color.
+ * Uses the theme's theme.json so only Base, Primary, Accent, etc. are shown—
+ * not WordPress core palette (cyan, blush, gray, etc.).
+ *
+ * @return array List of color entries with 'slug', 'name', 'color' keys.
  */
 function get_theme_json_color_palette() {
 	if ( ! class_exists( 'WP_Theme_JSON_Resolver' ) ) {
@@ -31,6 +34,7 @@ function get_theme_json_color_palette() {
 	}
 	$raw = $settings['color']['palette'];
 
+	// Theme data may expose palette as flat or as [ 'theme' => [ ... ] ].
 	$list  = array();
 	$first = reset( $raw );
 	if ( is_array( $first ) && isset( $first['color'] ) ) {
@@ -135,12 +139,6 @@ function get_all_registered_blocks() {
 			continue;
 		}
 
-		// Omit child-only blocks (block.json parent), e.g. FAQ inside FAQs, list-item inside list.
-		$parent_blocks = isset( $block_type->parent ) ? $block_type->parent : null;
-		if ( is_array( $parent_blocks ) && array() !== $parent_blocks ) {
-			continue;
-		}
-
 		$parts = explode( '/', $block_name );
 		if ( count( $parts ) !== 2 ) {
 			continue;
@@ -242,7 +240,7 @@ function get_block_showcase_content( $block_name, $block_type ) {
 	}
 
 	$core_defaults = array(
-		'core/paragraph'       => '<!-- wp:paragraph --><p>This is a paragraph block with <strong>formatted text</strong>, a <a href="https://wordpress.org/">link</a>, and <em>emphasis</em>.</p><!-- /wp:paragraph -->',
+		'core/paragraph'       => '<!-- wp:paragraph --><p>This is a paragraph block with <strong>formatted text</strong> and <em>emphasis</em>.</p><!-- /wp:paragraph -->',
 		'core/heading'         => '<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Heading H1</h1><!-- /wp:heading --><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Heading H2</h2><!-- /wp:heading --><!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Heading H3</h3><!-- /wp:heading --><!-- wp:heading {"level":4} --><h4 class="wp-block-heading">Heading H4</h4><!-- /wp:heading --><!-- wp:heading {"level":5} --><h5 class="wp-block-heading">Heading H5</h5><!-- /wp:heading --><!-- wp:heading {"level":6} --><h6 class="wp-block-heading">Heading H6</h6><!-- /wp:heading -->',
 		'core/list'            => '<!-- wp:list {"type":"decimal"} --><ul class="wp-block-list"><!-- wp:list-item --><li>These words these are these these example are words example these example.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Example words are example are these are example are these.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Words these example are words are these words example are these example words.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Example are example are example these words these example words.</li><!-- /wp:list-item --></ul><!-- /wp:list -->',
 		'core/quote'           => '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph --><p>This is a quote block for highlighting important statements.</p><!-- /wp:paragraph --><cite>Citation</cite></blockquote><!-- /wp:quote -->',
@@ -261,7 +259,7 @@ function get_block_showcase_content( $block_name, $block_type ) {
 		'core/gallery'         => '<!-- wp:gallery {"linkTo":"lightbox","sizeSlug":"full"} --><figure class="wp-block-gallery has-nested-images columns-default is-cropped"><!-- wp:image {"lightbox":{"enabled":true},"sizeSlug":"full","linkDestination":"none"} --><figure class="wp-block-image size-full"><img src="https://placehold.co/400x600" alt=""/></figure><!-- /wp:image --><!-- wp:image {"lightbox":{"enabled":true},"sizeSlug":"full","linkDestination":"none"} --><figure class="wp-block-image size-full"><img src="https://placehold.co/600x100" alt=""/></figure><!-- /wp:image --><!-- wp:image {"lightbox":{"enabled":true},"sizeSlug":"full","linkDestination":"none"} --><figure class="wp-block-image size-full"><img src="https://placehold.co/350x510" alt=""/></figure><!-- /wp:image --><!-- wp:image {"lightbox":{"enabled":true},"sizeSlug":"full","linkDestination":"none"} --><figure class="wp-block-image size-full"><img src="https://placehold.co/1200x400" alt=""/></figure><!-- /wp:image --></figure><!-- /wp:gallery -->',
 		'core/audio'           => '<!-- wp:audio --><figure class="wp-block-audio"><audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio></figure><!-- /wp:audio -->',
 		'core/accordion'       => '<!-- wp:accordion --><div role="group" class="wp-block-accordion"><!-- wp:accordion-item --><div class="wp-block-accordion-item"><!-- wp:accordion-heading --><h3 class="wp-block-accordion-heading"><button class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">Accordion Title 1</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3><!-- /wp:accordion-heading --><!-- wp:accordion-panel --><div role="region" class="wp-block-accordion-panel"><!-- wp:paragraph --><p>Words these example words these example are example these example are words. These example these example words example words are words are these example these words these. Example words example are example these example are example. Example words these are these words example these words are these words. Words these are example these example these are.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>Are these example are example these are words example are words are. Example are these example words example are these are example. Example are words these are words are words these are. These are example these example these words are words are. Are example these example words example are example words are these words these.</p><!-- /wp:paragraph --></div><!-- /wp:accordion-panel --></div><!-- /wp:accordion-item --><!-- wp:accordion-item --><div class="wp-block-accordion-item"><!-- wp:accordion-heading --><h3 class="wp-block-accordion-heading"><button class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">Accordion Title 2</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3><!-- /wp:accordion-heading --><!-- wp:accordion-panel --><div role="region" class="wp-block-accordion-panel"><!-- wp:list --><ul class="wp-block-list"><!-- wp:list-item --><li>Are words these words example words are these are these words.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Are these example are these words these words example these example are these are these.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Example are these example words these example are these words.</li><!-- /wp:list-item --><!-- wp:list-item --><li>Are words example are words example these example these example words example.</li><!-- /wp:list-item --></ul><!-- /wp:list --></div><!-- /wp:accordion-panel --></div><!-- /wp:accordion-item --></div><!-- /wp:accordion -->',
-		'core/cover'           => '<!-- wp:cover {"overlayColor":"accent-1","isUserOverlayColor":true,"isDark":false,"layout":{"type":"constrained"}} --><div class="wp-block-cover is-light"><span aria-hidden="true" class="wp-block-cover__background has-accent-1-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","fontSize":"large","fitText":true} --><h2 class="wp-block-heading has-text-align-center has-fit-text has-large-font-size">Cover Block</h2><!-- /wp:heading --></div></div><!-- /wp:cover -->',
+		'core/cover'           => '<!-- wp:cover {"overlayColor":"primary-50","isUserOverlayColor":true,"isDark":false,"layout":{"type":"constrained"}} --><div class="wp-block-cover is-light"><span aria-hidden="true" class="wp-block-cover__background has-primary-50-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","fontSize":"large","fitText":true} --><h2 class="wp-block-heading has-text-align-center has-fit-text has-large-font-size">Cover Block</h2><!-- /wp:heading --></div></div><!-- /wp:cover -->',
 		'core/file'            => '<!-- wp:file {"href":"https://example.com/sample.pdf","showDownloadButton":true} --><div class="wp-block-file"><a href="https://example.com/sample.pdf" class="wp-block-file__button" download>Download</a> <a href="https://example.com/sample.pdf">sample.pdf</a></div><!-- /wp:file -->',
 		'core/media-text'      => '<!-- wp:media-text {"mediaType":"image","mediaWidth":50} --><div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:50% auto"><figure class="wp-block-media-text__media"><img src="https://placehold.co/600x400/000000/FFF" alt="Media & Text"/></figure><div class="wp-block-media-text__content"><!-- wp:paragraph --><p>Media &amp; Text Block. Example these example are words are words are example are example these. Are these example these words example are these words these example. Words are example words these are example words. These are words are words example are example words are words are words these. Are words example words are example words these example these are example.</p><!-- /wp:paragraph --></div></div><!-- /wp:media-text -->',
 		'core/video'           => '<!-- wp:video --><figure class="wp-block-video"><video controls src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video><figcaption class="wp-element-caption">Video Caption</figcaption></figure><!-- /wp:video -->',
@@ -314,25 +312,418 @@ function get_block_showcase_content( $block_name, $block_type ) {
 }
 
 /**
- * Render a block for the showcase using WP_Block_Processor.
+ * Merges variation attributes into the first matching block in a parsed tree.
  *
- * @param string $block_name The fully qualified block name.
- * @param object $block_type The block type object.
- * @return string Rendered block HTML.
+ * @param array[] $blocks      Parsed blocks (by reference).
+ * @param string  $block_name  Block name to match (e.g. core/button).
+ * @param array   $attributes  Attributes to merge into attrs.
+ * @return bool True if a block was updated.
  */
-function render_block_for_showcase( $block_name, $block_type ) {
-	if ( is_string( $block_name ) && str_starts_with( $block_name, 'wpml/' ) ) {
+function apply_variation_attributes_to_block_tree( array &$blocks, $block_name, array $attributes ) {
+	foreach ( $blocks as &$block ) {
+		if ( ! empty( $block['blockName'] ) && $block['blockName'] === $block_name ) {
+			$block['attrs'] = array_merge( (array) ( $block['attrs'] ?? array() ), $attributes );
+			return true;
+		}
+		if ( ! empty( $block['innerBlocks'] ) && is_array( $block['innerBlocks'] ) ) {
+			if ( apply_variation_attributes_to_block_tree( $block['innerBlocks'], $block_name, $attributes ) ) {
+				return true;
+			}
+		}
+	}
+	unset( $block );
+	return false;
+}
+
+/**
+ * Default root CSS class for a block (matches saved markup, e.g. wp-block-social-links).
+ *
+ * @param string $block_name Block name (core/social-links, wdsbt/foo).
+ * @return string Class substring to locate in inner HTML, or empty.
+ */
+function get_showcase_block_root_css_class( $block_name ) {
+	$block_name = (string) $block_name;
+	if ( '' === $block_name || false === strpos( $block_name, '/' ) ) {
+		return '';
+	}
+	if ( 0 === strpos( $block_name, 'core/' ) ) {
+		return str_replace( 'core/', 'wp-block-', $block_name );
+	}
+
+	return 'wp-block-' . str_replace( '/', '-', $block_name );
+}
+
+/**
+ * Injects a single is-style-* class on the first tag whose class list contains the block root class.
+ * Removes any existing is-style-* classes on that tag so one block style is active.
+ *
+ * @param string $markup         HTML fragment.
+ * @param string $root_css_class Substring such as wp-block-social-links.
+ * @param string $style_class    Full class, e.g. is-style-pill-shape (already sanitized).
+ * @return string Updated markup.
+ */
+function showcase_inject_block_style_into_markup( $markup, $root_css_class, $style_class ) {
+	if ( ! is_string( $markup ) || '' === $markup || '' === $root_css_class || '' === $style_class ) {
+		return $markup;
+	}
+	if ( false === strpos( $markup, $root_css_class ) ) {
+		return $markup;
+	}
+
+	$processor = new \WP_HTML_Tag_Processor( $markup );
+	while ( $processor->next_tag() ) {
+		$class = $processor->get_attribute( 'class' );
+		if ( ! is_string( $class ) || false === strpos( $class, $root_css_class ) ) {
+			continue;
+		}
+		$classes = array_filter( preg_split( '/\s+/', $class, -1, PREG_SPLIT_NO_EMPTY ) );
+		$classes = array_values(
+			array_filter(
+				$classes,
+				static function ( $token ) {
+					return ! preg_match( '/^is-style-/', $token );
+				}
+			)
+		);
+		if ( ! in_array( $style_class, $classes, true ) ) {
+			$classes[] = $style_class;
+		}
+		$processor->set_attribute( 'class', implode( ' ', $classes ) );
+		break;
+	}
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Merges className attribute: strip is-style-*, add one block style class.
+ *
+ * @param array  $attrs       Block attrs.
+ * @param string $style_class Full is-style-* class.
+ * @return array Updated attrs.
+ */
+function showcase_merge_block_style_classname_attr( array $attrs, $style_class ) {
+	$existing = isset( $attrs['className'] ) ? (string) $attrs['className'] : '';
+	$classes  = array_filter( preg_split( '/\s+/', $existing, -1, PREG_SPLIT_NO_EMPTY ) );
+	$classes  = array_values(
+		array_filter(
+			$classes,
+			static function ( $token ) {
+				return ! preg_match( '/^is-style-/', $token );
+			}
+		)
+	);
+	if ( ! in_array( $style_class, $classes, true ) ) {
+		$classes[] = $style_class;
+	}
+	$attrs['className'] = implode( ' ', $classes );
+	return $attrs;
+}
+
+/**
+ * Applies a block style preview to one parsed block (attrs + innerHTML / innerContent).
+ *
+ * @param array  $block       Parsed block (by reference).
+ * @param string $block_name  Expected blockName.
+ * @param string $style_class Full sanitized class, e.g. is-style-wide.
+ * @return bool True if this block was updated.
+ */
+function showcase_apply_block_style_to_parsed_block( array &$block, $block_name, $style_class ) {
+	if ( empty( $block['blockName'] ) || $block['blockName'] !== $block_name ) {
+		return false;
+	}
+
+	$root = get_showcase_block_root_css_class( $block_name );
+	if ( '' === $root ) {
+		return false;
+	}
+
+	$block['attrs'] = showcase_merge_block_style_classname_attr( (array) ( $block['attrs'] ?? array() ), $style_class );
+
+	if ( ! empty( $block['innerHTML'] ) && is_string( $block['innerHTML'] ) && false !== strpos( $block['innerHTML'], $root ) ) {
+		$block['innerHTML'] = showcase_inject_block_style_into_markup( $block['innerHTML'], $root, $style_class );
+	}
+
+	if ( ! empty( $block['innerContent'] ) && is_array( $block['innerContent'] ) ) {
+		foreach ( $block['innerContent'] as $i => $chunk ) {
+			if ( is_string( $chunk ) && false !== strpos( $chunk, $root ) ) {
+				$block['innerContent'][ $i ] = showcase_inject_block_style_into_markup( $chunk, $root, $style_class );
+			}
+		}
+	}
+
+	$has_inner_placeholder = false;
+	if ( ! empty( $block['innerContent'] ) && is_array( $block['innerContent'] ) ) {
+		foreach ( $block['innerContent'] as $c ) {
+			if ( null === $c ) {
+				$has_inner_placeholder = true;
+				break;
+			}
+		}
+	}
+	if ( ! $has_inner_placeholder && isset( $block['innerHTML'] ) && is_string( $block['innerHTML'] ) ) {
+		$block['innerContent'] = array( $block['innerHTML'] );
+	}
+
+	return true;
+}
+
+/**
+ * Applies a block style to the first matching block in a parsed tree (depth-first).
+ *
+ * @param array[] $blocks       Parsed blocks (by reference).
+ * @param string  $block_name   Block name to match.
+ * @param string  $style_class  Full is-style-* class (sanitized).
+ * @return bool True if a block was updated.
+ */
+function showcase_apply_block_style_in_tree( array &$blocks, $block_name, $style_class ) {
+	foreach ( $blocks as &$block ) {
+		if ( showcase_apply_block_style_to_parsed_block( $block, $block_name, $style_class ) ) {
+			return true;
+		}
+		if ( ! empty( $block['innerBlocks'] ) && is_array( $block['innerBlocks'] ) ) {
+			if ( showcase_apply_block_style_in_tree( $block['innerBlocks'], $block_name, $style_class ) ) {
+				return true;
+			}
+		}
+	}
+	unset( $block );
+	return false;
+}
+
+/**
+ * Serialized showcase markup with a block style class applied (block.json `styles`, not variations).
+ *
+ * @param string $block_name  Fully qualified block name.
+ * @param object $block_type  Block type instance.
+ * @param string $style_slug  Style `name` from block.json (e.g. wide, dots).
+ * @return string Serialized markup or empty string.
+ */
+function get_showcase_serialized_for_block_style( $block_name, $block_type, $style_slug ) {
+	$style_slug = is_string( $style_slug ) ? trim( $style_slug ) : '';
+	if ( '' === $style_slug ) {
 		return '';
 	}
 
-	$block_content = get_block_showcase_content( $block_name, $block_type );
+	$base = get_block_showcase_content( $block_name, $block_type );
+	if ( '' === $base ) {
+		return '';
+	}
+
+	$slug_sanitized = sanitize_html_class( str_replace( '/', '-', $style_slug ) );
+	if ( '' === $slug_sanitized ) {
+		return '';
+	}
+	$class_segment = 'is-style-' . $slug_sanitized;
+
+	$blocks = parse_blocks( $base );
+	if ( empty( $blocks ) || ! showcase_apply_block_style_in_tree( $blocks, $block_name, $class_segment ) ) {
+		return '';
+	}
+
+	return serialize_blocks( $blocks );
+}
+
+/**
+ * Rendered previews for each non-default block style (block.json `styles`).
+ *
+ * @param string $block_name  Fully qualified block name.
+ * @param object $block_type  Block type instance.
+ * @return array<int, array{kind: string, name: string, title: string, html: string}>
+ */
+function get_block_showcase_style_previews( $block_name, $block_type ) {
+	if ( ! isset( $block_type->styles ) || ! is_array( $block_type->styles ) || empty( $block_type->styles ) ) {
+		return array();
+	}
+
+	$base = get_block_showcase_content( $block_name, $block_type );
+	$out  = array();
+
+	foreach ( $block_type->styles as $style ) {
+		if ( ! is_array( $style ) || empty( $style['name'] ) || ! is_string( $style['name'] ) ) {
+			continue;
+		}
+		if ( ! empty( $style['isDefault'] ) ) {
+			continue;
+		}
+
+		$slug       = $style['name'];
+		$serialized = get_showcase_serialized_for_block_style( $block_name, $block_type, $slug );
+		if ( '' === $serialized || $serialized === $base ) {
+			continue;
+		}
+
+		$html = render_block_for_showcase( $block_name, $block_type, $serialized );
+		if ( '' === trim( $html ) ) {
+			continue;
+		}
+
+		$title = isset( $style['label'] ) && is_string( $style['label'] ) ? $style['label'] : $slug;
+
+		$out[] = array(
+			'kind'  => 'style',
+			'name'  => $slug,
+			'title' => $title,
+			'html'  => $html,
+		);
+	}
+
+	return $out;
+}
+
+/**
+ * Merges style previews (first) and variation previews for the showcase UI.
+ *
+ * @param string $block_name  Fully qualified block name.
+ * @param object $block_type  Block type instance.
+ * @return array<int, array{kind: string, name: string, title: string, html: string}>
+ */
+function get_block_showcase_style_and_variation_previews( $block_name, $block_type ) {
+	return array_merge(
+		get_block_showcase_style_previews( $block_name, $block_type ),
+		get_block_showcase_variation_previews( $block_name, $block_type )
+	);
+}
+
+/**
+ * Builds serialized block markup for a registered variation (PHP / block.json only).
+ *
+ * @param string $block_name  Fully qualified block name.
+ * @param object $block_type  WP_Block_Type instance.
+ * @param array  $variation   Variation definition (name, title, attributes, innerBlocks, …).
+ * @return string Serialized markup or empty string if nothing applicable.
+ */
+function get_showcase_serialized_for_variation( $block_name, $block_type, array $variation ) {
+	$base = get_block_showcase_content( $block_name, $block_type );
+	if ( '' === $base ) {
+		return '';
+	}
+
+	$has_inner = ! empty( $variation['innerBlocks'] ) && is_array( $variation['innerBlocks'] );
+	$has_attrs = isset( $variation['attributes'] ) && is_array( $variation['attributes'] );
+
+	if ( $has_inner ) {
+		$example = array( 'innerBlocks' => $variation['innerBlocks'] );
+		if ( $has_attrs ) {
+			$example['attributes'] = $variation['attributes'];
+		}
+		$built = get_block_from_example( $block_name, $example );
+		if ( '' !== $built ) {
+			return $built;
+		}
+	}
+
+	if ( $has_attrs && ! empty( $variation['attributes'] ) ) {
+		$blocks = parse_blocks( $base );
+		if ( ! empty( $blocks ) && apply_variation_attributes_to_block_tree( $blocks, $block_name, $variation['attributes'] ) ) {
+			return serialize_blocks( $blocks );
+		}
+		$built = get_block_from_example( $block_name, array( 'attributes' => $variation['attributes'] ) );
+		if ( '' !== $built ) {
+			return $built;
+		}
+	}
+
+	return '';
+}
+
+/**
+ * Human-readable title for a block variation in the showcase.
+ *
+ * @param array $variation Variation definition.
+ * @return string
+ */
+function get_block_showcase_variation_title( array $variation ) {
+	if ( ! empty( $variation['title'] ) && is_string( $variation['title'] ) ) {
+		return $variation['title'];
+	}
+	if ( ! empty( $variation['name'] ) && is_string( $variation['name'] ) ) {
+		return $variation['name'];
+	}
+	return '';
+}
+
+/**
+ * Returns rendered previews for each server-registered variation that differs from the default showcase.
+ *
+ * Variations registered only in JavaScript are not available to PHP and are omitted.
+ *
+ * @param string $block_name  Fully qualified block name.
+ * @param object $block_type Block type object.
+ * @return array<int, array{kind: string, name: string, title: string, html: string}>
+ */
+function get_block_showcase_variation_previews( $block_name, $block_type ) {
+	if ( ! $block_type instanceof \WP_Block_Type || ! method_exists( $block_type, 'get_variations' ) ) {
+		return array();
+	}
+
+	$variations = $block_type->get_variations();
+	if ( empty( $variations ) || ! is_array( $variations ) ) {
+		return array();
+	}
+
+	$base = get_block_showcase_content( $block_name, $block_type );
+	$out  = array();
+
+	foreach ( $variations as $variation ) {
+		if ( ! is_array( $variation ) || empty( $variation['name'] ) || ! is_string( $variation['name'] ) ) {
+			continue;
+		}
+
+		$serialized = get_showcase_serialized_for_variation( $block_name, $block_type, $variation );
+		if ( '' === $serialized || $serialized === $base ) {
+			continue;
+		}
+
+		$html = render_block_for_showcase( $block_name, $block_type, $serialized );
+		if ( '' === trim( $html ) ) {
+			continue;
+		}
+
+		$title = get_block_showcase_variation_title( $variation );
+		if ( '' === $title ) {
+			$title = $variation['name'];
+		}
+
+		$out[] = array(
+			'kind'  => 'variation',
+			'name'  => $variation['name'],
+			'title' => $title,
+			'html'  => $html,
+		);
+	}
+
+	return $out;
+}
+
+/**
+ * Render a block for the showcase using WP_Block_Processor.
+ *
+ * @param string      $block_name    The fully qualified block name.
+ * @param object      $block_type    The block type object.
+ * @param string|null $block_content Optional serialized block markup; default uses showcase sample content.
+ * @return string Rendered block HTML.
+ */
+function render_block_for_showcase( $block_name, $block_type, $block_content = null ) {
+	if ( null === $block_content ) {
+		$block_content = get_block_showcase_content( $block_name, $block_type );
+	}
 
 	if ( empty( $block_content ) ) {
 		return '';
 	}
 
-	$skip_blocks = array( 'core/legacy-widget', 'core/freeform' );
+	$skip_blocks = array(
+		'core/legacy-widget',
+		'core/freeform',
+		// WPML parses saved block HTML for current vs other language nodes; showcase uses minimal markup only.
+		'wpml/language-switcher',
+		'wpml/navigation-language-switcher',
+	);
 	if ( in_array( $block_name, $skip_blocks, true ) ) {
+		if ( 'wpml/language-switcher' === $block_name || 'wpml/navigation-language-switcher' === $block_name ) {
+			return '<p class="wdsbt-showcase-block-unavailable"><em>' . esc_html__( 'WPML language switcher blocks need full saved markup from the editor and cannot be previewed here.', 'wdsbt' ) . '</em></p>';
+		}
 		return '<p><em>This block type cannot be previewed in the showcase.</em></p>';
 	}
 
@@ -421,6 +812,7 @@ function render_block_for_showcase( $block_name, $block_type ) {
 
 				return $rendered;
 			} else {
+				// Fallback if oEmbed fetch fails - show URL.
 				return '<div class="wp-block-embed"><p><em>Embed preview not available. URL: <a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $url ) . '</a></em></p></div>';
 			}
 		}
@@ -437,11 +829,7 @@ function render_block_for_showcase( $block_name, $block_type ) {
 		}
 	}
 
-	try {
-		$rendered = do_blocks( $block_content );
-	} catch ( \Throwable $e ) {
-		return '<p><em>' . esc_html__( 'Preview could not be rendered.', 'wdsbt' ) . '</em></p>';
-	}
+	$rendered = do_blocks( $block_content );
 
 	return $rendered;
 }
@@ -457,6 +845,22 @@ function get_block_display_name( $block_name ) {
 	$name  = end( $parts );
 	$name  = str_replace( array( '-', '_' ), ' ', $name );
 	return ucwords( $name );
+}
+
+/**
+ * HTML id for deep-linking to a block card on the showcase page (URL fragment).
+ *
+ * @param string $block_name The fully qualified block name (e.g. core/paragraph).
+ * @return string Safe unique id, e.g. block-showcase-core-paragraph.
+ */
+function get_block_showcase_anchor_id( $block_name ) {
+	$slug = str_replace( '/', '-', (string) $block_name );
+	$slug = preg_replace( '/[^a-z0-9\-]+/i', '-', $slug );
+	$slug = trim( preg_replace( '/-+/', '-', strtolower( $slug ) ), '-' );
+	if ( '' === $slug ) {
+		$slug = 'block-' . substr( md5( $block_name ), 0, 8 );
+	}
+	return 'block-showcase-' . $slug;
 }
 
 /**
@@ -492,10 +896,10 @@ function get_block_attributes_info( $block_type ) {
 }
 
 /**
- * Category slug for showcase grouping (block category, wdsbt, or other).
+ * Get block category for organization using WordPress's native categorization.
  *
- * @param string      $block_name  Qualified name.
- * @param object|null $block_type  Optional; from registry when null.
+ * @param string $block_name The fully qualified block name.
+ * @param object $block_type The block type object.
  * @return string Category slug.
  */
 function get_block_category( $block_name, $block_type = null ) {

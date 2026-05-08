@@ -49,7 +49,8 @@ function get_block_showcase_preview_allowed_html() {
 		'class' => true,
 		'style' => true,
 	);
-	$allowed_html['input']  = array(
+	// Post context has no <input>; keep a broad list for search and other form blocks.
+	$allowed_html['input'] = array(
 		'type'             => true,
 		'name'             => true,
 		'value'            => true,
@@ -57,25 +58,46 @@ function get_block_showcase_preview_allowed_html() {
 		'required'         => true,
 		'id'               => true,
 		'class'            => true,
+		'style'            => true,
+		'disabled'         => true,
+		'readonly'         => true,
+		'size'             => true,
+		'maxlength'        => true,
+		'min'              => true,
+		'max'              => true,
+		'step'             => true,
+		'pattern'          => true,
+		'autocomplete'     => true,
+		'tabindex'         => true,
 		'aria-label'       => true,
 		'aria-labelledby'  => true,
 		'aria-describedby' => true,
+		'aria-hidden'      => true,
+		'aria-expanded'    => true,
+		'aria-controls'    => true,
+		'data-*'           => true,
 	);
-	$allowed_html['button'] = array(
-		'type'            => true,
-		'class'           => true,
-		'aria-label'      => true,
-		'aria-labelledby' => true,
-	);
-	$allowed_html['form']   = array(
-		'action' => true,
-		'method' => true,
-		'class'  => true,
-		'role'   => true,
-	);
-	$allowed_html['label']  = array(
-		'for'   => true,
-		'class' => true,
+	// Do not replace post defaults for <button> or <label>: core/search applies inline color styles
+	// and currentColor-based SVG icons need those attributes preserved.
+	$form_base              = isset( $allowed_html['form'] ) && is_array( $allowed_html['form'] ) ? $allowed_html['form'] : array();
+	$allowed_html['form']   = array_merge(
+		array(
+			'action'         => true,
+			'accept'         => true,
+			'accept-charset' => true,
+			'enctype'        => true,
+			'method'         => true,
+			'name'           => true,
+			'target'         => true,
+		),
+		$form_base,
+		array(
+			'class'  => true,
+			'role'   => true,
+			'style'  => true,
+			'id'     => true,
+			'data-*' => true,
+		)
 	);
 	$allowed_html['iframe'] = array(
 		'src'             => true,
@@ -89,6 +111,83 @@ function get_block_showcase_preview_allowed_html() {
 		'loading'         => true,
 		'sandbox'         => true,
 		'allow'           => true,
+	);
+
+	// core/social-link (and similar) render inline SVG icons; post context strips svg/path by default.
+	$allowed_html['svg']      = array(
+		'class'       => true,
+		'xmlns'       => true,
+		'width'       => true,
+		'height'      => true,
+		'viewbox'     => true,
+		'version'     => true,
+		'aria-hidden' => true,
+		'focusable'   => true,
+		'fill'        => true,
+		'role'        => true,
+		'style'       => true,
+	);
+	$allowed_html['path']     = array(
+		'class'           => true,
+		'd'               => true,
+		'fill'            => true,
+		'fill-rule'       => true,
+		'clip-rule'       => true,
+		'stroke'          => true,
+		'stroke-width'    => true,
+		'stroke-linecap'  => true,
+		'stroke-linejoin' => true,
+		'opacity'         => true,
+		'transform'       => true,
+	);
+	$allowed_html['circle']   = array(
+		'class'     => true,
+		'cx'        => true,
+		'cy'        => true,
+		'r'         => true,
+		'fill'      => true,
+		'stroke'    => true,
+		'transform' => true,
+	);
+	$allowed_html['rect']     = array(
+		'class'     => true,
+		'x'         => true,
+		'y'         => true,
+		'width'     => true,
+		'height'    => true,
+		'rx'        => true,
+		'ry'        => true,
+		'fill'      => true,
+		'stroke'    => true,
+		'transform' => true,
+	);
+	$allowed_html['g']        = array(
+		'class'     => true,
+		'fill'      => true,
+		'transform' => true,
+	);
+	$allowed_html['polygon']  = array(
+		'class'     => true,
+		'points'    => true,
+		'fill'      => true,
+		'stroke'    => true,
+		'transform' => true,
+	);
+	$allowed_html['polyline'] = array(
+		'class'     => true,
+		'points'    => true,
+		'fill'      => true,
+		'stroke'    => true,
+		'transform' => true,
+	);
+	$allowed_html['line']     = array(
+		'class'     => true,
+		'x1'        => true,
+		'y1'        => true,
+		'x2'        => true,
+		'y2'        => true,
+		'stroke'    => true,
+		'transform' => true,
 	);
 
 	return $allowed_html;
@@ -107,6 +206,56 @@ function echo_block_showcase_preview_html( $block_html ) {
 }
 
 /**
+ * Prints block style and variation previews (block.json `styles` and `variations`).
+ *
+ * @param string $block_name  Fully qualified block name.
+ * @param object $block_type  Registered block type.
+ * @return void
+ */
+function render_block_showcase_variations_section( $block_name, $block_type ) {
+	$previews = get_block_showcase_style_and_variation_previews( $block_name, $block_type );
+	if ( empty( $previews ) ) {
+		return;
+	}
+	?>
+	<details class="wdsbt-showcase-variations">
+		<summary class="wdsbt-showcase-variations__summary">
+			<?php
+			echo esc_html(
+				sprintf(
+					/* translators: %d: number of block styles plus variations */
+					__( 'Styles & variations (%d)', 'wdsbt' ),
+					count( $previews )
+				)
+			);
+			?>
+		</summary>
+		<div class="wdsbt-showcase-variations__grid">
+			<?php foreach ( $previews as $preview ) : ?>
+				<?php
+				$kind       = isset( $preview['kind'] ) ? (string) $preview['kind'] : 'variation';
+				$code       = ( 'style' === $kind ) ? 'is-style-' . $preview['name'] : $preview['name'];
+				$kind_label = ( 'style' === $kind )
+					? esc_html__( 'Style', 'wdsbt' )
+					: esc_html__( 'Variation', 'wdsbt' );
+				?>
+				<div class="wdsbt-showcase-variation-card">
+					<div class="wdsbt-showcase-variation-card__meta">
+						<span class="wdsbt-showcase-variation-card__kind"><?php echo esc_html( $kind_label ); ?></span>
+						<h5 class="wdsbt-showcase-variation-card__title"><?php echo esc_html( $preview['title'] ); ?></h5>
+						<code class="wdsbt-showcase-variation-card__name"><?php echo esc_html( $code ); ?></code>
+					</div>
+					<div class="wdsbt-showcase-variation-card__preview">
+						<?php echo_block_showcase_preview_html( $preview['html'] ); ?>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</details>
+	<?php
+}
+
+/**
  * Renders the block showcase shortcode.
  *
  * @param array  $atts    Shortcode attributes. Unused but required for shortcode signature.
@@ -118,6 +267,8 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return '';
 	}
+
+	$GLOBALS['wdsbt_block_showcase_rendered'] = true;
 
 	$organized_blocks = get_all_registered_blocks();
 
@@ -137,6 +288,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 
 	<div class="wdsbt-block-showcase">
 		<?php if ( ! empty( $theme_color_palette ) ) : ?>
+			<h3 class="wdsbt-showcase-section-heading"><?php echo esc_html__( 'Theme colors', 'wdsbt' ); ?></h3>
 			<div class="wdsbt-showcase-category">
 				<div role="group" class="wp-block-accordion">
 					<div class="wp-block-accordion-item">
@@ -247,9 +399,9 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 						$block_html = isset( $rendered_blocks_cache[ $block_name ] ) ? $rendered_blocks_cache[ $block_name ] : render_block_for_showcase( $block_name, $block_type );
 						?>
 
-						<div class="wdsbt-showcase-block-card">
-							<h4 class="wdsbt-showcase-block-title"><?php echo esc_html( get_block_display_name( $block_name ) ); ?></h4>
+						<div class="wdsbt-showcase-block-card" id="<?php echo esc_attr( get_block_showcase_anchor_id( $block_name ) ); ?>">
 							<div class="wdsbt-showcase-block-meta">
+								<h4 class="wdsbt-showcase-block-title"><?php echo esc_html( get_block_display_name( $block_name ) ); ?></h4>
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
 							</div>
 							<?php
@@ -306,6 +458,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<div class="wdsbt-showcase-block-preview">
 								<?php echo_block_showcase_preview_html( $block_html ); ?>
 							</div>
+							<?php render_block_showcase_variations_section( $block_name, $block_type ); ?>
 						</div>
 
 					<?php endforeach; ?>
@@ -338,7 +491,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 						}
 						?>
 
-						<div class="wdsbt-showcase-block-card">
+						<div class="wdsbt-showcase-block-card" id="<?php echo esc_attr( get_block_showcase_anchor_id( $block_name ) ); ?>">
 							<h4 class="wdsbt-showcase-block-title"><?php echo esc_html( get_block_display_name( $block_name ) ); ?></h4>
 							<div class="wdsbt-showcase-block-meta">
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
@@ -397,6 +550,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<div class="wdsbt-showcase-block-preview">
 								<?php echo_block_showcase_preview_html( $block_html ); ?>
 							</div>
+							<?php render_block_showcase_variations_section( $block_name, $block_type ); ?>
 						</div>
 
 					<?php endforeach; ?>
@@ -435,7 +589,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							$block_html = render_block_for_showcase( $block_name, $block_type );
 							?>
 
-						<div class="wdsbt-showcase-block-card">
+						<div class="wdsbt-showcase-block-card" id="<?php echo esc_attr( get_block_showcase_anchor_id( $block_name ) ); ?>">
 							<h4 class="wdsbt-showcase-block-title"><?php echo esc_html( get_block_display_name( $block_name ) ); ?></h4>
 							<div class="wdsbt-showcase-block-meta">
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
@@ -498,6 +652,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 									<p><em>This block type cannot be previewed in the showcase. It may require specific context or configuration to render.</em></p>
 								<?php endif; ?>
 							</div>
+							<?php render_block_showcase_variations_section( $block_name, $block_type ); ?>
 						</div>
 
 						<?php endforeach; ?>
@@ -509,34 +664,6 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</div>
-
-	<script>
-		(function() {
-			document.addEventListener( 'click', function( event ) {
-				var toggle = event.target.closest && event.target.closest( '.wdsbt-block-showcase .wp-block-accordion-heading__toggle' );
-				if ( ! toggle || ! toggle.closest( '.wdsbt-block-showcase' ) ) {
-					return;
-				}
-				var item = toggle.closest( '.wp-block-accordion-item' );
-				if ( ! item ) {
-					return;
-				}
-				var panel = item.querySelector( '.wp-block-accordion-panel' );
-				if ( ! panel ) {
-					return;
-				}
-				var isExpanded = toggle.getAttribute( 'aria-expanded' ) === 'true';
-				toggle.setAttribute( 'aria-expanded', isExpanded ? 'false' : 'true' );
-				if ( isExpanded ) {
-					panel.setAttribute( 'aria-hidden', 'true' );
-					panel.style.display = 'none';
-				} else {
-					panel.setAttribute( 'aria-hidden', 'false' );
-					panel.style.display = 'block';
-				}
-			} );
-		})();
-	</script>
 
 	<?php
 	return ob_get_clean();
