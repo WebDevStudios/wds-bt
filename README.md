@@ -1,10 +1,10 @@
 # WDS BT
 
-## Version: 1.4.5
+## Version: 1.4.6
 
 [![WebDevStudios. Your Success is Our Mission.](https://webdevstudios.com/wp-content/uploads/2024/02/wds-banner.png)](https://webdevstudios.com/contact/)
 
-### What's New in 1.4.0
+### What's New in 1.4.6
 
 - **Block Showcase**: Powerful development tool (admin-only) to discover, preview, and inspect all registered blocks with their attributes in an organized, interactive format.
 - **Template-specific style loading**: Template and CPT CSS are built separately and enqueued only when the current request matches (404, search, archive, page templates, custom post types). Styles in `build/css/templates/` are discovered automatically—no PHP config needed. Reduces unused CSS for better Lighthouse scores.
