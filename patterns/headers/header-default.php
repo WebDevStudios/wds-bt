@@ -19,7 +19,7 @@ $wdsbt_site_info = has_custom_logo() ? '<!-- wp:site-logo {"width":150,"shouldSy
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
 <div class="wp-block-group"><!-- wp:group {"templateLock":false,"lock":{"move":false,"remove":false},"metadata":{"name":"Primary Menu"},"style":{"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
-<div class="wp-block-group"><!-- wp:navigation {"layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"right","flexWrap":"nowrap","orientation":"horizontal"}} /--></div>
+<div class="wp-block-group"><!-- wp:navigation {"layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"right","flexWrap":"wrap","orientation":"horizontal"}} /--></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

@@ -13,6 +13,8 @@ textarea {
 }
 
 select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
 	appearance: none;
 	outline: 0;
 	background: url(../images/icons/icon-arrow-down.svg) no-repeat right 0.8em
