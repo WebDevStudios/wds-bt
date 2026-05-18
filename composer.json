@@ -35,8 +35,6 @@
 	"scripts": {
 		"phpcs": "vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 0 --report=full,source",
 		"phpcs-fix": "vendor/bin/phpcbf --report=summary,source",
-		"post-install-cmd": [
-			"node scripts/theme-tools.cjs cursorrules"
-		]
+		"cursorrules": "node scripts/theme-tools.cjs cursorrules"
 	}
 }
