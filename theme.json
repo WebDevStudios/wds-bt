@@ -341,7 +341,16 @@
                     "fontFamily": "var:preset|font-family|headline",
                     "fontWeight": "800"
                 }
-            }
+            },
+			"core/read-more": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|headline",
+					"fontSize": "var:preset|font-size|small",
+					"fontWeight": "400",
+					"textDecoration": "underline",
+					"textTransform": "uppercase"
+				}
+			}
         },
         "color": {
             "background": "var:preset|color|base",
