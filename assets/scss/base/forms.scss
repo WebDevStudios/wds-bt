@@ -56,14 +56,3 @@ input:focus,
 textarea:focus {
 	outline: none;
 }
-
-::placeholder {
-	color: var(--wp--preset--color--grey-500);
-}
-
-label {
-	color: var(--wp--preset--color--contrast);
-	display: inline-block;
-	font-weight: 700;
-	letter-spacing: 0.032px;
-}

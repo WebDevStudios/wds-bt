@@ -230,7 +230,7 @@ function render_block_showcase_variations_section( $block_name, $block_type ) {
 			);
 			?>
 		</summary>
-		<div class="wdsbt-showcase-variations__grid">
+		<div class="wdsbt-showcase-variations__flex">
 			<?php foreach ( $previews as $preview ) : ?>
 				<?php
 				$kind       = isset( $preview['kind'] ) ? (string) $preview['kind'] : 'variation';

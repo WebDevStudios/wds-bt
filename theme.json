@@ -1,8 +1,8 @@
 {
-    "title": "Light Mode",
-    "version": 3,
-    "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
-    "description": "Light mode palette for the theme",
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+    "title": "Default",
+    "description": "Default palette for the theme",
     "settings": {
         "appearanceTools": true,
         "color": {
