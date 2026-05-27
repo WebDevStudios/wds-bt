@@ -10,7 +10,7 @@ Admin-only development tool to discover, preview, and inspect all registered blo
 
 ## What It Shows
 
-Blocks grouped by category; for each block: name, identifier, attributes (with types/defaults/options), and a live preview. Content comes from block `example`, defaults, or generated markup. Some blocks (e.g. `core/legacy-widget`, `core/freeform`) are skipped.
+Blocks grouped by category; for each block: name, identifier, attributes (with types/defaults/options), preset CSS variables when the attribute is set in `theme.json` under `styles.blocks`, and a live preview. Content comes from block `example`, defaults, or generated markup. Some blocks (e.g. `core/legacy-widget`, `core/freeform`) are skipped.
 
 **Block styles** from `block.json` (`styles`, e.g. Separator “Wide Line” / “Dots”) are listed first with a **Style** label; each non-default style gets a preview by merging `is-style-{name}` into the block’s saved markup (`attrs.className` plus the root element in `innerHTML` / `innerContent` when needed) so static blocks like `core/social-links` actually render the correct layout classes.
 
