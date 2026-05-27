@@ -864,14 +864,126 @@ function get_block_showcase_anchor_id( $block_name ) {
 }
 
 /**
+ * Maps block attribute names to theme.json style paths (per block in styles.blocks).
+ *
+ * @return array<string, array<int, array<int, string>>>
+ */
+function get_block_attribute_theme_json_paths() {
+	return array(
+		'backgroundColor' => array(
+			array( 'color', 'background' ),
+		),
+		'textColor'       => array(
+			array( 'color', 'text' ),
+			array( 'hover', 'color', 'text' ),
+		),
+		'borderColor'     => array(
+			array( 'border', 'color' ),
+			array( 'color', 'border' ),
+		),
+		'gradient'        => array(
+			array( 'color', 'gradient' ),
+		),
+		'fontFamily'      => array(
+			array( 'typography', 'fontFamily' ),
+		),
+		'fontSize'        => array(
+			array( 'typography', 'fontSize' ),
+		),
+	);
+}
+
+/**
+ * Reads a nested value from an array using a path of keys.
+ *
+ * @param array             $data Source array.
+ * @param array<int,string> $path Key path.
+ * @return mixed|null
+ */
+function get_array_path_value( array $data, array $path ) {
+	$current = $data;
+	foreach ( $path as $key ) {
+		if ( ! is_array( $current ) || ! array_key_exists( $key, $current ) ) {
+			return null;
+		}
+		$current = $current[ $key ];
+	}
+	return $current;
+}
+
+/**
+ * Converts a theme.json preset reference to a CSS custom property.
+ *
+ * @param mixed $value theme.json value (e.g. var:preset|color|accent-1).
+ * @return string|null CSS var() string or null if not a preset reference.
+ */
+function theme_json_preset_ref_to_css_var( $value ) {
+	if ( ! is_string( $value ) ) {
+		return null;
+	}
+	$value = trim( $value );
+	if ( preg_match( '/^var:preset\|([a-z0-9-]+)\|([a-z0-9-]+)$/i', $value, $matches ) ) {
+		return 'var(--wp--preset--' . $matches[1] . '--' . $matches[2] . ')';
+	}
+	if ( 0 === strpos( $value, 'var(--wp--preset--' ) ) {
+		return $value;
+	}
+	return null;
+}
+
+/**
+ * Preset CSS variables from theme.json block styles keyed by block attribute name.
+ *
+ * @param string $block_name Fully qualified block name (e.g. core/heading).
+ * @return array<string, string> Attribute name => CSS variable.
+ */
+function get_block_theme_json_attribute_variables( $block_name ) {
+	if ( ! class_exists( 'WP_Theme_JSON_Resolver' ) || '' === (string) $block_name ) {
+		return array();
+	}
+
+	$theme_json = \WP_Theme_JSON_Resolver::get_theme_data();
+	if ( ! $theme_json || ! method_exists( $theme_json, 'get_data' ) ) {
+		return array();
+	}
+
+	$data = $theme_json->get_data();
+	if ( empty( $data['styles']['blocks'][ $block_name ] ) || ! is_array( $data['styles']['blocks'][ $block_name ] ) ) {
+		return array();
+	}
+
+	$block_styles = $data['styles']['blocks'][ $block_name ];
+	$variables    = array();
+
+	foreach ( get_block_attribute_theme_json_paths() as $attr_name => $paths ) {
+		foreach ( $paths as $path ) {
+			$value = get_array_path_value( $block_styles, $path );
+			$css   = theme_json_preset_ref_to_css_var( $value );
+			if ( null !== $css ) {
+				$variables[ $attr_name ] = $css;
+				break;
+			}
+		}
+	}
+
+	return $variables;
+}
+
+/**
  * Get formatted block attributes for display.
  *
- * @param object $block_type The block type object.
+ * @param object      $block_type  The block type object.
+ * @param string|null $block_name  Fully qualified block name for theme.json variable lookup.
  * @return array Array of formatted attribute information.
  */
-function get_block_attributes_info( $block_type ) {
+function get_block_attributes_info( $block_type, $block_name = null ) {
 	if ( ! isset( $block_type->attributes ) || ! is_array( $block_type->attributes ) || empty( $block_type->attributes ) ) {
 		return array();
+	}
+
+	$theme_variables = array();
+	if ( is_string( $block_name ) && '' !== $block_name ) {
+		$theme_variables = get_block_theme_json_attribute_variables( $block_name );
 	}
 
 	$attributes_info = array();
@@ -887,6 +999,9 @@ function get_block_attributes_info( $block_type ) {
 		}
 		if ( isset( $attr_config['source'] ) ) {
 			$info['source'] = $attr_config['source'];
+		}
+		if ( isset( $theme_variables[ $attr_name ] ) ) {
+			$info['variable'] = $theme_variables[ $attr_name ];
 		}
 
 		$attributes_info[ $attr_name ] = $info;

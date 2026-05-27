@@ -206,6 +206,71 @@ function echo_block_showcase_preview_html( $block_html ) {
 }
 
 /**
+ * Prints the collapsible block attributes list for a showcase card.
+ *
+ * @param string $block_name Fully qualified block name.
+ * @param object $block_type Registered block type.
+ * @return void
+ */
+function render_block_showcase_attributes_section( $block_name, $block_type ) {
+	$block_attributes = get_block_attributes_info( $block_type, $block_name );
+	if ( empty( $block_attributes ) ) {
+		return;
+	}
+	?>
+	<div class="wdsbt-showcase-block-attributes">
+		<details class="wdsbt-attributes-details">
+			<summary class="wdsbt-attributes-summary">Attributes (<?php echo esc_html( count( $block_attributes ) ); ?>)</summary>
+			<div class="wdsbt-attributes-list">
+				<?php foreach ( $block_attributes as $attr_name => $attr_info ) : ?>
+					<div class="wdsbt-attribute-item">
+						<code class="wdsbt-attribute-name"><?php echo esc_html( $attr_name ); ?></code>
+						<?php
+						$type_display = $attr_info['type'];
+						if ( is_array( $type_display ) || is_object( $type_display ) ) {
+							$type_display = wp_json_encode( $type_display );
+						} else {
+							$type_display = (string) $type_display;
+						}
+						?>
+						<span class="wdsbt-attribute-type"><?php echo esc_html( $type_display ); ?></span>
+						<?php if ( ! empty( $attr_info['variable'] ) ) : ?>
+							<code class="wdsbt-attribute-variable"><?php echo esc_html( $attr_info['variable'] ); ?></code>
+						<?php endif; ?>
+						<?php if ( null !== $attr_info['default'] ) : ?>
+							<?php
+							$default_display = $attr_info['default'];
+							if ( is_array( $default_display ) || is_object( $default_display ) ) {
+								$default_display = wp_json_encode( $default_display );
+							} else {
+								$default_display = (string) $default_display;
+							}
+							?>
+							<span class="wdsbt-attribute-default">default: <?php echo esc_html( $default_display ); ?></span>
+						<?php endif; ?>
+						<?php if ( isset( $attr_info['enum'] ) && is_array( $attr_info['enum'] ) ) : ?>
+							<?php
+							$enum_display = array_map(
+								function ( $value ) {
+									if ( is_array( $value ) || is_object( $value ) ) {
+										return wp_json_encode( $value );
+									}
+									return (string) $value;
+								},
+								$attr_info['enum']
+							);
+							?>
+							<span class="wdsbt-attribute-enum">options: <?php echo esc_html( implode( ', ', $enum_display ) ); ?></span>
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</details>
+	</div>
+	<?php
+}
+
+/**
  * Prints block style and variation previews (block.json `styles` and `variations`).
  *
  * @param string $block_name  Fully qualified block name.
@@ -230,7 +295,7 @@ function render_block_showcase_variations_section( $block_name, $block_type ) {
 			);
 			?>
 		</summary>
-		<div class="wdsbt-showcase-variations__grid">
+		<div class="wdsbt-showcase-variations__flex">
 			<?php foreach ( $previews as $preview ) : ?>
 				<?php
 				$kind       = isset( $preview['kind'] ) ? (string) $preview['kind'] : 'variation';
@@ -404,57 +469,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 								<h4 class="wdsbt-showcase-block-title"><?php echo esc_html( get_block_display_name( $block_name ) ); ?></h4>
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
 							</div>
-							<?php
-							$block_attributes = get_block_attributes_info( $block_type );
-							if ( ! empty( $block_attributes ) ) :
-								?>
-								<div class="wdsbt-showcase-block-attributes">
-									<details class="wdsbt-attributes-details">
-										<summary class="wdsbt-attributes-summary">Attributes (<?php echo esc_html( count( $block_attributes ) ); ?>)</summary>
-										<div class="wdsbt-attributes-list">
-											<?php foreach ( $block_attributes as $attr_name => $attr_info ) : ?>
-												<div class="wdsbt-attribute-item">
-													<code class="wdsbt-attribute-name"><?php echo esc_html( $attr_name ); ?></code>
-													<?php
-													$type_display = $attr_info['type'];
-													if ( is_array( $type_display ) || is_object( $type_display ) ) {
-														$type_display = wp_json_encode( $type_display );
-													} else {
-														$type_display = (string) $type_display;
-													}
-													?>
-													<span class="wdsbt-attribute-type"><?php echo esc_html( $type_display ); ?></span>
-													<?php if ( null !== $attr_info['default'] ) : ?>
-														<?php
-														$default_display = $attr_info['default'];
-														if ( is_array( $default_display ) || is_object( $default_display ) ) {
-															$default_display = wp_json_encode( $default_display );
-														} else {
-															$default_display = (string) $default_display;
-														}
-														?>
-														<span class="wdsbt-attribute-default">default: <?php echo esc_html( $default_display ); ?></span>
-													<?php endif; ?>
-													<?php if ( isset( $attr_info['enum'] ) && is_array( $attr_info['enum'] ) ) : ?>
-														<?php
-														$enum_display = array_map(
-															function ( $value ) {
-																if ( is_array( $value ) || is_object( $value ) ) {
-																	return wp_json_encode( $value );
-																}
-																return (string) $value;
-															},
-															$attr_info['enum']
-														);
-														?>
-														<span class="wdsbt-attribute-enum">options: <?php echo esc_html( implode( ', ', $enum_display ) ); ?></span>
-													<?php endif; ?>
-												</div>
-											<?php endforeach; ?>
-										</div>
-									</details>
-								</div>
-							<?php endif; ?>
+							<?php render_block_showcase_attributes_section( $block_name, $block_type ); ?>
 							<div class="wdsbt-showcase-block-preview">
 								<?php echo_block_showcase_preview_html( $block_html ); ?>
 							</div>
@@ -496,57 +511,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<div class="wdsbt-showcase-block-meta">
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
 							</div>
-							<?php
-							$block_attributes = get_block_attributes_info( $block_type );
-							if ( ! empty( $block_attributes ) ) :
-								?>
-								<div class="wdsbt-showcase-block-attributes">
-									<details class="wdsbt-attributes-details">
-										<summary class="wdsbt-attributes-summary">Attributes (<?php echo esc_html( count( $block_attributes ) ); ?>)</summary>
-										<div class="wdsbt-attributes-list">
-											<?php foreach ( $block_attributes as $attr_name => $attr_info ) : ?>
-												<div class="wdsbt-attribute-item">
-													<code class="wdsbt-attribute-name"><?php echo esc_html( $attr_name ); ?></code>
-													<?php
-													$type_display = $attr_info['type'];
-													if ( is_array( $type_display ) || is_object( $type_display ) ) {
-														$type_display = wp_json_encode( $type_display );
-													} else {
-														$type_display = (string) $type_display;
-													}
-													?>
-													<span class="wdsbt-attribute-type"><?php echo esc_html( $type_display ); ?></span>
-													<?php if ( null !== $attr_info['default'] ) : ?>
-														<?php
-														$default_display = $attr_info['default'];
-														if ( is_array( $default_display ) || is_object( $default_display ) ) {
-															$default_display = wp_json_encode( $default_display );
-														} else {
-															$default_display = (string) $default_display;
-														}
-														?>
-														<span class="wdsbt-attribute-default">default: <?php echo esc_html( $default_display ); ?></span>
-													<?php endif; ?>
-													<?php if ( isset( $attr_info['enum'] ) && is_array( $attr_info['enum'] ) ) : ?>
-														<?php
-														$enum_display = array_map(
-															function ( $value ) {
-																if ( is_array( $value ) || is_object( $value ) ) {
-																	return wp_json_encode( $value );
-																}
-																return (string) $value;
-															},
-															$attr_info['enum']
-														);
-														?>
-														<span class="wdsbt-attribute-enum">options: <?php echo esc_html( implode( ', ', $enum_display ) ); ?></span>
-													<?php endif; ?>
-												</div>
-											<?php endforeach; ?>
-										</div>
-									</details>
-								</div>
-							<?php endif; ?>
+							<?php render_block_showcase_attributes_section( $block_name, $block_type ); ?>
 							<div class="wdsbt-showcase-block-preview">
 								<?php echo_block_showcase_preview_html( $block_html ); ?>
 							</div>
@@ -594,57 +559,7 @@ function render_block_showcase_shortcode( $atts = array(), $content = '' ) {
 							<div class="wdsbt-showcase-block-meta">
 								<code class="wdsbt-showcase-block-name"><?php echo esc_html( $block_name ); ?></code>
 							</div>
-							<?php
-							$block_attributes = get_block_attributes_info( $block_type );
-							if ( ! empty( $block_attributes ) ) :
-								?>
-								<div class="wdsbt-showcase-block-attributes">
-									<details class="wdsbt-attributes-details">
-										<summary class="wdsbt-attributes-summary">Attributes (<?php echo esc_html( count( $block_attributes ) ); ?>)</summary>
-										<div class="wdsbt-attributes-list">
-											<?php foreach ( $block_attributes as $attr_name => $attr_info ) : ?>
-												<div class="wdsbt-attribute-item">
-													<code class="wdsbt-attribute-name"><?php echo esc_html( $attr_name ); ?></code>
-													<?php
-													$type_display = $attr_info['type'];
-													if ( is_array( $type_display ) || is_object( $type_display ) ) {
-														$type_display = wp_json_encode( $type_display );
-													} else {
-														$type_display = (string) $type_display;
-													}
-													?>
-													<span class="wdsbt-attribute-type"><?php echo esc_html( $type_display ); ?></span>
-													<?php if ( null !== $attr_info['default'] ) : ?>
-														<?php
-														$default_display = $attr_info['default'];
-														if ( is_array( $default_display ) || is_object( $default_display ) ) {
-															$default_display = wp_json_encode( $default_display );
-														} else {
-															$default_display = (string) $default_display;
-														}
-														?>
-														<span class="wdsbt-attribute-default">default: <?php echo esc_html( $default_display ); ?></span>
-													<?php endif; ?>
-													<?php if ( isset( $attr_info['enum'] ) && is_array( $attr_info['enum'] ) ) : ?>
-														<?php
-														$enum_display = array_map(
-															function ( $value ) {
-																if ( is_array( $value ) || is_object( $value ) ) {
-																	return wp_json_encode( $value );
-																}
-																return (string) $value;
-															},
-															$attr_info['enum']
-														);
-														?>
-														<span class="wdsbt-attribute-enum">options: <?php echo esc_html( implode( ', ', $enum_display ) ); ?></span>
-													<?php endif; ?>
-												</div>
-											<?php endforeach; ?>
-										</div>
-									</details>
-								</div>
-							<?php endif; ?>
+							<?php render_block_showcase_attributes_section( $block_name, $block_type ); ?>
 							<div class="wdsbt-showcase-block-preview">
 								<?php if ( ! empty( $block_html ) ) : ?>
 									<?php echo_block_showcase_preview_html( $block_html ); ?>

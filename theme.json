@@ -1,8 +1,8 @@
 {
-    "title": "Light Mode",
-    "version": 3,
-    "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
-    "description": "Light mode palette for the theme",
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+    "title": "Default",
+    "description": "Default palette for the theme",
     "settings": {
         "appearanceTools": true,
         "color": {
@@ -341,7 +341,16 @@
                     "fontFamily": "var:preset|font-family|headline",
                     "fontWeight": "800"
                 }
-            }
+            },
+			"core/read-more": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|headline",
+					"fontSize": "var:preset|font-size|small",
+					"fontWeight": "400",
+					"textDecoration": "underline",
+					"textTransform": "uppercase"
+				}
+			}
         },
         "color": {
             "background": "var:preset|color|base",

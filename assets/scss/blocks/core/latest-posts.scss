@@ -25,6 +25,11 @@
 			margin-right: var(--wp--preset--spacing--30);
 		}
 
+		.wp-block-latest-posts__post-title {
+			font-size: var(--wp--preset--font-size--large);
+			font-weight: 800;
+		}
+
 		&:last-of-type {
 			margin-bottom: 0;
 		}
@@ -55,6 +60,10 @@
 				vertical-align: bottom;
 				width: 100%;
 			}
+		}
+
+		.wp-block-latest-posts__post-excerpt {
+			font-size: var(--wp--preset--font-size--base);
 		}
 	}
 

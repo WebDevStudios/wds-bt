@@ -1,23 +1,18 @@
 <!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
 
-<!-- wp:group {"className":"not-found","layout":{"type":"constrained"},"metadata":{"name":"404"}} -->
-<div class="wp-block-group not-found">
-
-	<!-- wp:heading {"className":"error-title","textAlign":"center","level":1} -->
-	<h1 class="wp-block-heading has-text-align-center error-title"><span title="404">404</span></h1>
+<!-- wp:group {"metadata":{"name":"404"},"className":"not-found","style":{"spacing":{"blockGap":"var:preset|spacing|30","padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group not-found" style="padding-top:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--80)">
+	<!-- wp:heading {"level":1,"className":"error-title","style":{"typography":{"textAlign":"center"}}} -->
+	<h1 class="wp-block-heading has-text-align-center error-title"><span title="404">404 Page not found</span></h1>
 	<!-- /wp:heading -->
 
-	<!-- wp:heading {"textAlign":"center","level":3} -->
+	<!-- wp:heading {"level":3,"style":{"typography":{"textAlign":"center"}}} -->
 	<h3 class="wp-block-heading has-text-align-center">What you are looking for is not here.</h3>
 	<!-- /wp:heading -->
 
 	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
 	<div class="wp-block-group">
-		<!-- wp:heading {"textAlign":"center","level":4} -->
-		<h4 class="wp-block-heading has-text-align-center">Maybe searching will help.</h4>
-		<!-- /wp:heading -->
-
-		<!-- wp:search {"label":"Search","showLabel":false,"width":100,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-only","buttonUseIcon":true,"isSearchFieldHidden":true,"align":"center"} /-->
+		<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Maybe searching will help...","width":512,"widthUnit":"px","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"align":"center"} /-->
 	</div>
 	<!-- /wp:group -->
 </div>

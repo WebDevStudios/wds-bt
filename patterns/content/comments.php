@@ -3,7 +3,7 @@
  * Title: Comments
  * Slug: wdsbt/comments
  * Categories: content
- * Block Types: custom/comments
+ * Block Types: core/comments
  * Inserter: false
  *
  * @package wdsbt

@@ -5,10 +5,6 @@ select,
 textarea {
 	border-radius: var(--wp--preset--border-radius--sm);
 	border: 1px solid var(--wp--preset--color--contrast, rgba(0, 0, 0, 0.1));
-	color: var(--wp--preset--color--contrast);
-	font-size: var(--wp--preset--font-size--small);
-	margin-top: var(--wp--preset--spacing--20);
-	padding: var(--wp--preset--spacing--20);
 	width: 100%;
 }
 
@@ -59,15 +55,4 @@ input[type='submit'] {
 input:focus,
 textarea:focus {
 	outline: none;
-}
-
-::placeholder {
-	color: var(--wp--preset--color--grey-500);
-}
-
-label {
-	color: var(--wp--preset--color--contrast);
-	display: inline-block;
-	font-weight: 700;
-	letter-spacing: 0.032px;
 }
