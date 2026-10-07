@@ -242,25 +242,33 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_dominant_color_styl
 
 /**
  * Add JavaScript to handle image load events and fade in.
+ *
+ * Attached to the theme's own script (`wdsbt-scripts`): `wp-block-library` is
+ * a stylesheet handle, so an inline script added to it never prints and lazy
+ * images stay at the placeholder opacity. The handle is deferred, so the
+ * script can run after DOMContentLoaded; it checks readyState.
  */
 function enqueue_dominant_color_script() {
-	$script = "
-		(function() {
-			document.addEventListener('DOMContentLoaded', function() {
-				const images = document.querySelectorAll('img.has-dominant-color');
-				images.forEach(function(img) {
-					if (img.complete) {
-						img.classList.add('loaded');
-					} else {
-						img.addEventListener('load', function() {
-							this.classList.add('loaded');
-						});
-					}
-				});
-			});
-		})();
-	";
+	$script = "(function () {
+		function mark(img) {
+			if (img.complete) {
+				img.classList.add('loaded');
+				return;
+			}
+			var done = function () { img.classList.add('loaded'); };
+			img.addEventListener('load', done, { once: true });
+			img.addEventListener('error', done, { once: true });
+		}
+		function init() {
+			document.querySelectorAll('img.has-dominant-color').forEach(mark);
+		}
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', init);
+		} else {
+			init();
+		}
+	})();";
 
-	wp_add_inline_script( 'wp-block-library', $script );
+	wp_add_inline_script( 'wdsbt-scripts', $script );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_dominant_color_script', 20 );

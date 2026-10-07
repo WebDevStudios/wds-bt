@@ -11,6 +11,26 @@
 namespace WebDevStudios\wdsbt;
 
 /**
+ * The uploads directory, its URLs in the request's scheme.
+ *
+ * `wp_upload_dir()` builds its URLs from the site URL, which can be http:// on
+ * a site browsed over https, and a stored WebP URL keeps whatever scheme it was
+ * saved with (http:// when generated from WP-CLI). Core corrects attachment
+ * URLs to the request's scheme; the swaps below must too, or an https page gets
+ * http:// images and the browser blocks them as mixed content. Every URL this
+ * file builds or reads goes through set_url_scheme() for that reason.
+ *
+ * @return array wp_upload_dir() with `url` and `baseurl` in the request's scheme.
+ */
+function webp_upload_dir() {
+	$dir            = wp_upload_dir();
+	$dir['url']     = set_url_scheme( $dir['url'] );
+	$dir['baseurl'] = set_url_scheme( $dir['baseurl'] );
+
+	return $dir;
+}
+
+/**
  * Check if a URL belongs to the local WordPress site.
  *
  * @param string $url The URL to check.
@@ -161,7 +181,7 @@ function generate_webp_on_upload( $attachment_id ) {
 	$webp_path = $file_info['dirname'] . '/' . $file_info['filename'] . '.webp';
 
 	if ( generate_webp( $file_path, $webp_path ) ) {
-		$upload_dir = wp_upload_dir();
+		$upload_dir = webp_upload_dir();
 		$webp_url   = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
 		update_post_meta( $attachment_id, '_webp_file', $webp_path );
 		update_post_meta( $attachment_id, '_webp_url', $webp_url );
@@ -195,7 +215,7 @@ function regenerate_webp_for_attachment( $attachment_id ) {
 	$webp_path = $file_info['dirname'] . '/' . $file_info['filename'] . '.webp';
 
 	if ( generate_webp( $file_path, $webp_path ) ) {
-		$upload_dir = wp_upload_dir();
+		$upload_dir = webp_upload_dir();
 		$webp_url   = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
 		update_post_meta( $attachment_id, '_webp_file', $webp_path );
 		update_post_meta( $attachment_id, '_webp_url', $webp_url );
@@ -237,7 +257,7 @@ function regenerate_webp_on_metadata_update( $metadata, $attachment_id ) {
 		$webp_path = $file_info['dirname'] . '/' . $file_info['filename'] . '.webp';
 
 		if ( generate_webp( $file_path, $webp_path ) ) {
-			$upload_dir = wp_upload_dir();
+			$upload_dir = webp_upload_dir();
 			$webp_url   = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $webp_path );
 			update_post_meta( $attachment_id, '_webp_file', $webp_path );
 			update_post_meta( $attachment_id, '_webp_url', $webp_url );
@@ -265,7 +285,7 @@ function generate_webp_sizes( $metadata, $attachment_id ) {
 		return $metadata;
 	}
 
-	$upload_dir = wp_upload_dir();
+	$upload_dir = webp_upload_dir();
 	$file_path  = get_attached_file( $attachment_id );
 
 	if ( $file_path && file_exists( $file_path ) ) {
@@ -320,7 +340,9 @@ add_filter( 'wp_generate_attachment_metadata', __NAMESPACE__ . '\\generate_webp_
  * @return string|false WebP URL or false if not available.
  */
 function get_webp_url( $attachment_id ) {
-	return get_post_meta( $attachment_id, '_webp_url', true );
+	$url = get_post_meta( $attachment_id, '_webp_url', true );
+
+	return $url ? set_url_scheme( $url ) : $url;
 }
 
 /**
@@ -334,17 +356,43 @@ function get_webp_file( $attachment_id ) {
 }
 
 /**
- * Check if browser supports WebP.
+ * Whether to serve WebP. Every current browser decodes WebP (Safari since 14),
+ * so the answer does not depend on the request.
  *
- * @return bool True if browser supports WebP.
+ * Reading the page request's Accept header is not a reliable signal: Safari
+ * decodes WebP but doesn't list image/webp on navigation requests, so it was
+ * served .jpg markup, and one URL served different HTML per browser, which a
+ * page cache can mix up. Filter `wdsbt_serve_webp` to turn WebP off.
+ *
+ * @return bool
  */
 function browser_supports_webp() {
-	if ( ! isset( $_SERVER['HTTP_ACCEPT'] ) ) {
-		return false;
-	}
-	$accept = sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT'] ) );
+	return (bool) apply_filters( 'wdsbt_serve_webp', true );
+}
 
-	return ( strpos( $accept, 'image/webp' ) !== false );
+/**
+ * The .webp sibling of a local upload URL, in the request's scheme, when that
+ * file exists; otherwise ''.
+ *
+ * @param string $url Image URL.
+ * @return string
+ */
+function webp_sibling_url( $url ) {
+	$path = (string) wp_parse_url( $url, PHP_URL_PATH );
+	if ( ! preg_match( '/\.(jpe?g|png)$/i', $path ) || ! is_local_url( $url ) ) {
+		return '';
+	}
+	$upload_dir = webp_upload_dir();
+	$base_path  = (string) wp_parse_url( $upload_dir['baseurl'], PHP_URL_PATH );
+	if ( '' === $base_path || 0 !== strpos( $path, $base_path ) ) {
+		return '';
+	}
+	$webp_rel = preg_replace( '/\.(jpe?g|png)$/i', '.webp', substr( $path, strlen( $base_path ) ) );
+	if ( ! file_exists( $upload_dir['basedir'] . $webp_rel ) ) {
+		return '';
+	}
+
+	return $upload_dir['baseurl'] . $webp_rel;
 }
 
 /**
@@ -378,7 +426,7 @@ function add_webp_source( $attr, $attachment_id ) {
 		return $attr;
 	}
 
-	$upload_dir = wp_upload_dir();
+	$upload_dir = webp_upload_dir();
 	$file_dir   = dirname( get_attached_file( $attachment_id ) );
 
 	$src_path     = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $src_url );
@@ -410,7 +458,7 @@ function add_webp_source( $attr, $attachment_id ) {
 
 		if ( $matching_size ) {
 			if ( ! empty( $matching_size['webp']['url'] ) ) {
-				$webp_url = $matching_size['webp']['url'];
+				$webp_url = set_url_scheme( $matching_size['webp']['url'] );
 			} elseif ( ! empty( $matching_size['file'] ) ) {
 				$size_file = $file_dir . '/' . $matching_size['file'];
 				if ( file_exists( $size_file ) ) {
@@ -462,7 +510,7 @@ function replace_attachment_image_src_with_webp( $image, $attachment_id, $size, 
 		return $image;
 	}
 
-	$upload_dir = wp_upload_dir();
+	$upload_dir = webp_upload_dir();
 	$src_url    = $image[0];
 
 	$webp_url = preg_replace( '/\.(jpg|jpeg|png)$/i', '.webp', $src_url );
@@ -484,7 +532,10 @@ function replace_attachment_image_src_with_webp( $image, $attachment_id, $size, 
 
 	return $image;
 }
-add_filter( 'wp_get_attachment_image_src', __NAMESPACE__ . '\\replace_attachment_image_src_with_webp', 10, 4 );
+// Not hooked: swapping the src to .webp here, before core builds the srcset,
+// leaves core unable to match the src to an image size, so the image gets no
+// srcset at all. The src is swapped in add_webp_source() and each srcset
+// candidate in replace_srcset_with_webp(), after core has built them.
 
 /**
  * Replace srcset URLs with WebP versions when available.
@@ -513,7 +564,7 @@ function replace_srcset_with_webp( $sources, $size_array, $image_src, $image_met
 		return $sources;
 	}
 
-	$upload_dir = wp_upload_dir();
+	$upload_dir = webp_upload_dir();
 	$file_dir   = dirname( get_attached_file( $attachment_id ) );
 	$file_path  = get_attached_file( $attachment_id );
 
@@ -560,7 +611,7 @@ function replace_srcset_with_webp( $sources, $size_array, $image_src, $image_met
 
 			if ( $matching_size ) {
 				if ( ! empty( $matching_size['webp']['url'] ) ) {
-					$webp_url = $matching_size['webp']['url'];
+					$webp_url = set_url_scheme( $matching_size['webp']['url'] );
 				} elseif ( ! empty( $matching_size['file'] ) ) {
 					$size_file = $file_dir . '/' . $matching_size['file'];
 					if ( file_exists( $size_file ) ) {
@@ -622,7 +673,7 @@ function replace_content_image_with_webp( $filtered_image, $context, $attachment
 		return $filtered_image;
 	}
 
-	$upload_dir = wp_upload_dir();
+	$upload_dir = webp_upload_dir();
 	$metadata   = wp_get_attachment_metadata( $attachment_id );
 	if ( ! $metadata ) {
 		return $filtered_image;
@@ -666,7 +717,7 @@ function replace_content_image_with_webp( $filtered_image, $context, $attachment
 
 				if ( $matching_size ) {
 					if ( ! empty( $matching_size['webp']['url'] ) ) {
-						$webp_url = $matching_size['webp']['url'];
+						$webp_url = set_url_scheme( $matching_size['webp']['url'] );
 					} elseif ( ! empty( $matching_size['file'] ) ) {
 						$size_file = $file_dir . '/' . $matching_size['file'];
 						if ( file_exists( $size_file ) ) {
@@ -740,7 +791,7 @@ function replace_content_image_with_webp( $filtered_image, $context, $attachment
 
 					if ( $matching_size ) {
 						if ( ! empty( $matching_size['webp']['url'] ) ) {
-							$webp_url = $matching_size['webp']['url'];
+							$webp_url = set_url_scheme( $matching_size['webp']['url'] );
 						} elseif ( ! empty( $matching_size['file'] ) ) {
 							$size_file = $file_dir . '/' . $matching_size['file'];
 							if ( file_exists( $size_file ) ) {
@@ -814,11 +865,8 @@ function replace_block_image_with_webp( $block_content, $block ) {
 	$block_content = preg_replace_callback(
 		'/(<img[^>]+src=["\'])([^"\']+\.)(jpg|jpeg|png)(["\'][^>]*>)/i',
 		function ( $matches ) {
-			$url = $matches[2] . $matches[3];
-			if ( ! is_local_url( $url ) ) {
-				return $matches[0];
-			}
-			return $matches[1] . $matches[2] . 'webp' . $matches[4];
+			$webp = webp_sibling_url( $matches[2] . $matches[3] );
+			return '' === $webp ? $matches[0] : $matches[1] . $webp . $matches[4];
 		},
 		$block_content
 	);
@@ -840,13 +888,9 @@ function replace_block_image_with_webp( $block_content, $block ) {
 				}
 
 				if ( preg_match( '/^(.+?\.(?:jpg|jpeg|png))(?:\s+(\d+)w)?$/i', $part, $url_matches ) ) {
-					$url = trim( $url_matches[1] );
-					if ( is_local_url( $url ) ) {
-						$width       = isset( $url_matches[2] ) ? ' ' . $url_matches[2] . 'w' : '';
-						$new_parts[] = preg_replace( '/\.(jpg|jpeg|png)$/i', '.webp', $url ) . $width;
-					} else {
-						$new_parts[] = $part;
-					}
+					$webp        = webp_sibling_url( trim( $url_matches[1] ) );
+					$width       = isset( $url_matches[2] ) ? ' ' . $url_matches[2] . 'w' : '';
+					$new_parts[] = '' === $webp ? $part : $webp . $width;
 				} else {
 					$new_parts[] = $part;
 				}
@@ -873,7 +917,7 @@ function replace_images_in_content_with_webp( $content ) {
 		return $content;
 	}
 
-	$upload_dir = wp_upload_dir();
+	$upload_dir = webp_upload_dir();
 	$site_url   = site_url();
 
 	$content = preg_replace_callback(
@@ -1020,11 +1064,8 @@ function replace_images_in_output_buffer( $buffer ) {
 	$buffer = preg_replace_callback(
 		'/(<img[^>]+src=["\'])([^"\']+\.)(jpg|jpeg|png)(["\'][^>]*>)/i',
 		function ( $matches ) {
-			$url = $matches[2] . $matches[3];
-			if ( ! is_local_url( $url ) ) {
-				return $matches[0];
-			}
-			return $matches[1] . $matches[2] . 'webp' . $matches[4];
+			$webp = webp_sibling_url( $matches[2] . $matches[3] );
+			return '' === $webp ? $matches[0] : $matches[1] . $webp . $matches[4];
 		},
 		$buffer
 	);
@@ -1046,13 +1087,9 @@ function replace_images_in_output_buffer( $buffer ) {
 				}
 
 				if ( preg_match( '/^(.+?\.(?:jpg|jpeg|png))(?:\s+(\d+)w)?$/i', $part, $url_matches ) ) {
-					$url = trim( $url_matches[1] );
-					if ( is_local_url( $url ) ) {
-						$width       = isset( $url_matches[2] ) ? ' ' . $url_matches[2] . 'w' : '';
-						$new_parts[] = preg_replace( '/\.(jpg|jpeg|png)$/i', '.webp', $url ) . $width;
-					} else {
-						$new_parts[] = $part;
-					}
+					$webp        = webp_sibling_url( trim( $url_matches[1] ) );
+					$width       = isset( $url_matches[2] ) ? ' ' . $url_matches[2] . 'w' : '';
+					$new_parts[] = '' === $webp ? $part : $webp . $width;
 				} else {
 					$new_parts[] = $part;
 				}
@@ -1088,144 +1125,8 @@ if ( ! is_admin() && ! wp_is_json_request() ) {
 		);
 }
 
-/**
- * Add JavaScript fallback to replace image URLs with WebP on client side.
- */
-function add_webp_replacement_script() {
-	if ( is_admin() || ! webp_supported() ) {
-		return;
-	}
-	?>
-	<script>
-	(function() {
-		var siteUrl = <?php echo wp_json_encode( site_url() ); ?>;
-		var homeUrl = <?php echo wp_json_encode( home_url() ); ?>;
-		var siteHost = '';
-		var homeHost = '';
-
-		try {
-			siteHost = new URL(siteUrl).hostname;
-		} catch(e) {}
-
-		try {
-			homeHost = new URL(homeUrl).hostname;
-		} catch(e) {}
-
-		function isLocalUrl(url) {
-			if (!url || typeof url !== 'string') {
-				return false;
-			}
-
-			try {
-				var urlObj = new URL(url, window.location.href);
-				var hostname = urlObj.hostname;
-				return hostname === siteHost || hostname === homeHost || hostname === window.location.hostname || hostname === '';
-			} catch(e) {
-				return url.indexOf('/') === 0 || url.indexOf(siteUrl) === 0 || url.indexOf(homeUrl) === 0;
-			}
-		}
-
-		function replaceImagesWithWebP() {
-			var images = document.querySelectorAll('img');
-			images.forEach(function(img) {
-				if (img.src && img.src.match(/\.(jpg|jpeg|png)(\?|$)/i)) {
-					if (isLocalUrl(img.src)) {
-						img.src = img.src.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2');
-					}
-				}
-				if (img.srcset) {
-					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\?[^\s,]*)?(\s+\d+w)?/gi, function(match, url, ext, query, width) {
-						if (isLocalUrl(url)) {
-							return url.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2') + (query || '') + (width || '');
-						}
-						return match;
-					});
-				}
-			});
-		}
-
-		replaceImagesWithWebP();
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', replaceImagesWithWebP);
-		}
-
-		setTimeout(replaceImagesWithWebP, 100);
-		setTimeout(replaceImagesWithWebP, 500);
-		setTimeout(replaceImagesWithWebP, 1000);
-	})();
-	</script>
-	<?php
-}
-add_action( 'wp_footer', __NAMESPACE__ . '\\add_webp_replacement_script', 999 );
-add_action( 'wp_head', __NAMESPACE__ . '\\add_webp_replacement_script', 999 );
-
-add_action(
-	'wp_print_scripts',
-	function () {
-		if ( is_admin() || ! webp_supported() ) {
-			return;
-		}
-		?>
-	<script>
-	(function() {
-		var siteUrl = <?php echo wp_json_encode( site_url() ); ?>;
-		var homeUrl = <?php echo wp_json_encode( home_url() ); ?>;
-		var siteHost = '';
-		var homeHost = '';
-
-		try {
-			siteHost = new URL(siteUrl).hostname;
-		} catch(e) {}
-
-		try {
-			homeHost = new URL(homeUrl).hostname;
-		} catch(e) {}
-
-		function isLocalUrl(url) {
-			if (!url || typeof url !== 'string') {
-				return false;
-			}
-
-			try {
-				var urlObj = new URL(url, window.location.href);
-				var hostname = urlObj.hostname;
-				return hostname === siteHost || hostname === homeHost || hostname === window.location.hostname || hostname === '';
-			} catch(e) {
-				return url.indexOf('/') === 0 || url.indexOf(siteUrl) === 0 || url.indexOf(homeUrl) === 0;
-			}
-		}
-
-		function replaceImagesWithWebP() {
-			var images = document.querySelectorAll('img');
-			images.forEach(function(img) {
-				if (img.src && img.src.match(/\.(jpg|jpeg|png)(\?|$)/i)) {
-					if (isLocalUrl(img.src)) {
-						img.src = img.src.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2');
-					}
-				}
-				if (img.srcset) {
-					img.srcset = img.srcset.replace(/([^\s,]+)\.(jpg|jpeg|png)(\?[^\s,]*)?(\s+\d+w)?/gi, function(match, url, ext, query, width) {
-						if (isLocalUrl(url)) {
-							return url.replace(/\.(jpg|jpeg|png)(\?|$)/i, '.webp$2') + (query || '') + (width || '');
-						}
-						return match;
-					});
-				}
-			});
-		}
-		replaceImagesWithWebP();
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', replaceImagesWithWebP);
-		}
-		setTimeout(replaceImagesWithWebP, 100);
-		setTimeout(replaceImagesWithWebP, 500);
-		setTimeout(replaceImagesWithWebP, 1000);
-	})();
-	</script>
-		<?php
-	},
-	1
-);
+// No client-side swap: the server serves WebP to every browser
+// (browser_supports_webp()), so the markup already points at .webp files.
 
 /**
  * Register WP-CLI command for WebP regeneration.
