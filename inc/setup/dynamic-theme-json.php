@@ -308,7 +308,7 @@ function get_font_detection_debug_html() {
 			<?php endforeach; ?>
 			</ul>
 		<?php else : ?>
-			<p><em><?php esc_html_e( 'No font families detected.', 'talogy' ); ?></em></p>
+			<p><em><?php esc_html_e( 'No font families detected.', 'wdsbt' ); ?></em></p>
 		<?php endif; ?>
 	</div>
 	<?php
@@ -324,9 +324,8 @@ function debug_font_detection() {
 	}
 
 	$screen = get_current_screen();
-	if ( ! $screen || 'tools_page_talogy-settings' !== $screen->id ) {
+	if ( ! $screen || 'tools_page_wdsbt-settings' !== $screen->id ) {
 		return;
 	}
 
-	// Don't output here - it will be shown at the bottom of the settings page.
 }
