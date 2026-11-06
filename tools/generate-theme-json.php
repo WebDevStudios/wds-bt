@@ -106,10 +106,20 @@ if ( ! function_exists( __NAMESPACE__ . '\\parse_font_filename' ) ) {
 		$filename_without_ext = preg_replace( '/\.(woff2?|ttf|otf)$/i', '', $filename );
 		$lowercase_filename   = strtolower( $filename_without_ext );
 
-		foreach ( $weight_patterns as $pattern => $weight ) {
-			if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-				$metadata['weight'] = $weight;
-				break;
+		$is_variable_font = strpos( $lowercase_filename, 'variablefont' ) !== false
+			|| strpos( $lowercase_filename, 'variable-font' ) !== false
+			|| strpos( $lowercase_filename, '_wght' ) !== false
+			|| strpos( $lowercase_filename, '-wght' ) !== false;
+
+		if ( $is_variable_font ) {
+			// Variable fonts serve a full weight axis from a single file, not one static weight.
+			$metadata['weight'] = '100 900';
+		} else {
+			foreach ( $weight_patterns as $pattern => $weight ) {
+				if ( strpos( $lowercase_filename, $pattern ) !== false ) {
+					$metadata['weight'] = $weight;
+					break;
+				}
 			}
 		}
 

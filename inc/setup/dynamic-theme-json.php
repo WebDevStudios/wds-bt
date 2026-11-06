@@ -115,10 +115,18 @@ function parse_font_filename( $filename ) {
 	$filename_without_ext = preg_replace( '/\.(woff2?|ttf|otf)$/i', '', $filename );
 	$lowercase_filename   = strtolower( $filename_without_ext );
 
-	foreach ( $weight_patterns as $pattern => $weight ) {
-		if ( strpos( $lowercase_filename, $pattern ) !== false ) {
-			$metadata['weight'] = $weight;
-			break;
+	// Variable fonts (e.g. Google Fonts' "-variablefont_wght" naming) span a weight
+	// range rather than a single weight, so they need a range instead of a default.
+	$is_variable_weight_font = false !== strpos( $lowercase_filename, 'variablefont_wght' ) || false !== strpos( $lowercase_filename, '-wght' );
+
+	if ( $is_variable_weight_font ) {
+		$metadata['weight'] = '100 900';
+	} else {
+		foreach ( $weight_patterns as $pattern => $weight ) {
+			if ( strpos( $lowercase_filename, $pattern ) !== false ) {
+				$metadata['weight'] = $weight;
+				break;
+			}
 		}
 	}
 
@@ -180,10 +188,11 @@ function group_fonts_by_family( $fonts ) {
 		}
 
 		$grouped[ $family ]['fontFace'][] = array(
-			'fontFamily' => $family,
-			'fontStyle'  => $font['style'],
-			'fontWeight' => $font['weight'],
-			'src'        => array( "file:./{$font['path']}" ),
+			'fontFamily'  => $family,
+			'fontStyle'   => $font['style'],
+			'fontWeight'  => $font['weight'],
+			'fontDisplay' => 'swap',
+			'src'         => array( "file:./{$font['path']}" ),
 		);
 	}
 
@@ -215,10 +224,7 @@ function get_font_slug( $family ) {
 }
 
 /**
- * Filter theme.json data to merge dynamically detected fonts.
- *
- * Theme.json fontFamilies are kept by slug; scanned families only append new slugs.
- * Replacing entirely broke variable fonts and multi-face presets (e.g. Inter at 800).
+ * Filter theme.json data to include dynamically detected fonts.
  *
  * @param \WP_Theme_JSON_Data $theme_json_data Theme JSON data object.
  * @return \WP_Theme_JSON_Data Modified theme JSON data.
@@ -248,50 +254,7 @@ function filter_theme_json_data( $theme_json_data ) {
 	}
 
 	if ( ! empty( $font_families ) ) {
-		$ff_path = array( 'settings', 'typography', 'fontFamilies' );
-		$node    = _wp_array_get( $theme_json, $ff_path, array() );
-		if ( ! is_array( $node ) ) {
-			$node = array();
-		}
-
-		// Presets must stay keyed by origin (e.g. theme). Do not append numeric keys at this level.
-		$new_node = array();
-		foreach ( \WP_Theme_JSON::VALID_ORIGINS as $origin ) {
-			if ( isset( $node[ $origin ] ) && is_array( $node[ $origin ] ) ) {
-				$new_node[ $origin ] = $node[ $origin ];
-			}
-		}
-		if ( ! isset( $new_node['theme'] ) || ! is_array( $new_node['theme'] ) ) {
-			$new_node['theme'] = array();
-		}
-
-		$theme_presets = array_values(
-			array_filter(
-				$new_node['theme'],
-				static function ( $item ) {
-					return is_array( $item ) && ! empty( $item['slug'] ) && is_string( $item['slug'] );
-				}
-			)
-		);
-
-		$existing_slugs = array();
-		foreach ( $theme_presets as $fam ) {
-			$existing_slugs[ $fam['slug'] ] = true;
-		}
-
-		foreach ( array_values( $font_families ) as $family_entry ) {
-			if ( ! is_array( $family_entry ) || empty( $family_entry['slug'] ) || ! is_string( $family_entry['slug'] ) ) {
-				continue;
-			}
-			$slug = $family_entry['slug'];
-			if ( ! isset( $existing_slugs[ $slug ] ) ) {
-				$theme_presets[]         = $family_entry;
-				$existing_slugs[ $slug ] = true;
-			}
-		}
-
-		$new_node['theme'] = $theme_presets;
-		_wp_array_set( $theme_json, $ff_path, $new_node );
+		$theme_json['settings']['typography']['fontFamilies'] = array_values( $font_families );
 	}
 
 	// Create new theme JSON data object with updated content.
