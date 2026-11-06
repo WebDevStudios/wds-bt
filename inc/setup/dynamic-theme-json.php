@@ -288,17 +288,17 @@ function get_font_detection_debug_html() {
 	ob_start();
 	?>
 	<div style="margin: 2em 0 1em; padding: 1em; background: #f0f6fc; border-left: 4px solid #2271b1;">
-		<h3 style="margin-top: 0;"><?php esc_html_e( 'Font Detection Debug', 'talogy' ); ?></h3>
+		<h3 style="margin-top: 0;"><?php esc_html_e( 'Font Detection Debug', 'wdsbt' ); ?></h3>
 		<p>
-			<strong><?php esc_html_e( 'Build fonts found:', 'talogy' ); ?></strong> <?php echo count( $build_fonts ); ?><br>
-			<strong><?php esc_html_e( 'Assets fonts found:', 'talogy' ); ?></strong> <?php echo count( $assets_fonts ); ?>
+			<strong><?php esc_html_e( 'Build fonts found:', 'wdsbt' ); ?></strong> <?php echo count( $build_fonts ); ?><br>
+			<strong><?php esc_html_e( 'Assets fonts found:', 'wdsbt' ); ?></strong> <?php echo count( $assets_fonts ); ?>
 		</p>
 		<?php if ( ! empty( $font_families ) ) : ?>
-			<p><strong><?php esc_html_e( 'Font families detected:', 'talogy' ); ?></strong></p>
+			<p><strong><?php esc_html_e( 'Font families detected:', 'wdsbt' ); ?></strong></p>
 			<ul style="margin-left: 1.5em; margin-bottom: 1em;">
 			<?php foreach ( $font_families as $family => $config ) : ?>
 				<li>
-					<?php echo esc_html( $family ); ?>: <?php echo count( $config['fontFace'] ); ?> <?php esc_html_e( 'variants', 'talogy' ); ?>
+					<?php echo esc_html( $family ); ?>: <?php echo count( $config['fontFace'] ); ?> <?php esc_html_e( 'variants', 'wdsbt' ); ?>
 					<ul style="margin-left: 1.5em;">
 						<?php foreach ( $config['fontFace'] as $face ) : ?>
 							<li><?php echo esc_html( "{$face['fontWeight']} {$face['fontStyle']}: {$face['src'][0]}" ); ?></li>
