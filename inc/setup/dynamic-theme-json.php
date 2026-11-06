@@ -327,5 +327,4 @@ function debug_font_detection() {
 	if ( ! $screen || 'tools_page_wdsbt-settings' !== $screen->id ) {
 		return;
 	}
-
 }
